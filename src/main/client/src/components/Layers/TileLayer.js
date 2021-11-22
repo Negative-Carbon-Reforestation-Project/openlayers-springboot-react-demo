@@ -11,6 +11,10 @@ import OLTileLayer from "ol/layer/Tile";
 const TileLayer = ({ source, zIndex = 0 }) => {
     const { map } = useContext(MapContext);
 
+    /**
+     * Once the component is mounted onto the dom, construct a new tilelayer and append it
+     * to the map using the shared MapContext.
+     */
     useEffect(() => {
         if (!map) return;
 
