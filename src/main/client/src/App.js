@@ -11,6 +11,8 @@ import Footer from "./components/Footer";
 
 import { OSM } from "ol/source";
 import { fromLonLat, get } from "ol/proj";
+import Overlays from "./components/Overlays/Overlays";
+import Popup from "./components/Overlays/Popup";
 
 function App()
 {
@@ -25,6 +27,9 @@ function App()
                 <Layers>
                   <TileLayer source={new OSM()} zIndex={0} />
                 </Layers>
+                <Overlays>
+                    <Popup />
+                </Overlays>
                 <Controls>
                     <ZoomControl />
                 </Controls>
