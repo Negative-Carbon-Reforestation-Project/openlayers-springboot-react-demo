@@ -12,6 +12,10 @@ import "./Zoom.css"
 const ZoomControl = () => {
     const { map } = useContext(MapContext);
 
+    /**
+     * Once the component is mounted onto the DOM, extend the zoom control and append it onto the map
+     * using the shared MapContext. If the state of map changes, this function is called again.
+     */
     useEffect(() => {
         if (!map)
         {
