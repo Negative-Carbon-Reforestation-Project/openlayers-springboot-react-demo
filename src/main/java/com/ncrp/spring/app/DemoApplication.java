@@ -1,4 +1,4 @@
-package com.ncrp.demo;
+package com.ncrp.spring.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

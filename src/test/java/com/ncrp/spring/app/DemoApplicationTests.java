@@ -1,4 +1,4 @@
-package com.ncrp.demo;
+package com.ncrp.spring.app;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
