@@ -14,8 +14,11 @@ import { fromLonLat, get } from "ol/proj";
 import Overlays from "./components/Overlays/Overlays";
 import Popup from "./components/Overlays/Popup";
 
-function App()
-{
+/**
+ * Component for the React applicaation
+ * @returns {JSX.Element}
+ */
+const App = () => {
     const [center, setCenter] = useState([-122.29567670312974, 47.41311574557329]);
     const [zoom, setZoom] = useState(6);
 
@@ -40,6 +43,6 @@ function App()
             </Footer>
         </div>
     )
-}
+};
 
 export default App;
