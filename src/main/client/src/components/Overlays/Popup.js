@@ -24,7 +24,7 @@ const Popup = () => {
             autoPanAnimation: { duration: 250 }
         })
 
-        popupCloserRef.current.onClick = () => {
+        popupCloserRef.current.onclick = () => {
             popupOverlay.setPosition(undefined);
             popupCloserRef.current.blur();
             return false;
@@ -60,7 +60,7 @@ const Popup = () => {
     return (
         <div className="ol-popup" ref={popupRef}>
             <a href="#" className="ol-popup-closer" ref={popupCloserRef}/>
-            <div id="popup-content">{popupContent}</div>
+            <div className="popup-content">{popupContent}</div>
         </div>
     )
 }
