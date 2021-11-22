@@ -2,6 +2,12 @@ import { useContext, useEffect } from "react";
 import MapContext from "../Map/MapContext";
 import OLTileLayer from "ol/layer/Tile";
 
+/**
+ * Container for custom OpenLayer TileLayers
+ * @param source The source image(s) for this layer
+ * @param zIndex The z-index for layer rendering. Determines positioning of layers.
+ * @returns {null}
+ */
 const TileLayer = ({ source, zIndex = 0 }) => {
     const { map } = useContext(MapContext);
 
