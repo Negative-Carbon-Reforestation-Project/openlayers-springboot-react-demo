@@ -1,0 +1,98 @@
+.ol-zoom-in
+{
+    font-family: Roboto;
+    font-size: 2rem;
+    font-weight: bold;
+
+    background-color: black;
+    color: white;
+
+    width: 4rem;
+    height: 3.8rem;
+    position: fixed;
+    top: 11rem;
+    left: 2.5rem;
+}
+
+.ol-zoom-out
+{
+    font-family: Roboto;
+    font-size: 32px;
+    font-weight: bold;
+
+    background-color: black;
+    color: white;
+
+    width: 4rem;
+    height: 3.8rem;
+    position: fixed;
+    top: 15.75rem;
+    left: 2.5rem;
+
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px)
+{
+    .ol-zoom-in, .ol-zoom-out
+    {
+        font-size: 2.5rem;
+
+        width: 3rem;
+        height: 3.3rem;
+        left: 1rem;
+    }
+
+    .ol-zoom-in
+    {
+        top: 7.8rem;
+    }
+
+    .ol-zoom-out
+    {
+        top: 11.6rem;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px)
+{
+    .ol-zoom-in, .ol-zoom-out
+    {
+        font-size: 3rem;
+        width: 6rem;
+        height: 5rem;
+        left: 2.5rem;
+    }
+
+    .ol-zoom-in
+    {
+        top: 15rem;
+    }
+
+    .ol-zoom-out
+    {
+        top: 21.75rem;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px)
+{
+    .ol-zoom-in, .ol-zoom-out
+    {
+        width: 4rem;
+        height: 3.8rem;
+        left: 2.5rem;
+    }
+
+    .ol-zoom-in
+    {
+        top: 11rem;
+    }
+
+    .ol-zoom-out
+    {
+        top: 15.75rem;
+    }
+}
