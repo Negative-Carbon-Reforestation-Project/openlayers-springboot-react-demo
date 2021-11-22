@@ -14,7 +14,9 @@ const Map = ({ children, zoom, center }) => {
     const mapRef = useRef();
     const [map, setMap] = useState(null);
 
-    // on component mount
+    /**
+     * Once the component is mounted onto the DOM, construct a new map with the given view.
+     */
     useEffect(() => {
         let options = {
             view: new ol.View({ zoom, center }),
@@ -26,10 +28,14 @@ const Map = ({ children, zoom, center }) => {
         let mapObject = new ol.Map(options);
         mapObject.setTarget(mapRef.current);
         setMap(mapObject);
+
         return () => mapObject.setTarget(undefined);
     }, []);
 
-    // zoom change handler
+    /**
+     * Once the component is mounted onto the DOM, set the zoom level on the map.
+     * If the state of zoom changes, this function is called again.
+     */
     useEffect(() => {
         if (!map)
         {
@@ -39,7 +45,10 @@ const Map = ({ children, zoom, center }) => {
         map.getView().setZoom(zoom);
     }, [zoom]);
 
-    // center change handler
+    /**
+     * Once the component is mounted onto the DOM, center the view on the map.
+     * If the state of center changes, this function is called again.
+     */
     useEffect(() => {
         if (!map)
         {
