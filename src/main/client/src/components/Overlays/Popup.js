@@ -6,12 +6,20 @@ import {toLonLat} from "ol/proj";
 
 import "./Popup.css"
 
+/**
+ * Container for OpenLayer custom popup.
+ * @returns {JSX.Element}
+ */
 const Popup = () => {
     const { map } = useContext(MapContext);
     const popupRef = useRef();
     const popupCloserRef = useRef();
     const [popupContent, setPopupContent] = useState(<div></div>);
 
+    /**
+     * Once the component is mounted onto the DOM, create the overlay and populate it via a click listener on the map.
+     * Add a click listener for the popup closer as well.
+     */
     useEffect(() => {
         if (!map)
         {
