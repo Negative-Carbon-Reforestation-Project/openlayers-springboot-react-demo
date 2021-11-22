@@ -16,8 +16,8 @@ import Popup from "./components/Overlays/Popup";
 
 function App()
 {
-    const [center, setCenter] = useState([0, 0]);
-    const [zoom, setZoom] = useState(2);
+    const [center, setCenter] = useState([-122.29567670312974, 47.41311574557329]);
+    const [zoom, setZoom] = useState(6);
 
     return (
         <div>
