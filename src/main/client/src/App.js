@@ -1,19 +1,31 @@
+import React, { useState } from 'react';
 import './App.css';
-import OpenLayersMap from './components/OpenLayersMap.js'
-import {Helmet} from "react-helmet";
+
+import Map from "./components/Map/Map";
+import Layers from "./components/Layers/Layers";
+import TileLayer from "./components/Layers/TileLayer";
+import Controls from "./components/Controls/Controls";
+
+import { OSM } from "ol/source";
+import { fromLonLat, get } from "ol/proj";
 
 function App()
 {
-  const view = {
-    center: [0, 0],
-    zoom: 2
-  };
+    const [center, setCenter] = useState([0, 0]);
+    const [zoom, setZoom] = useState(2);
 
-  return (
-    <div className="App">
-        <OpenLayersMap mapID="map" view={view} />
-    </div>
-  );
+    return (
+        <div>
+          <Map center={fromLonLat(center)} zoom={zoom}>
+            <Layers>
+              <TileLayer source={new OSM()} zIndex={0} />
+            </Layers>
+            <Controls>
+
+            </Controls>
+          </Map>
+        </div>
+    )
 }
 
 export default App;
