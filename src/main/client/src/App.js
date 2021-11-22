@@ -19,7 +19,8 @@ import Popup from "./components/Overlays/Popup";
  * @returns {JSX.Element}
  */
 const App = () => {
-    const [center, setCenter] = useState([-122.29567670312974, 47.41311574557329]);
+    const washingtonCoordinates = [-122.29567670312974, 47.41311574557329];
+    const [center, setCenter] = useState(washingtonCoordinates);
     const [zoom, setZoom] = useState(6);
 
     return (
