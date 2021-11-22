@@ -7,6 +7,7 @@ import TileLayer from "./components/Layers/TileLayer";
 import Controls from "./components/Controls/Controls";
 import ZoomControl from "./components/Controls/Zoom";
 import Logo from "./components/Logo";
+import Footer from "./components/Footer";
 
 import { OSM } from "ol/source";
 import { fromLonLat, get } from "ol/proj";
@@ -19,14 +20,19 @@ function App()
     return (
         <div>
             <Logo />
-          <Map center={fromLonLat(center)} zoom={zoom}>
-            <Layers>
-              <TileLayer source={new OSM()} zIndex={0} />
-            </Layers>
-            <Controls>
-                <ZoomControl />
-            </Controls>
-          </Map>
+
+            <Map center={fromLonLat(center)} zoom={zoom}>
+                <Layers>
+                  <TileLayer source={new OSM()} zIndex={0} />
+                </Layers>
+                <Controls>
+                    <ZoomControl />
+                </Controls>
+            </Map>
+
+            <Footer>
+                <p className="copyright-info">© NCRP Contributors</p>
+            </Footer>
         </div>
     )
 }
