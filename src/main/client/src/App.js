@@ -29,7 +29,7 @@ const App = () => {
 
             <Map center={fromLonLat(center)} zoom={zoom}>
                 <Layers>
-                  <TileLayer source={new OSM()} zIndex={0} />
+                  <TileLayer source={new OSM()} zIndex={0} preload={Infinity} />
                 </Layers>
                 <Overlays>
                     <Popup />

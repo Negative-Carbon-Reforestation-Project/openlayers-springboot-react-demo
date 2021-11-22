@@ -4,11 +4,12 @@ import OLTileLayer from "ol/layer/Tile";
 
 /**
  * Container for custom OpenLayer TileLayers
- * @param source The source image(s) for this layer
- * @param zIndex The z-index for layer rendering. Determines positioning of layers.
+ * @param source The source image(s) for this layer.
+ * @param zIndex The z-index for layer rendering. Determines positioning of layers, default is 0.
+ * @param preload The tiles to be preloaded, default is 0.
  * @returns {null}
  */
-const TileLayer = ({ source, zIndex = 0 }) => {
+const TileLayer = ({ source, zIndex = 0, preload = 0}) => {
     const { map } = useContext(MapContext);
 
     /**
@@ -21,7 +22,7 @@ const TileLayer = ({ source, zIndex = 0 }) => {
         let tileLayer = new OLTileLayer({
             source,
             zIndex,
-            preload: Infinity
+            preload
         });
 
         map.addLayer(tileLayer);
