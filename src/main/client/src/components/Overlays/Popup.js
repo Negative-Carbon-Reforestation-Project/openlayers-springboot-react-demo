@@ -4,7 +4,7 @@ import MapContext from "../Map/MapContext";
 import {Overlay} from "ol";
 import {toLonLat} from "ol/proj";
 
-import "./Popup.css"
+import "../../styles/Popup.css"
 
 /**
  * Container for OpenLayer custom popup.

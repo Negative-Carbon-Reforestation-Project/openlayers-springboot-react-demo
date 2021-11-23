@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Zoom } from "ol/control";
 import MapContext from "../Map/MapContext";
 
-import "./Zoom.css"
+import "../../styles/Zoom.css"
 
 /**
  * Component for custom OpenLayer zoom control.
