@@ -9,7 +9,7 @@ import OLTileLayer from "ol/layer/Tile";
  * @param preload The tiles to be preloaded, default is 0.
  * @returns {null}
  */
-const TileLayer = ({ source, zIndex = 0, preload = 0}) => {
+const TileLayer = ({ source, zIndex = 0, preload = 0, opacity=1}) => {
     const { map } = useContext(MapContext);
 
     /**
@@ -25,7 +25,17 @@ const TileLayer = ({ source, zIndex = 0, preload = 0}) => {
             preload
         });
 
+        tileLayer.setOpacity(opacity);
+
         map.addLayer(tileLayer);
+
+        // console.log(customView);
+
+        // if (customView)
+        // {
+        //     map.setView(customView)
+        // }
+
         tileLayer.setZIndex(zIndex);
 
         return () => {
