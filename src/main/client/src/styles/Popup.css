@@ -49,7 +49,7 @@
     margin-left: -11px;
 }
 
-.ol-popup-closer
+.ol-popup__closeButton
 {
     text-decoration: none;
     position: absolute;
@@ -57,7 +57,7 @@
     right: 8px;
 }
 
-.ol-popup-closer:after
+.ol-popup__closeButton:after
 {
     content: "✖";
     color: rgb(233, 74, 147);
@@ -65,7 +65,7 @@
 
 }
 
-.popup-content
+.ol-popup__content
 {
     font-size: 1rem;
     color: white;
@@ -73,7 +73,7 @@
     font-family: Roboto;
 }
 
-.popup-content code
+.ol-popup__content code
 {
     color: rgb(233, 74, 147);
 }
@@ -86,7 +86,7 @@
        min-width: 15.6rem;
    }
 
-    .popup-content
+    .ol-popup__content
     {
         font-size: 1.1rem;
     }
@@ -100,7 +100,7 @@
         min-width: 21.5rem;
     }
 
-    .popup-content
+    .ol-popup__content
     {
         font-size: 1.5rem;
     }
@@ -115,7 +115,7 @@
         min-width: 26rem;
     }
 
-    .popup-content
+    .ol-popup__content
     {
         font-size: 1.8rem;
     }
@@ -129,7 +129,7 @@
         min-width: 17.5rem;
     }
 
-    .popup-content
+    .ol-popup__content
     {
         font-size: 1rem;
     }
