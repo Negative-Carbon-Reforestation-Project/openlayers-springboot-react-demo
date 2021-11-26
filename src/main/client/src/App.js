@@ -9,8 +9,8 @@ import ZoomControl from "./components/Controls/Zoom";
 import Logo from "./components/Logo";
 import Footer from "./components/Footer";
 
-import { OSM } from "ol/source";
-import { fromLonLat, get } from "ol/proj";
+import { OSM, TileWMS } from "ol/source";
+import { fromLonLat } from "ol/proj";
 import Overlays from "./components/Overlays/Overlays";
 import Popup from "./components/Overlays/Popup";
 
@@ -23,13 +23,29 @@ const App = () => {
     const [center, setCenter] = useState(washingtonCoordinates);
     const [zoom, setZoom] = useState(6);
 
+    const waSlope = new TileWMS({
+        url: 'http://localhost:8080/geoserver/wms',
+        params: {'LAYERS': 'ncrp:wa_slope', 'TILED': true},
+        serverType: 'geoserver',
+        transition: 0,
+    });
+
+    const waFire = new TileWMS({
+        url: 'http://localhost:8080/geoserver/wms',
+        params: {'LAYERS': 'ncrp:wa_fire_history', 'TILED': true},
+        serverType: 'geoserver',
+        transition: 0,
+    });
+
     return (
         <div>
             <Logo />
 
             <Map center={fromLonLat(center)} zoom={zoom}>
                 <Layers>
-                  <TileLayer source={new OSM()} zIndex={0} preload={Infinity} />
+                    <TileLayer source={new OSM()} zIndex={0} preload={Infinity} />
+                    <TileLayer source={waSlope} zIndex={1} opacity={.3}/>
+                    <TileLayer source={waFire} zIndex={2} />
                 </Layers>
                 <Overlays>
                     <Popup />
