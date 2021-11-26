@@ -7,6 +7,7 @@ import OLTileLayer from "ol/layer/Tile";
  * @param source The source image(s) for this layer.
  * @param zIndex The z-index for layer rendering. Determines positioning of layers, default is 0.
  * @param preload The tiles to be preloaded, default is 0.
+ * @param opacity The opacity for the tile, default is 1.
  * @returns {null}
  */
 const TileLayer = ({ source, zIndex = 0, preload = 0, opacity=1}) => {
@@ -17,32 +18,27 @@ const TileLayer = ({ source, zIndex = 0, preload = 0, opacity=1}) => {
      * to the map using the shared MapContext.
      */
     useEffect(() => {
-        if (!map) return;
+        if (!map)
+        {
+            return;
+        }
 
         let tileLayer = new OLTileLayer({
             source,
             zIndex,
-            preload
+            preload,
+            opacity
         });
-
-        tileLayer.setOpacity(opacity);
 
         map.addLayer(tileLayer);
 
-        // console.log(customView);
-
-        // if (customView)
-        // {
-        //     map.setView(customView)
-        // }
-
-        tileLayer.setZIndex(zIndex);
-
         return () => {
-            if (map) {
+            if (map)
+            {
                 map.removeLayer(tileLayer);
             }
         };
+
     }, [map]);
 
     return null;
