@@ -7,9 +7,10 @@ import OLVectorLayer from "ol/layer/Vector";
  * @param source The source image(s) for this layer
  * @param style The style function for the layer
  * @param zIndex The z-index for layer rendering. Determines positioning of layers, default is 0.
+ * @param opacity The opacity for the tile, default is 1.
  * @returns {null}
  */
-const VectorLayer = ({ source, style, zIndex = 0 }) => {
+const VectorLayer = ({ source, style, zIndex = 0, opacity=1}) => {
     const { map } = useContext(MapContext);
 
     /**
@@ -24,11 +25,12 @@ const VectorLayer = ({ source, style, zIndex = 0 }) => {
 
         let vectorLayer = new OLVectorLayer({
             source,
-            style
+            style,
+            zIndex,
+            opacity
         });
 
         map.addLayer(vectorLayer);
-        vectorLayer.setZIndex(zIndex);
 
         return () => {
             if (map)
