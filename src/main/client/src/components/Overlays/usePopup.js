@@ -38,6 +38,7 @@ const usePopup = () => {
         };
 
         map.on("singleclick", function (event) {
+
             const coordinate = event.coordinate;
             const longLatInfo = toLonLat(coordinate);
 
@@ -49,6 +50,9 @@ const usePopup = () => {
                     <code>Lat: {longLatInfo[1]}</code>
                 </div>
             );
+
+            // setPopupContent(<div className={"loader"}></div>)
+
 
 
             popupOverlay.setPosition(coordinate);
