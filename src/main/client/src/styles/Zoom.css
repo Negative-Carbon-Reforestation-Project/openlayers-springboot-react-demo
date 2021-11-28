@@ -1,35 +1,19 @@
 .ol-zoom-in
 {
-    font-family: Roboto;
-    font-size: 2rem;
-    font-weight: bold;
-
-    background-color: black;
-    color: white;
-
-    width: 4rem;
-    height: 3.8rem;
     position: fixed;
-    top: 11rem;
+    top: 9rem;
     left: 2.5rem;
 }
 
 .ol-zoom-out
 {
-    font-family: Roboto;
-    font-size: 32px;
-    font-weight: bold;
+    font-size: 2rem;
 
-    background-color: black;
-    color: white;
-
-    width: 4rem;
-    height: 3.8rem;
     position: fixed;
-    top: 15.75rem;
+    top: 11.5rem;
     left: 2.5rem;
-
 }
+
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px)
@@ -45,12 +29,62 @@
 
     .ol-zoom-in
     {
-        top: 7.8rem;
+        display: none;
+        /*top: 7.8rem;*/
     }
 
     .ol-zoom-out
     {
-        top: 11.6rem;
+        display: none;
+        /*top: 11.6rem;*/
+    }
+}
+
+/* iphones 6/7/8 and Plus in landscape */
+@media only screen and (max-width: 800px) and (orientation: landscape)
+{
+    .ol-zoom-in
+    {
+        display: none;
+        /*top: 7.8rem;*/
+    }
+
+    .ol-zoom-out
+    {
+        display: none;
+        /*top: 11.6rem;*/
+    }
+}
+
+/* iphones X in landscape */
+@media only screen and (max-width: 900px) and (orientation: landscape)
+{
+    .ol-zoom-in
+    {
+        display: none;
+        /*top: 7.8rem;*/
+    }
+
+    .ol-zoom-out
+    {
+        display: none;
+        /*top: 11.6rem;*/
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px)
+{
+    .ol-zoom-in
+    {
+        display: none;
+        /*top: 7.8rem;*/
+    }
+
+    .ol-zoom-out
+    {
+        display: none;
+        /*top: 11.6rem;*/
     }
 }
 
@@ -81,18 +115,25 @@
 {
     .ol-zoom-in, .ol-zoom-out
     {
-        width: 4rem;
-        height: 3.8rem;
+        /*width: 4rem;*/
+        /*height: 3.8rem;*/
+        display: block;
+
+        font-size: 1.5rem;
+        width: 2.18rem;
+        height: 2.18rem;
         left: 2.5rem;
     }
 
     .ol-zoom-in
     {
-        top: 11rem;
+        /*top: 11rem;*/
+        top: 9rem;
     }
 
     .ol-zoom-out
     {
-        top: 15.75rem;
+        /*top: 15.75rem;*/
+        top: 11.5rem;
     }
 }
