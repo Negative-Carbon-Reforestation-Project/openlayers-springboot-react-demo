@@ -24,14 +24,14 @@ const App = () => {
     const [zoom, setZoom] = useState(6);
 
     const waSlope = new TileWMS({
-        url: 'http://localhost:8080/geoserver/wms',
+        url: 'http://ncrp-geoserver:80/geoserver/wms',
         params: {'LAYERS': 'ncrp:wa_slope', 'TILED': true},
         serverType: 'geoserver',
         transition: 0,
     });
 
     const waFire = new TileWMS({
-        url: 'http://localhost:8080/geoserver/wms',
+        url: 'http://ncrp-geoserver:80/geoserver/wms',
         params: {'LAYERS': 'ncrp:wa_fire_history', 'TILED': true},
         serverType: 'geoserver',
         transition: 0,
@@ -44,7 +44,7 @@ const App = () => {
             <Map center={fromLonLat(center)} zoom={zoom}>
                 <Layers>
                     <TileLayer source={new OSM()} zIndex={0} preload={Infinity} />
-                    <TileLayer source={waSlope} zIndex={1} opacity={.3}/>
+                    <TileLayer source={waSlope} zIndex={1} opacity={.6}/>
                     <TileLayer source={waFire} zIndex={2} />
                 </Layers>
                 <Overlays>
