@@ -1,8 +1,10 @@
+
 .ol-popup
 {
     position: absolute;
 
     background-color: black;
+    /*background-color: rgba(0,0,0,0.75);*/
     box-shadow: 0 1px 4px rgba(0,0,0,0.2);
 
     padding: 15px;
@@ -11,8 +13,6 @@
     bottom: 12px;
     left: -50px;
     min-width: 17.5rem;
-
-
 }
 
 .ol-popup--frosted-glass
@@ -36,6 +36,7 @@
 .ol-popup:after
 {
     border-top-color: black;
+    /*border-top-color: rgba(0,0,0,0.75);*/
     border-width: 10px;
     left: 48px;
     margin-left: -10px;
@@ -48,6 +49,8 @@
     left: 48px;
     margin-left: -11px;
 }
+
+
 
 .ol-popup__closeButton
 {

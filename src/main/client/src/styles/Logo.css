@@ -1,6 +1,7 @@
 .app-logo
 {
     background-color: black;
+
     position: fixed;
     top: 1.4rem;
     left: 2.5rem;
@@ -28,6 +29,32 @@
     {
         width: 13rem;
         height: 8rem;
+    }
+}
+
+/* iphones 6/7/8 and Plus in landscape */
+@media only screen and (max-width: 800px) and (orientation: landscape)
+{
+    .app-logo
+    {
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        width: 12rem;
+        height: 5.6rem;
+    }
+}
+
+/* iphones X in landscape */
+@media only screen and (max-width: 900px) and (orientation: landscape)
+{
+    .app-logo
+    {
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        width: 12rem;
+        height: 5.6rem;
     }
 }
 

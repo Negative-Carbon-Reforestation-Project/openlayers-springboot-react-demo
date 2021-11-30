@@ -56,7 +56,7 @@ const App = () => {
             </Map>
 
             <Footer>
-                <p className="copyright-info">© NCRP Contributors</p>
+                <p className="footer__copyright-info">© NCRP Contributors</p>
             </Footer>
         </div>
     )

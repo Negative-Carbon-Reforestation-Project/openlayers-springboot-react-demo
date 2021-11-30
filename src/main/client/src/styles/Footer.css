@@ -1,21 +1,21 @@
 footer
 {
-    background-color: black;
+    background-color: rgb(0,0,0,0.8);
 
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 3rem;
+    height: 2rem;
 }
 
-.copyright-info
+.footer__copyright-info
 {
     font-size: 1rem;
     font-family: Roboto;
     color: white;
     text-align: right;
 
-    margin: 0.6rem;
+    margin: 0.4rem;
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -23,14 +23,30 @@ footer
 {
     footer
     {
-        height: 2.4rem;
+        height: 2rem;
     }
 
-    .copyright-info
+    .footer__copyright-info
     {
         text-align: center;
     }
 }
+
+/* iphones 6/7/8 and Plus in landscape */
+@media only screen and (max-width: 800px) and (orientation: landscape)
+{
+    footer
+    {
+        height: 2rem;
+    }
+
+    .footer__copyright-info
+    {
+        text-align: center;
+    }
+}
+
+
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px)
@@ -39,12 +55,27 @@ footer
     {
         height: 3.5rem;
     }
-    .copyright-info
+
+    .footer__copyright-info
     {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
     }
 }
 
+/* iphones X in landscape */
+@media only screen and (max-width: 900px) and (orientation: landscape)
+{
+    footer
+    {
+        height: 2rem;
+    }
+
+    .footer__copyright-info
+    {
+        text-align: center;
+        font-size: 1rem;
+    }
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px)
@@ -53,7 +84,8 @@ footer
     {
         height: 4rem;
     }
-    .copyright-info
+
+    .footer__copyright-info
     {
         font-size: 1.75rem;
     }
@@ -64,11 +96,25 @@ footer
 {
     footer
     {
-        height: 3rem;
+        height: 2rem;
     }
 
-    .copyright-info
+    .footer__copyright-info
     {
         font-size: 1rem;
     }
 }
+
+/*!* Extra large devices (large laptops and desktops, 1200px and up) *!*/
+/*@media only screen and (min-width: 1366px)*/
+/*{*/
+/*    footer*/
+/*    {*/
+/*        height: 2rem;*/
+/*    }*/
+
+/*    .footer__copyright-info*/
+/*    {*/
+/*        font-size: 1rem;*/
+/*    }*/
+/*}*/

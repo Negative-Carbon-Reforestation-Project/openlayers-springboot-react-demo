@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { Zoom } from "ol/control";
 import MapContext from "../Map/MapContext";
 
+import "../../styles/Control.css"
 import "../../styles/Zoom.css"
 
 /**
  * Component for custom OpenLayer zoom control.
  * @returns {null}
- * @constructor
  */
 const ZoomControl = () => {
     const { map } = useContext(MapContext);
@@ -22,7 +22,12 @@ const ZoomControl = () => {
             return;
         }
 
-        let zoomControl = new Zoom();
+        let zoomControl = new Zoom({
+            className: "ol-zoom",
+            zoomInClassName: "control ol-zoom-in",
+            zoomOutClassName: "control ol-zoom-out"
+        });
+
         map.controls.push(zoomControl);
 
         return () => map.controls.remove(zoomControl);
