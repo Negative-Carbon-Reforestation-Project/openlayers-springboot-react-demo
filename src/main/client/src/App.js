@@ -24,18 +24,25 @@ const App = () => {
     const [zoom, setZoom] = useState(6);
 
     const waSlope = new TileWMS({
-        url: 'http://ncrp-geoserver:80/geoserver/wms',
+        url: 'http://localhost:8080/geoserver/wms',
         params: {'LAYERS': 'ncrp:wa_slope', 'TILED': true},
         serverType: 'geoserver',
         transition: 0,
     });
 
     const waFire = new TileWMS({
-        url: 'http://ncrp-geoserver:80/geoserver/wms',
+        url: 'http://localhost:8080/geoserver/wms',
         params: {'LAYERS': 'ncrp:wa_fire_history', 'TILED': true},
         serverType: 'geoserver',
         transition: 0,
     });
+
+    const soilClasses = new TileWMS({
+        url: 'http://localhost:8080/geoserver/wms',
+        params: {'LAYERS': 'ncrp:soil_classes', 'TILED': true},
+        serverType: 'geoserver',
+        transition: 0,
+    })
 
     return (
         <div>
@@ -45,7 +52,8 @@ const App = () => {
                 <Layers>
                     <TileLayer source={new OSM()} zIndex={0} preload={Infinity} />
                     <TileLayer source={waSlope} zIndex={1} opacity={.6}/>
-                    <TileLayer source={waFire} zIndex={2} />
+                    <TileLayer source={waFire} zIndex={2} opacity={.3}/>
+                    <TileLayer source={soilClasses} zIndex={3}/>
                 </Layers>
                 <Overlays>
                     <Popup />
