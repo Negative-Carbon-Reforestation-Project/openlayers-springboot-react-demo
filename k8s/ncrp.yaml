@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ncrp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ncrp
+  template:
+    metadata:
+      labels:
+        app: ncrp
+    spec:
+      containers:
+        - name: app
+          image: ncrp:0.0.1-SNAPSHOT
+          ports:
+            - containerPort: 8082
+          imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ncrp
+spec:
+  selector:
+    app: ncrp
+  ports:
+    - port: 80
+      targetPort: 8082
+  type: LoadBalancer
+---
