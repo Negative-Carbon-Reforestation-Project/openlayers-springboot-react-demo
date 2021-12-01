@@ -32,7 +32,7 @@ const App = () => {
 
     const waFire = new TileWMS({
         url: 'http://localhost:8080/geoserver/wms',
-        params: {'LAYERS': 'ncrp:wa_fire_history', 'TILED': true},
+        params: {'LAYERS': 'ncrp:wa_fire_history_low_dpi', 'TILED': true},
         serverType: 'geoserver',
         transition: 0,
     });
