@@ -1,0 +1,13 @@
+:root
+{
+    --background-color: var(--color-black);
+    --background-color-accent: var(--color-dark-grey);
+
+    --color-black: black;
+    --color-transparent-black: rgb(0,0,0,0.8);
+    --color-white: white;
+    --color-dark-grey: #404040;
+    --color-dark-pink: rgb(233, 74, 147);
+
+    --font-roboto: Roboto, sans-serif;
+}

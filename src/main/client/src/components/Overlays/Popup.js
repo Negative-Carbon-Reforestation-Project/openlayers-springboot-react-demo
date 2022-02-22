@@ -1,6 +1,5 @@
 import React from "react";
 import usePopup from "./usePopup";
-import "../../styles/Popup.css"
 
 /**
  * Container for OpenLayer custom popup.

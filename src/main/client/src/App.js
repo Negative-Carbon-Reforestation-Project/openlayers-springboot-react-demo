@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles/App.css';
+import "./styles/main.css";
 
 import Map from "./components/Map/Map";
 import Layers from "./components/Layers/Layers";
@@ -13,6 +13,7 @@ import { OSM, TileWMS } from "ol/source";
 import { fromLonLat } from "ol/proj";
 import Overlays from "./components/Overlays/Overlays";
 import Popup from "./components/Overlays/Popup";
+import SideMenu from "./components/SideMenu";
 
 /**
  * Component for the React applicaation
@@ -47,10 +48,11 @@ const App = () => {
     return (
         <div>
             <Logo />
-
+            <SideMenu />
             <Map center={fromLonLat(center)} zoom={zoom}>
                 <Layers>
                     <TileLayer source={new OSM()} zIndex={0} preload={Infinity} />
+
                     <TileLayer source={waSlope} zIndex={1} opacity={.6}/>
                     <TileLayer source={waFire} zIndex={2} opacity={.3}/>
                     <TileLayer source={soilClasses} zIndex={3}/>

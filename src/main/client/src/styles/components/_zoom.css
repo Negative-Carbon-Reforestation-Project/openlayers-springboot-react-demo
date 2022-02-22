@@ -30,13 +30,11 @@
     .ol-zoom-in
     {
         display: none;
-        /*top: 7.8rem;*/
     }
 
     .ol-zoom-out
     {
         display: none;
-        /*top: 11.6rem;*/
     }
 }
 
@@ -46,13 +44,11 @@
     .ol-zoom-in
     {
         display: none;
-        /*top: 7.8rem;*/
     }
 
     .ol-zoom-out
     {
         display: none;
-        /*top: 11.6rem;*/
     }
 }
 
@@ -62,13 +58,11 @@
     .ol-zoom-in
     {
         display: none;
-        /*top: 7.8rem;*/
     }
 
     .ol-zoom-out
     {
         display: none;
-        /*top: 11.6rem;*/
     }
 }
 
@@ -78,20 +72,19 @@
     .ol-zoom-in
     {
         display: none;
-        /*top: 7.8rem;*/
     }
 
     .ol-zoom-out
     {
         display: none;
-        /*top: 11.6rem;*/
     }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px)
 {
-    .ol-zoom-in, .ol-zoom-out
+    .ol-zoom-in,
+    .ol-zoom-out
     {
         font-size: 3rem;
         width: 6rem;
@@ -114,10 +107,9 @@
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px)
 {
-    .ol-zoom-in, .ol-zoom-out
+    .ol-zoom-in,
+    .ol-zoom-out
     {
-        /*width: 4rem;*/
-        /*height: 3.8rem;*/
         display: block;
 
         font-size: 1.5rem;
@@ -128,13 +120,11 @@
 
     .ol-zoom-in
     {
-        /*top: 11rem;*/
         top: 9rem;
     }
 
     .ol-zoom-out
     {
-        /*top: 15.75rem;*/
         top: 11.5rem;
     }
 }

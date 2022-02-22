@@ -1,0 +1,21 @@
+.control
+{
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    background-color: var(--color-black);
+    color: var(--color-white);
+    border: none;
+
+    width: 2.18rem;
+    height: 2.18rem;
+
+    transition: ease transform 0.02s;
+}
+
+.control:hover
+{
+    background-color: var(--color-dark-grey);
+    cursor: pointer;
+    transform: scale(1.2);
+}

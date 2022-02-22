@@ -2,8 +2,6 @@ import React from "react"
 import MapContext from "./MapContext";
 import useMap from "./useMap"
 
-import "../../styles/Map.css";
-
 /**
  * Container for OpenLayer Map
  * @param children The child components
