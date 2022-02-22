@@ -1,19 +1,27 @@
-.ol-zoom-in
-{
-    position: fixed;
-    top: 9rem;
-    left: 2.5rem;
-}
+/*.ol-zoom-in*/
+/*{*/
+/*    position: fixed;*/
+/*    top: 9rem;*/
+/*    left: 2.5rem;*/
+/*}*/
 
-.ol-zoom-out
-{
-    font-size: 2rem;
+/*.ol-zoom-out*/
+/*{*/
+/*    font-size: 2rem;*/
 
-    position: fixed;
-    top: 11.5rem;
-    left: 2.5rem;
-}
+/*    position: fixed;*/
+/*    top: 11.5rem;*/
+/*    left: 2.5rem;*/
+/*}*/
 
+/*.ol-zoom*/
+/*{*/
+/*    position: fixed;*/
+/*    top: 9rem;*/
+/*    left: 2.5rem;*/
+
+/*    z-index: 1001;*/
+/*}*/
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px)

@@ -60,9 +60,10 @@ const App = () => {
                 <Overlays>
                     <Popup />
                 </Overlays>
-                <Controls>
-                    <ZoomControl />
-                </Controls>
+                {/*<Controls>*/}
+                {/*    <ZoomControl />*/}
+                {/*</Controls>*/}
+                <Controls/>
             </Map>
 
             <Footer>

@@ -1,3 +1,17 @@
+.controls-bar
+{
+    background-color: black;
+
+    position: fixed;
+    top: 9rem;
+    left: 2.5rem;
+
+    width: auto;
+    height: 100px;
+
+    z-index: 1000;
+}
+
 .control
 {
     font-size: 1.5rem;
@@ -10,12 +24,11 @@
     width: 2.18rem;
     height: 2.18rem;
 
-    transition: ease transform 0.02s;
+    text-align: center;
 }
 
 .control:hover
 {
     background-color: var(--color-dark-grey);
     cursor: pointer;
-    transform: scale(1.2);
 }
