@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import "./styles/main.css";
 
 import Map from "./components/Map/Map";
@@ -14,6 +14,7 @@ import { fromLonLat } from "ol/proj";
 import Overlays from "./components/Overlays/Overlays";
 import Popup from "./components/Overlays/Popup";
 import SideMenu from "./components/SideMenu";
+import MapContext from "./components/Map/MapContext";
 
 /**
  * Component for the React applicaation
@@ -23,6 +24,13 @@ const App = () => {
     const washingtonCoordinates = [-122.29567670312974, 47.41311574557329];
     const [center, setCenter] = useState(washingtonCoordinates);
     const [zoom, setZoom] = useState(6);
+
+    const soilData = new TileWMS({
+        url: 'http://localhost:8080/geoserver/wms',
+        params: {'LAYERS': 'ncrp:soil-data', 'TILED': true},
+        serverType: 'geoserver',
+        transition: 0,
+    });
 
     const waSlope = new TileWMS({
         url: 'http://localhost:8080/geoserver/wms',
@@ -45,17 +53,17 @@ const App = () => {
         transition: 0,
     })
 
+
+
     return (
-        <div>
+        <div className={"container"}>
             <Logo />
-            <SideMenu />
             <Map center={fromLonLat(center)} zoom={zoom}>
                 <Layers>
                     <TileLayer source={new OSM()} zIndex={0} preload={Infinity} />
-
                     <TileLayer source={waSlope} zIndex={1} opacity={.6}/>
                     <TileLayer source={waFire} zIndex={2} opacity={.3}/>
-                    <TileLayer source={soilClasses} zIndex={3}/>
+                    <TileLayer source={soilData} zIndex={3}/>
                 </Layers>
                 <Overlays>
                     <Popup />
@@ -63,7 +71,9 @@ const App = () => {
                 {/*<Controls>*/}
                 {/*    <ZoomControl />*/}
                 {/*</Controls>*/}
-                <Controls/>
+                <SideMenu>
+                    <Controls/>
+                </SideMenu>
             </Map>
 
             <Footer>
