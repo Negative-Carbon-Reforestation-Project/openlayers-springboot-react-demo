@@ -37,16 +37,28 @@ const SideMenu = ({children}) => {
                     <LayerManager className="layer-menu-content"/>
                     <section className="layer-menu-content">
                         <article className="layer-item">
-                            <h2 className="layer-item-heading" data-value={0} onClick={(event) => toggleLayer(event)}>Layer 0</h2>
+                            <h2 className="layer-item-heading" data-value={0} onClick={(event) => toggleLayer(event)}>OSM</h2>
                         </article>
                         <article className="layer-item">
-                            <h2 className="layer-item-heading" data-value={1} onClick={(event) => toggleLayer(event)}>Layer 1</h2>
+                            <h2 className="layer-item-heading" data-value={1} onClick={(event) => toggleLayer(event)}>Terrain</h2>
                         </article>
                         <article className="layer-item">
-                            <h2 className="layer-item-heading" data-value={2} onClick={(event) => toggleLayer(event)}>Layer 2</h2>
+                            <h2 className="layer-item-heading" data-value={2} onClick={(event) => toggleLayer(event)}>Toner</h2>
                         </article>
                         <article className="layer-item">
-                            <h2 className="layer-item-heading" data-value={3} onClick={(event) => toggleLayer(event)}>Layer 3</h2>
+                            <h2 className="layer-item-heading" data-value={3} onClick={(event) => toggleLayer(event)}>Watercolor</h2>
+                        </article>
+                        <article className="layer-item">
+                            <h2 className="layer-item-heading" data-value={4} onClick={(event) => toggleLayer(event)}>GMaps</h2>
+                        </article>
+                        <article className="layer-item">
+                            <h2 className="layer-item-heading" data-value={5} onClick={(event) => toggleLayer(event)}>Layer 1</h2>
+                        </article>
+                        <article className="layer-item">
+                            <h2 className="layer-item-heading" data-value={6} onClick={(event) => toggleLayer(event)}>Layer 2</h2>
+                        </article>
+                        <article className="layer-item">
+                            <h2 className="layer-item-heading" data-value={7} onClick={(event) => toggleLayer(event)}>Layer 3</h2>
                         </article>
                     </section>
                 </div>

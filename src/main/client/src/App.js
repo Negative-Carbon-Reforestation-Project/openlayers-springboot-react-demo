@@ -9,7 +9,7 @@ import ZoomControl from "./components/Controls/Zoom";
 import Logo from "./components/Logo";
 import Footer from "./components/Footer";
 
-import { OSM, BingMaps, Stamen, TileWMS } from "ol/source";
+import { OSM, BingMaps, Stamen, XYZ, TileWMS } from "ol/source";
 import { fromLonLat } from "ol/proj";
 import Overlays from "./components/Overlays/Overlays";
 import Popup from "./components/Overlays/Popup";
@@ -60,8 +60,12 @@ const App = () => {
             <Logo />
             <Map center={fromLonLat(center)} zoom={zoom}>
                 <Layers>
-                    {/*<TileLayer source={new OSM()} zIndex={0} preload={Infinity} />*/}
-                    <TileLayer source={new Stamen({layer: "terrain"})} zIndex={0} preload={Infinity} />
+                    <TileLayer source={new OSM()} zIndex={0} preload={Infinity} />
+                    <TileLayer source={new Stamen({layer: "terrain"})} zIndex={0} preload={Infinity} visible={false} />
+                    <TileLayer source={new Stamen({layer: "toner"})} zIndex={0} preload={Infinity} visible={false}/>
+                    <TileLayer source={new Stamen({layer: "watercolor"})} zIndex={0} preload={Infinity} visible={false}/>
+                    <TileLayer source={new XYZ({url: "https://www.google.com/maps/vt?lyrs=s@189&gl=cn&x=%7Bx%7D&y=%7By%7D&z=%7Bz%7D"})} zIndex={0} preload={Infinity} visible={false}/>
+
                     <TileLayer source={waSlope} zIndex={1} opacity={.6}/>
                     <TileLayer source={waFire} zIndex={2} opacity={.3}/>
                     <TileLayer source={soilData} zIndex={3}/>

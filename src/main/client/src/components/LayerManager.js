@@ -1,7 +1,16 @@
-import React from "react";
+import React, {useContext} from "react";
+import MapContext from "./Map/MapContext";
 
 const LayerManager = ({className}) => {
-    return <div className={className}></div>
+
+    const { map } = useContext(MapContext);
+
+    const renderLayers = () => {
+        let layers = map.getLayers();
+    }
+    return <div className={className}>
+
+    </div>
 };
 
 export default LayerManager;
