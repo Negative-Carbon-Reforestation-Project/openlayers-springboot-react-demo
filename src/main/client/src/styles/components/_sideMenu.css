@@ -13,33 +13,5 @@
     background-color: var(--color-black);
 }
 
-.layer-menu
-{
-    display: none;
-}
-
-.layer-menu-header
-{
-    display: flex;
-    justify-content: space-between;
-
-    color: var(--color-white);
-}
-
-.layer-menu-exit
-{
-    border: none;
-    background-color: var(--background-color);
-    color: var(--color-dark-pink);
-
-    font-size: 1rem;
-    padding: .3125rem;
-}
-
-.layer-menu-exit:hover
-{
-    cursor: pointer;
-}
-
 
 
