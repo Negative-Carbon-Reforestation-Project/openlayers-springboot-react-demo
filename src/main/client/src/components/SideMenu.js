@@ -2,6 +2,7 @@ import React, {useContext, useRef} from "react";
 import {Drawer} from "@mui/material";
 import SideMenuContext from "./SideMenuContext";
 import MapContext from "./Map/MapContext";
+import LayerManager from "./LayerManager";
 
 /**
  * Container for side menu
@@ -33,6 +34,7 @@ const SideMenu = ({children}) => {
                         <button className="layer-menu-exit" onClick={() => hideSideMenu()}>X</button>
                     </section>
 
+                    <LayerManager className="layer-menu-content"/>
                     <section className="layer-menu-content">
                         <article className="layer-item">
                             <h2 className="layer-item-heading" data-value={0} onClick={(event) => toggleLayer(event)}>Layer 0</h2>
