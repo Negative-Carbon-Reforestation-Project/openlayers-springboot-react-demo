@@ -63,8 +63,8 @@ const App = () => {
                     <TileLayer source={new OSM()} zIndex={0} preload={Infinity} />
                     <TileLayer source={new Stamen({layer: "terrain"})} zIndex={0} preload={Infinity} visible={false} />
                     <TileLayer source={new Stamen({layer: "toner"})} zIndex={0} preload={Infinity} visible={false}/>
-                    <TileLayer source={new Stamen({layer: "watercolor"})} zIndex={0} preload={Infinity} visible={false}/>
-                    <TileLayer source={new XYZ({url: "https://www.google.com/maps/vt?lyrs=s@189&gl=cn&x=%7Bx%7D&y=%7By%7D&z=%7Bz%7D"})} zIndex={0} preload={Infinity} visible={false}/>
+                    <TileLayer source={new BingMaps({key: "AjfTsiozBjJlt3OV1PIbHuGRaaUEtnvKXwc1qEpyAFLi_LLImirWTbks68MZ87Ve", imagerySet: "AerialWithLabelsOnDemand"})} zIndex={0} preload={Infinity} visible={false}/>
+                    <TileLayer source={new XYZ({url: "https://{a-c}.tile.opentopomap.org/{z}/{x}/{y}.png"})} zIndex={0} preload={Infinity} visible={false}/>
 
                     <TileLayer source={waSlope} zIndex={1} opacity={.6}/>
                     <TileLayer source={waFire} zIndex={2} opacity={.3}/>
