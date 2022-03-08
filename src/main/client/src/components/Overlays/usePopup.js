@@ -7,7 +7,7 @@ import {toLonLat} from "ol/proj";
  * Container for custom popup logic
  * @returns {{popupContent: JSX.Element, popupCloseButtonRef: React.MutableRefObject<undefined>, popupRef: React.MutableRefObject<undefined>}}
  */
-const usePopup = () => {
+const usePopup = (layerIndex=7) => {
     const { map } = useContext(MapContext);
     const popupRef = useRef();
     const popupCloseButtonRef = useRef();
@@ -38,6 +38,22 @@ const usePopup = () => {
         };
 
         map.on("singleclick", function (event) {
+
+            debugger;
+            let projection = map.getView().getResolution();
+
+            let layers = map.getLayers();
+
+            let desiredLayer = layers.item(layerIndex);
+            let desiredLayerSource = desiredLayer.getSource();
+            let url = desiredLayerSource.getFeatureInfoUrl(event.coordinate, projection, "EPSG:4326", {"INFO_FORMAT": "text/html"});
+
+            // if (url)
+            // {
+            //    fetch(url)
+            //         .then((response) => response.text())
+            //        .then((data) => setPopupContent(<div>{data}</div>));
+            // }
 
             const coordinate = event.coordinate;
             const longLatInfo = toLonLat(coordinate);

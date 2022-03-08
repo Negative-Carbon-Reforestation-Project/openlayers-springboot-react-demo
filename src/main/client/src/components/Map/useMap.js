@@ -1,9 +1,11 @@
 import { useRef, useState, useEffect } from "react";
 import * as ol from "ol";
+import OLCesium from "olcs/OLCesium";
 
 const useMap = (zoom, center) => {
     const mapRef = useRef();
     const [map, setMap] = useState(null);
+    const [cesiumMap, setCesiumMap] = useState(null);
 
     /**
      * Once the component is mounted onto the DOM, construct a new map with the given view.
@@ -17,6 +19,7 @@ const useMap = (zoom, center) => {
         };
 
         let mapObject = new ol.Map(options);
+
         mapObject.setTarget(mapRef.current);
         setMap(mapObject);
 
@@ -49,7 +52,20 @@ const useMap = (zoom, center) => {
         map.getView().setCenter(center)
     }, [center])
 
-    return { mapRef, map }
+    /**
+     * Once the component is mounted onto the DOM, generate the 3D cesium map.
+     * If the state of the map changes, this function is called again.
+     */
+    useEffect(() => {
+        if (!map)
+        {
+            return;
+        }
+
+        setCesiumMap(new OLCesium({map: map}));
+    }, [map])
+
+    return { mapRef, map, cesiumMap }
 }
 
 export default useMap;

@@ -10,12 +10,12 @@ import useMap from "./useMap"
  * @returns {JSX.Element}
  */
 const Map = ({ children, zoom, center }) => {
-    const { mapRef, map } = useMap(zoom, center);
+    const { mapRef, map, cesiumMap } = useMap(zoom, center);
 
 
 
     return (
-        <MapContext.Provider value={{ map }}>
+        <MapContext.Provider value={{ map, cesiumMap }}>
             <div ref={mapRef} className="ol-map">
                 {children}
             </div>
