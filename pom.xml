@@ -111,7 +111,7 @@
 							<resources>
 								<resource>
 									<directory>src/main/client/build</directory>
-									<filtering>true</filtering>
+									<filtering>false</filtering>
 								</resource>
 							</resources>
 						</configuration>
