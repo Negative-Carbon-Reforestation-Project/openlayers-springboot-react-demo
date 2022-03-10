@@ -1,3 +1,16 @@
+@keyframes slideFromRight
+{
+    0% {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .layer-menu
 {
     display: none;
@@ -30,6 +43,8 @@
 {
     padding: .3125rem;
     color: var(--color-white);
+
+    animation: slideFromRight .3s .2s backwards;
 }
 
 .layer-item:hover

@@ -5,7 +5,6 @@ import Map from "./components/Map/Map";
 import Layers from "./components/Layers/Layers";
 import TileLayer from "./components/Layers/TileLayer";
 import Controls from "./components/Controls/Controls";
-import ZoomControl from "./components/Controls/Zoom";
 import Logo from "./components/Logo";
 import Footer from "./components/Footer";
 
@@ -14,7 +13,6 @@ import { fromLonLat } from "ol/proj";
 import Overlays from "./components/Overlays/Overlays";
 import Popup from "./components/Overlays/Popup";
 import SideMenu from "./components/SideMenu";
-import MapContext from "./components/Map/MapContext";
 
 /**
  * Component for the React applicaation
@@ -63,8 +61,8 @@ const App = () => {
                     <TileLayer source={new OSM()} zIndex={0} preload={Infinity} />
                     <TileLayer source={new Stamen({layer: "terrain"})} zIndex={0} preload={Infinity} visible={false} />
                     <TileLayer source={new Stamen({layer: "toner"})} zIndex={0} preload={Infinity} visible={false}/>
-                    <TileLayer source={new Stamen({layer: "watercolor"})} zIndex={0} preload={Infinity} visible={false}/>
-                    <TileLayer source={new XYZ({url: "https://www.google.com/maps/vt?lyrs=s@189&gl=cn&x=%7Bx%7D&y=%7By%7D&z=%7Bz%7D"})} zIndex={0} preload={Infinity} visible={false}/>
+                    <TileLayer source={new BingMaps({key: "AjfTsiozBjJlt3OV1PIbHuGRaaUEtnvKXwc1qEpyAFLi_LLImirWTbks68MZ87Ve", imagerySet: "AerialWithLabelsOnDemand"})} zIndex={0} preload={Infinity} visible={false}/>
+                    <TileLayer source={new XYZ({url: "https://{a-c}.tile.opentopomap.org/{z}/{x}/{y}.png"})} zIndex={0} preload={Infinity} visible={false}/>
 
                     <TileLayer source={waSlope} zIndex={1} opacity={.6}/>
                     <TileLayer source={waFire} zIndex={2} opacity={.3}/>
@@ -73,17 +71,11 @@ const App = () => {
                 <Overlays>
                     <Popup />
                 </Overlays>
-                {/*<Controls>*/}
-                {/*    <ZoomControl />*/}
-                {/*</Controls>*/}
                 <SideMenu>
                     <Controls/>
                 </SideMenu>
             </Map>
-
-            <Footer>
-                <p className="footer__copyright-info">© NCRP Contributors</p>
-            </Footer>
+            <Footer/>
         </div>
     )
 };
