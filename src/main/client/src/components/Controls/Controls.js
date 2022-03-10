@@ -1,12 +1,24 @@
-import React from "react";
+import React, {useRef} from "react";
+import ZoomControl from "./Zoom";
+import LayerControl from "./Layer";
+import DimensionControl from "./DimensionControl";
+import QueryLocationControl from "./QueryLocation";
 
 /**
  * Container for custom OpenLayer controls
- * @param children The child components
  * @returns {JSX.Element}
  */
-const Controls = ({ children }) => {
-    return <div>{children}</div>;
+const Controls = () => {
+    const controlBarRef = useRef();
+
+    return (
+        <div ref={controlBarRef} className="controls-bar">
+            <LayerControl/>
+            <QueryLocationControl/>
+            <DimensionControl/>
+            <ZoomControl target={controlBarRef}/>
+        </div>
+    )
 };
 
 export default Controls;

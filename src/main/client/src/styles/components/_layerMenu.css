@@ -1,0 +1,53 @@
+@keyframes slideFromRight
+{
+    0% {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.layer-menu
+{
+    display: none;
+}
+
+.layer-menu-exit
+{
+    border: none;
+    background-color: var(--background-color);
+    color: var(--color-dark-pink);
+
+    font-size: 1rem;
+    padding: .3125rem;
+}
+
+.layer-menu-exit:hover
+{
+    cursor: pointer;
+}
+
+.layer-menu-header
+{
+    display: flex;
+    justify-content: space-between;
+
+    color: var(--color-white);
+}
+
+.layer-menu-content
+{
+    padding: .3125rem;
+    color: var(--color-white);
+
+    animation: slideFromRight .3s .2s backwards;
+}
+
+.layer-item:hover
+{
+    cursor: pointer;
+}

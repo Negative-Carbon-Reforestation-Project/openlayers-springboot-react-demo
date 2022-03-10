@@ -1,0 +1,138 @@
+
+.ol-popup
+{
+    position: absolute;
+
+    background-color: var(--color-black);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    bottom: 12px;
+    left: -50px;
+    min-width: 17.5rem;
+}
+
+.ol-popup--frosted-glass
+{
+    background-color: rgba(255,255,255,0.6);
+    box-shadow: inset 0 0 0 3000px rgba(255,255,255,0.5);
+    filter: blur(1px);
+}
+
+.ol-popup:after, .ol-popup:before
+{
+    top: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.ol-popup:after
+{
+    border-top-color: black;
+    /*border-top-color: rgba(0,0,0,0.75);*/
+    border-width: 10px;
+    left: 48px;
+    margin-left: -10px;
+}
+
+.ol-popup:before
+{
+    border-top-color: #cccccc;
+    border-width: 11px;
+    left: 48px;
+    margin-left: -11px;
+}
+
+
+
+.ol-popup__closeButton
+{
+    text-decoration: none;
+    position: absolute;
+    top: 2px;
+    right: 8px;
+}
+
+.ol-popup__closeButton:after
+{
+    content: "✖";
+    color: var(--color-dark-pink);
+    filter: none;
+
+}
+
+.ol-popup__content
+{
+    font-size: 1rem;
+    color: var(--color-white);
+    /*color: black;*/
+    font-family: Roboto;
+}
+
+.ol-popup__content code
+{
+    color: var(--color-dark-pink);
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px)
+{
+   .ol-popup
+   {
+       min-width: 18rem;
+   }
+
+    .ol-popup__content
+    {
+        font-size: 1.1rem;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px)
+{
+    .ol-popup
+    {
+        min-width: 23rem;
+    }
+
+    .ol-popup__content
+    {
+        font-size: 1.5rem;
+    }
+}
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px)
+{
+    .ol-popup
+    {
+        min-width: 26rem;
+    }
+
+    .ol-popup__content
+    {
+        font-size: 1.8rem;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px)
+{
+    .ol-popup
+    {
+        min-width: 17.5rem;
+    }
+
+    .ol-popup__content
+    {
+        font-size: 1rem;
+    }
+}
