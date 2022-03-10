@@ -3,8 +3,7 @@
 {
     position: absolute;
 
-    background-color: black;
-    /*background-color: rgba(0,0,0,0.75);*/
+    background-color: var(--color-black);
     box-shadow: 0 1px 4px rgba(0,0,0,0.2);
 
     padding: 15px;
@@ -63,7 +62,7 @@
 .ol-popup__closeButton:after
 {
     content: "✖";
-    color: rgb(233, 74, 147);
+    color: var(--color-dark-pink);
     filter: none;
 
 }
@@ -71,14 +70,14 @@
 .ol-popup__content
 {
     font-size: 1rem;
-    color: white;
+    color: var(--color-white);
     /*color: black;*/
     font-family: Roboto;
 }
 
 .ol-popup__content code
 {
-    color: rgb(233, 74, 147);
+    color: var(--color-dark-pink);
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -86,7 +85,7 @@
 {
    .ol-popup
    {
-       min-width: 15.6rem;
+       min-width: 18rem;
    }
 
     .ol-popup__content
@@ -100,7 +99,7 @@
 {
     .ol-popup
     {
-        min-width: 21.5rem;
+        min-width: 23rem;
     }
 
     .ol-popup__content

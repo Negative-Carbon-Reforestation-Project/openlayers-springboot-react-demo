@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/Footer.css";
 
 /**
  * Container for custom Footer
