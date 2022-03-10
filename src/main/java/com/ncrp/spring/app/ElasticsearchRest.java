@@ -2,11 +2,15 @@ package com.ncrp.spring.app;
 
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
+import org.elasticsearch.action.search.MultiSearchRequest;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.common.geo.GeoPoint;
+import org.elasticsearch.common.unit.DistanceUnit;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.data.elasticsearch.client.ClientConfiguration;
@@ -55,11 +59,33 @@ public class ElasticsearchRest extends AbstractElasticsearchConfiguration
         SearchResponse response = this.highLevelClient.search(searchRequest, RequestOptions.DEFAULT);
     }
 
-    public void queryMap()
-    {
-        Criteria criteria = new Criteria("lat").is(48.39)
-                .and("long").is(-124.651);
-        Query query = new CriteriaQuery(criteria);
+    public SearchResponse queryOpenSearch(double longitude, double latitude) throws IOException {
+        int r = 1000;
+
+        GeoPoint point = new GeoPoint(longitude, latitude);
+        SearchSourceBuilder builder = new SearchSourceBuilder()
+                .postFilter(QueryBuilders.geoDistanceQuery("location")
+                        .point(point)
+                        .distance(r, DistanceUnit.METERS));
+
+        SearchRequest searchRequest = new SearchRequest("trees");
+        searchRequest.searchType(SearchType.DFS_QUERY_THEN_FETCH);
+        searchRequest.source(builder);
+        SearchResponse response = highLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+        return response;
+//        MultiSearchRequest request = new MultiSearchRequest();
+//        SearchRequest latRequest = new SearchRequest();
+//        SearchSourceBuilder builder = new SearchSourceBuilder()
+//                .postFilter(QueryBuilders.rangeQuery("lat").from(latitude - offset).to(latitude + offset));
+
+//        Criteria criteria = new Criteria("lat").greaterThan(latitude - offset).and("lat").lessThan(latitude + offset)
+//                .and("long").greaterThan(longitude - offset).lessThan(longitude + offset);
+//        Query query = new CriteriaQuery(criteria);
+
+//        SearchResponse response = this.highLevelClient.search(query)
+
+//        SearchSourceBuilder builder = new SearchSourceBuilder()
+//                .postFilter(QueryBuilders.);
     }
 
     public void closeConnection() throws IOException {
@@ -68,7 +94,9 @@ public class ElasticsearchRest extends AbstractElasticsearchConfiguration
 
     public static void main(String[] args) throws IOException {
         ElasticsearchRest elasticsearchRest = new ElasticsearchRest();
-        elasticsearchRest.testConnection();
+        elasticsearchRest.queryOpenSearch(48.3, -124.651);
+//        elasticsearchRest.testConnection();
         elasticsearchRest.closeConnection();
     }
 }
+
