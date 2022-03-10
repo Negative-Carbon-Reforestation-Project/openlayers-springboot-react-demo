@@ -6,6 +6,7 @@ const useMap = (zoom, center) => {
     const mapRef = useRef();
     const [map, setMap] = useState(null);
     const [cesiumMap, setCesiumMap] = useState(null);
+    const [isQueryable, setQueryable] = useState(false);
 
     /**
      * Once the component is mounted onto the DOM, construct a new map with the given view.
@@ -65,7 +66,7 @@ const useMap = (zoom, center) => {
         setCesiumMap(new OLCesium({map: map}));
     }, [map])
 
-    return { mapRef, map, cesiumMap }
+    return { mapRef, map, cesiumMap, isQueryable, setQueryable }
 }
 
 export default useMap;

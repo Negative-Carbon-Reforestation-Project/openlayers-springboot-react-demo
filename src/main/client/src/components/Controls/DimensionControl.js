@@ -3,6 +3,10 @@ import MapContext from "../Map/MapContext";
 import threeDimensional from "../../resources/images/dimension-control-3D.webp";
 import twoDimensional from "../../resources/images/dimension-control-2D.webp";
 
+/**
+ * Container for the DimensionControl
+ * @returns {JSX.Element}
+ */
 const DimensionControl = () => {
 
     const { cesiumMap } = useContext(MapContext);

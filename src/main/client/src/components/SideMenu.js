@@ -36,8 +36,12 @@ const SideMenu = ({children}) => {
                         <button className="layer-menu-exit" onClick={() => hideSideMenu()}>X</button>
                     </section>
 
-                    <LayerManager className="layer-menu-content"/>
+                    {/*<LayerManager className="layer-menu-content"/>*/}
                     <section className="layer-menu-content">
+                        <section className="layer-group">
+                            <h2 className="layer-group-heading"></h2>
+                            <article className="layer-group-content"></article>
+                        </section>
                         <article className="layer-item">
                             <h2 className="layer-item-heading" data-value={0} onClick={(event) => toggleLayer(event)}>OSM</h2>
                         </article>

@@ -8,7 +8,7 @@ import {toLonLat} from "ol/proj";
  * @returns {{popupContent: JSX.Element, popupCloseButtonRef: React.MutableRefObject<undefined>, popupRef: React.MutableRefObject<undefined>}}
  */
 const usePopup = (layerIndex=7) => {
-    const { map } = useContext(MapContext);
+    const { map, isQueryable } = useContext(MapContext);
     const popupRef = useRef();
     const popupCloseButtonRef = useRef();
     const [popupContent, setPopupContent] = useState(<div></div>);
@@ -38,8 +38,11 @@ const usePopup = (layerIndex=7) => {
         };
 
         map.on("singleclick", function (event) {
+            if (!isQueryable)
+            {
+                return;
+            }
 
-            debugger;
             let projection = map.getView().getResolution();
 
             let layers = map.getLayers();
@@ -81,7 +84,7 @@ const usePopup = (layerIndex=7) => {
             }
         };
 
-    }, [map]);
+    }, [map, isQueryable]);
 
     return { popupRef, popupCloseButtonRef, popupContent };
 };

@@ -5,7 +5,6 @@ import Map from "./components/Map/Map";
 import Layers from "./components/Layers/Layers";
 import TileLayer from "./components/Layers/TileLayer";
 import Controls from "./components/Controls/Controls";
-import ZoomControl from "./components/Controls/Zoom";
 import Logo from "./components/Logo";
 import Footer from "./components/Footer";
 
@@ -14,7 +13,6 @@ import { fromLonLat } from "ol/proj";
 import Overlays from "./components/Overlays/Overlays";
 import Popup from "./components/Overlays/Popup";
 import SideMenu from "./components/SideMenu";
-import MapContext from "./components/Map/MapContext";
 
 /**
  * Component for the React applicaation
@@ -73,17 +71,11 @@ const App = () => {
                 <Overlays>
                     <Popup />
                 </Overlays>
-                {/*<Controls>*/}
-                {/*    <ZoomControl />*/}
-                {/*</Controls>*/}
                 <SideMenu>
                     <Controls/>
                 </SideMenu>
             </Map>
-
-            <Footer>
-                <p className="footer__copyright-info">© NCRP Contributors</p>
-            </Footer>
+            <Footer/>
         </div>
     )
 };
