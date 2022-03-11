@@ -1,5 +1,7 @@
 package com.ncrp.spring.app.controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 
 @RestController
 @RequestMapping("/api/search/geo")
@@ -60,6 +61,9 @@ public class ElasticSearchController extends AbstractElasticsearchConfiguration
             searchRequest.searchType(SearchType.DFS_QUERY_THEN_FETCH);
             searchRequest.source(builder);
             SearchResponse response = highLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+
+            String location = processResponse(response.toString());
+
             return response.toString();
         }
         catch(Exception ex)
@@ -69,9 +73,25 @@ public class ElasticSearchController extends AbstractElasticsearchConfiguration
 
     }
 
-    private void processResponse(String response)
+    /**
+     *
+     * @param response
+     */
+    private String processResponse(String response)
     {
-
+        ObjectMapper mapper = new ObjectMapper();
+        //com.fasterxml.jackson.core.JsonProcessingException, com.fasterxml.jackson.databind.JsonMappingException
+        try
+        {
+            JsonNode jsonNode = mapper.readTree(response);
+            String location = jsonNode.get("location").asText();
+            return location;
+        }
+        catch(Exception error)
+        {
+            System.out.println("Error processing json");
+            return null;
+        }
     }
 
 //    @GetMapping
