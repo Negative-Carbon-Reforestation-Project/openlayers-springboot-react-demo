@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import Jackson;
 
 
 @RestController
@@ -43,7 +44,7 @@ public class ElasticSearchController extends AbstractElasticsearchConfiguration
      * Theoretical example: /api/search/geo?latitude=140&longitude=27
      *                      will map latitude as 140 and longitude as 27.
      */
-    public SearchResponse getQuery(@RequestParam("latitude") double latitude, @RequestParam("longitude") double longitude)
+    public String getQuery(@RequestParam("latitude") double latitude, @RequestParam("longitude") double longitude)
     {
         try (RestHighLevelClient highLevelClient = elasticsearchClient())
         {
@@ -60,12 +61,17 @@ public class ElasticSearchController extends AbstractElasticsearchConfiguration
             searchRequest.searchType(SearchType.DFS_QUERY_THEN_FETCH);
             searchRequest.source(builder);
             SearchResponse response = highLevelClient.search(searchRequest, RequestOptions.DEFAULT);
-            return response;
+            return response.toString();
         }
         catch(Exception ex)
         {
             return null;
         }
+
+    }
+
+    private void processResponse(String response)
+    {
 
     }
 
