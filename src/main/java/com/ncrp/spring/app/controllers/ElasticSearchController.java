@@ -1,7 +1,9 @@
 package com.ncrp.spring.app.controllers;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ncrp.spring.app.models.GeoCoordinate;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
@@ -18,6 +20,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/search/geo")
@@ -62,7 +68,7 @@ public class ElasticSearchController extends AbstractElasticsearchConfiguration
             searchRequest.source(builder);
             SearchResponse response = highLevelClient.search(searchRequest, RequestOptions.DEFAULT);
 
-            String location = processResponse(response.toString());
+            processResponse(response.toString());
 
             return response.toString();
         }
@@ -73,19 +79,24 @@ public class ElasticSearchController extends AbstractElasticsearchConfiguration
 
     }
 
-    /**
-     *
-     * @param response
-     */
-    private String processResponse(String response)
+    private ArrayList<GeoCoordinate> processResponse(String response)
     {
         ObjectMapper mapper = new ObjectMapper();
         //com.fasterxml.jackson.core.JsonProcessingException, com.fasterxml.jackson.databind.JsonMappingException
         try
         {
-            JsonNode jsonNode = mapper.readTree(response);
-            String location = jsonNode.get("location").asText();
-            return location;
+            Map<String, Object> map = mapper.readValue(response, new TypeReference<Map<String,Object>>(){});
+            // This section is dirty and I know it. Will need to make this more generic if time allows - Matt Tk
+            ArrayList<Object> hitsList = (ArrayList<Object>) ((LinkedHashMap<String, Object>) map.get("hits")).get("hits");
+            ArrayList<GeoCoordinate> coordList = new ArrayList<>();
+            for(int x = 0; x < hitsList.size(); x++)
+            {
+                LinkedHashMap<String, Object> tempHashMap = (LinkedHashMap<String, Object>) ((LinkedHashMap<String, Object>) hitsList.get(x)).get("_source");
+                GeoCoordinate newCoord = new GeoCoordinate((Double) tempHashMap.get("lat"), (Double) tempHashMap.get("long"), (String) tempHashMap.get("location"), (Integer) tempHashMap.get("id"), (Double) tempHashMap.get("norm_value"));
+                coordList.add(newCoord);
+            }
+            return coordList;
+
         }
         catch(Exception error)
         {
@@ -93,6 +104,27 @@ public class ElasticSearchController extends AbstractElasticsearchConfiguration
             return null;
         }
     }
+
+//    /**
+//     *
+//     * @param response
+//     */
+//    private String processResponse(String response)
+//    {
+//        ObjectMapper mapper = new ObjectMapper();
+//        //com.fasterxml.jackson.core.JsonProcessingException, com.fasterxml.jackson.databind.JsonMappingException
+//        try
+//        {
+//            JsonNode jsonNode = mapper.readTree(response);
+//            String location = jsonNode.get("location").asText();
+//            return location;
+//        }
+//        catch(Exception error)
+//        {
+//            System.out.println("Error processing json");
+//            return null;
+//        }
+//    }
 
 //    @GetMapping
 //    /**
