@@ -105,6 +105,20 @@ public class ElasticSearchController extends AbstractElasticsearchConfiguration
         }
     }
 
+    private ArrayList<String> calcScore(ArrayList<GeoCoordinate> geoList)
+    {
+        return null;
+    }
+
+    //Implements Haversine formula to calculate distance:
+    // https://en.wikipedia.org/wiki/Haversine_formula
+    private double getDistance(GeoCoordinate initGeo, GeoCoordinate newGeo)
+    {
+
+        return 0.0;
+    }
+
+
 //    /**
 //     *
 //     * @param response

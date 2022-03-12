@@ -41,7 +41,7 @@ public class ElasticsearchRest extends AbstractElasticsearchConfiguration
     @Override
     public RestHighLevelClient elasticsearchClient()
     {
-        String host_port = "localhost:9200";
+        String host_port = "a4059048841004a80a3e273b13fe4b57-228758828.us-west-2.elb.amazonaws.com:9200";
         final ClientConfiguration clientConfiguration = ClientConfiguration.builder()
                 .connectedTo(host_port)
                 .build();
@@ -75,7 +75,7 @@ public class ElasticsearchRest extends AbstractElasticsearchConfiguration
                         .point(point)
                         .distance(r, DistanceUnit.METERS));
 
-        SearchRequest searchRequest = new SearchRequest("trees");
+        SearchRequest searchRequest = new SearchRequest("tree-data");
         searchRequest.searchType(SearchType.DFS_QUERY_THEN_FETCH);
         searchRequest.source(builder);
         SearchResponse response = highLevelClient.search(searchRequest, RequestOptions.DEFAULT);
@@ -117,8 +117,8 @@ public class ElasticsearchRest extends AbstractElasticsearchConfiguration
 
     public static void main(String[] args) throws IOException {
         ElasticsearchRest elasticsearchRest = new ElasticsearchRest();
-        elasticsearchRest.queryOpenSearch(48.3, -124.651);
-//        elasticsearchRest.testConnection();
+//        elasticsearchRest.queryOpenSearch(48.3, -124.651);
+        elasticsearchRest.testConnection();
         elasticsearchRest.closeConnection();
     }
 }
