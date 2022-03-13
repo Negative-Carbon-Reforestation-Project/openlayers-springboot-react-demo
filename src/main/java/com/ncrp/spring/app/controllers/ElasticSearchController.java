@@ -44,7 +44,6 @@ public class ElasticSearchController
     {
         try
         {
-//            System.out.println("Made it");
             int distance = 100000;
 
             GeoPoint point = new GeoPoint(latitude, longitude);
@@ -57,9 +56,8 @@ public class ElasticSearchController
             SearchRequest searchRequest = new SearchRequest("trees");
             searchRequest.searchType(SearchType.DFS_QUERY_THEN_FETCH);
             searchRequest.source(builder);
-            System.out.println("Made it");
             SearchResponse response = this.client.search(searchRequest, RequestOptions.DEFAULT);
-            System.out.println("Made it again");
+
             return sumSearchResults(processResponse(response, point)).toString();
         }
         catch(Exception ex)
