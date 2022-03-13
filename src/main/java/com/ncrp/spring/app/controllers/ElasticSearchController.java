@@ -62,7 +62,6 @@ public class ElasticSearchController
         }
         catch(Exception ex)
         {
-//            return null;
             return ex.toString() + "\n\n\n\n\n\n\n\n\n\n\n\n\n" + this.client.toString();
         }
 
