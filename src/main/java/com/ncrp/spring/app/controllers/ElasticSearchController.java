@@ -40,7 +40,7 @@ public class ElasticSearchController
      */
     public String getQuery(@RequestParam("latitude") double latitude, @RequestParam("longitude") double longitude)
     {
-        try (RestHighLevelClient highLevelClient = this.client)
+        try
         {
             int distance = 1000;
 
@@ -54,7 +54,7 @@ public class ElasticSearchController
             SearchRequest searchRequest = new SearchRequest("tree-data");
             searchRequest.searchType(SearchType.DFS_QUERY_THEN_FETCH);
             searchRequest.source(builder);
-            SearchResponse response = highLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+            SearchResponse response = this.client.search(searchRequest, RequestOptions.DEFAULT);
 
 //            processResponse(response.toString());
 

@@ -53,22 +53,24 @@ const usePopup = (layerIndex=7) => {
 
             // if (url)
             // {
-            //    fetch(url)
-            //         .then((response) => response.text())
-            //        .then((data) => setPopupContent(<div>{data}</div>));
+            debugger;
+
+           fetch("http://localhost:8082/api/search/geo?latitude=-124.65137165&longitude=27")
+                    .then((response) => response.text())
+                    .then((data) => setPopupContent(<div>{data}</div>));
             // }
 
             const coordinate = event.coordinate;
             const longLatInfo = toLonLat(coordinate);
 
-            setPopupContent(
-                <div>
-                    <p>You clicked here:</p>
-                    <code>Long: {longLatInfo[0]}</code>
-                    <br/>
-                    <code>Lat: {longLatInfo[1]}</code>
-                </div>
-            );
+            // setPopupContent(
+            //     <div>
+            //         <p>You clicked here:</p>
+            //         <code>Long: {longLatInfo[0]}</code>
+            //         <br/>
+            //         <code>Lat: {longLatInfo[1]}</code>
+            //     </div>
+            // );
 
             // setPopupContent(<div className={"loader"}></div>)
 
