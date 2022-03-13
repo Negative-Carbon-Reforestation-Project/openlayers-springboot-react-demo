@@ -1,0 +1,66 @@
+.side-menu
+{
+    display: none;
+    width: 400px;
+    height: 100%;
+    padding: 20px;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1001;
+    overflow: hidden;
+
+    background-color: var(--color-black);
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px)
+{
+    .side-menu
+    {
+        width: 100%;
+    }
+}
+
+/* iphones 6/7/8 and Plus in landscape */
+@media only screen and (max-width: 800px) and (orientation: landscape)
+{
+    .side-menu
+    {
+        width: 100%;
+    }
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px)
+{
+
+}
+
+/*!* iphones X in landscape *!*/
+@media only screen and (max-width: 900px) and (orientation: landscape)
+{
+    .side-menu
+    {
+        width: 100%;
+    }
+}
+
+
+/*!* Large devices (laptops/desktops, 992px and up) *!*/
+@media only screen and (min-width: 992px)
+{
+
+}
+
+
+/*!* Extra large devices (large laptops and desktops, 1200px and up) *!*/
+@media only screen and (min-width: 1200px)
+{
+
+}
+
+
+

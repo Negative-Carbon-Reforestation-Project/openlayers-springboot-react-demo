@@ -1,13 +1,14 @@
 import React from "react";
-import "../styles/Footer.css";
 
 /**
  * Container for custom Footer
  * @param children The child components
  * @returns {JSX.Element}
  */
-const Footer = ({ children }) => {
-    return <footer>{children}</footer>
+const Footer = () => {
+    return <footer>
+        <p className="footer__copyright-info">© NCRP Contributors</p>
+    </footer>
 }
 
 export default Footer;
