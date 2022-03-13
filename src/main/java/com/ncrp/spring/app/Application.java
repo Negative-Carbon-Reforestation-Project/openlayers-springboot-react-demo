@@ -60,8 +60,6 @@ public class Application
 					}
 				});
 		RestHighLevelClient client = new RestHighLevelClient(builder);
-		//final ClientConfiguration configuration = ClientConfiguration.create(opensearchHost + ":" + opensearchPort);
-		//RestHighLevelClient client = RestClients.create(configuration).rest();
 		return client;
 	}
 

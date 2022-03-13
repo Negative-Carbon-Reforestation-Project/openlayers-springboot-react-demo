@@ -37,13 +37,14 @@ public class ElasticSearchController
     /**
      * Get mapping for our endpoint then process + return search results.
      *
-     * Theoretical example: /api/search/geo?latitude=140&longitude=27
-     *                      will map latitude as 140 and longitude as 27.
+     * Theoretical example: /api/search/geo?longitude=-121&latitude=48
+     *                      will map latitude as 48 and longitude as -121.
      */
     public String getQuery(@RequestParam("longitude") double longitude, @RequestParam("latitude") double latitude)
     {
         try
         {
+//            System.out.println("Made it");
             int distance = 100000;
 
             GeoPoint point = new GeoPoint(latitude, longitude);
@@ -56,8 +57,9 @@ public class ElasticSearchController
             SearchRequest searchRequest = new SearchRequest("trees");
             searchRequest.searchType(SearchType.DFS_QUERY_THEN_FETCH);
             searchRequest.source(builder);
+            System.out.println("Made it");
             SearchResponse response = this.client.search(searchRequest, RequestOptions.DEFAULT);
-
+            System.out.println("Made it again");
             return sumSearchResults(processResponse(response, point)).toString();
         }
         catch(Exception ex)
@@ -72,6 +74,7 @@ public class ElasticSearchController
     {
         try
         {
+
             SearchHits hits = response.getHits();
 
             //Length check, make sure we have results
