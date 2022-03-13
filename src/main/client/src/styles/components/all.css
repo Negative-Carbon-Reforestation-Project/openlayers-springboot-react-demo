@@ -8,6 +8,7 @@
 @import "_controls.css";
 @import "_zoomControl.css";
 @import "_layerControl.css";
+@import "_queryLocationControl.css";
 
 @import "_sideMenu.css";
 @import "_layerMenu.css";
