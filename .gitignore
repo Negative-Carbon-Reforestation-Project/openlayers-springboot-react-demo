@@ -32,3 +32,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### React Build ###
+src/main/client/build
