@@ -42,16 +42,16 @@ public class ElasticSearchController
     {
         try
         {
-            int distance = 1000;
+            int distance = 100000;
 
-            GeoPoint point = new GeoPoint(longitude, latitude);
+            GeoPoint point = new GeoPoint(latitude, longitude);
 
             SearchSourceBuilder builder = new SearchSourceBuilder()
                                                 .postFilter(QueryBuilders.geoDistanceQuery("location")
                                                 .point(point)
                                                 .distance(distance, DistanceUnit.METERS));
 
-            SearchRequest searchRequest = new SearchRequest("tree-data");
+            SearchRequest searchRequest = new SearchRequest("trees");
             searchRequest.searchType(SearchType.DFS_QUERY_THEN_FETCH);
             searchRequest.source(builder);
             SearchResponse response = this.client.search(searchRequest, RequestOptions.DEFAULT);
