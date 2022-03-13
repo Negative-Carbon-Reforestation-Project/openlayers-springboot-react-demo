@@ -51,7 +51,7 @@ public class ElasticSearchController
                                                 .point(point)
                                                 .distance(distance, DistanceUnit.METERS));
 
-            SearchRequest searchRequest = new SearchRequest("trees");
+            SearchRequest searchRequest = new SearchRequest("tree-data");
             searchRequest.searchType(SearchType.DFS_QUERY_THEN_FETCH);
             searchRequest.source(builder);
             SearchResponse response = highLevelClient.search(searchRequest, RequestOptions.DEFAULT);
@@ -62,36 +62,24 @@ public class ElasticSearchController
         }
         catch(Exception ex)
         {
-            return null;
+//            return null;
+            return ex.toString() + "\n\n\n\n\n\n\n\n\n\n\n\n\n" + this.client.toString();
         }
 
     }
 
-//    private ArrayList<GeoCoordinate> processResponse(String response)
-//    {
-//        ObjectMapper mapper = new ObjectMapper();
-//        //com.fasterxml.jackson.core.JsonProcessingException, com.fasterxml.jackson.databind.JsonMappingException
-//        try
-//        {
-//            Map<String, Object> map = mapper.readValue(response, new TypeReference<Map<String,Object>>(){});
-//            // This section is dirty and I know it. Will need to make this more generic if time allows - Matt Tk
-//            ArrayList<Object> hitsList = (ArrayList<Object>) ((LinkedHashMap<String, Object>) map.get("hits")).get("hits");
-//            ArrayList<GeoCoordinate> coordList = new ArrayList<>();
-//            for(int x = 0; x < hitsList.size(); x++)
-//            {
-//                LinkedHashMap<String, Object> tempHashMap = (LinkedHashMap<String, Object>) ((LinkedHashMap<String, Object>) hitsList.get(x)).get("_source");
-//                GeoCoordinate newCoord = new GeoCoordinate((Double) tempHashMap.get("lat"), (Double) tempHashMap.get("long"), (String) tempHashMap.get("location"), (Integer) tempHashMap.get("id"), (Double) tempHashMap.get("norm_value"));
-//                coordList.add(newCoord);
-//            }
-//            return coordList;
-//
-//        }
-//        catch(Exception error)
-//        {
-//            System.out.println("Error processing json");
-//            return null;
-//        }
-//    }
+    private ArrayList<GeoCoordinate> processResponse(String response)
+    {
+        try
+        {
+            return null;
+        }
+        catch(Exception error)
+        {
+            System.out.println("Error processing json");
+            return null;
+        }
+    }
 
     private ArrayList<String> calcScore(ArrayList<GeoCoordinate> geoList)
     {
