@@ -1,4 +1,5 @@
 package com.ncrp.spring.app.controllers;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ncrp.spring.app.models.HitResult;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -57,14 +58,41 @@ public class ElasticSearchController
             searchRequest.searchType(SearchType.DFS_QUERY_THEN_FETCH);
             searchRequest.source(builder);
             SearchResponse response = this.client.search(searchRequest, RequestOptions.DEFAULT);
+            ObjectMapper mapper = new ObjectMapper();
+            ArrayList<Map<String, Double>> processedResults = processResponse(response, point);
+            Map<String, Double> summedResults = sumSearchResults(processedResults);
 
-            return sumSearchResults(processResponse(response, point)).toString();
+            //ZEROES REMOVED HERE
+            Map<String, Double> trimmedResults = removeEmpty(summedResults);
+
+            String userJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(trimmedResults);
+
+            return userJson;
         }
         catch(Exception ex)
         {
             return ex.toString() + "\n\n\n\n\n\n\n\n\n\n\n\n\n" + this.client.toString();
         }
 
+    }
+
+    private Map<String, Double> removeEmpty(Map<String, Double> map)
+    {
+        ArrayList<String> toRemove = new ArrayList<>();
+        for(String key : map.keySet())
+        {
+            if(map.get(key) <= 0.0)
+            {
+                toRemove.add(key);
+            }
+        }
+
+        for(String key : toRemove)
+        {
+            map.remove(key);
+        }
+
+        return map;
     }
 
     //Process a SearchResponse object into HitResult objects, which is then transformed into an ArrayList of Maps
@@ -184,5 +212,5 @@ public class ElasticSearchController
 
         return 2 * EARTH_RADIUS * (Math.asin(Math.sqrt(sin2Lat + Math.cos(initLat) * Math.cos(newLat) * sin2Long)));
     }
-
 }
+
