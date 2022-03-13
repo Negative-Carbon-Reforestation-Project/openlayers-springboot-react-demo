@@ -42,11 +42,11 @@ public class ElasticSearchController
      */
     public String getQuery(@RequestParam("longitude") double longitude, @RequestParam("latitude") double latitude)
     {
-        try (RestHighLevelClient highLevelClient = this.client)
+        try
         {
-            int distance = 10000000;
+            int distance = 100000;
 
-            GeoPoint point = new GeoPoint(longitude, latitude);
+            GeoPoint point = new GeoPoint(latitude, longitude);
 
             SearchSourceBuilder builder = new SearchSourceBuilder()
                                                 .postFilter(QueryBuilders.geoDistanceQuery("location")
@@ -56,7 +56,7 @@ public class ElasticSearchController
             SearchRequest searchRequest = new SearchRequest("trees");
             searchRequest.searchType(SearchType.DFS_QUERY_THEN_FETCH);
             searchRequest.source(builder);
-            SearchResponse response = highLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+            SearchResponse response = this.client.search(searchRequest, RequestOptions.DEFAULT);
 
             return sumSearchResults(processResponse(response, point)).toString();
         }
