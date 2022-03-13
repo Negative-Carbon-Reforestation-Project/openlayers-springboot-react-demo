@@ -10,8 +10,8 @@ const Popup = () => {
 
     return (
         <div className="ol-popup" ref={popupRef}>
-            <a href="#" className="ol-popup__closeButton" ref={popupCloseButtonRef}/>
-            <div className="ol-popup__content">{popupContent}</div>
+            <a href="#" className="ol-popup-closeButton" ref={popupCloseButtonRef}/>
+            <div className="ol-popup-content">{popupContent}</div>
         </div>
     )
 }

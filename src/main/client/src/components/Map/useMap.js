@@ -2,6 +2,12 @@ import { useRef, useState, useEffect } from "react";
 import * as ol from "ol";
 import OLCesium from "olcs/OLCesium";
 
+/**
+ * Encapsulated logic for the OL Map
+ * @param zoom The initial zoom level for the map
+ * @param center The initial center position for the map
+ * @returns {{setQueryable: (value: (((prevState: boolean) => boolean) | boolean)) => void, cesiumMap: unknown, isQueryable: boolean, mapRef: React.MutableRefObject<undefined>, map: unknown}}
+ */
 const useMap = (zoom, center) => {
     const mapRef = useRef();
     const [map, setMap] = useState(null);

@@ -5,14 +5,14 @@ import Map from "./components/Map/Map";
 import Layers from "./components/Layers/Layers";
 import TileLayer from "./components/Layers/TileLayer";
 import Controls from "./components/Controls/Controls";
-import Logo from "./components/Logo";
-import Footer from "./components/Footer";
+import Logo from "./components/Base/Logo";
+import Footer from "./components/Base/Footer";
 
 import { OSM, BingMaps, Stamen, XYZ, TileWMS } from "ol/source";
 import { fromLonLat } from "ol/proj";
 import Overlays from "./components/Overlays/Overlays";
 import Popup from "./components/Overlays/Popup";
-import SideMenu from "./components/SideMenu";
+import SideMenu from "./components/Base/SideMenu";
 
 /**
  * Component for the React applicaation
@@ -58,11 +58,11 @@ const App = () => {
             <Logo />
             <Map center={fromLonLat(center)} zoom={zoom}>
                 <Layers>
-                    <TileLayer source={new OSM()} zIndex={0} preload={Infinity} />
-                    <TileLayer source={new Stamen({layer: "terrain"})} zIndex={0} preload={Infinity} visible={false} />
-                    <TileLayer source={new Stamen({layer: "toner"})} zIndex={0} preload={Infinity} visible={false}/>
-                    <TileLayer source={new BingMaps({key: "AjfTsiozBjJlt3OV1PIbHuGRaaUEtnvKXwc1qEpyAFLi_LLImirWTbks68MZ87Ve", imagerySet: "AerialWithLabelsOnDemand"})} zIndex={0} preload={Infinity} visible={false}/>
-                    <TileLayer source={new XYZ({url: "https://{a-c}.tile.opentopomap.org/{z}/{x}/{y}.png"})} zIndex={0} preload={Infinity} visible={false}/>
+                    <TileLayer source={new OSM()} zIndex={0} visible={true} />
+                    <TileLayer source={new Stamen({layer: "terrain"})} zIndex={0}/>
+                    <TileLayer source={new Stamen({layer: "toner"})} zIndex={0}/>
+                    <TileLayer source={new BingMaps({key: "AjfTsiozBjJlt3OV1PIbHuGRaaUEtnvKXwc1qEpyAFLi_LLImirWTbks68MZ87Ve", imagerySet: "AerialWithLabelsOnDemand"})} zIndex={0} preload={Infinity}/>
+                    <TileLayer source={new XYZ({url: "https://{a-c}.tile.opentopomap.org/{z}/{x}/{y}.png"})} zIndex={0} preload={Infinity}/>
 
                     <TileLayer source={waSlope} zIndex={1} opacity={.6}/>
                     <TileLayer source={waFire} zIndex={2} opacity={.3}/>
