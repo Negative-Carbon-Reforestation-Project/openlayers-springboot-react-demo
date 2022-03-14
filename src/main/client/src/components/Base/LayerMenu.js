@@ -118,6 +118,10 @@ const LayerMenu = () => {
                             <input className="layer-item-toggle" type="checkbox" name="soil-data" value={7} onClick={(event) => toggleLayer(event)}/>
                             <h2 className="layer-item-heading">Soil Data</h2>
                         </article>
+                        <article className="layer-item">
+                            <input className="layer-item-toggle" type="checkbox" name="soil-data" value={8} onClick={(event) => toggleLayer(event)}/>
+                            <h2 className="layer-item-heading">Total Opportunity</h2>
+                        </article>
                     </section>
                 </section>
             </section>

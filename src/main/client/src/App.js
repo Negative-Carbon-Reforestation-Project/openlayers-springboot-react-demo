@@ -51,6 +51,13 @@ const App = () => {
         transition: 0,
     })
 
+    const totalOpportunity = new TileWMS({
+        url: 'http://localhost:8080/geoserver/wms',
+        params: {'LAYERS': 'ncrp:wa-total-opportunity', 'TILED': true},
+        serverType: 'geoserver',
+        transition: 0,
+    })
+
 
 
     return (
@@ -67,6 +74,7 @@ const App = () => {
                     <TileLayer source={waSlope} zIndex={1} opacity={.6}/>
                     <TileLayer source={waFire} zIndex={2} opacity={.3}/>
                     <TileLayer source={soilData} zIndex={3}/>
+                    <TileLayer source={totalOpportunity} zIndex={4}/>
                 </Layers>
                 <Overlays>
                     <Popup />
