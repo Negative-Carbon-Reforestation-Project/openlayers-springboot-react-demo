@@ -47,7 +47,7 @@ public class ElasticSearchController
         try
         {
             //Change to 100m
-            int distance = 100000;
+            int distance = 1000;
 
             GeoPoint point = new GeoPoint(latitude, longitude);
 
@@ -163,7 +163,7 @@ public class ElasticSearchController
                     Double normValue = result.getSpecies_map().get(key);
                     Double distance = getDistance(queryPoint.getLat(), queryPoint.getLon(), result.getLocation().getLat(), result.getLocation().getLon());
                     if(normValue > 0.0) //Make sure we aren't dividing by zero
-                        score = calcScore(distance, normValue);
+                        score = calcScore(distance, normValue, distance);
                     map_score.put(key, score);
                 }
                 scores.add(map_score);
@@ -199,9 +199,9 @@ public class ElasticSearchController
     }
 
     //Current score calculations. Currently, results in very small number that isn't very user-friendly
-    private double calcScore(double distance, double score)
+    private double calcScore(double distance, double score, double searchRadius)
     {
-        return(1 / distance * score);
+        return(1 / distance * score * searchRadius);
     }
 
     // Calculates distance between two lat/long pairs using the Haversine Formula
