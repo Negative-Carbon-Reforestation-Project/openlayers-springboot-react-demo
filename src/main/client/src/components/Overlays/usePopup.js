@@ -55,10 +55,10 @@ const usePopup = () => {
 
             const coordinate = event.coordinate;
             const longLatInfo = toStringHDMS(coordinate);
-            // const longLatInfo = toLonLat(coordinate);
+            const longLatCoordsInfo = toLonLat(coordinate);
 
             const longLatDisplay = `${String.fromCodePoint("0x1F4CD")} ${longLatInfo}`;
-            const data = await fetch(`http://localhost:8082/api/search/geo?latitude=${longLatInfo[1]}&longitude=${longLatInfo[0]}`)
+            const data = await fetch(`http://localhost:8082/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`)
                 .then((response) => response.text());
 
             setTimeout(() => setPopupContent(
