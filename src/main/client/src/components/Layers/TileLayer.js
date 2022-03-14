@@ -10,7 +10,7 @@ import OLTileLayer from "ol/layer/Tile";
  * @param opacity The opacity for the tile, default is 1.
  * @returns {null}
  */
-const TileLayer = ({ source, zIndex = 0, preload = 0, opacity=1, visible=true}) => {
+const TileLayer = ({ source, zIndex = 0, preload = 0, opacity=1, visible=false}) => {
     const { map } = useContext(MapContext);
 
     /**

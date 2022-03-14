@@ -2,12 +2,14 @@ import { useState, useEffect, useRef, useContext } from "react";
 import {Overlay} from "ol";
 import MapContext from "../Map/MapContext";
 import {toLonLat} from "ol/proj";
+import Loader from "../Utils/Loader";
+import {toStringHDMS} from "ol/coordinate";
 
 /**
  * Container for custom popup logic
  * @returns {{popupContent: JSX.Element, popupCloseButtonRef: React.MutableRefObject<undefined>, popupRef: React.MutableRefObject<undefined>}}
  */
-const usePopup = (layerIndex=7) => {
+const usePopup = () => {
     const { map, isQueryable } = useContext(MapContext);
     const popupRef = useRef();
     const popupCloseButtonRef = useRef();
@@ -31,53 +33,40 @@ const usePopup = (layerIndex=7) => {
 
         map.addOverlay(popupOverlay);
 
+        /**
+         * Closes the popup
+         */
         popupCloseButtonRef.current.onclick = () => {
             popupOverlay.setPosition(undefined);
             popupCloseButtonRef.current.blur();
             return false;
         };
 
-        map.on("singleclick", function (event) {
+        /**
+         * Populates the popup with the OpenSearch query information.
+         */
+        map.on("singleclick", async (event) => {
             if (!isQueryable)
             {
                 return;
             }
 
-            let projection = map.getView().getResolution();
-
-            let layers = map.getLayers();
-
-            let desiredLayer = layers.item(layerIndex);
-            let desiredLayerSource = desiredLayer.getSource();
-            let url = desiredLayerSource.getFeatureInfoUrl(event.coordinate, projection, "EPSG:4326", {"INFO_FORMAT": "text/html"});
-
-            // if (url)
-            // {
-            debugger;
+            setPopupContent(<Loader/>)
 
             const coordinate = event.coordinate;
-            const longLatInfo = toLonLat(coordinate);
-
-            fetch(`http://localhost:8082/api/search/geo?latitude=${longLatInfo[1]}&longitude=${longLatInfo[0]}`)
-                    .then((response) => response.text())
-                    .then((data) => setPopupContent(<div>{data}</div>));
-            // }
-
-            // const coordinate = event.coordinate;
+            const longLatInfo = toStringHDMS(coordinate);
             // const longLatInfo = toLonLat(coordinate);
 
-            // setPopupContent(
-            //     <div>
-            //         <p>You clicked here:</p>
-            //         <code>Long: {longLatInfo[0]}</code>
-            //         <br/>
-            //         <code>Lat: {longLatInfo[1]}</code>
-            //     </div>
-            // );
+            const longLatDisplay = `${String.fromCodePoint("0x1F4CD")} ${longLatInfo}`;
+            const data = await fetch(`http://localhost:8082/api/search/geo?latitude=${longLatInfo[1]}&longitude=${longLatInfo[0]}`)
+                .then((response) => response.text());
 
-            // setPopupContent(<div className={"loader"}></div>)
-
-
+            setTimeout(() => setPopupContent(
+                <div className="query-content">
+                    <p className="coordinates">{longLatDisplay}</p>
+                    <p className="query-result">{data}</p>
+                </div>
+            ), 2000);
 
             popupOverlay.setPosition(coordinate);
         });

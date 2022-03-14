@@ -35,6 +35,7 @@ public class ElasticSearchController
     }
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:3000")
     /**
      * Get mapping for our endpoint then process + return search results.
      *

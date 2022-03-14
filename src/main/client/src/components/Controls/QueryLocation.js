@@ -18,10 +18,12 @@ const QueryLocationControl = () => {
      * Toggles the query feature
      */
     const toggleQueryPointer = () => {
-        setControlActive(!controlActive);
-        iconRef.current.src = controlActive ? cursorIconActive : cursorIcon;
+        let isControlActive = !controlActive;
 
-        setQueryable(controlActive);
+        iconRef.current.src = isControlActive ? cursorIconActive
+                                              : cursorIcon;
+        setQueryable(isControlActive);
+        setControlActive(isControlActive);
     }
 
     return (
