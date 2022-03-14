@@ -51,6 +51,7 @@ public class HitResult
 
     public String toString()
     {
-        return "Location: " + this.location.toString() + "\nMap: " + this.species_map.toString();
+//        return "Location: " + this.location.toString() + "\nMap: " + this.species_map.toString();
+        return "";
     }
 }

@@ -46,6 +46,7 @@ public class ElasticSearchController
     {
         try
         {
+            //Change to 100m
             int distance = 100000;
 
             GeoPoint point = new GeoPoint(latitude, longitude);
@@ -61,6 +62,10 @@ public class ElasticSearchController
             SearchResponse response = this.client.search(searchRequest, RequestOptions.DEFAULT);
             ObjectMapper mapper = new ObjectMapper();
             ArrayList<Map<String, Double>> processedResults = processResponse(response, point);
+            if(processedResults == null)
+            {
+                return "{\"tree\": \"none\"}";
+            }
             Map<String, Double> summedResults = sumSearchResults(processedResults);
 
             //ZEROES REMOVED HERE
