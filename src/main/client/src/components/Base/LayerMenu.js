@@ -1,4 +1,4 @@
-import React, {useContext, useRef} from "react";
+import React, {useContext, useEffect, useRef} from "react";
 import {Drawer} from "@mui/material";
 import SideMenuContext from "./SideMenuContext";
 import MapContext from "../Map/MapContext";
@@ -10,20 +10,62 @@ import LayerManager from "../Utils/LayerManager";
 const LayerMenu = () => {
     const {sideMenuRef, layerMenuRef} = useContext(SideMenuContext);
     const {map} = useContext(MapContext);
+    const osmLayerToggleRef = useRef();
+    const baseGroupRef = useRef();
+    const landGroupRef = useRef();
 
+    /**
+     * Once the component is mounted onto the DOM, toggle the OSM layer by default.
+     */
+    useEffect(() => {
+        osmLayerToggleRef.current.checked = true;
+    }, []);
+
+    /**
+     * Hides the side menu
+     */
     const hideSideMenu = () => {
         layerMenuRef.current.style.display = "none";
         sideMenuRef.current.style.display = "none";
     };
 
+    /**
+     * Toggles a layer group container
+     * @param groupRef The reference to the group's container
+     */
+    const toggleGroup = (groupRef) => {
+        let isActive = groupRef.current.style.display === "block";
+
+        groupRef.current.style.display = isActive ? "none" : "block";
+    }
+
+    /**
+     * Toggles a layer's visibility
+     * @param event The click event
+     */
     const toggleLayer = (event) => {
-        let layerIndex = Number(event.target.getAttribute("data-value"));
+        let layerIndex = Number(event.target.value);
         let layers = map.getLayers();
 
-        let isLayerVisible = layers.item(layerIndex).getVisible();
-        layers.item(layerIndex).setVisible(!isLayerVisible);
+        layers.item(layerIndex).setVisible(event.target.checked);
 
-        console.log(layers.item(layerIndex));
+    }
+
+    /**
+     * Toggles the base layer visibility
+     * @remark Only one base layer can be active, so disabling other base layers is required.
+     * @param event The click event
+     */
+    const toggleBaseLayer = (event) => {
+        let layerIndex = Number(event.target.value);
+        let layers = map.getLayers();
+
+        for (let i = 0; i <= 4; i++)
+        {
+            layers.item(i).setVisible(false);
+        }
+
+        layers.item(layerIndex).setVisible(true);
     }
 
     return (
@@ -36,33 +78,48 @@ const LayerMenu = () => {
             {/*<LayerManager className="layer-menu-content"/>*/}
             <section className="layer-menu-content">
                 <section className="layer-group">
-                    <h2 className="layer-group-heading"></h2>
-                    <article className="layer-group-content"></article>
+                    <h2 className="layer-group-heading" onClick={() => toggleGroup(baseGroupRef)}>Base</h2>
+                    <section ref={baseGroupRef} className="layer-group-content">
+                        <article className="layer-item">
+                            <input ref={osmLayerToggleRef} className="layer-item-toggle" type="radio" name="base" value={0} onClick={(event) => toggleBaseLayer(event)}/>
+                            <h2 className="layer-item-heading">OSM</h2>
+                        </article>
+                        <article className="layer-item">
+                            <input className="layer-item-toggle" type="radio" name="base" value={1} onClick={(event) => toggleBaseLayer(event)}/>
+                            <h2 className="layer-item-heading">Terrain</h2>
+                        </article>
+                        <article className="layer-item">
+                            <input className="layer-item-toggle" type="radio" name="base" value={2} onClick={(event) => toggleBaseLayer(event)}/>
+                            <h2 className="layer-item-heading">Toner</h2>
+                        </article>
+                        <article className="layer-item">
+                            <input className="layer-item-toggle" type="radio" name="base" value={3} onClick={(event) => toggleBaseLayer(event)}/>
+                            <h2 className="layer-item-heading">Bing Maps</h2>
+                        </article>
+                        <article className="layer-item">
+                            <input className="layer-item-toggle" type="radio" name="base" value={4} onClick={(event) => toggleBaseLayer(event)}/>
+                            <h2 className="layer-item-heading">OpenTopo</h2>
+                        </article>
+                    </section>
                 </section>
-                <article className="layer-item">
-                    <h2 className="layer-item-heading" data-value={0} onClick={(event) => toggleLayer(event)}>OSM</h2>
-                </article>
-                <article className="layer-item">
-                    <h2 className="layer-item-heading" data-value={1} onClick={(event) => toggleLayer(event)}>Terrain</h2>
-                </article>
-                <article className="layer-item">
-                    <h2 className="layer-item-heading" data-value={2} onClick={(event) => toggleLayer(event)}>Toner</h2>
-                </article>
-                <article className="layer-item">
-                    <h2 className="layer-item-heading" data-value={3} onClick={(event) => toggleLayer(event)}>Bing Maps</h2>
-                </article>
-                <article className="layer-item">
-                    <h2 className="layer-item-heading" data-value={4} onClick={(event) => toggleLayer(event)}>OpenTopo</h2>
-                </article>
-                <article className="layer-item">
-                    <h2 className="layer-item-heading" data-value={5} onClick={(event) => toggleLayer(event)}>Layer 1</h2>
-                </article>
-                <article className="layer-item">
-                    <h2 className="layer-item-heading" data-value={6} onClick={(event) => toggleLayer(event)}>Layer 2</h2>
-                </article>
-                <article className="layer-item">
-                    <h2 className="layer-item-heading" data-value={7} onClick={(event) => toggleLayer(event)}>Layer 3</h2>
-                </article>
+
+                <section className="layer-group">
+                    <h2 className="layer-group-heading" onClick={() => toggleGroup(landGroupRef)}>Land Cover</h2>
+                    <section ref={landGroupRef} className="layer-group-content">
+                        <article className="layer-item">
+                            <input className="layer-item-toggle" type="checkbox" name="slope" value={5} onClick={(event) => toggleLayer(event)}/>
+                            <h2 className="layer-item-heading">Slopes</h2>
+                        </article>
+                        <article className="layer-item">
+                            <input className="layer-item-toggle" type="checkbox" name="fire-history" value={6} onClick={(event) => toggleLayer(event)}/>
+                            <h2 className="layer-item-heading">Fire History</h2>
+                        </article>
+                        <article className="layer-item">
+                            <input className="layer-item-toggle" type="checkbox" name="soil-data" value={7} onClick={(event) => toggleLayer(event)}/>
+                            <h2 className="layer-item-heading">Soil Data</h2>
+                        </article>
+                    </section>
+                </section>
             </section>
         </div>
     )

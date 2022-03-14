@@ -34,7 +34,22 @@
     animation: slideFromRight .3s .2s backwards;
 }
 
-.layer-item:hover
+.layer-group-content
 {
-    cursor: pointer;
+    background-color: var(--color-dark-grey);
+    display: none;
+    animation: slideFromTop .2s;
+}
+
+.layer-item
+{
+    display: flex;
+    align-items: center;
+}
+
+.layer-item-toggle
+{
+    margin: 10px;
+    width: 20px;
+    height: 20px;
 }
