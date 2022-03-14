@@ -1,4 +1,5 @@
 package com.ncrp.spring.app.controllers;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ncrp.spring.app.models.HitResult;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -45,7 +46,8 @@ public class ElasticSearchController
     {
         try
         {
-            int distance = 100000;
+            //Change to 100m
+            int distance = 100;
 
             GeoPoint point = new GeoPoint(latitude, longitude);
 
@@ -53,19 +55,53 @@ public class ElasticSearchController
                                                 .postFilter(QueryBuilders.geoDistanceQuery("location")
                                                 .point(point)
                                                 .distance(distance, DistanceUnit.METERS));
-
-            SearchRequest searchRequest = new SearchRequest("trees");
+            builder.size(1000);
+            SearchRequest searchRequest = new SearchRequest("");
             searchRequest.searchType(SearchType.DFS_QUERY_THEN_FETCH);
             searchRequest.source(builder);
             SearchResponse response = this.client.search(searchRequest, RequestOptions.DEFAULT);
+            ObjectMapper mapper = new ObjectMapper();
+            ArrayList<Map<String, Double>> processedResults = processResponse(response, point);
+            if(processedResults == null)
+            {
+                return "{\"tree\": \"none\"}";
+            }
+//            Map<String, Double> summedResults = sumSearchResults(processedResults);
+            Map<String, Double> averagedResults = averageSearchResults(processedResults);
 
-            return sumSearchResults(processResponse(response, point)).toString();
+            //ZEROES REMOVED HERE
+//            Map<String, Double> trimmedResults = removeEmpty(averagedResults);
+//            Map<String, Double> trimmedResults = removeEmpty(summedResults);
+
+//            String userJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(trimmedResults);
+            String userJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(averagedResults);
+
+            return userJson;
         }
         catch(Exception ex)
         {
             return ex.toString() + "\n\n\n\n\n\n\n\n\n\n\n\n\n" + this.client.toString();
         }
 
+    }
+
+    private Map<String, Double> removeEmpty(Map<String, Double> map)
+    {
+        ArrayList<String> toRemove = new ArrayList<>();
+        for(String key : map.keySet())
+        {
+            if(map.get(key) <= 0.0)
+            {
+                toRemove.add(key);
+            }
+        }
+
+        for(String key : toRemove)
+        {
+            map.remove(key);
+        }
+
+        return map;
     }
 
     //Process a SearchResponse object into HitResult objects, which is then transformed into an ArrayList of Maps
@@ -126,12 +162,15 @@ public class ElasticSearchController
                 //Iterate through each species in result
                 for(String key : result.getSpecies_map().keySet())
                 {
-                    Double score = 0.0;
+//                    Double score = 0.0;
                     Double normValue = result.getSpecies_map().get(key);
                     Double distance = getDistance(queryPoint.getLat(), queryPoint.getLon(), result.getLocation().getLat(), result.getLocation().getLon());
-                    if(normValue > 0.0) //Make sure we aren't dividing by zero
-                        score = calcScore(distance, normValue);
-                    map_score.put(key, score);
+//                    if(normValue > 0.0) //Make sure we aren't dividing by zero
+//                    {
+//                        score = calcScore(distance, normValue);
+//                        score =
+//                    }
+                    map_score.put(key, normValue);
                 }
                 scores.add(map_score);
             }
@@ -165,10 +204,42 @@ public class ElasticSearchController
         return finalSum;
     }
 
+    private Map<String, Double> averageSearchResults(ArrayList<Map <String, Double>> results)
+    {
+        Map<String, Double> finalResult = new HashMap<>();
+        Map<String, Double> finalCount = new HashMap<>();
+
+        //Looping through each map
+        for(Map<String, Double> map : results)
+        {
+            Double score = 0.0;
+            for(String key : map.keySet())
+            {
+                if(finalResult.containsKey(key))
+                {
+                    finalResult.put(key, map.get(key) + finalResult.get(key));
+                    finalCount.put(key, finalCount.get(key) + 1);
+                }
+                else
+                {
+                    finalResult.put(key, map.get(key));
+                    finalCount.put(key, map.get(key));
+                }
+            }
+        }
+
+        for(String key : finalResult.keySet())
+            finalResult.put(key, finalResult.get(key) / finalCount.get(key));
+
+        return finalResult;
+    }
+
     //Current score calculations. Currently, results in very small number that isn't very user-friendly
     private double calcScore(double distance, double score)
     {
-        return(1 / distance * score);
+//        if(distance <= 0.0)
+//            distance = 0.0003;
+        return((1 / distance) * score) / (1 / distance);
     }
 
     // Calculates distance between two lat/long pairs using the Haversine Formula
@@ -185,5 +256,5 @@ public class ElasticSearchController
 
         return 2 * EARTH_RADIUS * (Math.asin(Math.sqrt(sin2Lat + Math.cos(initLat) * Math.cos(newLat) * sin2Long)));
     }
-
 }
+

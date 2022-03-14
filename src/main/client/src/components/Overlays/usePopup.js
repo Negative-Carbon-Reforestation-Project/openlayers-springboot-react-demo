@@ -4,6 +4,7 @@ import MapContext from "../Map/MapContext";
 import {toLonLat} from "ol/proj";
 import Loader from "../Utils/Loader";
 import {toStringHDMS} from "ol/coordinate";
+import QueryResult from "../Utils/QueryResult";
 
 /**
  * Container for custom popup logic
@@ -54,19 +55,11 @@ const usePopup = () => {
             setPopupContent(<Loader/>)
 
             const coordinate = event.coordinate;
-            const longLatInfo = toStringHDMS(coordinate);
-            // const longLatInfo = toLonLat(coordinate);
-
-            const longLatDisplay = `${String.fromCodePoint("0x1F4CD")} ${longLatInfo}`;
-            const data = await fetch(`http://localhost:8082/api/search/geo?latitude=${longLatInfo[1]}&longitude=${longLatInfo[0]}`)
+            const longLatCoordsInfo = toLonLat(coordinate);
+            const data = await fetch(`http://localhost:8082/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`)
                 .then((response) => response.text());
 
-            setTimeout(() => setPopupContent(
-                <div className="query-content">
-                    <p className="coordinates">{longLatDisplay}</p>
-                    <p className="query-result">{data}</p>
-                </div>
-            ), 2000);
+            setTimeout(() => setPopupContent(<QueryResult data={data} coordinate={coordinate}/>), 2000);
 
             popupOverlay.setPosition(coordinate);
         });
