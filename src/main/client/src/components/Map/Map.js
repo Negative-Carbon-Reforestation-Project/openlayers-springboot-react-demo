@@ -12,6 +12,12 @@ import useMap from "./useMap"
 const Map = ({ children, zoom, center }) => {
     const { mapRef, map, cesiumMap, isQueryable, setQueryable } = useMap(zoom, center);
 
+    /**
+     * Once the component is mounted onto the DOM, check whether the map is queryable.
+     * If the map is queryable, the cursor icon will be changed.
+     *
+     * If the state of isQueryable changes, this will happen again.
+     */
     useEffect(() => {
         mapRef.current.style.cursor = isQueryable ? "help" : "default";
     }, [isQueryable])

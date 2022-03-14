@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import MapContext from "./Map/MapContext";
+import MapContext from "../Map/MapContext";
 
 const LayerManager = ({className}) => {
 

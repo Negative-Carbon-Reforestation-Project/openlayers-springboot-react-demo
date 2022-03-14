@@ -1,8 +1,8 @@
 import React, {useContext} from "react";
 import layerIcon512 from "../../resources/images/layer-control-512x512.webp";
 import layerIcon20 from "../../resources/images/layer-control-20x20.webp";
-import SideMenu from "../SideMenu";
-import SideMenuContext from "../SideMenuContext";
+import SideMenu from "../Base/SideMenu";
+import SideMenuContext from "../Base/SideMenuContext";
 
 /**
  * Container for the Layer control

@@ -1,10 +1,10 @@
 import React from "react";
 
-import logo192 from "../resources/images/ncrp-logo-192x96.webp"
-import logo205 from "../resources/images/ncrp-logo-205x103.webp"
-import logo208 from "../resources/images/ncrp-logo-208x104.webp"
-import logo320 from "../resources/images/ncrp-logo-320x160.webp"
-import logo600 from "../resources/images/ncrp-logo-600x300.webp"
+import logo192 from "../../resources/images/ncrp-logo-192x96.webp"
+import logo205 from "../../resources/images/ncrp-logo-205x103.webp"
+import logo208 from "../../resources/images/ncrp-logo-208x104.webp"
+import logo320 from "../../resources/images/ncrp-logo-320x160.webp"
+import logo600 from "../../resources/images/ncrp-logo-600x300.webp"
 
 
 /**

@@ -1,7 +1,13 @@
-
 .ol-popup
 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     position: absolute;
+    bottom: 12px;
+    left: -50px;
 
     background-color: var(--color-black);
     box-shadow: 0 1px 4px rgba(0,0,0,0.2);
@@ -9,19 +15,20 @@
     padding: 15px;
     border-radius: 10px;
     border: 1px solid #cccccc;
-    bottom: 12px;
-    left: -50px;
+
     min-width: 17.5rem;
+    min-height: 10rem;
 }
 
-.ol-popup--frosted-glass
-{
-    background-color: rgba(255,255,255,0.6);
-    box-shadow: inset 0 0 0 3000px rgba(255,255,255,0.5);
-    filter: blur(1px);
-}
+/*.ol-popup--frosted-glass*/
+/*{*/
+/*    background-color: rgba(255,255,255,0.6);*/
+/*    box-shadow: inset 0 0 0 3000px rgba(255,255,255,0.5);*/
+/*    filter: blur(1px);*/
+/*}*/
 
-.ol-popup:after, .ol-popup:before
+.ol-popup:after,
+.ol-popup:before
 {
     top: 100%;
     border: solid transparent;
@@ -35,7 +42,6 @@
 .ol-popup:after
 {
     border-top-color: black;
-    /*border-top-color: rgba(0,0,0,0.75);*/
     border-width: 10px;
     left: 48px;
     margin-left: -10px;
@@ -49,9 +55,7 @@
     margin-left: -11px;
 }
 
-
-
-.ol-popup__closeButton
+.ol-popup-closeButton
 {
     text-decoration: none;
     position: absolute;
@@ -59,7 +63,7 @@
     right: 8px;
 }
 
-.ol-popup__closeButton:after
+.ol-popup-closeButton:after
 {
     content: "✖";
     color: var(--color-dark-pink);
@@ -67,7 +71,7 @@
 
 }
 
-.ol-popup__content
+.ol-popup-content
 {
     font-size: 1rem;
     color: var(--color-white);
@@ -75,10 +79,17 @@
     font-family: Roboto;
 }
 
-.ol-popup__content code
+.query-content
+{
+    animation: fadeIn .5s;
+}
+
+.ol-popup-content code
 {
     color: var(--color-dark-pink);
 }
+
+
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px)
@@ -99,7 +110,7 @@
 {
     .ol-popup
     {
-        min-width: 23rem;
+        min-width: 18rem;
     }
 
     .ol-popup__content
