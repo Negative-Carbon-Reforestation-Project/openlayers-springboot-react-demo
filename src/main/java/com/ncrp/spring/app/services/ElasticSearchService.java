@@ -2,6 +2,7 @@ package com.ncrp.spring.app.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ncrp.spring.app.models.HitResult;
+import com.ncrp.spring.app.models.ReturnData;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -23,6 +24,8 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +51,39 @@ public class ElasticSearchService
                                 @Value("${opensearch_port}") int openSearchPort)
     {
         this.client = getClient(openSearchHost, openSearchPort);
+    }
+
+    private JSONObject mapToJson(Map<String, Double> finalMap)
+    {
+        Double forestationScore = 0.0;
+        JSONObject json = new JSONObject();
+        final String forestKey = "wa_total_reforestation_opportunity";
+        if(finalMap.containsKey(forestKey) && finalMap.size() > 1)
+        {
+            forestationScore = finalMap.get(forestKey);
+            Map<String, Double> shortMap = new HashMap<>(finalMap);
+            shortMap.remove(forestKey);
+            ArrayList<Map<String, Double>> quickList = new ArrayList<>();
+            quickList.add(shortMap);
+            json.put("species", quickList);
+            json.put(forestKey, forestationScore);
+            return json;
+        }
+        else if(finalMap.containsKey(forestKey) && finalMap.size() <= 1)
+        {
+            //UPDATE THIS TO RETURN FORMATTED JSON
+            json.put(forestKey, finalMap.get(forestKey));
+            json.put("tree data", "Apologies, no tree species data available");
+            return json;
+        }
+        else
+        {
+            ArrayList<Map<String, Double>> quickList = new ArrayList<>();
+            quickList.add(finalMap);
+            json.put("species", finalMap);
+            json.put("wa_total_reforestation_opportunity", "Apologies, Total forestation opportunity not available");
+            return json;
+        }
     }
 
     /**
@@ -87,7 +123,7 @@ public class ElasticSearchService
      * @param latitude The latitude
      * @return
      */
-    public Map<String, Double> getSpeciesData(double longitude, double latitude)
+    public JSONObject getSpeciesData(double longitude, double latitude)
     {
         try
         {
@@ -110,17 +146,18 @@ public class ElasticSearchService
 
             if(processedResults == null)
             {
-                return null;
+                return new JSONObject();
             }
             Map<String, Double> averagedResults = averageSearchResults(processedResults);
+            JSONObject finalJson = mapToJson(averagedResults);
 
-
-            return averagedResults;
+            return finalJson;
+//            return averagedResults;
 
         }
         catch(Exception ex)
         {
-            return null;
+            return new JSONObject();
         }
     }
 

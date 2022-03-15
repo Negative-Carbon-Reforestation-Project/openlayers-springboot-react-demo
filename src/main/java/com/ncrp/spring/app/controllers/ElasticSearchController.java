@@ -1,6 +1,7 @@
 package com.ncrp.spring.app.controllers;
 
 import com.ncrp.spring.app.services.ElasticSearchService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.Map;
@@ -28,7 +29,7 @@ public class ElasticSearchController
      * Theoretical example: /api/search/geo?longitude=-121&latitude=48
      *                      will map latitude as 48 and longitude as -121.
      */
-    public Map<String, Double> getQuery(@RequestParam("longitude") double longitude, @RequestParam("latitude") double latitude)
+    public JSONObject getQuery(@RequestParam("longitude") double longitude, @RequestParam("latitude") double latitude)
     {
         return elasticSearchService.getSpeciesData(longitude, latitude);
     }
