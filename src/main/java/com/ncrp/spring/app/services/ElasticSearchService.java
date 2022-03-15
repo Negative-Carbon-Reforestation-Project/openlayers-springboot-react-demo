@@ -123,13 +123,12 @@ public class ElasticSearchService
      * @param latitude The latitude
      * @return
      */
-    public JSONObject getSpeciesData(double longitude, double latitude)
+    public String getSpeciesData(double longitude, double latitude)
     {
         try
         {
             //Change to 100m
             int distance = 1000;
-
             GeoPoint point = new GeoPoint(latitude, longitude);
 
             SearchSourceBuilder builder = new SearchSourceBuilder()
@@ -146,18 +145,18 @@ public class ElasticSearchService
 
             if(processedResults == null)
             {
-                return new JSONObject();
+                return "{}";
             }
             Map<String, Double> averagedResults = averageSearchResults(processedResults);
             JSONObject finalJson = mapToJson(averagedResults);
 
-            return finalJson;
+            return finalJson.toString();
 //            return averagedResults;
 
         }
         catch(Exception ex)
         {
-            return new JSONObject();
+            return "{}";
         }
     }
 
