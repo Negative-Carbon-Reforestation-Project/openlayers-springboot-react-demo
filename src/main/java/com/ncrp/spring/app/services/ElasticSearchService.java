@@ -73,7 +73,7 @@ public class ElasticSearchService
         {
             //UPDATE THIS TO RETURN FORMATTED JSON
             json.put(forestKey, finalMap.get(forestKey));
-            json.put("tree data", "Apologies, no tree species data available");
+            json.put("species", "Not available");
             return json;
         }
         else
@@ -81,7 +81,7 @@ public class ElasticSearchService
             ArrayList<Map<String, Double>> quickList = new ArrayList<>();
             quickList.add(finalMap);
             json.put("species", finalMap);
-            json.put("wa_total_reforestation_opportunity", "Apologies, Total forestation opportunity not available");
+            json.put("wa_total_reforestation_opportunity", 0);
             return json;
         }
     }
@@ -145,7 +145,7 @@ public class ElasticSearchService
 
             if(processedResults == null)
             {
-                return "{}";
+                return "{\"species\": \"Not available\", \"wa_total_reforestation_opportunity\": 0 }";
             }
             Map<String, Double> averagedResults = averageSearchResults(processedResults);
             JSONObject finalJson = mapToJson(averagedResults);
@@ -156,7 +156,7 @@ public class ElasticSearchService
         }
         catch(Exception ex)
         {
-            return "{}";
+            return "{\"species\": \"Not available\", \"wa_total_reforestation_opportunity\": 0 }";
         }
     }
 
