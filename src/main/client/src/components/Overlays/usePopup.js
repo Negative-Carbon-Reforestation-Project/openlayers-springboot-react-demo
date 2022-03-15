@@ -57,7 +57,7 @@ const usePopup = () => {
             const coordinate = event.coordinate;
             const longLatCoordsInfo = toLonLat(coordinate);
             const data = await fetch(`http://localhost:8082/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`)
-                .then((response) => response.text());
+                .then((response) => response.json());
 
             setTimeout(() => setPopupContent(<QueryResult data={data} coordinate={coordinate}/>), 2000);
 
