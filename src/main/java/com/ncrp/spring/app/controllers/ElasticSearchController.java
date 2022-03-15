@@ -34,7 +34,6 @@ public class ElasticSearchController
     {
         String jsonString = elasticSearchService.getSpeciesData(longitude,latitude);
         return jsonString;
-//        return elasticSearchService.getSpeciesData(longitude, latitude);
     }
 }
 
