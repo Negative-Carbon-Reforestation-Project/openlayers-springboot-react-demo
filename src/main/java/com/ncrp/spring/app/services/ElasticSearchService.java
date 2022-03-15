@@ -106,31 +106,20 @@ public class ElasticSearchService
             searchRequest.source(builder);
             SearchResponse response = client.search(searchRequest, RequestOptions.DEFAULT);
 
-            ObjectMapper mapper = new ObjectMapper();
             ArrayList<Map<String, Double>> processedResults = processResponse(response, point);
 
             if(processedResults == null)
             {
-//                return "{\"tree\": \"none\"}";
                 return null;
             }
-//            Map<String, Double> summedResults = sumSearchResults(processedResults);
             Map<String, Double> averagedResults = averageSearchResults(processedResults);
 
-            //ZEROES REMOVED HERE
-//            Map<String, Double> trimmedResults = removeEmpty(averagedResults);
-//            Map<String, Double> trimmedResults = removeEmpty(summedResults);
-
-//            String userJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(trimmedResults);
-
-//            return userJson;
 
             return averagedResults;
 
         }
         catch(Exception ex)
         {
-//            return ex.getMessage();
             return null;
         }
     }
@@ -187,7 +176,6 @@ public class ElasticSearchService
 
             //Once we have the results stored in HitResults, we need to format output for React app
             //Calculate distance between 'queryPoint' and each hit from search
-            //Use distance to calculate score of that species
             //Sum up results across each search result/species
             ArrayList<Map<String, Double>> scores = new ArrayList<>();
 
@@ -198,14 +186,7 @@ public class ElasticSearchService
                 //Iterate through each species in result
                 for(String key : result.getSpecies_map().keySet())
                 {
-//                    Double score = 0.0;
                     Double normValue = result.getSpecies_map().get(key);
-                    Double distance = getDistance(queryPoint.getLat(), queryPoint.getLon(), result.getLocation().getLat(), result.getLocation().getLon());
-//                    if(normValue > 0.0) //Make sure we aren't dividing by zero
-//                    {
-//                        score = calcScore(distance, normValue);
-//                        score =
-//                    }
                     map_score.put(key, normValue);
                 }
                 scores.add(map_score);
@@ -255,7 +236,6 @@ public class ElasticSearchService
         //Looping through each map
         for(Map<String, Double> map : results)
         {
-            Double score = 0.0;
             for(String key : map.keySet())
             {
                 if(finalResult.containsKey(key))
