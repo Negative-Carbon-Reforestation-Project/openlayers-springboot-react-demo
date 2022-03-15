@@ -9,32 +9,35 @@ const QueryResult = ({data, coordinate}) => {
     const renderReforestationOpportunity = () => {
         if (typeof(data.wa_total_reforestation_opportunity) === "string")
         {
-            return <p className="query-result">Reforestation Opportunity: {data.wa_total_reforestation_opportunity}</p>
+            return <p className="reforestation-score">Reforestation Opportunity: {data.wa_total_reforestation_opportunity}</p>
         }
 
 
-        return <p className="query-result">Reforestation Opportunity: {(data.wa_total_reforestation_opportunity * 100).toFixed(2)}%</p>;
+        return <p className="reforestation-score">Reforestation Opportunity: {(data.wa_total_reforestation_opportunity * 100).toFixed(2)}%</p>;
     }
 
     const renderSpeciesTable = () => {
         if (typeof(data.species) === "object")
         {
-            // debugger;
             return (
-                <table className="species-table">
-                <tbody>
-                    <tr>
-                        <th>Type</th>
-                        <th>Density</th>
-                    </tr>
-                    {
-                        Object.entries(data.species).map(entry => <tr className="species-entry">
-                            <td className="species-type">{entry[0]}</td>
-                            <td className="species-density">{(entry[1] * 100).toFixed(2)}</td>
-                        </tr>)
-                    }
-                </tbody>
-            </table>)
+                <>
+                    <p className="species">Species: </p>
+                    <table className="species-table">
+                        <tbody>
+                            <tr className="species-table-header">
+                                <th className="species-type-header">Type</th>
+                                <th className="species-density-header">Density</th>
+                            </tr>
+                            {
+                                Object.entries(data.species).map(entry => <tr className="species-entry">
+                                    <td className="species-type">{entry[0]}</td>
+                                    <td className="species-density">{(entry[1] * 100).toFixed(2)}</td>
+                                </tr>)
+                            }
+                        </tbody>
+                    </table>
+                </>
+            )
         }
         else
         {
@@ -47,6 +50,7 @@ const QueryResult = ({data, coordinate}) => {
         <div className="query-content">
             <p className="coordinates">{longLatDisplay}</p>
             {renderReforestationOpportunity()}
+
             {renderSpeciesTable()}
         </div>
     );
