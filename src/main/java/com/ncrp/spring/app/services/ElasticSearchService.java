@@ -138,7 +138,7 @@ public class ElasticSearchService
                     .postFilter(QueryBuilders.geoDistanceQuery("location")
                             .point(point)
                             .distance(distance, DistanceUnit.METERS));
-            builder.size(1000);
+            builder.size(100);
 
 
             ArrayList<String> indexes = getIndexes();
