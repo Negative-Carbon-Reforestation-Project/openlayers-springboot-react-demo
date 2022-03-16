@@ -34,11 +34,28 @@
     animation: slideFromRight .3s .2s backwards;
 }
 
+.layer-group-heading
+{
+    background-color: var(--color-dark-grey-2);
+    padding: 0.3125rem;
+}
+
+.layer-group-heading:hover
+{
+    cursor: pointer;
+    color: var(--color-light-grey);
+}
+
 .layer-group-content
 {
-    background-color: var(--color-dark-grey);
     display: none;
     animation: slideFromTop .2s;
+}
+
+.layer-group-heading,
+.layer-group-content
+{
+    margin-bottom: 0.3125rem;
 }
 
 .layer-item

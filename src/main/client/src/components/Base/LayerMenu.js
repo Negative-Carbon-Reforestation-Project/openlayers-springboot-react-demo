@@ -82,7 +82,7 @@ const LayerMenu = () => {
                     <section ref={baseGroupRef} className="layer-group-content">
                         <article className="layer-item">
                             <input ref={osmLayerToggleRef} className="layer-item-toggle" type="radio" name="base" value={0} onClick={(event) => toggleBaseLayer(event)}/>
-                            <h2 className="layer-item-heading">OSM</h2>
+                            <h2 className="layer-item-heading">OpenStreetMaps</h2>
                         </article>
                         <article className="layer-item">
                             <input className="layer-item-toggle" type="radio" name="base" value={1} onClick={(event) => toggleBaseLayer(event)}/>
