@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import * as ol from "ol";
 import OLCesium from "olcs/OLCesium";
-import * as Cesium from "cesium";
+import {createWorldTerrain} from "cesium";
 
 /**
  * Encapsulated logic for the OL Map
@@ -70,10 +70,7 @@ const useMap = (zoom, center) => {
             return;
         }
 
-        let worldTerrain = Cesium.createWorldTerrain({
-            requestWaterMask: true,
-            requestVertexNormals: true,
-        });
+        let worldTerrain = createWorldTerrain();
 
         let cesiumMap = new OLCesium({map: map});
         let scene = cesiumMap.getCesiumScene();
