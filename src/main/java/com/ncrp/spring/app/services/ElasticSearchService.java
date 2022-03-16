@@ -57,6 +57,39 @@ public class ElasticSearchService
         this.client = getClient(openSearchHost, openSearchPort);
     }
 
+    private JSONObject mapToJson(Map<String, Double> finalMap)
+    {
+        Double forestationScore = 0.0;
+        JSONObject json = new JSONObject();
+        final String forestKey = "wa_total_reforestation_opportunity";
+        if(finalMap.containsKey(forestKey) && finalMap.size() > 1)
+        {
+            forestationScore = finalMap.get(forestKey);
+            Map<String, Double> shortMap = new HashMap<>(finalMap);
+            shortMap.remove(forestKey);
+            ArrayList<Map<String, Double>> quickList = new ArrayList<>();
+            quickList.add(shortMap);
+            json.put("species", quickList);
+            json.put(forestKey, forestationScore);
+            return json;
+        }
+        else if(finalMap.containsKey(forestKey) && finalMap.size() <= 1)
+        {
+            //UPDATE THIS TO RETURN FORMATTED JSON
+            json.put(forestKey, finalMap.get(forestKey));
+            json.put("species", "Not available");
+            return json;
+        }
+        else
+        {
+            ArrayList<Map<String, Double>> quickList = new ArrayList<>();
+            quickList.add(finalMap);
+            json.put("species", quickList);
+            json.put("wa_total_reforestation_opportunity", 0);
+            return json;
+        }
+    }
+
     /**
      * Initializes the elastic search client
      * @param openSearchHost The host for the open search cluster
