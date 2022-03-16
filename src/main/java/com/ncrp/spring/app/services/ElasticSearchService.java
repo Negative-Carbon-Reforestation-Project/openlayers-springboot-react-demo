@@ -18,6 +18,8 @@ import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.indices.GetIndexRequest;
+import org.elasticsearch.client.indices.GetIndexResponse;
 import org.elasticsearch.common.geo.GeoPoint;
 import org.elasticsearch.common.unit.DistanceUnit;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -33,6 +35,7 @@ import javax.net.ssl.SSLContext;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -95,7 +98,6 @@ public class ElasticSearchService
     {
         try
         {
-            //Change to 100m
             int distance = 100;
             GeoPoint point = new GeoPoint(latitude, longitude);
 
@@ -103,15 +105,25 @@ public class ElasticSearchService
                     .postFilter(QueryBuilders.geoDistanceQuery("location")
                             .point(point)
                             .distance(distance, DistanceUnit.METERS));
-            builder.size(1000);
-            SearchRequest searchRequest = new SearchRequest("");
-            searchRequest.searchType(SearchType.DFS_QUERY_THEN_FETCH);
-            searchRequest.source(builder);
-            SearchResponse response = client.search(searchRequest, RequestOptions.DEFAULT);
+            builder.size(100);
 
-            ArrayList<Map<String, Double>> processedResults = processResponse(response, point);
 
-            if(processedResults == null)
+            ArrayList<String> indexes = getIndexes();
+
+            ArrayList<Map<String, Double>> processedResults = new ArrayList<>();
+
+            if(indexes == null || indexes.size() <= 0)
+                return "{\"Error getting indexes\": \"No indexes found, please contact us via git hub\"}";
+            for(String index : indexes)
+            {
+                SearchRequest searchRequest = new SearchRequest(index);
+                searchRequest.searchType(SearchType.DFS_QUERY_THEN_FETCH);
+                searchRequest.source(builder);
+                SearchResponse response = client.search(searchRequest, RequestOptions.DEFAULT);
+                processedResults.addAll(processResponse(response, point));
+            }
+
+            if(processedResults.size() <= 0)
             {
                 return "{\"species\": \"Not available\", \"wa_total_reforestation_opportunity\": 0 }";
             }
@@ -142,7 +154,7 @@ public class ElasticSearchService
 
             //Length check, make sure we have results
             if(hits.getHits().length <= 0)
-                return null;
+                return new ArrayList<Map<String, Double>>();
 
             ArrayList<HitResult> results = new ArrayList<>();
 
@@ -200,7 +212,7 @@ public class ElasticSearchService
         catch(Exception error)
         {
             System.out.println("Error processing json with exception: " + error.toString());
-            return null;
+            return new ArrayList<Map<String, Double>>();
         }
     }
 
@@ -260,48 +272,20 @@ public class ElasticSearchService
         return finalResult;
     }
 
-    private JSONObject mapToJson(Map<String, Double> finalMap)
+    private ArrayList<String> getIndexes()
     {
-        Double forestationScore = 0.0;
-        JSONObject json = new JSONObject();
-        final String forestKey = "wa_total_reforestation_opportunity";
-        if(finalMap.containsKey(forestKey) && finalMap.size() > 1)
-        {
-            forestationScore = finalMap.get(forestKey);
-            Map<String, Double> shortMap = new HashMap<>(finalMap);
-            shortMap.remove(forestKey);
-            ArrayList<Map<String, Double>> quickList = new ArrayList<>();
-            quickList.add(shortMap);
-            json.put("species", quickList);
-            json.put(forestKey, forestationScore);
-            return json;
+        try {
+            GetIndexRequest request = new GetIndexRequest("wa*");
+
+            GetIndexResponse response = this.client.indices().get(request, RequestOptions.DEFAULT);
+            ArrayList<String> indexes = new ArrayList<String>(List.of(response.getIndices()));
+            return indexes;
         }
-        else if(finalMap.containsKey(forestKey) && finalMap.size() <= 1)
+        catch(Exception error)
         {
-            //UPDATE THIS TO RETURN FORMATTED JSON
-            json.put(forestKey, finalMap.get(forestKey));
-            json.put("species", "Not available");
-            return json;
-        }
-        else
-        {
-            ArrayList<Map<String, Double>> quickList = new ArrayList<>();
-            quickList.add(finalMap);
-            json.put("species", quickList);
-            json.put("wa_total_reforestation_opportunity", 0);
-            return json;
+            System.out.println("error retrieving indexes");
+            return null;
         }
     }
-
-//    private ArrayList<String> getIndexes()
-//    {
-//        GetInd
-//
-//        ArrayList<String> indices = this.client.
-//
-//                admin().cluster()
-//                .prepareState().get().getState()
-//                .getMetaData().getIndices();
-//    }
 }
 
