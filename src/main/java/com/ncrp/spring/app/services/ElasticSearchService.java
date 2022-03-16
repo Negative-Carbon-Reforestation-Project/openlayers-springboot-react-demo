@@ -2,6 +2,7 @@ package com.ncrp.spring.app.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ncrp.spring.app.models.HitResult;
+import com.ncrp.spring.app.models.ReturnData;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -23,6 +24,8 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +51,39 @@ public class ElasticSearchService
                                 @Value("${opensearch_port}") int openSearchPort)
     {
         this.client = getClient(openSearchHost, openSearchPort);
+    }
+
+    private JSONObject mapToJson(Map<String, Double> finalMap)
+    {
+        Double forestationScore = 0.0;
+        JSONObject json = new JSONObject();
+        final String forestKey = "wa_total_reforestation_opportunity";
+        if(finalMap.containsKey(forestKey) && finalMap.size() > 1)
+        {
+            forestationScore = finalMap.get(forestKey);
+            Map<String, Double> shortMap = new HashMap<>(finalMap);
+            shortMap.remove(forestKey);
+            ArrayList<Map<String, Double>> quickList = new ArrayList<>();
+            quickList.add(shortMap);
+            json.put("species", quickList);
+            json.put(forestKey, forestationScore);
+            return json;
+        }
+        else if(finalMap.containsKey(forestKey) && finalMap.size() <= 1)
+        {
+            //UPDATE THIS TO RETURN FORMATTED JSON
+            json.put(forestKey, finalMap.get(forestKey));
+            json.put("species", "Not available");
+            return json;
+        }
+        else
+        {
+            ArrayList<Map<String, Double>> quickList = new ArrayList<>();
+            quickList.add(finalMap);
+            json.put("species", quickList);
+            json.put("wa_total_reforestation_opportunity", 0);
+            return json;
+        }
     }
 
     /**
@@ -87,13 +123,12 @@ public class ElasticSearchService
      * @param latitude The latitude
      * @return
      */
-    public Map<String, Double> getSpeciesData(double longitude, double latitude)
+    public String getSpeciesData(double longitude, double latitude)
     {
         try
         {
             //Change to 100m
             int distance = 1000;
-
             GeoPoint point = new GeoPoint(latitude, longitude);
 
             SearchSourceBuilder builder = new SearchSourceBuilder()
@@ -106,32 +141,22 @@ public class ElasticSearchService
             searchRequest.source(builder);
             SearchResponse response = client.search(searchRequest, RequestOptions.DEFAULT);
 
-            ObjectMapper mapper = new ObjectMapper();
             ArrayList<Map<String, Double>> processedResults = processResponse(response, point);
 
             if(processedResults == null)
             {
-//                return "{\"tree\": \"none\"}";
-                return null;
+                return "{\"species\": \"Not available\", \"wa_total_reforestation_opportunity\": 0 }";
             }
-//            Map<String, Double> summedResults = sumSearchResults(processedResults);
             Map<String, Double> averagedResults = averageSearchResults(processedResults);
+            JSONObject finalJson = mapToJson(averagedResults);
 
-            //ZEROES REMOVED HERE
-//            Map<String, Double> trimmedResults = removeEmpty(averagedResults);
-//            Map<String, Double> trimmedResults = removeEmpty(summedResults);
-
-//            String userJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(trimmedResults);
-
-//            return userJson;
-
-            return averagedResults;
+            return finalJson.toString();
+//            return averagedResults;
 
         }
         catch(Exception ex)
         {
-//            return ex.getMessage();
-            return null;
+            return "{\"species\": \"Not available\", \"wa_total_reforestation_opportunity\": 0 }";
         }
     }
 
@@ -187,7 +212,6 @@ public class ElasticSearchService
 
             //Once we have the results stored in HitResults, we need to format output for React app
             //Calculate distance between 'queryPoint' and each hit from search
-            //Use distance to calculate score of that species
             //Sum up results across each search result/species
             ArrayList<Map<String, Double>> scores = new ArrayList<>();
 
@@ -198,14 +222,7 @@ public class ElasticSearchService
                 //Iterate through each species in result
                 for(String key : result.getSpecies_map().keySet())
                 {
-//                    Double score = 0.0;
                     Double normValue = result.getSpecies_map().get(key);
-                    Double distance = getDistance(queryPoint.getLat(), queryPoint.getLon(), result.getLocation().getLat(), result.getLocation().getLon());
-//                    if(normValue > 0.0) //Make sure we aren't dividing by zero
-//                    {
-//                        score = calcScore(distance, normValue);
-//                        score =
-//                    }
                     map_score.put(key, normValue);
                 }
                 scores.add(map_score);
@@ -255,7 +272,6 @@ public class ElasticSearchService
         //Looping through each map
         for(Map<String, Double> map : results)
         {
-            Double score = 0.0;
             for(String key : map.keySet())
             {
                 if(finalResult.containsKey(key))
