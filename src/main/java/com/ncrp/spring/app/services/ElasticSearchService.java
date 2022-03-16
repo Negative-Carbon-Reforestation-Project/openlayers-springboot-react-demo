@@ -18,6 +18,8 @@ import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.indices.GetIndexRequest;
+import org.elasticsearch.client.indices.GetIndexResponse;
 import org.elasticsearch.common.geo.GeoPoint;
 import org.elasticsearch.common.unit.DistanceUnit;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -32,6 +34,7 @@ import org.springframework.stereotype.Service;
 import javax.net.ssl.SSLContext;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -128,7 +131,7 @@ public class ElasticSearchService
         try
         {
             //Change to 100m
-            int distance = 1000;
+            int distance = 100;
             GeoPoint point = new GeoPoint(latitude, longitude);
 
             SearchSourceBuilder builder = new SearchSourceBuilder()
@@ -136,12 +139,19 @@ public class ElasticSearchService
                             .point(point)
                             .distance(distance, DistanceUnit.METERS));
             builder.size(1000);
-            SearchRequest searchRequest = new SearchRequest("");
-            searchRequest.searchType(SearchType.DFS_QUERY_THEN_FETCH);
-            searchRequest.source(builder);
-            SearchResponse response = client.search(searchRequest, RequestOptions.DEFAULT);
 
-            ArrayList<Map<String, Double>> processedResults = processResponse(response, point);
+
+            ArrayList<String> indexes = getIndexes();
+            ArrayList<Map<String, Double>> processedResults = new ArrayList<>();
+
+            for(String index : indexes)
+            {
+                SearchRequest searchRequest = new SearchRequest(index);
+                searchRequest.searchType(SearchType.DFS_QUERY_THEN_FETCH);
+                searchRequest.source(builder);
+                SearchResponse response = client.search(searchRequest, RequestOptions.DEFAULT);
+                processedResults.addAll(processResponse(response, point));
+            }
 
             if(processedResults == null)
             {
@@ -175,7 +185,7 @@ public class ElasticSearchService
 
             //Length check, make sure we have results
             if(hits.getHits().length <= 0)
-                return null;
+                return new ArrayList<Map<String, Double>>();
 
             ArrayList<HitResult> results = new ArrayList<>();
 
@@ -233,7 +243,7 @@ public class ElasticSearchService
         catch(Exception error)
         {
             System.out.println("Error processing json with exception: " + error.toString());
-            return null;
+            return new ArrayList<Map<String, Double>>();
         }
     }
 
@@ -291,6 +301,22 @@ public class ElasticSearchService
             finalResult.put(key, finalResult.get(key) / finalCount.get(key));
 
         return finalResult;
+    }
+
+    private ArrayList<String> getIndexes()
+    {
+        try {
+            GetIndexRequest request = new GetIndexRequest("wa*");
+
+            GetIndexResponse response = this.client.indices().get(request, RequestOptions.DEFAULT);
+            ArrayList<String> indexes = new ArrayList<String>(List.of(response.getIndices()));
+            return indexes;
+        }
+        catch(Exception error)
+        {
+            System.out.println("error retrieving indexes");
+            return null;
+        }
     }
 }
 
