@@ -80,7 +80,7 @@ public class ElasticSearchService
         {
             ArrayList<Map<String, Double>> quickList = new ArrayList<>();
             quickList.add(finalMap);
-            json.put("species", finalMap);
+            json.put("species", quickList);
             json.put("wa_total_reforestation_opportunity", 0);
             return json;
         }

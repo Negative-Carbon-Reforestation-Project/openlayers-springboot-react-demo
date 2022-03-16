@@ -5,6 +5,7 @@ import {toLonLat} from "ol/proj";
 import Loader from "../Utils/Loader";
 import {toStringHDMS} from "ol/coordinate";
 import QueryResult from "../Utils/QueryResult";
+import QueryError from "../Utils/QueryError";
 
 /**
  * Container for custom popup logic
@@ -55,12 +56,14 @@ const usePopup = () => {
             const coordinate = event.coordinate;
             const longLatCoordsInfo = toLonLat(coordinate);
 
-            popupOverlay.setPosition(coordinate);
             setPopupContent(<Loader/>)
 
             fetch(`http://localhost:8082/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`)
                 .then((response) => response.json())
-                .then((data) => setPopupContent(<QueryResult data={data} coordinate={coordinate}/>));
+                .then((data) => setPopupContent(<QueryResult data={data} coordinate={coordinate}/>))
+                .catch((error) => setPopupContent(<QueryError/>));
+
+            popupOverlay.setPosition(coordinate);
 
         });
 

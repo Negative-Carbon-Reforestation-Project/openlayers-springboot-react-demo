@@ -29,10 +29,12 @@ const QueryResult = ({data, coordinate}) => {
                                 <th className="species-density-header">Density</th>
                             </tr>
                             {
-                                Object.entries(data.species).map(entry => <tr className="species-entry">
-                                    <td className="species-type">{entry[0]}</td>
-                                    <td className="species-density">{(entry[1] * 100).toFixed(2)}</td>
-                                </tr>)
+                                data.species.map((entry) => Object.entries(entry).map((speciesEntry) =>
+                                    <tr className="species-entry">
+                                        <td className="species-type">{speciesEntry[0]}</td>
+                                        <td className="species-density">{(speciesEntry[1] * 100).toFixed(2)}</td>
+                                    </tr>)
+                                )
                             }
                         </tbody>
                     </table>

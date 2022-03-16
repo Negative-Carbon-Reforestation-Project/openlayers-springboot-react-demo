@@ -92,7 +92,7 @@
 {
    .ol-popup
    {
-       min-width: 18rem;
+       min-width: 20rem;
    }
 
     .ol-popup__content
@@ -106,7 +106,7 @@
 {
     .ol-popup
     {
-        min-width: 18rem;
+        min-width: 20rem;
     }
 
     .ol-popup__content
@@ -135,7 +135,7 @@
 {
     .ol-popup
     {
-        min-width: 17.5rem;
+        min-width: 20rem;
     }
 
     .ol-popup__content
