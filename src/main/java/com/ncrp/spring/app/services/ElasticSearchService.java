@@ -30,6 +30,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.net.ssl.SSLContext;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,39 +52,6 @@ public class ElasticSearchService
                                 @Value("${opensearch_port}") int openSearchPort)
     {
         this.client = getClient(openSearchHost, openSearchPort);
-    }
-
-    private JSONObject mapToJson(Map<String, Double> finalMap)
-    {
-        Double forestationScore = 0.0;
-        JSONObject json = new JSONObject();
-        final String forestKey = "wa_total_reforestation_opportunity";
-        if(finalMap.containsKey(forestKey) && finalMap.size() > 1)
-        {
-            forestationScore = finalMap.get(forestKey);
-            Map<String, Double> shortMap = new HashMap<>(finalMap);
-            shortMap.remove(forestKey);
-            ArrayList<Map<String, Double>> quickList = new ArrayList<>();
-            quickList.add(shortMap);
-            json.put("species", quickList);
-            json.put(forestKey, forestationScore);
-            return json;
-        }
-        else if(finalMap.containsKey(forestKey) && finalMap.size() <= 1)
-        {
-            //UPDATE THIS TO RETURN FORMATTED JSON
-            json.put(forestKey, finalMap.get(forestKey));
-            json.put("species", "Not available");
-            return json;
-        }
-        else
-        {
-            ArrayList<Map<String, Double>> quickList = new ArrayList<>();
-            quickList.add(finalMap);
-            json.put("species", quickList);
-            json.put("wa_total_reforestation_opportunity", 0);
-            return json;
-        }
     }
 
     /**
@@ -128,7 +96,7 @@ public class ElasticSearchService
         try
         {
             //Change to 100m
-            int distance = 1000;
+            int distance = 100;
             GeoPoint point = new GeoPoint(latitude, longitude);
 
             SearchSourceBuilder builder = new SearchSourceBuilder()
@@ -291,5 +259,49 @@ public class ElasticSearchService
 
         return finalResult;
     }
+
+    private JSONObject mapToJson(Map<String, Double> finalMap)
+    {
+        Double forestationScore = 0.0;
+        JSONObject json = new JSONObject();
+        final String forestKey = "wa_total_reforestation_opportunity";
+        if(finalMap.containsKey(forestKey) && finalMap.size() > 1)
+        {
+            forestationScore = finalMap.get(forestKey);
+            Map<String, Double> shortMap = new HashMap<>(finalMap);
+            shortMap.remove(forestKey);
+            ArrayList<Map<String, Double>> quickList = new ArrayList<>();
+            quickList.add(shortMap);
+            json.put("species", quickList);
+            json.put(forestKey, forestationScore);
+            return json;
+        }
+        else if(finalMap.containsKey(forestKey) && finalMap.size() <= 1)
+        {
+            //UPDATE THIS TO RETURN FORMATTED JSON
+            json.put(forestKey, finalMap.get(forestKey));
+            json.put("species", "Not available");
+            return json;
+        }
+        else
+        {
+            ArrayList<Map<String, Double>> quickList = new ArrayList<>();
+            quickList.add(finalMap);
+            json.put("species", quickList);
+            json.put("wa_total_reforestation_opportunity", 0);
+            return json;
+        }
+    }
+
+//    private ArrayList<String> getIndexes()
+//    {
+//        GetInd
+//
+//        ArrayList<String> indices = this.client.
+//
+//                admin().cluster()
+//                .prepareState().get().getState()
+//                .getMetaData().getIndices();
+//    }
 }
 
