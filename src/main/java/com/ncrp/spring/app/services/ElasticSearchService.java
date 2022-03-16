@@ -130,7 +130,6 @@ public class ElasticSearchService
     {
         try
         {
-            //Change to 100m
             int distance = 100;
             GeoPoint point = new GeoPoint(latitude, longitude);
 
@@ -144,6 +143,7 @@ public class ElasticSearchService
             ArrayList<String> indexes = getIndexes();
             ArrayList<Map<String, Double>> processedResults = new ArrayList<>();
 
+            assert indexes != null;
             for(String index : indexes)
             {
                 SearchRequest searchRequest = new SearchRequest(index);
@@ -153,7 +153,7 @@ public class ElasticSearchService
                 processedResults.addAll(processResponse(response, point));
             }
 
-            if(processedResults == null)
+            if(processedResults.size() <= 0)
             {
                 return "{\"species\": \"Not available\", \"wa_total_reforestation_opportunity\": 0 }";
             }
