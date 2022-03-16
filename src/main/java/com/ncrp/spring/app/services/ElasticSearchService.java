@@ -170,7 +170,6 @@ public class ElasticSearchService
     {
         try
         {
-
             SearchHits hits = response.getHits();
 
             //Length check, make sure we have results
@@ -185,13 +184,13 @@ public class ElasticSearchService
                 HitResult newResult = new HitResult();
                 SearchHit currentHit = hits.getAt(i);
 
-                Map<String, Object> currentSource = currentHit.getSourceAsMap();    //Have to store as object I believe?
+                Map<String, Object> currentSource = currentHit.getSourceAsMap();
 
                 for(String key : currentSource.keySet())
                 {
                     if(key.equals("location"))
                     {
-                        ArrayList<Double> thing = (ArrayList<Double>) currentSource.get(key);   //I think this cast is safe?
+                        ArrayList<Double> thing = (ArrayList<Double>) currentSource.get(key);
                         newResult.setLocation(new GeoPoint(thing.get(0), thing.get(1)));
                     }
                     else
