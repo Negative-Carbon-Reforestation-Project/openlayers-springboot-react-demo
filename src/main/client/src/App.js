@@ -24,35 +24,35 @@ const App = () => {
     const [zoom, setZoom] = useState(6);
 
     const soilData = new TileWMS({
-        url: 'http://localhost:8080/geoserver/wms',
+        url: 'http://ad7673489270b4bfd946b7d454d032eb-707266251.us-west-2.elb.amazonaws.com/geoserver/wms',
         params: {'LAYERS': 'ncrp:soil-data', 'TILED': true},
         serverType: 'geoserver',
         transition: 0,
     });
 
     const waSlope = new TileWMS({
-        url: 'http://localhost:8080/geoserver/wms',
+        url: 'http://ad7673489270b4bfd946b7d454d032eb-707266251.us-west-2.elb.amazonaws.com/geoserver/wms',
         params: {'LAYERS': 'ncrp:wa_slope', 'TILED': true},
         serverType: 'geoserver',
         transition: 0,
     });
 
     const waFire = new TileWMS({
-        url: 'http://localhost:8080/geoserver/wms',
+        url: 'http://ad7673489270b4bfd946b7d454d032eb-707266251.us-west-2.elb.amazonaws.com/geoserver/wms',
         params: {'LAYERS': 'ncrp:wa_fire_history_low_dpi', 'TILED': true},
         serverType: 'geoserver',
         transition: 0,
     });
 
     const soilClasses = new TileWMS({
-        url: 'http://localhost:8080/geoserver/wms',
+        url: 'http://ad7673489270b4bfd946b7d454d032eb-707266251.us-west-2.elb.amazonaws.com/geoserver/wms',
         params: {'LAYERS': 'ncrp:soil_classes', 'TILED': true},
         serverType: 'geoserver',
         transition: 0,
     })
 
     const totalOpportunity = new TileWMS({
-        url: 'http://localhost:8080/geoserver/wms',
+        url: 'http://ad7673489270b4bfd946b7d454d032eb-707266251.us-west-2.elb.amazonaws.com/geoserver/wms',
         params: {'LAYERS': 'ncrp:wa-total-opportunity', 'TILED': true},
         serverType: 'geoserver',
         transition: 0,
