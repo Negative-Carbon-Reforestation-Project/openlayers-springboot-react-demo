@@ -5,6 +5,7 @@ import {toLonLat} from "ol/proj";
 import Loader from "../Utils/Loader";
 import {toStringHDMS} from "ol/coordinate";
 import QueryResult from "../Utils/QueryResult";
+import QueryError from "../Utils/QueryError";
 
 /**
  * Container for custom popup logic
@@ -46,22 +47,24 @@ const usePopup = () => {
         /**
          * Populates the popup with the OpenSearch query information.
          */
-        map.on("singleclick", async (event) => {
+        map.on("singleclick", (event) => {
             if (!isQueryable)
             {
                 return;
             }
 
-            setPopupContent(<Loader/>)
-
             const coordinate = event.coordinate;
             const longLatCoordsInfo = toLonLat(coordinate);
-            const data = await fetch(`http://localhost:8082/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`)
-                .then((response) => response.json());
 
-            setTimeout(() => setPopupContent(<QueryResult data={data} coordinate={coordinate}/>), 2000);
+            setPopupContent(<Loader/>)
+
+            fetch(`http://localhost:8082/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`)
+                .then((response) => response.json())
+                .then((data) => setPopupContent(<QueryResult data={data} coordinate={coordinate}/>))
+                .catch((error) => setPopupContent(<QueryError/>));
 
             popupOverlay.setPosition(coordinate);
+
         });
 
         return () => {
