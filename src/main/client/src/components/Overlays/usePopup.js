@@ -58,7 +58,7 @@ const usePopup = () => {
 
             setPopupContent(<Loader/>)
 
-            fetch(`http://${window.location.hostname}/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`)
+            fetch(`http://${window.location.hostname}:${window.location.port}/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`)
                 .then((response) => response.json())
                 .then((data) => setPopupContent(<QueryResult data={data} coordinate={coordinate}/>))
                 .catch((error) => setPopupContent(<QueryError/>));
