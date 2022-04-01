@@ -17,3 +17,19 @@
     --font-large: 1.875rem;
     --font-extra-large: 2.5rem;
 }
+
+.active
+{
+    display: block !important;
+}
+
+.active-flex
+{
+    display: flex !important;
+}
+
+.active-flex-column
+{
+    display: flex !important;
+    flex-direction: column !important;
+}

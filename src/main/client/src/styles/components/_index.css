@@ -13,70 +13,6 @@
     user-select: none;
 }
 
-.nav
-{
-    z-index: 2;
-    grid-area: navbar;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-
-    transition: .8s;
-}
-
-.nav-logo
-{
-    width: 150px;
-    height: 100px;
-    padding: 10px;
-}
-
-.nav-items
-{
-    list-style: none;
-    display: flex;
-    align-items: center;
-}
-
-.nav-item
-{
-    padding: 20px;
-}
-
-.nav-link
-{
-    color: var(--color-white);
-    text-transform: uppercase;
-    text-decoration: none;
-    font-size: 20px;
-
-    display: inline-block;
-}
-
-.nav-link:hover,
-.nav-link:focus
-{
-    border-bottom: 2.5px solid var(--color-white);
-}
-
-.call-to-action
-{
-    background-color: green;
-
-    padding: 10px;
-    transition: ease-in transform 0.2s;
-}
-
-.call-to-action:hover,
-.call-to-action:focus
-{
-    transform: scale(1.2);
-    border-bottom: none;
-}
-
 .hero
 {
     grid-area: hero;
@@ -129,6 +65,7 @@
 
     display: none;
 }
+
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px)

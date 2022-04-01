@@ -1,45 +1,19 @@
 import React, {useEffect, useRef} from "react";
 import heroVideo from "../../resources/videos/hero.mp4";
+import hamburgerIcon from "../../resources/images/hamburger-menu-50x50.webp";
+import hamburgerExitIcon from "../../resources/images/exit-icon-50x50.webp";
+
 import Logo from "../Base/Logo";
+import Navigation from "../Base/Navigation";
 /***
  * Container for the Index page
  * @returns {JSX.Element}
  * @constructor
  */
 const Index = () => {
-
-    const navRef = useRef();
-
-    const subscribeToScroll = () => {
-        window.onscroll = () => {
-            if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10)
-            {
-                navRef.current.style.background = "black";
-            }
-            else
-            {
-                navRef.current.style.background = "none";
-            }
-        }
-    }
-    useEffect(() => {
-        subscribeToScroll();
-    });
-
     return (
         <>
-            <nav ref={navRef} className="nav">
-                <Logo className="nav-logo"/>
-
-                <ul className="nav-items">
-                    <li className="nav-item">
-                        <a href="#mission" className="nav-link" tabIndex={1}>Our Mission</a>
-                    </li>
-                    <li className="nav-item">
-                        <a href="/maps" className="nav-link call-to-action" tabIndex={2}>Explore</a>
-                    </li>
-                </ul>
-            </nav>
+            <Navigation />
 
             <main className="index-container">
                 <section className="hero">

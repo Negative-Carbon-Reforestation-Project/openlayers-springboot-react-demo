@@ -1,5 +1,7 @@
 @import "_index.css";
 @import "_app.css";
+
+@import "_navigation.css";
 @import "_map.css";
 @import "_logo.css";
 @import "_footer.css";
