@@ -12,4 +12,8 @@
     --color-dark-pink: rgb(233, 74, 147);
 
     --font-roboto: Roboto, sans-serif;
+    --font-small: 1.25rem;
+    --font-medium: 1.5625rem;
+    --font-large: 1.875rem;
+    --font-extra-large: 2.5rem;
 }
