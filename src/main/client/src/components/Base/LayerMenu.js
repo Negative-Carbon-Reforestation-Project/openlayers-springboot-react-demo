@@ -34,9 +34,7 @@ const LayerMenu = () => {
      * @param groupRef The reference to the group's container
      */
     const toggleGroup = (groupRef) => {
-        let isActive = groupRef.current.style.display === "block";
-
-        groupRef.current.style.display = isActive ? "none" : "block";
+        groupRef.current.classList.toggle("active");
     }
 
     /**
