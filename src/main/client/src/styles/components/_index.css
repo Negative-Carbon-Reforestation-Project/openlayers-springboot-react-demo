@@ -36,18 +36,20 @@
     color: var(--color-white);
     background: none;
 
-    border: 1px solid var(--color-white);
+    border: 2px solid var(--color-white);
+    border-radius: 50px;
     text-transform: uppercase;
     font-size: var(--font-small);
     padding: 20px;
-    transition: background 1s;
+    transition: background .5s;
 }
 
 .hero-button:hover,
 .hero-button:focus
 {
     cursor: pointer;
-    background-color: green;
+    border: 2px solid var(--color-dark-green);
+    background-color: var(--color-dark-green);
 }
 
 .hero-video

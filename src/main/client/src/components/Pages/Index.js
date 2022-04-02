@@ -33,6 +33,8 @@ const Index = () => {
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consequuntur corporis dignissimos ducimus est et laboriosam nihil obcaecati pariatur possimus quae quibusdam repellendus rerum sequi sint, suscipit vero vitae voluptatum.
                     </p>
                 </section>
+
+
             </main>
         </>
     )

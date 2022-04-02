@@ -47,35 +47,40 @@ const Navigation = () => {
 
     return (
         <>
+            <a className="skip-to-content" tabIndex={1}>Skip To Content</a>
+
             <nav ref={navRef} className="nav">
                 <Logo className="nav-logo"/>
 
                 <ul className="nav-items">
                     <li className="nav-item">
-                        <a href="#mission" className="nav-link" tabIndex={1}>Our Mission</a>
+                        <a href="#mission" className="nav-link" tabIndex={2}>Our Mission</a>
                     </li>
                     <li className="nav-item">
-                        <a href="/maps" className="nav-link call-to-action" tabIndex={2}>Explore</a>
+                        <a href="/maps" className="nav-link call-to-action" tabIndex={3}>Explore</a>
                     </li>
 
-                    <li className="nav-hamburger-item hamburger-menu-button" onClick={() => toggleHamburgerMenu()} aria-label="Toggle menu">
-                        <img src={hamburgerIcon} alt="Navigation menu icon"/>
+                    <li className="mobile-nav-item hamburger-menu-button" onClick={() => toggleHamburgerMenu()} aria-label="Toggle menu">
+                        <img src={hamburgerIcon} alt="Open navigation menu icon"/>
                     </li>
                 </ul>
 
-                <section ref={hamburgerMenuRef} className="hamburger-menu">
-                    <li className="nav-hamburger-item hamburger-exit-button" onClick={() => toggleHamburgerMenu()} aria-label="Exit menu">
-                        <img src={hamburgerExitIcon} alt="Navigation menu"/>
+
+            </nav>
+
+            <nav ref={hamburgerMenuRef} className="mobile-nav">
+                <li className="mobile-nav-item hamburger-exit-button" onClick={() => toggleHamburgerMenu()} aria-label="Exit menu">
+                    <img src={hamburgerExitIcon} alt="Exit navigation menu icon"/>
+                </li>
+
+                <ul className="mobile-nav-items">
+                    <li className="mobile-nav-item">
+                        <a href="#mission" className="nav-link" tabIndex={2}>Our Mission</a>
                     </li>
-                    <ul className="nav-hamburger-items">
-                        <li className="nav-hamburger-item">
-                            <a href="#mission" className="nav-link" tabIndex={1}>Our Mission</a>
-                        </li>
-                        <li className="nav-hamburger-item">
-                            <a href="/maps" className="nav-link call-to-action" tabIndex={2}>Explore</a>
-                        </li>
-                    </ul>
-                </section>
+                    <li className="mobile-nav-item">
+                        <a href="/maps" className="nav-link call-to-action" tabIndex={3}>Explore</a>
+                    </li>
+                </ul>
             </nav>
         </>
     )
