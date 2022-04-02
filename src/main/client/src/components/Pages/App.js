@@ -83,7 +83,7 @@ const App = () => {
                     <Controls/>
                 </SideMenu>
             </Map>
-            <Footer/>
+            {/*<Footer/>*/}
         </div>
     )
 };

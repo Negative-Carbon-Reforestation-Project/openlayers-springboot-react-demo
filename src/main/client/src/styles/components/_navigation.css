@@ -6,6 +6,7 @@
     top: 22px;
     color: var(--color-white);
     text-transform: uppercase;
+    text-decoration: none;
 
     border: 2px solid var(--color-dark-green);
     padding: 15px;
@@ -41,6 +42,11 @@
     width: 150px;
     height: 100px;
     padding: 10px;
+}
+
+.nav-logo:hover
+{
+    cursor: pointer;
 }
 
 .nav-items
@@ -93,7 +99,7 @@
     z-index: 3;
 
     display: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     width: 250px;

@@ -47,14 +47,14 @@ const Navigation = () => {
 
     return (
         <>
-            <a className="skip-to-content" tabIndex={1}>Skip To Content</a>
+            <a href="#main" className="skip-to-content" tabIndex={1}>Skip To Content</a>
 
             <nav ref={navRef} className="nav">
                 <Logo className="nav-logo"/>
 
                 <ul className="nav-items">
                     <li className="nav-item">
-                        <a href="#mission" className="nav-link" tabIndex={2}>Our Mission</a>
+                        <a href="/mission" className="nav-link" tabIndex={2}>Our Mission</a>
                     </li>
                     <li className="nav-item">
                         <a href="/maps" className="nav-link call-to-action" tabIndex={3}>Explore</a>

@@ -13,7 +13,7 @@ import logo600 from "../../resources/images/ncrp-logo-600x300.webp"
  * and the img tag is used as a fallback.
  * @returns {JSX.Element}
  */
-const Logo = ({className}) => {
+const Logo = ({className, href="/"}) => {
 
     return <picture>
                 <source
@@ -30,7 +30,13 @@ const Logo = ({className}) => {
                     sizes="(max-width: 600px) 205px, (min-width: 600px) 208px, (min-width: 992px) 320px"
                 />
 
-                <img src={logo600} className={className} alt="Logo" draggable={false}/>
+                <img
+                    src={logo600}
+                    className={className}
+                    alt="Logo"
+                    draggable={false}
+                    onClick={() => document.location.href = href}
+                />
            </picture>
 }
 

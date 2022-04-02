@@ -2,8 +2,9 @@
 {
     display: grid;
     grid-template:
-            [content-left] "hero" [content-right];
-            /*[content-left] "mission" [content-right];*/
+            [hero-left] "hero" [hero-right]
+            [mission-left] "mission" [mission-right]
+            [footer-left] "footer" [footer-right];
 
     min-height: 100vh;
 
@@ -16,7 +17,6 @@
 .hero
 {
     grid-area: hero;
-    background-attachment: fixed;
 }
 
 .hero-caption
@@ -33,14 +33,16 @@
 
 .hero-button
 {
-    color: var(--color-white);
     background: none;
 
     border: 2px solid var(--color-white);
     border-radius: 50px;
+    padding: 20px;
+
+    color: var(--color-white);
     text-transform: uppercase;
     font-size: var(--font-small);
-    padding: 20px;
+
     transition: background .5s;
 }
 
@@ -57,17 +59,58 @@
     width: 100%;
     height: 100%;
     padding-bottom: 0;
+
     object-fit: cover;
 }
 
 .mission
 {
-    background-color: #423E3E;
-    padding: 10px;
+    grid-area: mission;
 
-    display: none;
+    background-image: url("../../resources/images/mission-section-backdrop.jpg");
+    background-size: cover;
+    background-blend-mode: overlay;
+    background-color: #423E3E;
+
+    min-height: 600px;
+    text-align: justify;
+
 }
 
+.mission-excerpt
+{
+    display: flex;
+    flex-direction: column;
+    
+    background-color: var(--color-dark-grey);
+    padding: 80px 40px 40px 60px;
+    margin: 0 auto;
+    height: 100%;
+    max-width: 600px;
+}
+
+.mission-button
+{
+    background: none;
+
+    border: 2px solid var(--color-white);
+    border-radius: 50px;
+    padding: 20px;
+    margin-top: 20px;
+
+    text-transform: uppercase;
+    color: var(--color-white);
+
+    transition: background 0.3s;
+    
+}
+
+.mission-button:hover
+{
+    background-color: var(--color-dark-green);
+    cursor: pointer;
+    
+}
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px)
@@ -77,6 +120,15 @@
         left: 30px;
         font-size: var(--font-large);
     }
+
+    .index-container
+    {
+        grid-template:
+            [hero-left] "hero" 700px [hero-right]
+            [mission-left] "mission" 1fr [mission-right]
+            [footer-left] "footer" 520px [footer-right];
+    }
+      
 }
 
 @media only screen and (min-width: 600px)
@@ -85,6 +137,14 @@
     {
         top: 400px;
         left: 180px;
+    }
+
+    .index-container
+    {
+        grid-template:
+            [hero-left] "hero" 1024px [hero-right]
+            [mission-left] "mission" 1fr [mission-right]
+            [footer-left] "footer" [footer-right];
     }
 }
 
