@@ -1,0 +1,46 @@
+.terms-container
+{
+    display: grid;
+
+    grid-template:
+        [hero-left] "terms-hero" 600px [hero-right]
+        [mission-left] "terms" [mission-right]
+        [footer-left] "footer" [footer-right];
+
+    min-height: 100vh;
+}
+
+.terms-hero
+{
+    grid-area: terms-hero;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url("../../resources/images/terms-section-backdrop.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+    background-color: #423E3E;
+}
+
+.terms-hero-header
+{
+    color: var(--color-white);
+    padding: 10px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--color-white);
+}
+
+.terms-content
+{
+    grid-area: terms;
+
+    text-align: justify;
+    padding: 30px;
+}
+
+.terms-article
+{
+    margin-bottom: 20px;
+}

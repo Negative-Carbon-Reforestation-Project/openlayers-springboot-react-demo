@@ -69,7 +69,7 @@ const LayerMenu = () => {
     return (
         <div ref={layerMenuRef} className="layer-menu">
             <section className="layer-menu-header">
-                <h1 className="layer-menu-heading">Layers</h1>
+                <h2 className="layer-menu-heading">Layers</h2>
                 <button className="layer-menu-exit" onClick={() => hideSideMenu()}>X</button>
             </section>
 

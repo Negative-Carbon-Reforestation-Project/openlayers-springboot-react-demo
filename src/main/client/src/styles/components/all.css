@@ -2,6 +2,8 @@
 @import "_index.css";
 @import "_app.css";
 @import "_mission.css";
+@import "_terms.css";
+@import "_privacy.css";
 
 /*Components*/
 @import "_navigation.css";

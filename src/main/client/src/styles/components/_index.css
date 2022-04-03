@@ -31,6 +31,12 @@
     font-size: var(--font-extra-large);
 }
 
+.hero-caption-text
+{
+    font-size: 60px;
+     margin-bottom: 10px;   
+}
+
 .hero-button
 {
     background: none;
@@ -73,7 +79,6 @@
     background-color: #423E3E;
 
     min-height: 600px;
-    text-align: justify;
 
 }
 
@@ -117,15 +122,19 @@
 {
     .hero-caption
     {
-        left: 30px;
-        font-size: var(--font-large);
+        left: 40px;
     }
 
+    .hero-caption-text
+    {
+        font-size: 40px;
+    }
+    
     .index-container
     {
         grid-template:
-            [hero-left] "hero" 700px [hero-right]
-            [mission-left] "mission" 1fr [mission-right]
+            [hero-left] "hero" 900px [hero-right]
+            [mission-left] "mission" [mission-right]
             [footer-left] "footer" 520px [footer-right];
     }
       
@@ -157,6 +166,19 @@
         left: 280px;
         font-size: var(--font-large);
     }
+
+    .hero-caption-text
+    {
+        font-size: 40px;
+    }
+
+    .index-container
+    {
+        grid-template:
+            [hero-left] "hero" 400px [hero-right]
+            [mission-left] "mission" 1fr [mission-right]
+            [footer-left] "footer" [footer-right];
+    }
 }
 
 @media only screen and (min-width: 992px)
@@ -166,4 +188,6 @@
         top: 300px;
         left: 300px;
     }
+
+    
 }

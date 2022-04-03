@@ -21,10 +21,10 @@ const Footer = () => {
                             <a href="/maps">Explore</a>
                         </li>
                         <li className="footer-link-item">
-                            <a href="#">Terms of Service</a>
+                            <a href="/terms">Terms of Service</a>
                         </li>
                         <li className="footer-link-item">
-                            <a href="#">Privacy Policy</a>
+                            <a href="/privacy">Privacy Policy</a>
                         </li>
                     </ul>
                 </article>

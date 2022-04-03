@@ -75,10 +75,16 @@ const Navigation = () => {
 
                 <ul className="mobile-nav-items">
                     <li className="mobile-nav-item">
-                        <a href="#mission" className="nav-link" tabIndex={2}>Our Mission</a>
+                        <a href="/mission" className="nav-link" tabIndex={2}>Our Mission</a>
                     </li>
                     <li className="mobile-nav-item">
-                        <a href="/maps" className="nav-link call-to-action" tabIndex={3}>Explore</a>
+                        <a href="/maps" className="nav-link" tabIndex={3}>Explore</a>
+                    </li>
+                    <li className="mobile-nav-item">
+                        <a href="/terms" className="nav-link" tabIndex={3}>Terms of Service</a>
+                    </li>
+                    <li className="mobile-nav-item">
+                        <a href="/privacy" className="nav-link" tabIndex={3}>Privacy Policy</a>
                     </li>
                 </ul>
             </nav>

@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Index from "./components/Pages/Index";
 import Mission from "./components/Pages/Mission";
+import Terms from "./components/Pages/Terms";
+import Privacy from "./components/Pages/Privacy";
 
 ReactDOM.render(
     <React.StrictMode>
@@ -13,6 +15,8 @@ ReactDOM.render(
             <Routes>
                 <Route path="/" element={<Index/>}/>
                 <Route path="/mission" element={<Mission/>}/>
+                <Route path="/terms" element={<Terms/>}/>
+                <Route path="/privacy" element={<Privacy/>}/>
                 <Route path="/maps" element={<App/>}/>
             </Routes>
         </BrowserRouter>
