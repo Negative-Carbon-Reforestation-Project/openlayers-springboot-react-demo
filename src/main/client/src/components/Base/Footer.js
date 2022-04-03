@@ -32,7 +32,7 @@ const Footer = () => {
             </section>
             <section className="footer-bottom">
                 <p>NCRP {new Date(Date.now()).getUTCFullYear()} &copy; - <strong>Negative Carbon Reforestation Project</strong> - All rights reserved</p>
-                <p>Site last updated: April 01, 2022</p>
+                <p>Site last updated: April 02, 2022</p>
             </section>
         </footer>
     );

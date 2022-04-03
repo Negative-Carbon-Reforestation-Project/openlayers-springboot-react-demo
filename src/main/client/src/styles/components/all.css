@@ -1,6 +1,7 @@
 /*Pages*/
 @import "_index.css";
 @import "_app.css";
+@import "_mission.css";
 
 /*Components*/
 @import "_navigation.css";

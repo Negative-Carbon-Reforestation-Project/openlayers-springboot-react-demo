@@ -27,8 +27,8 @@ const Index = () => {
                     </video>
                 </section>
 
-                <section className="mission">
-                    <article className="mission-excerpt">
+                <section className="mission-excerpt">
+                    <article className="mission-excerpt-container">
                         <h2>What Is The Negative Carbon Reforestation Project?</h2>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab atque consequatur deserunt dolorem ducimus eaque eum, eveniet excepturi expedita maxime mollitia nulla quisquam repellendus rerum sed similique, sunt. Cupiditate, quo.

@@ -1,0 +1,44 @@
+.mission-container
+{
+    display: grid;
+
+    grid-template:
+        [hero-left] "mission-hero" 600px [hero-right]
+        [mission-left] "mission" 400px [mission-right]
+        [footer-left] "footer" [footer-right];
+
+    min-height: 100vh;
+}
+
+.mission
+{
+    grid-area: footer;
+}
+
+.mission-hero
+{
+    grid-area: mission-hero;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url("../../resources/images/mission-section-backdrop.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+    background-color: #423E3E;
+}
+
+.mission-hero-header
+{
+    color: var(--color-white);
+    padding: 10px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--color-white);
+}
+
+.mission-statement
+{
+    padding: 0 20px 0 20px;
+}
+

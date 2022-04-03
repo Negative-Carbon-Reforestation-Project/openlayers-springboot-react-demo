@@ -5,12 +5,14 @@ import App from './components/Pages/App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Index from "./components/Pages/Index";
+import Mission from "./components/Pages/Mission";
 
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Index/>}/>
+                <Route path="/mission" element={<Mission/>}/>
                 <Route path="/maps" element={<App/>}/>
             </Routes>
         </BrowserRouter>
