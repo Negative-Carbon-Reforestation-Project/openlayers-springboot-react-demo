@@ -31,8 +31,12 @@ const Footer = () => {
 
             </section>
             <section className="footer-bottom">
-                <p>NCRP {new Date(Date.now()).getUTCFullYear()} &copy; - <strong>Negative Carbon Reforestation Project</strong> - All rights reserved</p>
-                <p>Site last updated: April 02, 2022</p>
+                <p>
+                    <abbr title="Negative Carbon Reforestation Project">NCRP</abbr> &nbsp;
+                    <time>{new Date(Date.now()).getUTCFullYear()}</time> &copy; -&nbsp;
+                    <strong>Negative Carbon Reforestation Project</strong> - All rights reserved
+                </p>
+                <p>Site last updated: <time dateTime="2022-04-04">April 04, 2022</time></p>
             </section>
         </footer>
     );
