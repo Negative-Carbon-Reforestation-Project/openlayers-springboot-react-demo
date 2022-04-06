@@ -1,7 +1,15 @@
+/*Pages*/
+@import "_index.css";
 @import "_app.css";
+@import "_mission.css";
+@import "_terms.css";
+@import "_privacy.css";
+
+/*Components*/
+@import "_navigation.css";
+@import "_footer.css";
 @import "_map.css";
 @import "_logo.css";
-@import "_footer.css";
 @import "_popup.css";
 @import "_queryResult.css";
 @import "_queryError.css";

@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import MapContext from "../Map/MapContext";
 import OLVectorLayer from "ol/layer/Vector";
+import {useSelector} from "react-redux";
 
 /**
  * Container for custom OpenLayer VectorLayers
@@ -11,7 +12,8 @@ import OLVectorLayer from "ol/layer/Vector";
  * @returns {null}
  */
 const VectorLayer = ({ source, style, zIndex = 0, opacity=1}) => {
-    const { map } = useContext(MapContext);
+    // const { map } = useContext(MapContext);
+    const map = useSelector((state) => state.maps.value.map);
 
     /**
      * Once the component is mounted onto the DOM, construct a vector layer and append it to the map

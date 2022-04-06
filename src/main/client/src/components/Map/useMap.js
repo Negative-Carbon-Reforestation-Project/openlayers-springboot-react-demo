@@ -2,18 +2,22 @@ import { useRef, useState, useEffect } from "react";
 import * as ol from "ol";
 import OLCesium from "olcs/OLCesium";
 import {createWorldTerrain} from "cesium";
+import {useDispatch, useSelector} from "react-redux";
+import {addCesiumMap, addMap} from "../../redux/reducers/mapReducer";
+
 
 /**
  * Encapsulated logic for the OL Map
  * @param zoom The initial zoom level for the map
  * @param center The initial center position for the map
- * @returns {{setQueryable: (value: (((prevState: boolean) => boolean) | boolean)) => void, cesiumMap: unknown, isQueryable: boolean, mapRef: React.MutableRefObject<undefined>, map: unknown}}
+ * @returns {{mapRef: React.MutableRefObject<undefined>}}
  */
 const useMap = (zoom, center) => {
     const mapRef = useRef();
-    const [map, setMap] = useState(null);
-    const [cesiumMap, setCesiumMap] = useState(null);
-    const [isQueryable, setQueryable] = useState(false);
+
+    const map = useSelector((state) => state.maps.value.map);
+
+    const dispatch = useDispatch();
 
     /**
      * Once the component is mounted onto the DOM, construct a new map with the given view.
@@ -29,7 +33,7 @@ const useMap = (zoom, center) => {
         let mapObject = new ol.Map(options);
 
         mapObject.setTarget(mapRef.current);
-        setMap(mapObject);
+        dispatch(addMap({map: mapObject}));
 
         return () => mapObject.setTarget(undefined);
     }, []);
@@ -45,6 +49,7 @@ const useMap = (zoom, center) => {
         }
 
         map.getView().setZoom(zoom);
+
     }, [zoom]);
 
     /**
@@ -57,7 +62,8 @@ const useMap = (zoom, center) => {
             return;
         }
 
-        map.getView().setCenter(center)
+        map.getView().setCenter(center);
+
     }, [center])
 
     /**
@@ -70,18 +76,15 @@ const useMap = (zoom, center) => {
             return;
         }
 
-        let worldTerrain = createWorldTerrain();
+        let cesiumMapObject = new OLCesium({map: map});
+        let scene = cesiumMapObject.getCesiumScene();
+        scene.terrainProvider = createWorldTerrain();
 
-        let cesiumMap = new OLCesium({map: map});
-        let scene = cesiumMap.getCesiumScene();
-        let terrainProvider = worldTerrain;
 
-        scene.terrainProvider = terrainProvider;
-
-        setCesiumMap(cesiumMap);
+        dispatch(addCesiumMap({cesiumMap: cesiumMapObject}))
     }, [map])
 
-    return { mapRef, map, cesiumMap, isQueryable, setQueryable }
+    return { mapRef }
 }
 
 export default useMap;

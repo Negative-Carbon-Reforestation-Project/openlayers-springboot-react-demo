@@ -3,13 +3,15 @@ import {Drawer} from "@mui/material";
 import SideMenuContext from "./SideMenuContext";
 import MapContext from "../Map/MapContext";
 import LayerManager from "../Utils/LayerManager";
+import {useSelector} from "react-redux";
 
 /**
  * Container for layer menu
  */
 const LayerMenu = () => {
     const {sideMenuRef, layerMenuRef} = useContext(SideMenuContext);
-    const {map} = useContext(MapContext);
+    const map = useSelector((state) => state.maps.value.map);
+
     const osmLayerToggleRef = useRef();
     const baseGroupRef = useRef();
     const landGroupRef = useRef();
@@ -25,8 +27,8 @@ const LayerMenu = () => {
      * Hides the side menu
      */
     const hideSideMenu = () => {
-        layerMenuRef.current.style.display = "none";
-        sideMenuRef.current.style.display = "none";
+        sideMenuRef.current.classList.toggle("active");
+        layerMenuRef.current.classList.toggle("active");
     };
 
     /**
@@ -34,9 +36,7 @@ const LayerMenu = () => {
      * @param groupRef The reference to the group's container
      */
     const toggleGroup = (groupRef) => {
-        let isActive = groupRef.current.style.display === "block";
-
-        groupRef.current.style.display = isActive ? "none" : "block";
+        groupRef.current.classList.toggle("active");
     }
 
     /**
@@ -71,7 +71,7 @@ const LayerMenu = () => {
     return (
         <div ref={layerMenuRef} className="layer-menu">
             <section className="layer-menu-header">
-                <h1 className="layer-menu-heading">Layers</h1>
+                <h2 className="layer-menu-heading">Layers</h2>
                 <button className="layer-menu-exit" onClick={() => hideSideMenu()}>X</button>
             </section>
 
