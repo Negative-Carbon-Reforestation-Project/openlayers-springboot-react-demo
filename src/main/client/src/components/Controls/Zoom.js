@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Zoom } from "ol/control";
 import MapContext from "../Map/MapContext";
+import {useSelector} from "react-redux";
 
 
 /**
  * Component for custom OpenLayer zoom control.
  * @returns {null}
  */
-const ZoomControl = ({target}) => {
-    const { map } = useContext(MapContext);
+const ZoomControl = ({target, tabIndex}) => {
+    const map  = useSelector((state) => state.maps.value.map);
 
     /**
      * Once the component is mounted onto the DOM, extend the zoom control and append it onto the map

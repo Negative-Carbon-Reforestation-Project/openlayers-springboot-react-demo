@@ -3,13 +3,15 @@ import {Drawer} from "@mui/material";
 import SideMenuContext from "./SideMenuContext";
 import MapContext from "../Map/MapContext";
 import LayerManager from "../Utils/LayerManager";
+import {useSelector} from "react-redux";
 
 /**
  * Container for layer menu
  */
 const LayerMenu = () => {
     const {sideMenuRef, layerMenuRef} = useContext(SideMenuContext);
-    const {map} = useContext(MapContext);
+    const map = useSelector((state) => state.maps.value.map);
+
     const osmLayerToggleRef = useRef();
     const baseGroupRef = useRef();
     const landGroupRef = useRef();
@@ -25,8 +27,8 @@ const LayerMenu = () => {
      * Hides the side menu
      */
     const hideSideMenu = () => {
-        layerMenuRef.current.style.display = "none";
-        sideMenuRef.current.style.display = "none";
+        sideMenuRef.current.classList.toggle("active");
+        layerMenuRef.current.classList.toggle("active");
     };
 
     /**

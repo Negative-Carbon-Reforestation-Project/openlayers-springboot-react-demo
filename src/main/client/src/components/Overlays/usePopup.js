@@ -6,16 +6,20 @@ import Loader from "../Utils/Loader";
 import {toStringHDMS} from "ol/coordinate";
 import QueryResult from "../Utils/QueryResult";
 import QueryError from "../Utils/QueryError";
+import {useSelector} from "react-redux";
 
 /**
  * Container for custom popup logic
  * @returns {{popupContent: JSX.Element, popupCloseButtonRef: React.MutableRefObject<undefined>, popupRef: React.MutableRefObject<undefined>}}
  */
 const usePopup = () => {
-    const { map, isQueryable } = useContext(MapContext);
     const popupRef = useRef();
     const popupCloseButtonRef = useRef();
     const [popupContent, setPopupContent] = useState(<div></div>);
+
+    const map = useSelector((state) => state.maps.value.map);
+    const isQueryable = useSelector((state) => state.maps.value.isQueryable);
+
 
     /**
      * Once the component is mounted onto the DOM, create the overlay and populate it via a click listener on the map.

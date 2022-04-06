@@ -8,7 +8,7 @@ import SideMenuContext from "../Base/SideMenuContext";
  * Container for the Layer control
  * @returns {JSX.Element}
  */
-const LayerControl = () => {
+const LayerControl = ({tabIndex}) => {
 
     const {sideMenuRef, layerMenuRef} = useContext(SideMenuContext)
 
@@ -16,17 +16,14 @@ const LayerControl = () => {
      * Toggles the layer menu
      */
     const toggleLayerMenu = () => {
-        let currentDisplay = layerMenuRef.current.style.display;
-        let toggleDisplay = currentDisplay === "block" ? "none" : "block";
-
-        sideMenuRef.current.style.display = toggleDisplay;
-        layerMenuRef.current.style.display = toggleDisplay;
+        sideMenuRef.current.classList.toggle("active");
+        layerMenuRef.current.classList.toggle("active");
     }
 
     return (
-        <div className="control layer-control" onClick={() => toggleLayerMenu()}>
+        <button className="control layer-control" onClick={() => toggleLayerMenu()} tabIndex={tabIndex}>
             <img className="layer-icon" src={layerIcon20} alt="layer-icon"/>
-        </div>
+        </button>
 
     );
 };

@@ -2,14 +2,14 @@ import React, {useContext, useEffect, useRef, useState} from "react";
 import MapContext from "../Map/MapContext";
 import threeDimensional from "../../resources/images/dimension-control-3D.webp";
 import twoDimensional from "../../resources/images/dimension-control-2D.webp";
+import {useSelector} from "react-redux";
 
 /**
  * Container for the DimensionControl
  * @returns {JSX.Element}
  */
-const DimensionControl = () => {
-
-    const { cesiumMap } = useContext(MapContext);
+const DimensionControl = ({tabIndex}) => {
+    const cesiumMap = useSelector((state) => state.maps.value.cesiumMap);
     const iconRef = useRef();
 
     /***
@@ -21,9 +21,9 @@ const DimensionControl = () => {
     }
 
     return (
-        <div className="control dimension-control" onClick={() => toggleDimension()}>
+        <button className="control dimension-control" onClick={() => toggleDimension()} aria-label="Toggle between 2D and 3D map" tabIndex={tabIndex}>
             <img ref={iconRef} className="layer-icon" src={threeDimensional} alt="layer-icon"/>
-        </div>
+        </button>
 
     );
 };
