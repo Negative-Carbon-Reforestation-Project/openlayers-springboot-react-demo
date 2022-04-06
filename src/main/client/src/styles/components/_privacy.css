@@ -1,0 +1,44 @@
+.privacy-container
+{
+    display: grid;
+
+    grid-template:
+        [hero-left] "privacy-hero" 600px [hero-right]
+        [mission-left] "privacy" [mission-right]
+        [footer-left] "footer" [footer-right];
+
+    min-height: 100vh;
+}
+
+.privacy-hero
+{
+    grid-area: privacy-hero;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url("../../resources/images/terms-section-backdrop.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+    background-color: #423E3E;
+}
+
+.privacy-hero-header
+{
+    color: var(--color-white);
+    padding: 10px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--color-white);
+}
+
+.privacy-content
+{
+    grid-area: privacy;
+    padding: 20px;
+}
+
+.privacy-article
+{
+    margin-bottom: 20px;
+}

@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "cesium": "^1.91.0",
     "geotiff": "^1.0.8",
     "ol": "^6.9.0",
     "olcs": "^2.13.0",
@@ -18,6 +19,7 @@
     "react-helmet": "^6.1.0",
     "react-meta-tags": "^1.0.1",
     "react-openlayers": "^0.3.0",
+    "react-redux": "^7.2.8",
     "react-script-tag": "^1.1.2",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.1.2"

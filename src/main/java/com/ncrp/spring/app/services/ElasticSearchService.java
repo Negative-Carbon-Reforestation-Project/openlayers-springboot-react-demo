@@ -141,9 +141,11 @@ public class ElasticSearchService
 
 
             ArrayList<String> indexes = getIndexes();
+
             ArrayList<Map<String, Double>> processedResults = new ArrayList<>();
 
-            assert indexes != null;
+            if(indexes == null || indexes.size() <= 0)
+                return "{\"Error getting indexes\": \"No indexes found, please contact us via git hub\"}";
             for(String index : indexes)
             {
                 SearchRequest searchRequest = new SearchRequest(index);

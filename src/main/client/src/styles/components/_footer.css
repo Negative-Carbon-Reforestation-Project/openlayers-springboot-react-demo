@@ -1,119 +1,67 @@
-footer
+.footer
 {
-    background-color: var(--color-transparent-black);
-
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 2rem;
-}
-
-.footer__copyright-info
-{
-    font-size: 1rem;
+    grid-area: footer;
+    background-color: var(--color-black);
     color: var(--color-white);
-    text-align: right;
-
-    margin: 0.4rem;
 }
 
-/* Extra small devices (phones, 600px and down) */
+.footer-logo
+{
+    width: 208px;
+    height: 104px;
+}
+
+.footer-logo:hover
+{
+    cursor: pointer;
+}
+
+.footer-top
+{
+    padding: 30px 0 30px 0;
+    margin: auto 15px auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.footer-bottom
+{
+    text-align: center;
+    padding: 20px;
+}
+
+.footer-links
+{
+    display: flex;
+    flex-direction: column;
+
+    list-style: none;
+}
+
+.footer-link-item
+{
+    padding: 10px;
+    border-bottom: 1px solid var(--color-white);
+
+}
+
+.footer-link-item > a
+{
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+.footer-link-item > a:hover
+{
+    color: var(--color-dark-green);
+}
+
 @media only screen and (max-width: 600px)
 {
-    footer
+    .footer-top
     {
-        height: 2rem;
-    }
-
-    .footer__copyright-info
-    {
-        text-align: center;
+        flex-direction: column;
     }
 }
-
-/* iphones 6/7/8 and Plus in landscape */
-@media only screen and (max-width: 800px) and (orientation: landscape)
-{
-    footer
-    {
-        height: 2rem;
-    }
-
-    .footer__copyright-info
-    {
-        text-align: center;
-    }
-}
-
-
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px)
-{
-    footer
-    {
-        height: 3.5rem;
-    }
-
-    .footer__copyright-info
-    {
-        font-size: 1.5rem;
-    }
-}
-
-/* iphones X in landscape */
-@media only screen and (max-width: 900px) and (orientation: landscape)
-{
-    footer
-    {
-        height: 2rem;
-    }
-
-    .footer__copyright-info
-    {
-        text-align: center;
-        font-size: 1rem;
-    }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px)
-{
-    footer
-    {
-        height: 4rem;
-    }
-
-    .footer__copyright-info
-    {
-        font-size: 1.75rem;
-    }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px)
-{
-    footer
-    {
-        height: 2rem;
-    }
-
-    .footer__copyright-info
-    {
-        font-size: 1rem;
-    }
-}
-
-/*!* Extra large devices (large laptops and desktops, 1200px and up) *!*/
-/*@media only screen and (min-width: 1366px)*/
-/*{*/
-/*    footer*/
-/*    {*/
-/*        height: 2rem;*/
-/*    }*/
-
-/*    .footer__copyright-info*/
-/*    {*/
-/*        font-size: 1rem;*/
-/*    }*/
-/*}*/
