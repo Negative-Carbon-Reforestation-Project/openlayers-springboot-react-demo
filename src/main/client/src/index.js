@@ -8,18 +8,22 @@ import Index from "./components/Pages/Index";
 import Mission from "./components/Pages/Mission";
 import Terms from "./components/Pages/Terms";
 import Privacy from "./components/Pages/Privacy";
+import store  from "./redux/store";
+import { Provider } from "react-redux";
 
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Index/>}/>
-                <Route path="/mission" element={<Mission/>}/>
-                <Route path="/terms" element={<Terms/>}/>
-                <Route path="/privacy" element={<Privacy/>}/>
-                <Route path="/maps" element={<App/>}/>
-            </Routes>
-        </BrowserRouter>
+        <Provider store={store}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Index/>}/>
+                    <Route path="/mission" element={<Mission/>}/>
+                    <Route path="/terms" element={<Terms/>}/>
+                    <Route path="/privacy" element={<Privacy/>}/>
+                    <Route path="/maps" element={<App/>}/>
+                </Routes>
+            </BrowserRouter>
+        </Provider>
     </React.StrictMode>,
     document.getElementById('root')
 );
