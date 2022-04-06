@@ -11,7 +11,7 @@ import {useSelector} from "react-redux";
 const DimensionControl = ({tabIndex}) => {
     const cesiumMap = useSelector((state) => state.maps.value.cesiumMap);
     const iconRef = useRef();
-
+    const tooltipRef = useRef();
     /***
      * Toggles between the 3D cesium map and the 2D open layers map.
      */
@@ -21,7 +21,13 @@ const DimensionControl = ({tabIndex}) => {
     }
 
     return (
-        <button className="control dimension-control" onClick={() => toggleDimension()} aria-label="Toggle between 2D and 3D map" tabIndex={tabIndex}>
+        <button
+            className="control dimension-control"
+            onClick={() => toggleDimension()}
+            title="Toggle between 2D and 3D map"
+            aria-label="Toggle between 2D and 3D map"
+            tabIndex={tabIndex}
+        >
             <img ref={iconRef} className="layer-icon" src={threeDimensional} alt="layer-icon"/>
         </button>
 

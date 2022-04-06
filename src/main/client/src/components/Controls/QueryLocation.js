@@ -28,7 +28,13 @@ const QueryLocationControl = ({tabIndex}) => {
     }
 
     return (
-        <button className="control query-location-control" onClick={() => toggleQueryPointer()} aria-label="Toggle query mode" tabIndex={tabIndex}>
+        <button
+            className="control query-location-control"
+            onClick={() => toggleQueryPointer()}
+            aria-label="Toggle query mode"
+            title="Toggle query mode"
+            tabIndex={tabIndex}
+        >
             <img ref={iconRef} className="query-location-control-icon" src={cursorIcon} alt="cursor"/>
         </button>
 

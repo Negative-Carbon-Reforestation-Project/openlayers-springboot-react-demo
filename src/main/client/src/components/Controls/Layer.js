@@ -21,7 +21,13 @@ const LayerControl = ({tabIndex}) => {
     }
 
     return (
-        <button className="control layer-control" onClick={() => toggleLayerMenu()} tabIndex={tabIndex} aria-label="Toggle layer menu">
+        <button
+            className="control layer-control"
+            onClick={() => toggleLayerMenu()}
+            aria-label="Toggle layer menu"
+            title="Toggle layer menu"
+            tabIndex={tabIndex}
+        >
             <img className="layer-icon" src={layerIcon20} alt="layer-icon"/>
         </button>
 
