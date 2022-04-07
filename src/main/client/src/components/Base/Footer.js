@@ -8,10 +8,10 @@ import Logo from "./Logo";
  */
 const Footer = () => {
     return (
-        <footer className="footer">
+        <footer className="footer" tabIndex={0} aria-label="Site footer">
             <section className="footer-top">
-                <Logo className="footer-logo"/>
-                <article className="footer-links-group">
+                <Logo className="footer-logo" tabIndex={0}/>
+                <nav className="footer-links-group" aria-label="Site footer navigation" tabIndex={0}>
                     <h2 className="footer-links-header">Useful Links</h2>
                     <ul className="footer-links">
                         <li className="footer-link-item">
@@ -27,16 +27,16 @@ const Footer = () => {
                             <a href="/privacy">Privacy Policy</a>
                         </li>
                     </ul>
-                </article>
+                </nav>
 
             </section>
-            <section className="footer-bottom">
-                <p>
+            <section className="footer-bottom" tabIndex={0} aria-label="Site copyright information">
+                <p tabIndex={0}>
                     <abbr title="Negative Carbon Reforestation Project">NCRP</abbr> &nbsp;
                     <time>{new Date(Date.now()).getUTCFullYear()}</time> &copy; -&nbsp;
                     <strong>Negative Carbon Reforestation Project</strong> - All rights reserved
                 </p>
-                <p>Site last updated: <time dateTime="2022-04-04">April 04, 2022</time></p>
+                <p tabIndex={0}>Site last updated: <time dateTime="2022-04-07">April 07, 2022</time></p>
             </section>
         </footer>
     );

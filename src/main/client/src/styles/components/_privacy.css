@@ -4,8 +4,7 @@
 
     grid-template:
         [hero-left] "privacy-hero" 600px [hero-right]
-        [mission-left] "privacy" [mission-right]
-        [footer-left] "footer" [footer-right];
+        [mission-left] "privacy" [mission-right];
 
     min-height: 100vh;
 }

@@ -4,15 +4,14 @@
 
     grid-template:
         [hero-left] "mission-hero" 600px [hero-right]
-        [mission-left] "mission" 400px [mission-right]
-        [footer-left] "footer" [footer-right];
+        [mission-left] "mission" 400px [mission-right];
 
     min-height: 100vh;
 }
 
 .mission
 {
-    grid-area: footer;
+    grid-area: mission;
 }
 
 .mission-hero
