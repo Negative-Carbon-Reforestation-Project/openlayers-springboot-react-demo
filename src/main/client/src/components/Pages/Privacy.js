@@ -1,7 +1,16 @@
 import Navigation from "../Base/Navigation";
 import Footer from "../Base/Footer";
+import {useEffect} from "react";
 
 const Privacy = () => {
+
+    /**
+     * Once the component is mounted onto the DOM, dynamically update the page's title.
+     */
+    useEffect(() =>{
+        document.title = "Negative Carbon Reforestation Project - Privacy Policy";
+    })
+
     return (
         <>
             <Navigation/>
@@ -11,7 +20,7 @@ const Privacy = () => {
                     <h1 className="privacy-hero-header">Privacy Policy</h1>
                 </section>
 
-                <section className="privacy-content">
+                <section className="privacy-content" tabIndex={0} aria-label="Privacy Policy" role="document">
                     <article className="privacy-article">
                         <p>Last updated: April 03, 2022</p>
                         <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
@@ -215,8 +224,9 @@ const Privacy = () => {
                     </article>
                 </section>
 
-                <Footer/>
             </main>
+
+            <Footer/>
         </>
     )
 }

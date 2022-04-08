@@ -47,17 +47,17 @@ const Navigation = () => {
 
     return (
         <>
-            <a href="#main" className="skip-to-content" tabIndex={1}>Skip To Content</a>
+            <a href="#main" className="skip-to-content" tabIndex={0}>Skip To Content</a>
 
-            <nav ref={navRef} className="nav">
-                <Logo className="nav-logo"/>
+            <nav ref={navRef} className="nav" tabIndex={0} aria-label="primary navigation">
+                <Logo className="nav-logo" tabIndex={0}/>
 
                 <ul className="nav-items">
                     <li className="nav-item">
-                        <a href="/mission" className="nav-link" tabIndex={2}>Our Mission</a>
+                        <a href="/mission" className="nav-link" >Our Mission</a>
                     </li>
                     <li className="nav-item">
-                        <a href="/maps" className="nav-link call-to-action" tabIndex={3}>Explore</a>
+                        <a href="/maps" className="nav-link call-to-action" >Explore</a>
                     </li>
 
                     <li className="mobile-nav-item hamburger-menu-button" onClick={() => toggleHamburgerMenu()} aria-label="Toggle menu">
@@ -75,16 +75,16 @@ const Navigation = () => {
 
                 <ul className="mobile-nav-items">
                     <li className="mobile-nav-item">
-                        <a href="/mission" className="nav-link" tabIndex={2}>Our Mission</a>
+                        <a href="/mission" className="nav-link" >Our Mission</a>
                     </li>
                     <li className="mobile-nav-item">
-                        <a href="/maps" className="nav-link" tabIndex={3}>Explore</a>
+                        <a href="/maps" className="nav-link" >Explore</a>
                     </li>
                     <li className="mobile-nav-item">
-                        <a href="/terms" className="nav-link" tabIndex={3}>Terms of Service</a>
+                        <a href="/terms" className="nav-link" >Terms of Service</a>
                     </li>
                     <li className="mobile-nav-item">
-                        <a href="/privacy" className="nav-link" tabIndex={3}>Privacy Policy</a>
+                        <a href="/privacy" className="nav-link" >Privacy Policy</a>
                     </li>
                 </ul>
             </nav>

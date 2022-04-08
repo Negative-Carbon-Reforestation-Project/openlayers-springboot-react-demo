@@ -1,7 +1,16 @@
 import Navigation from "../Base/Navigation";
 import Footer from "../Base/Footer";
+import {useEffect} from "react";
 
 const Terms = () => {
+
+    /**
+     * Once the component is mounted onto the DOM, dynamically update the page's title.
+     */
+    useEffect(() =>{
+        document.title = "Negative Carbon Reforestation Project - Terms Of Service";
+    })
+
     return (
         <>
             <Navigation />
@@ -10,7 +19,7 @@ const Terms = () => {
                     <h1 className="terms-hero-header">Terms Of Service</h1>
                 </section>
 
-                <section className="terms-content">
+                <section className="terms-content" tabIndex={0} role="document" aria-label="Terms Of Service">
                     <article className="terms-article">
                         <p>Last updated: April 03, 2022</p>
                         <p>Please read these terms and conditions carefully before using Our Service.</p>
@@ -141,8 +150,10 @@ const Terms = () => {
                     </article>
                 </section>
 
-                <Footer />
             </main>
+
+            <Footer />
+
         </>
 
     )

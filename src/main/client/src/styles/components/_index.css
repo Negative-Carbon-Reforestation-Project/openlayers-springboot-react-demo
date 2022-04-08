@@ -3,8 +3,8 @@
     display: grid;
     grid-template:
             [hero-left] "hero" [hero-right]
-            [mission-left] "mission" [mission-right]
-            [footer-left] "footer" [footer-right];
+            [mission-left] "mission" [mission-right];
+            /*[footer-left] "footer" [footer-right];*/
 
     min-height: 100vh;
 
@@ -28,7 +28,7 @@
 
     opacity: .9;
     text-transform: uppercase;
-    font-size: var(--font-extra-large);
+    font-size: var(--font-large);
 }
 
 .hero-caption-text
@@ -134,8 +134,7 @@
     {
         grid-template:
             [hero-left] "hero" 900px [hero-right]
-            [mission-left] "mission" [mission-right]
-            [footer-left] "footer" 520px [footer-right];
+            [mission-left] "mission" [mission-right];
     }
       
 }
@@ -152,8 +151,7 @@
     {
         grid-template:
             [hero-left] "hero" 1024px [hero-right]
-            [mission-left] "mission" 1fr [mission-right]
-            [footer-left] "footer" [footer-right];
+            [mission-left] "mission" 1fr [mission-right];
     }
 }
 

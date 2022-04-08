@@ -8,7 +8,7 @@ import {useSelector} from "react-redux";
  * Component for custom OpenLayer zoom control.
  * @returns {null}
  */
-const ZoomControl = ({target, tabIndex}) => {
+const ZoomControl = ({target}) => {
     const map  = useSelector((state) => state.maps.value.map);
 
     /**

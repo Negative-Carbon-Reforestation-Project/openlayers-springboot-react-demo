@@ -34,7 +34,8 @@ h1
     margin: 0;
 }
 
-h2
+h2,
+label
 {
     font-size: var(--font-medium);
 }

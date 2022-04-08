@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "../../styles/main.css";
 
 import Map from "../Map/Map";
@@ -62,6 +62,13 @@ const App = () => {
         transition: 0,
     })
 
+
+    /**
+     * Once the component is mounted onto the DOM, dynamically update the page's title.
+     */
+    useEffect(() =>{
+        document.title = "Negative Carbon Reforestation Project - Maps";
+    })
 
 
     return (

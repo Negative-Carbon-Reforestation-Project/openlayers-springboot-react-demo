@@ -8,7 +8,7 @@ import {useSelector} from "react-redux";
  * Container for the DimensionControl
  * @returns {JSX.Element}
  */
-const DimensionControl = ({tabIndex}) => {
+const DimensionControl = () => {
     const cesiumMap = useSelector((state) => state.maps.value.cesiumMap);
     const iconRef = useRef();
 
@@ -21,7 +21,12 @@ const DimensionControl = ({tabIndex}) => {
     }
 
     return (
-        <button className="control dimension-control" onClick={() => toggleDimension()} aria-label="Toggle between 2D and 3D map" tabIndex={tabIndex}>
+        <button
+            className="control dimension-control"
+            onClick={() => toggleDimension()}
+            title="Toggle between 2D and 3D map"
+            aria-label="Toggle between 2D and 3D map"
+        >
             <img ref={iconRef} className="layer-icon" src={threeDimensional} alt="layer-icon"/>
         </button>
 
