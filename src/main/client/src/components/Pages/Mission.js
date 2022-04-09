@@ -2,6 +2,7 @@ import Navigation from "../Base/Navigation";
 import Footer from "../Base/Footer";
 import {useEffect} from "react";
 
+
 const Mission = () => {
 
     /**

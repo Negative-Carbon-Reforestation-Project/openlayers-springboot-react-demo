@@ -73,7 +73,7 @@
 {
     grid-area: mission;
 
-    background-image: url("../../resources/images/mission-section-backdrop.jpg");
+    background-image: url("../../resources/images/backdrops/mission-section-backdrop.jpg");
     background-size: cover;
     background-blend-mode: overlay;
     background-color: #423E3E;

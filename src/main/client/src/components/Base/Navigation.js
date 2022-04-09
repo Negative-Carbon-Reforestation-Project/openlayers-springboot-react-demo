@@ -1,6 +1,6 @@
 import Logo from "./Logo";
-import hamburgerIcon from "../../resources/images/hamburger-menu-50x50.webp";
-import hamburgerExitIcon from "../../resources/images/exit-icon-50x50.webp";
+import hamburgerIcon from "../../resources/images/icons/hamburger-menu-50x50.webp";
+import hamburgerExitIcon from "../../resources/images/icons/exit-icon-50x50.webp";
 import React, {useEffect, useRef} from "react";
 
 /**

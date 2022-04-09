@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from "react";
-import heroVideo from "../../resources/videos/hero.mp4";
-import hamburgerIcon from "../../resources/images/hamburger-menu-50x50.webp";
-import hamburgerExitIcon from "../../resources/images/exit-icon-50x50.webp";
+import heroVideo from "../../resources/videos/hero-1280x720.mp4";
+import hamburgerIcon from "../../resources/images/icons/hamburger-menu-50x50.webp";
+import hamburgerExitIcon from "../../resources/images/icons/exit-icon-50x50.webp";
 
 import Logo from "../Base/Logo";
 import Navigation from "../Base/Navigation";

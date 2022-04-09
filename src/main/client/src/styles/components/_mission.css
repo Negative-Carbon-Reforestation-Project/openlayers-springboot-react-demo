@@ -21,7 +21,7 @@
     justify-content: center;
     align-items: center;
 
-    background-image: url("../../resources/images/mission-section-backdrop.jpg");
+    background-image: url("../../resources/images/backdrops/mission-section-backdrop.jpg");
     background-size: cover;
     background-attachment: fixed;
     background-blend-mode: overlay;
