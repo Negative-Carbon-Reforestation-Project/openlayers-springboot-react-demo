@@ -26,6 +26,9 @@ const Footer = () => {
                         <li className="footer-link-item">
                             <a href="/privacy">Privacy Policy</a>
                         </li>
+                        <li className="footer-link-item">
+                            <a href="/accessibility">Accessibility</a>
+                        </li>
                     </ul>
                 </nav>
 
@@ -36,7 +39,7 @@ const Footer = () => {
                     <time>{new Date(Date.now()).getUTCFullYear()}</time> &copy; -&nbsp;
                     <strong>Negative Carbon Reforestation Project</strong> - All rights reserved
                 </p>
-                <p tabIndex={0}>Site last updated: <time dateTime="2022-04-07">April 07, 2022</time></p>
+                <p tabIndex={0}>Site last updated: <time dateTime="2022-04-09">April 09, 2022</time></p>
             </section>
         </footer>
     );

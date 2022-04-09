@@ -39,21 +39,14 @@ const Index = () => {
                     <article className="mission-excerpt-container" tabIndex={0}>
                         <h2>What Is The Negative Carbon Reforestation Project?</h2>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab atque consequatur deserunt dolorem ducimus eaque eum, eveniet excepturi expedita maxime mollitia nulla quisquam repellendus rerum sed similique, sunt. Cupiditate, quo.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet autem cum quam quod! Asperiores cumque, eaque id incidunt iure soluta tenetur ullam veritatis. Alias aspernatur consequuntur optio recusandae rem sit.
+                            Forests play an important role in balancing our ecosystem. They are responsible for reducing carbon levels in our atmosphere and providing an environment for a diverse group of plants and animals to thrive in. Unfortunately, they are being destroyed or damaged due to various reasons on a daily basis – disturbing not only the local biodiversity of the area but all of us.
                         </p>
 
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consequuntur corporis dignissimos ducimus est et laboriosam nihil obcaecati pariatur possimus quae quibusdam repellendus rerum sequi sint, suscipit vero vitae voluptatum.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consequuntur corporis dignissimos ducimus est et laboriosam nihil obcaecati pariatur possimus quae quibusdam repellendus rerum sequi sint, suscipit vero vitae voluptatum.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consequuntur corporis dignissimos ducimus est et laboriosam nihil obcaecati pariatur possimus quae quibusdam repellendus rerum sequi sint, suscipit vero vitae voluptatum.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consequuntur corporis dignissimos ducimus est et laboriosam nihil obcaecati pariatur possimus quae quibusdam repellendus rerum sequi sint, suscipit vero vitae voluptatum.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consequuntur corporis dignissimos ducimus est et laboriosam nihil obcaecati pariatur possimus quae quibusdam repellendus rerum sequi sint, suscipit vero vitae voluptatum.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consequuntur corporis dignissimos ducimus est et laboriosam nihil obcaecati pariatur possimus quae quibusdam repellendus rerum sequi sint, suscipit vero vitae voluptatum.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consequuntur corporis dignissimos ducimus est et laboriosam nihil obcaecati pariatur possimus quae quibusdam repellendus rerum sequi sint, suscipit vero vitae voluptatum.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consequuntur corporis dignissimos ducimus est et laboriosam nihil obcaecati pariatur possimus quae quibusdam repellendus rerum sequi sint, suscipit vero vitae voluptatum.
+                            Reforestation is the process of regenerating or replanting forest areas that have been destroyed or damaged. Even though forests have the capability to self-regenerate via the dispersion of seeds, forest lands that have been badly damaged cannot be regenerated unless aided through native methods such as planting new trees.
                         </p>
 
+                        <p>We at <abbr>NCRP</abbr> are committed to aiding the people who are directly involved in reforestation efforts in Washington.</p>
                         <button className="mission-button" onClick={() => document.location.href = "/mission"}>Learn More</button>
                     </article>
                 </section>

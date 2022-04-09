@@ -86,6 +86,9 @@ const Navigation = () => {
                     <li className="mobile-nav-item">
                         <a href="/privacy" className="nav-link" >Privacy Policy</a>
                     </li>
+                    <li className="mobile-nav-item">
+                        <a href="/accessibility" className="nav-link" >Accessibility</a>
+                    </li>
                 </ul>
             </nav>
         </>

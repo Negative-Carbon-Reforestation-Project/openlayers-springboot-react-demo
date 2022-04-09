@@ -21,7 +21,7 @@ const Terms = () => {
 
                 <section className="terms-content" tabIndex={0} role="document" aria-label="Terms Of Service">
                     <article className="terms-article">
-                        <p>Last updated: April 03, 2022</p>
+                        <p>Last updated: April 09, 2022</p>
                         <p>Please read these terms and conditions carefully before using Our Service.</p>
                     </article>
 
@@ -54,7 +54,7 @@ const Terms = () => {
                                 <p><strong>Service</strong> refers to the Application.</p>
                             </li>
                             <li>
-                                <p><strong>Terms and Conditions</strong> (also referred as &quot;Terms&quot;) mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service. This Terms and Conditions agreement has been created with the help of the <a href="https://www.termsfeed.com/terms-conditions-generator/" target="_blank">Terms and Conditions Generator</a>.</p>
+                                <p><strong>Terms and Conditions</strong> (also referred as &quot;Terms&quot;) mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service.</p>
                             </li>
                             <li>
                                 <p><strong>Third-party Social Media Service</strong> means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.</p>
@@ -145,7 +145,7 @@ const Terms = () => {
                         <h1>Contact Us</h1>
                         <p>If you have any questions about these Terms and Conditions, You can contact us:</p>
                         <ul>
-                            <li>By visiting this page on our website: <a href="http://www.ncrp.org/contact" rel="external nofollow noopener" target="_blank">http://www.ncrp.org/contact</a></li>
+                            <li>By visiting this page on our website: [In construction]</li>
                         </ul>
                     </article>
                 </section>
