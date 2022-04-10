@@ -1,17 +1,16 @@
-.accessibility-container
+#accessibility-container
 {
     display: grid;
 
     grid-template:
-        [hero-left] "accessibility-hero" 600px [hero-right]
-        [accessibility-left] "accessibility" [accessibility-right];
+        [hero-left] "hero" 600px [hero-right]
+        [content-left] "content" [content-right];
 
     min-height: 100vh;
 }
 
-.accessibility-hero
+#accessibility-hero
 {
-    grid-area: accessibility-hero;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,18 +22,8 @@
     background-color: #423E3E;
 }
 
-.accessibility-header
+#accessibility-content
 {
-    color: var(--color-white);
-    padding: 10px;
-    text-transform: uppercase;
-    border-bottom: 2px solid var(--color-white);
-}
-
-.accessibility-content
-{
-    grid-area: accessibility;
-
     text-align: justify;
     padding: 30px;
 }

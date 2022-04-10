@@ -14,23 +14,23 @@ const Accessibility = () => {
     return (
         <>
             <Navigation />
-            <main className="accessibility-container">
-                <section className="accessibility-hero">
-                    <h1 className="accessibility-header">Accessibility</h1>
+            <main id="accessibility-container" className="container">
+                <section id="accessibility-hero" className="hero">
+                    <h1 className="hero-header">Accessibility</h1>
                 </section>
 
-                <section className="accessibility-content" tabIndex={0} role="document" aria-label="Accessibility Policy">
-                    <article className="terms-article">
-                        <p>Last updated: April 09, 2022</p>
+                <section id="accessibility-content" className="content" tabIndex={0} role="document" aria-label="Accessibility Policy">
+                    <article className="content-article">
+                        <p>Last updated: April 10, 2022</p>
                         <p>We are committed to the universal accessibility of information contained on our Website. Our accessibility policy lays out our goals with regard to accessibility on our Website.</p>
                     </article>
 
-                    <article className="terms-article">
+                    <article className="content-article">
                         <h1>Interpretation and Definitions</h1>
                         <h2>Interpretation</h2>
                         <p>The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
                         <h2>Definitions</h2>
-                        <p>For the purposes of these Terms and Conditions:</p>
+                        <p>For the purposes of this Accessibility policy:</p>
                         <ul className="terms-definitions">
                             <li>
                                 <p><strong>Application</strong> means the software program provided by the Company downloaded by You on any electronic device, named Negative Carbon Reforestation Project</p>
@@ -65,7 +65,7 @@ const Accessibility = () => {
                         </ul>
                     </article>
 
-                    <article className="terms-article">
+                    <article className="content-article">
                         <h1>Accessible Content</h1>
                         <h2>Accessibility Testing</h2>
                         <p>In addition to periodic browser testing on our Supported Devices, we do less frequent but
@@ -97,7 +97,7 @@ const Accessibility = () => {
                         <p>This Website has been designed to work with screen readers.</p>
                     </article>
 
-                    <article className="terms-article">
+                    <article className="content-article">
                         <h1>Non-accessible content</h1>
                         <p>Portions of this Website may not be in compliance with the Guidelines, and some existing content may meet only the minimum required compliance standards. This will be resolved as We continue to redesign and update the website with accessibility in mind. </p>
                         <p>While We will make every effort to monitor and maintain acceptable compliance levels, please understand that creating accessible formats for some content may be unfeasible or impractical. Moreover, We are not responsible for ensuring that third-party products that We do not maintain or control conform to the Guidelines.Even if these products are located or linked on Our Website, We shall not be liable if these products are inaccessible to individuals with disabilities.</p>
@@ -107,7 +107,7 @@ const Accessibility = () => {
                         </ul>
                      </article>
 
-                    <article className="terms-article">
+                    <article className="content-article">
                         <h1>Contact Us</h1>
                         <p>If you have any questions about the accessibility policy or wish to report an issue, You can contact us:</p>
                         <ul>

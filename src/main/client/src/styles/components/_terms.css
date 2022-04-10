@@ -1,17 +1,12 @@
-.terms-container
+#terms-container
 {
-    display: grid;
-
     grid-template:
-        [hero-left] "terms-hero" 600px [hero-right]
-        [mission-left] "terms" [mission-right];
-
-    min-height: 100vh;
+        [hero-left] "hero" 600px [hero-right]
+        [mission-left] "content" [mission-right];
 }
 
-.terms-hero
+#terms-hero
 {
-    grid-area: terms-hero;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,23 +18,7 @@
     background-color: #423E3E;
 }
 
-.terms-hero-header
+#terms-content
 {
-    color: var(--color-white);
-    padding: 10px;
-    text-transform: uppercase;
-    border-bottom: 2px solid var(--color-white);
-}
-
-.terms-content
-{
-    grid-area: terms;
-
-    text-align: justify;
-    padding: 30px;
-}
-
-.terms-article
-{
-    margin-bottom: 20px;
+    padding: calc(var(--padding-large) + .625rem);
 }

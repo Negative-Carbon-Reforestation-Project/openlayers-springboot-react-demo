@@ -72,7 +72,7 @@ const App = () => {
 
 
     return (
-        <div className={"container"}>
+        <div className="map-container">
             <Logo className="app-logo" />
             <Map center={fromLonLat(center)} zoom={zoom}>
                 <Layers>

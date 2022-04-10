@@ -1,17 +1,12 @@
-.privacy-container
+#privacy-container
 {
-    display: grid;
-
     grid-template:
-        [hero-left] "privacy-hero" 600px [hero-right]
-        [mission-left] "privacy" [mission-right];
-
-    min-height: 100vh;
+        [hero-left] "hero" 600px [hero-right]
+        [content-left] "content" [content-right];
 }
 
-.privacy-hero
+#privacy-hero
 {
-    grid-area: privacy-hero;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,21 +18,7 @@
     background-color: #423E3E;
 }
 
-.privacy-hero-header
+#privacy-content
 {
-    color: var(--color-white);
-    padding: 10px;
-    text-transform: uppercase;
-    border-bottom: 2px solid var(--color-white);
-}
-
-.privacy-content
-{
-    grid-area: privacy;
-    padding: 20px;
-}
-
-.privacy-article
-{
-    margin-bottom: 20px;
+    padding: var(--padding-large);
 }
