@@ -1,9 +1,10 @@
-import React, {useContext} from "react";
-import MapContext from "../Map/MapContext";
+import React from "react";
+import {useSelector} from "react-redux";
 
 const LayerManager = ({className}) => {
 
-    const { map } = useContext(MapContext);
+    const map = useSelector((state) => state.maps.value.map);
+
 
     const renderLayers = () => {
         let layers = map.getLayers();

@@ -1,9 +1,7 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useRef } from "react";
 import {Overlay} from "ol";
-import MapContext from "../Map/MapContext";
 import {toLonLat} from "ol/proj";
 import Loader from "../Utils/Loader";
-import {toStringHDMS} from "ol/coordinate";
 import QueryResult from "../Utils/QueryResult";
 import QueryError from "../Utils/QueryError";
 import {useSelector} from "react-redux";

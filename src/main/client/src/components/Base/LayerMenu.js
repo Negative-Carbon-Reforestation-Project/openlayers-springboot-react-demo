@@ -1,8 +1,5 @@
 import React, {useContext, useEffect, useRef} from "react";
-import {Drawer} from "@mui/material";
 import SideMenuContext from "./SideMenuContext";
-import MapContext from "../Map/MapContext";
-import LayerManager from "../Utils/LayerManager";
 import {useSelector} from "react-redux";
 
 /**

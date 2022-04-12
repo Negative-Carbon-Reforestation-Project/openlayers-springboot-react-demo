@@ -1,7 +1,6 @@
-import React, {useContext, useRef, useState} from "react";
+import React, { useRef, useState} from "react";
 import cursorIcon from "../../resources/images/icons/cursor-info.webp";
 import cursorIconActive from "../../resources/images/icons/cursor-info-active.webp";
-import MapContext from "../Map/MapContext";
 import {useDispatch} from "react-redux";
 import {setQueryable} from "../../redux/reducers/mapReducer";
 

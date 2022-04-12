@@ -1,5 +1,4 @@
 import React, {useEffect} from "react"
-import MapContext from "./MapContext";
 import useMap from "./useMap"
 import {useSelector} from "react-redux";
 
@@ -11,9 +10,7 @@ import {useSelector} from "react-redux";
  * @returns {JSX.Element}
  */
 const Map = ({ children, zoom, center }) => {
-    // const { mapRef, map, cesiumMap, isQueryable, setQueryable } = useMap(zoom, center);
     const { mapRef } = useMap(zoom, center);
-
     const isQueryable = useSelector((state) => state.maps.value.isQueryable);
 
     /**

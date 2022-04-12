@@ -1,5 +1,4 @@
-import { useContext, useEffect } from "react";
-import MapContext from "../Map/MapContext";
+import { useEffect } from "react";
 import OLTileLayer from "ol/layer/Tile";
 import {useSelector} from "react-redux";
 
@@ -12,7 +11,6 @@ import {useSelector} from "react-redux";
  * @returns {null}
  */
 const TileLayer = ({ source, zIndex = 0, preload = 0, opacity=1, visible=false}) => {
-    // const { map } = useContext(MapContext);
     const map = useSelector((state) => state.maps.value.map);
 
     /**

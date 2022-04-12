@@ -1,8 +1,5 @@
-import React, {useContext, useRef} from "react";
-import {Drawer} from "@mui/material";
+import React, { useRef } from "react";
 import SideMenuContext from "./SideMenuContext";
-import MapContext from "../Map/MapContext";
-import LayerManager from "../Utils/LayerManager";
 import LayerMenu from "./LayerMenu";
 
 /**
