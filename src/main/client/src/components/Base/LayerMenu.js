@@ -4,6 +4,8 @@ import {useSelector} from "react-redux";
 
 /**
  * Container for layer menu
+ *
+ * TO-DO: Implement after new prototype has been finalized.
  */
 const LayerMenu = () => {
     const {sideMenuRef, layerMenuRef} = useContext(SideMenuContext);

@@ -2,6 +2,10 @@ import Navigation from "../Base/Navigation";
 import Footer from "../Base/Footer";
 import {useEffect} from "react";
 
+/**
+ * Container for the Terms page
+ * @returns {JSX.Element}
+ */
 const Terms = () => {
 
     /**

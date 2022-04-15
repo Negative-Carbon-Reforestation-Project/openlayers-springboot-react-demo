@@ -11,6 +11,7 @@ const Footer = () => {
         <footer className="footer" tabIndex={0} aria-label="Site footer">
             <section className="footer-top">
                 <Logo className="footer-logo" tabIndex={0}/>
+
                 <nav className="footer-links-group" aria-label="Site footer navigation" tabIndex={0}>
                     <h2 className="footer-links-header">Useful Links</h2>
                     <ul className="footer-links">
@@ -31,15 +32,15 @@ const Footer = () => {
                         </li>
                     </ul>
                 </nav>
-
             </section>
+
             <section className="footer-bottom" tabIndex={0} aria-label="Site copyright information">
                 <p tabIndex={0}>
                     <abbr title="Negative Carbon Reforestation Project">NCRP</abbr> &nbsp;
                     <time>{new Date(Date.now()).getUTCFullYear()}</time> &copy; -&nbsp;
                     <strong>Negative Carbon Reforestation Project</strong> - All rights reserved
                 </p>
-                <p tabIndex={0}>Site last updated: <time dateTime="2022-04-12">April 12, 2022</time></p>
+                <p tabIndex={0}>Site last updated: <time dateTime="2022-04-14">April 14, 2022</time></p>
             </section>
         </footer>
     );

@@ -7,6 +7,9 @@ const reducers = combineReducers({
     maps: mapReducer
 });
 
+/**
+ * Redux store configuration for the app
+ */
 const store = configureStore({
     reducer: reducers,
     middleware: (getDefaultMiddleware) =>

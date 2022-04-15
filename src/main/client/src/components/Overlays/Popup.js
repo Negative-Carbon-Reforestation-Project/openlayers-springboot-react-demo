@@ -9,8 +9,8 @@ const Popup = () => {
     const { popupRef, popupCloseButtonRef, popupContent } = usePopup();
 
     return (
-        <div className="ol-popup" ref={popupRef}>
-            <a href="#" className="ol-popup-closeButton" ref={popupCloseButtonRef}/>
+        <div tabIndex={0} className="ol-popup" ref={popupRef} aria-label="Query Information">
+            <button className="ol-popup-closeButton" ref={popupCloseButtonRef} aria-label="Close Popup"></button>
             <div className="ol-popup-content">{popupContent}</div>
         </div>
     )

@@ -2,7 +2,10 @@ import Navigation from "../Base/Navigation";
 import Footer from "../Base/Footer";
 import React, {useEffect} from "react";
 
-
+/**
+ * Container for the Mission page
+ * @returns {JSX.Element}
+ */
 const Mission = () => {
 
     /**
