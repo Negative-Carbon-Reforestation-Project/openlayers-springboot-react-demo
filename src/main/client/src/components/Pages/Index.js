@@ -35,7 +35,7 @@ const Index = () => {
 
                 <section id="mission-excerpt" className="content" tabIndex={0} aria-label="Excerpt on why reforestation is important">
                     <article className="mission-excerpt-container" tabIndex={0}>
-                        <h2>What Is The Negative Carbon Reforestation Project?</h2>
+                        <h2>Why is reforestation important?</h2>
                         <p>Forests play an important role in balancing our ecosystem. They are responsible for reducing carbon levels in our atmosphere and providing an environment for a diverse group of plants and animals to thrive in. Unfortunately, they are being destroyed or damaged due to various reasons on a daily basis – disturbing not only the local biodiversity of the area but all of us.</p>
                         <p>Reforestation is the process of regenerating or replanting forest areas that have been destroyed or damaged. Even though forests have the capability to self-regenerate via the dispersion of seeds, forest lands that have been badly damaged cannot be regenerated unless aided through native methods such as planting new trees.</p>
                         <p>We at <abbr>NCRP</abbr> are committed to aiding the people who are directly involved in reforestation efforts in Washington.</p>

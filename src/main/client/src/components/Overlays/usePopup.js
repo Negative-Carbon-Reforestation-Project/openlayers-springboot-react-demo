@@ -55,6 +55,7 @@ const usePopup = () => {
                 return;
             }
 
+            console.log("Map on entered");
             const coordinate = event.coordinate;
             const longLatCoordsInfo = toLonLat(coordinate);
 

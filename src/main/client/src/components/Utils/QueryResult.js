@@ -6,6 +6,27 @@ const QueryResult = ({data, coordinate}) => {
     const longLatInfo = toStringHDMS(coordinate);
     const longLatDisplay = `${String.fromCodePoint("0x1F4CD")} ${longLatInfo}`;
 
+    /**
+     *
+     * @param result
+     * @returns {string}
+     */
+    const getTreeType = (result) => {
+        switch (result)
+        {
+            case "wa_red_alder_stand_density":
+                return "Red Alder"
+            case "wa_douglas_fir_stand_density":
+                return "Douglas Fir"
+            case "wa_western_hemlock_stand_density":
+                return "Western Hemlock"
+            case "wa_pacific_yew_basal_area":
+                return "Pacific Yew"
+            default:
+                return "Unknown"
+        }
+    }
+
     const renderReforestationOpportunity = () => {
         if (typeof(data.wa_total_reforestation_opportunity) === "string")
         {
@@ -31,7 +52,7 @@ const QueryResult = ({data, coordinate}) => {
                             {
                                 data.species.map((entry) => Object.entries(entry).map((speciesEntry) =>
                                     <tr className="species-entry">
-                                        <td className="species-type">{speciesEntry[0]}</td>
+                                        <td className="species-type">{getTreeType(speciesEntry[0])}</td>
                                         <td className="species-density">{(speciesEntry[1] * 100).toFixed(2)}</td>
                                     </tr>)
                                 )
@@ -52,7 +73,6 @@ const QueryResult = ({data, coordinate}) => {
         <div className="query-content">
             <p className="coordinates">{longLatDisplay}</p>
             {renderReforestationOpportunity()}
-
             {renderSpeciesTable()}
         </div>
     );

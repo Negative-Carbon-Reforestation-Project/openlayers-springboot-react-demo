@@ -78,7 +78,7 @@
 
 .ol-popup-content
 {
-    font-size: 1rem;
+    font-size: var(--font-small);
     color: var(--color-white);
     /*color: black;*/
     font-family: Roboto;

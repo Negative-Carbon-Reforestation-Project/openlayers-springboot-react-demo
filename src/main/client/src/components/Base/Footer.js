@@ -40,7 +40,7 @@ const Footer = () => {
                     <time>{new Date(Date.now()).getUTCFullYear()}</time> &copy; -&nbsp;
                     <strong>Negative Carbon Reforestation Project</strong> - All rights reserved
                 </p>
-                <p tabIndex={0}>Site last updated: <time dateTime="2022-04-14">April 14, 2022</time></p>
+                <p tabIndex={0}>Site last updated: <time dateTime="2022-04-16">April 16, 2022</time></p>
             </section>
         </footer>
     );

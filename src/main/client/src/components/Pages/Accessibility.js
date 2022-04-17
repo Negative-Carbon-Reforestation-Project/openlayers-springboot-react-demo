@@ -72,6 +72,8 @@ const Accessibility = () => {
                             thorough testing from an accessibility perspective using the following tools:</p>
                         <ul>
                             <li>Windows Narrator</li>
+                            <li>NVDA</li>
+                            <li>JAWS</li>
                             <li>Color Contrast Analyzer Extension</li>
                             <li>High Contrast Emulation on Browsers</li>
                         </ul>
@@ -104,6 +106,7 @@ const Accessibility = () => {
                         <p>The content listed below sets out some areas where We are non-compliant with the Guidelines and the reasons for it:</p>
                         <ul>
                             <li>Maps and layers - The level of accessibility during live events such as map modifications and map layers being toggled is limited. We’ve ensured that pertinent information such as information on layers and queries is accessible to users with disabilities.</li>
+                            <li>Zoom Levels - Zoom levels past 200% are not currently supported. In future refactors, We plan to provide full support for zoom levels 100% through 500%.</li>
                         </ul>
                      </article>
 
