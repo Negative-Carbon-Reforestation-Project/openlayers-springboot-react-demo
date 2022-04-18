@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Zoom } from "ol/control";
-import MapContext from "../Map/MapContext";
 import {useSelector} from "react-redux";
 
 

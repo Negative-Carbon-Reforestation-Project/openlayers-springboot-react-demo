@@ -1,5 +1,4 @@
-import { useContext, useEffect } from "react";
-import MapContext from "../Map/MapContext";
+import { useEffect } from "react";
 import OLVectorLayer from "ol/layer/Vector";
 import {useSelector} from "react-redux";
 
@@ -12,7 +11,6 @@ import {useSelector} from "react-redux";
  * @returns {null}
  */
 const VectorLayer = ({ source, style, zIndex = 0, opacity=1}) => {
-    // const { map } = useContext(MapContext);
     const map = useSelector((state) => state.maps.value.map);
 
     /**

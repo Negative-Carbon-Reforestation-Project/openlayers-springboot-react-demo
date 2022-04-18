@@ -1,5 +1,5 @@
 import React from "react";
-import bob from "../../resources/images/bob-ross-178x120.webp";
+import bob from "../../resources/images/icons/bob-ross-178x120.webp";
 
 /**
  * Container for Loader

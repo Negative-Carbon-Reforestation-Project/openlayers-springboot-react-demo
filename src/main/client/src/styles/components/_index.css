@@ -1,17 +1,7 @@
-.index-container
+#index-container
 {
-    display: grid;
-    grid-template:
-            [hero-left] "hero" [hero-right]
-            [mission-left] "mission" [mission-right];
-            /*[footer-left] "footer" [footer-right];*/
-
-    min-height: 100vh;
-
     color: var(--color-white);
     background-color: var(--color-black);
-
-    user-select: none;
 }
 
 .hero
@@ -33,17 +23,14 @@
 
 .hero-caption-text
 {
-    font-size: 60px;
-     margin-bottom: 10px;   
+    font-size: 60px;  
 }
 
-.hero-button
+#hero-button
 {
     background: none;
 
     border: 2px solid var(--color-white);
-    border-radius: 50px;
-    padding: 20px;
 
     color: var(--color-white);
     text-transform: uppercase;
@@ -52,8 +39,8 @@
     transition: background .5s;
 }
 
-.hero-button:hover,
-.hero-button:focus
+#hero-button:hover,
+#hero-button:focus
 {
     cursor: pointer;
     border: 2px solid var(--color-dark-green);
@@ -69,17 +56,14 @@
     object-fit: cover;
 }
 
-.mission-excerpt
+#mission-excerpt
 {
-    grid-area: mission;
-
-    background-image: url("../../resources/images/mission-section-backdrop.jpg");
+    background-image: url("../../resources/images/backdrops/mission-section-backdrop.webp");
     background-size: cover;
     background-blend-mode: overlay;
     background-color: #423E3E;
 
     min-height: 600px;
-
 }
 
 .mission-excerpt-container
@@ -94,13 +78,11 @@
     max-width: 600px;
 }
 
-.mission-button
+#learn-more-button
 {
     background: none;
 
     border: 2px solid var(--color-white);
-    border-radius: 50px;
-    padding: 20px;
     margin-top: 20px;
 
     text-transform: uppercase;
@@ -110,11 +92,9 @@
     
 }
 
-.mission-button:hover
+#learn-more-button:hover
 {
     background-color: var(--color-dark-green);
-    cursor: pointer;
-    
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -130,11 +110,11 @@
         font-size: 40px;
     }
     
-    .index-container
+    #index-container
     {
         grid-template:
             [hero-left] "hero" 900px [hero-right]
-            [mission-left] "mission" [mission-right];
+            [content-left] "content" [content-right];
     }
       
 }
@@ -147,11 +127,11 @@
         left: 180px;
     }
 
-    .index-container
+    #index-container
     {
         grid-template:
             [hero-left] "hero" 1024px [hero-right]
-            [mission-left] "mission" 1fr [mission-right];
+            [content-left] "content" [content-right];
     }
 }
 
@@ -170,12 +150,11 @@
         font-size: 40px;
     }
 
-    .index-container
+    #index-container
     {
         grid-template:
             [hero-left] "hero" 400px [hero-right]
-            [mission-left] "mission" 1fr [mission-right]
-            [footer-left] "footer" [footer-right];
+            [content-left] "content" [content-right];
     }
 }
 

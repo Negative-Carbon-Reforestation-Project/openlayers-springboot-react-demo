@@ -1,12 +1,11 @@
 import React, {useContext, useEffect, useRef} from "react";
-import {Drawer} from "@mui/material";
 import SideMenuContext from "./SideMenuContext";
-import MapContext from "../Map/MapContext";
-import LayerManager from "../Utils/LayerManager";
 import {useSelector} from "react-redux";
 
 /**
  * Container for layer menu
+ *
+ * TO-DO: Implement after new prototype has been finalized.
  */
 const LayerMenu = () => {
     const {sideMenuRef, layerMenuRef} = useContext(SideMenuContext);
@@ -83,7 +82,7 @@ const LayerMenu = () => {
                         <article className="layer-item" role="radiogroup" tabIndex={0} aria-label="Pick a base layer">
                             <label htmlFor="OpenStreetMaps" className="layer-item-heading">
                                 <input id="OpenStreetMaps" ref={osmLayerToggleRef} className="layer-item-toggle" type="radio" name="base" value={0} onClick={(event) => toggleBaseLayer(event)}/>
-                                OpenStreetMaps
+                                Street
                             </label>
 
                             <label htmlFor="Terrain" className="layer-item-heading">
@@ -93,17 +92,17 @@ const LayerMenu = () => {
 
                             <label htmlFor="Toner" className="layer-item-heading">
                                 <input id="Toner" className="layer-item-toggle" type="radio" name="base" value={2} onClick={(event) => toggleBaseLayer(event)}/>
-                                Toner
+                                Black And White
                             </label>
 
                             <label htmlFor="Bing Maps" className="layer-item-heading">
                                 <input id="Bing Maps" className="layer-item-toggle" type="radio" name="base" value={3} onClick={(event) => toggleBaseLayer(event)}/>
-                                Bing Maps
+                                Aerial
                             </label>
 
                             <label htmlFor="OpenTopo" className="layer-item-heading">
                                 <input id="OpenTopo" className="layer-item-toggle" type="radio" name="base" value={4} onClick={(event) => toggleBaseLayer(event)}/>
-                                OpenTopo
+                                Topographical
                             </label>
                         </article>
                     </section>

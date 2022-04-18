@@ -1,7 +1,6 @@
-import React, {useContext, useEffect, useRef, useState} from "react";
-import MapContext from "../Map/MapContext";
-import threeDimensional from "../../resources/images/dimension-control-3D.webp";
-import twoDimensional from "../../resources/images/dimension-control-2D.webp";
+import React, { useRef } from "react";
+import threeDimensional from "../../resources/images/icons/dimension-control-3D.webp";
+import twoDimensional from "../../resources/images/icons/dimension-control-2D.webp";
 import {useSelector} from "react-redux";
 
 /**

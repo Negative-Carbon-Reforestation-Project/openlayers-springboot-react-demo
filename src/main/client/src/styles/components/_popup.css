@@ -57,10 +57,15 @@
 
 .ol-popup-closeButton
 {
-    text-decoration: none;
     position: absolute;
     top: 2px;
     right: 8px;
+
+    background: none;
+    border: none;
+
+    text-decoration: none;
+
 }
 
 .ol-popup-closeButton:after
@@ -73,7 +78,7 @@
 
 .ol-popup-content
 {
-    font-size: 1rem;
+    font-size: var(--font-small);
     color: var(--color-white);
     /*color: black;*/
     font-family: Roboto;

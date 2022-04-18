@@ -1,6 +1,6 @@
 import Logo from "./Logo";
-import hamburgerIcon from "../../resources/images/hamburger-menu-50x50.webp";
-import hamburgerExitIcon from "../../resources/images/exit-icon-50x50.webp";
+import hamburgerIcon from "../../resources/images/icons/hamburger-menu-50x50.webp";
+import hamburgerExitIcon from "../../resources/images/icons/exit-icon-50x50.webp";
 import React, {useEffect, useRef} from "react";
 
 /**
@@ -8,7 +8,7 @@ import React, {useEffect, useRef} from "react";
  * @returns {JSX.Element}
  * @constructor
  */
-const Navigation = () => {
+const Navigation = ({skipLink = "#main"}) => {
 
     const navRef = useRef();
     const hamburgerMenuRef = useRef();
@@ -47,7 +47,7 @@ const Navigation = () => {
 
     return (
         <>
-            <a href="#main" className="skip-to-content" tabIndex={0}>Skip To Content</a>
+            <a href={skipLink} className="skip-to-content" tabIndex={0}>Skip To Content</a>
 
             <nav ref={navRef} className="nav" tabIndex={0} aria-label="primary navigation">
                 <Logo className="nav-logo" tabIndex={0}/>
@@ -57,7 +57,7 @@ const Navigation = () => {
                         <a href="/mission" className="nav-link" >Our Mission</a>
                     </li>
                     <li className="nav-item">
-                        <a href="/maps" className="nav-link call-to-action" >Explore</a>
+                        <a id="explore-nav-button" href="/maps" className="nav-link call-to-action-button" >Explore</a>
                     </li>
 
                     <li className="mobile-nav-item hamburger-menu-button" onClick={() => toggleHamburgerMenu()} aria-label="Toggle menu">
@@ -85,6 +85,9 @@ const Navigation = () => {
                     </li>
                     <li className="mobile-nav-item">
                         <a href="/privacy" className="nav-link" >Privacy Policy</a>
+                    </li>
+                    <li className="mobile-nav-item">
+                        <a href="/accessibility" className="nav-link" >Accessibility</a>
                     </li>
                 </ul>
             </nav>
