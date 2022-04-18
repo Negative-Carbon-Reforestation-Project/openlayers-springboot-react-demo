@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import heroVideo from "../../resources/videos/hero-1280x720.mp4";
 import Navigation from "../Base/Navigation";
 import Footer from "../Base/Footer";
@@ -10,11 +10,20 @@ import Footer from "../Base/Footer";
  */
 const Index = () => {
 
+    const videoRef = useRef();
     /**
-     * Once the component is mounted onto the DOM, dynamically update the page's title.
+     * Once the component is mounted onto the DOM, dynamically update the page's title and autoplay the hero video.
+     *
+     * @remarks The autoplay video is a temporary workaround for the play button appearing in some mobile phones during low power mode.
      */
     useEffect(() =>{
         document.title = "Negative Carbon Reforestation Project - Home";
+
+
+        if (videoRef.current)
+        {
+           videoRef.current.play();
+        }
     })
 
     return (
@@ -28,7 +37,7 @@ const Index = () => {
                         <button id="hero-button" className="call-to-action-button" onClick={() => document.location.href = "/maps"} >Explore Opportunities</button>
                     </article>
 
-                    <video className="hero-video" autoPlay={true} muted={true} loop={true} playsInline={true}>
+                    <video ref={videoRef} className="hero-video"  muted={true} loop={true} playsInline={true}>
                         <source src={heroVideo} type="video/mp4"/>
                     </video>
                 </section>
