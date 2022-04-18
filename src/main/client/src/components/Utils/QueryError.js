@@ -19,7 +19,7 @@ const QueryError = ({error}) => {
         <div className="query-error-content">
             <img className="query-error-icon" src={errorIcon} alt="error"/>
             <p className="query-error-message">Oops, there's been a technical issue.</p>
-            <p className="query-error-message">Please contact us via GitHub</p>
+            <a href={getIssueLink()} rel="external nofollow noopener noreferrer" target="_blank" className="query-error-message-link" >Please contact us via GitHub</a>
         </div>
     );
 }

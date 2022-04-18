@@ -1,5 +1,6 @@
 import React from "react";
 import {toStringHDMS} from "ol/coordinate";
+import {toLonLat} from "ol/proj";
 
 const QueryResult = ({data, coordinate}) => {
 
@@ -7,8 +8,8 @@ const QueryResult = ({data, coordinate}) => {
     const longLatDisplay = `${String.fromCodePoint("0x1F4CD")} ${longLatInfo}`;
 
     /**
-     *
-     * @param result
+     * Maps the OpenSearch index to its equivalent tree type
+     * @param result The index result from OpenSearch
      * @returns {string}
      */
     const getTreeType = (result) => {
@@ -69,11 +70,24 @@ const QueryResult = ({data, coordinate}) => {
 
     }
 
+    const renderQueryResultIssue = () => {
+
+        let longLatInfo = toLonLat(coordinate);
+
+        let labels = `bug`;
+        let title = encodeURIComponent(`New bug: query coordinates`);
+        let body = encodeURIComponent(``);
+        let url = `https://github.com/Negative-Carbon-Reforestation-Project/openlayers-springboot-react-demo/issues/new?labels=${labels}&title=${title}&body=${body}`;
+        return url;
+
+    }
+
     return (
         <div className="query-content">
             <p className="coordinates">{longLatDisplay}</p>
             {renderReforestationOpportunity()}
             {renderSpeciesTable()}
+            {/*{renderQueryResultIssue()}*/}
         </div>
     );
 }
