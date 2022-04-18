@@ -75,10 +75,11 @@ const QueryResult = ({data, coordinate}) => {
         let longLatInfo = toLonLat(coordinate);
 
         let labels = `bug`;
-        let title = encodeURIComponent(`New bug: query coordinates`);
-        let body = encodeURIComponent(``);
+        let title = encodeURIComponent(`New bug: Latitude: ${longLatInfo[1]} Longitude: ${longLatInfo[0]} `);
+        let body = encodeURIComponent(`The query data:\n ${JSON.stringify(data, null, 2)}`);
         let url = `https://github.com/Negative-Carbon-Reforestation-Project/openlayers-springboot-react-demo/issues/new?labels=${labels}&title=${title}&body=${body}`;
-        return url;
+
+        return <a href={url} rel="external nofollow noopener noreferrer" target="_blank" className="query-result-issue-link">Report an issue with the query</a>;
 
     }
 
@@ -87,7 +88,7 @@ const QueryResult = ({data, coordinate}) => {
             <p className="coordinates">{longLatDisplay}</p>
             {renderReforestationOpportunity()}
             {renderSpeciesTable()}
-            {/*{renderQueryResultIssue()}*/}
+            {renderQueryResultIssue()}
         </div>
     );
 }
