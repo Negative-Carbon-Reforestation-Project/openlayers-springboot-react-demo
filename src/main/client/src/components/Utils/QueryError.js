@@ -1,5 +1,7 @@
 import React from "react";
 import errorIcon from "../../resources/images/icons/error_icon-50x50.webp";
+import errorIconFallback from "../../resources/images/icons/error_icon-50x50.png";
+
 
 const QueryError = ({error}) => {
 
@@ -17,7 +19,13 @@ const QueryError = ({error}) => {
 
     return (
         <div className="query-error-content">
-            <img className="query-error-icon" src={errorIcon} alt="error"/>
+            <picture>
+                <source type="image/webp"
+                        srcSet={`${errorIcon}`}
+                />
+                <img className="query-error-icon" src={errorIconFallback} alt="error icon" loading="lazy"/>
+            </picture>
+
             <p className="query-error-message">Oops, there's been a technical issue.</p>
             <a href={getIssueLink()} rel="external nofollow noopener noreferrer" target="_blank" className="query-error-message-link" >Please contact us via GitHub</a>
         </div>

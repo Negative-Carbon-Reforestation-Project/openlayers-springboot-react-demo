@@ -1,5 +1,6 @@
 import React, {useContext} from "react";
 import layerIcon20 from "../../resources/images/icons/layer-control-20x20.webp";
+import layerIcon20Fallback from "../../resources/images/icons/layer-control-20x20.png";
 import SideMenuContext from "../Base/SideMenuContext";
 
 /**
@@ -26,7 +27,13 @@ const LayerControl = () => {
             aria-label="Toggle layer menu"
             title="Toggle layer menu"
         >
-            <img className="layer-icon" src={layerIcon20} alt="layer-icon"/>
+            <picture>
+                <source type="image/webp"
+                        srcSet={`${layerIcon20} 20w`}
+                />
+
+                 <img className="control-icon" src={layerIcon20Fallback} alt="Toggle layer menu icon"/>
+            </picture>
         </button>
 
     );

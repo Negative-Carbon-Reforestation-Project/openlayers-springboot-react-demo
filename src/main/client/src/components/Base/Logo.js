@@ -6,6 +6,7 @@ import logo208 from "../../resources/images/logo/ncrp-logo-208x104.webp"
 import logo320 from "../../resources/images/logo/ncrp-logo-320x160.webp"
 import logo600 from "../../resources/images/logo/ncrp-logo-600x300.webp"
 
+import logo600fallback from "../../resources/images/logo/ncrp-logo-600x300.png"
 
 /**
  * Container for site logo
@@ -26,12 +27,12 @@ const Logo = ({className, alt="Site logo", tabIndex=-1, href="/"}) => {
                 <source
                     type="image/webp"
                     media="(orientation: portrait)"
-                    srcSet={`${logo192} 192w, ${logo205} 205w, ${logo208} 208w, ${logo320} 320w`}
+                    srcSet={`${logo192} 192w, ${logo205} 205w, ${logo208} 208w, ${logo320} 320w, ${logo600} 600w`}
                     sizes="(max-width: 600px) 205px, (min-width: 600px) 208px, (min-width: 992px) 320px"
                 />
 
                 <img
-                    src={logo600}
+                    src={logo600fallback}
                     className={className}
                     alt={alt}
                     tabIndex={tabIndex}

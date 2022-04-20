@@ -1,6 +1,8 @@
 import Logo from "./Logo";
 import hamburgerIcon from "../../resources/images/icons/hamburger-menu-50x50.webp";
+import hamburgerIconFallback from "../../resources/images/icons/hamburger-menu-50x50.png";
 import hamburgerExitIcon from "../../resources/images/icons/exit-icon-50x50.webp";
+import hamburgerExitIconFallback from "../../resources/images/icons/exit-icon-50x50.png";
 import React, {useEffect, useRef} from "react";
 
 /**
@@ -61,7 +63,14 @@ const Navigation = ({skipLink = "#main"}) => {
                     </li>
 
                     <li className="mobile-nav-item hamburger-menu-button" onClick={() => toggleHamburgerMenu()} aria-label="Toggle menu">
-                        <img src={hamburgerIcon} alt="Open navigation menu icon"/>
+                        <picture>
+                            <source
+                                type="image/webp"
+                                srcSet={`${hamburgerIcon} 50w`}
+                            />
+
+                            <img src={hamburgerIconFallback} className="hamburger-icon" alt="Open navigation menu icon" loading="lazy"/>
+                        </picture>
                     </li>
                 </ul>
 
@@ -70,7 +79,13 @@ const Navigation = ({skipLink = "#main"}) => {
 
             <nav ref={hamburgerMenuRef} className="mobile-nav">
                 <li className="mobile-nav-item hamburger-exit-button" onClick={() => toggleHamburgerMenu()} aria-label="Exit menu">
-                    <img src={hamburgerExitIcon} alt="Exit navigation menu icon"/>
+                    <picture>
+                        <source
+                            type="image/webp"
+                            srcSet={`${hamburgerExitIcon} 50w`}
+                        />
+                        <img src={hamburgerExitIconFallback} className="exit-hamburger-icon" alt="Exit navigation menu icon" loading="lazy"/>
+                    </picture>
                 </li>
 
                 <ul className="mobile-nav-items">

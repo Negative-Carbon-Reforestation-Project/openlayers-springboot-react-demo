@@ -10,7 +10,6 @@
     left: 2.5rem;
 
     min-width: 2.1875rem;
-    /*height: 100px;*/
 
     z-index: 1000;
 
@@ -36,6 +35,12 @@
 {
     background-color: var(--color-dark-grey);
     cursor: pointer;
+}
+
+.control-icon
+{
+    width: 20px;
+    height: 20px;
 }
 
 /* Extra small devices (phones, 600px and down) */
