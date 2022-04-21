@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import "../../styles/main.css";
+// import "../../styles/main.css";
 
 import Map from "../Map/Map";
 import Layers from "../Layers/Layers";

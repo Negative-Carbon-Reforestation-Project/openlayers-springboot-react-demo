@@ -30,7 +30,7 @@ const useMap = (zoom, center) => {
             view: new ol.View({
                 zoom,
                 center,
-                extent: transformExtent(washingtonStateBoundingBox, 'EPSG:4326', 'EPSG:3857')
+                // extent: transformExtent(washingtonStateBoundingBox, 'EPSG:4326', 'EPSG:3857')
             }),
             layers: [],
             controls: [],
