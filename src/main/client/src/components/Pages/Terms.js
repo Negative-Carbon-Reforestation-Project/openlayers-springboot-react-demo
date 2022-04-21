@@ -17,7 +17,7 @@ const Terms = () => {
 
     return (
         <>
-            <Navigation />
+            <Navigation skipLink="#terms-container"/>
             <main id="terms-container" className="container">
                 <section id="terms-hero" className="hero">
                     <h1 className="hero-header">Terms Of Service</h1>

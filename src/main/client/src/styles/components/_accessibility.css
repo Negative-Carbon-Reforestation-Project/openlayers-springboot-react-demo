@@ -1,14 +1,3 @@
-#accessibility-container
-{
-    display: grid;
-
-    grid-template:
-        [hero-left] "hero" 600px [hero-right]
-        [content-left] "content" [content-right];
-
-    min-height: 100vh;
-}
-
 #accessibility-hero
 {
     display: flex;

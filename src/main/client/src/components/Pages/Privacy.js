@@ -17,7 +17,7 @@ const Privacy = () => {
 
     return (
         <>
-            <Navigation/>
+            <Navigation skipLink="#privacy-container"/>
 
             <main id="privacy-container" className="container">
                 <section id="privacy-hero" className="hero">

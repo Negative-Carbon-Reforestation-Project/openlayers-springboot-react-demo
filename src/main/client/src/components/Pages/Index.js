@@ -19,7 +19,6 @@ const Index = () => {
     useEffect(() =>{
         document.title = "Negative Carbon Reforestation Project - Home";
 
-
         if (videoRef.current)
         {
            videoRef.current.play();

@@ -13,7 +13,7 @@ const Accessibility = () => {
 
     return (
         <>
-            <Navigation />
+            <Navigation skipLink="#accessibility-container"/>
             <main id="accessibility-container" className="container">
                 <section id="accessibility-hero" className="hero">
                     <h1 className="hero-header">Accessibility</h1>

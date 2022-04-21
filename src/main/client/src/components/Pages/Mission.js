@@ -17,9 +17,8 @@ const Mission = () => {
 
     return (
         <>
-            <Navigation />
+            <Navigation skipLink="#mission-container"/>
 
-            {/*<main id="main" className="mission-container">*/}
             <main id="mission-container" className="container">
                 <section id="mission-hero" className="hero">
                     <h1 className="hero-header">Our Mission</h1>
