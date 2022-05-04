@@ -164,8 +164,6 @@ public class ElasticSearchService
             JSONObject finalJson = mapToJson(averagedResults);
 
             return finalJson.toString();
-//            return averagedResults;
-
         }
         catch(Exception ex)
         {

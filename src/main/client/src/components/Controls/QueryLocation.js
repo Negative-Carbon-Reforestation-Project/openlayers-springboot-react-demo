@@ -1,18 +1,17 @@
-import React, {useContext, useRef, useState} from "react";
-import cursorIcon from "../../resources/images/cursor-info.webp";
-import cursorIconActive from "../../resources/images/cursor-info-active.webp";
-import MapContext from "../Map/MapContext";
+import React, { useRef, useState} from "react";
+import cursorIcon from "../../resources/images/icons/cursor-info.webp";
+import cursorIconActive from "../../resources/images/icons/cursor-info-active.webp";
+import {useDispatch} from "react-redux";
+import {setQueryable} from "../../redux/reducers/mapReducer";
 
 /**
  * Container for QueryLocation control
  * @returns {JSX.Element}
  */
 const QueryLocationControl = () => {
-
-    const { setQueryable } = useContext(MapContext);
-
     const iconRef = useRef();
     const [controlActive, setControlActive] = useState(false);
+    const dispatch = useDispatch();
 
     /**
      * Toggles the query feature
@@ -22,14 +21,20 @@ const QueryLocationControl = () => {
 
         iconRef.current.src = isControlActive ? cursorIconActive
                                               : cursorIcon;
-        setQueryable(isControlActive);
+
+        dispatch(setQueryable({isQueryable: isControlActive}));
         setControlActive(isControlActive);
     }
 
     return (
-        <div className="control query-location-control" onClick={() => toggleQueryPointer()}>
+        <button
+            className="control query-location-control"
+            onClick={() => toggleQueryPointer()}
+            aria-label="Toggle query mode"
+            title="Toggle query mode"
+        >
             <img ref={iconRef} className="query-location-control-icon" src={cursorIcon} alt="cursor"/>
-        </div>
+        </button>
 
     );
 };

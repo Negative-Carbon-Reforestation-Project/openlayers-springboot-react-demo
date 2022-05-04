@@ -1,7 +1,5 @@
 import React, {useContext} from "react";
-import layerIcon512 from "../../resources/images/layer-control-512x512.webp";
-import layerIcon20 from "../../resources/images/layer-control-20x20.webp";
-import SideMenu from "../Base/SideMenu";
+import layerIcon20 from "../../resources/images/icons/layer-control-20x20.webp";
 import SideMenuContext from "../Base/SideMenuContext";
 
 /**
@@ -16,17 +14,20 @@ const LayerControl = () => {
      * Toggles the layer menu
      */
     const toggleLayerMenu = () => {
-        let currentDisplay = layerMenuRef.current.style.display;
-        let toggleDisplay = currentDisplay === "block" ? "none" : "block";
-
-        sideMenuRef.current.style.display = toggleDisplay;
-        layerMenuRef.current.style.display = toggleDisplay;
+        sideMenuRef.current.classList.toggle("active");
+        layerMenuRef.current.classList.toggle("active");
+        layerMenuRef.current.focus();
     }
 
     return (
-        <div className="control layer-control" onClick={() => toggleLayerMenu()}>
+        <button
+            className="control layer-control"
+            onClick={() => toggleLayerMenu()}
+            aria-label="Toggle layer menu"
+            title="Toggle layer menu"
+        >
             <img className="layer-icon" src={layerIcon20} alt="layer-icon"/>
-        </div>
+        </button>
 
     );
 };

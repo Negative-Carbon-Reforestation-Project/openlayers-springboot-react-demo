@@ -1,21 +1,23 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useRef } from "react";
 import {Overlay} from "ol";
-import MapContext from "../Map/MapContext";
 import {toLonLat} from "ol/proj";
 import Loader from "../Utils/Loader";
-import {toStringHDMS} from "ol/coordinate";
 import QueryResult from "../Utils/QueryResult";
 import QueryError from "../Utils/QueryError";
+import {useSelector} from "react-redux";
 
 /**
  * Container for custom popup logic
  * @returns {{popupContent: JSX.Element, popupCloseButtonRef: React.MutableRefObject<undefined>, popupRef: React.MutableRefObject<undefined>}}
  */
 const usePopup = () => {
-    const { map, isQueryable } = useContext(MapContext);
     const popupRef = useRef();
     const popupCloseButtonRef = useRef();
     const [popupContent, setPopupContent] = useState(<div></div>);
+
+    const map = useSelector((state) => state.maps.value.map);
+    const isQueryable = useSelector((state) => state.maps.value.isQueryable);
+
 
     /**
      * Once the component is mounted onto the DOM, create the overlay and populate it via a click listener on the map.
@@ -53,15 +55,17 @@ const usePopup = () => {
                 return;
             }
 
+            console.log("Map on entered");
             const coordinate = event.coordinate;
             const longLatCoordsInfo = toLonLat(coordinate);
 
             setPopupContent(<Loader/>)
 
-            fetch(`http://localhost:8082/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`)
+            // fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`)
+            fetch(`https://${window.location.hostname}/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`)
                 .then((response) => response.json())
                 .then((data) => setPopupContent(<QueryResult data={data} coordinate={coordinate}/>))
-                .catch((error) => setPopupContent(<QueryError/>));
+                .catch((error) => setPopupContent(<QueryError error={error}/>));
 
             popupOverlay.setPosition(coordinate);
 

@@ -19,6 +19,7 @@
     "react-helmet": "^6.1.0",
     "react-meta-tags": "^1.0.1",
     "react-openlayers": "^0.3.0",
+    "react-redux": "^7.2.8",
     "react-script-tag": "^1.1.2",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.1.2"
@@ -27,6 +28,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test2": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.config.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -46,5 +48,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "identity-obj-proxy": "^3.0.0"
   }
 }

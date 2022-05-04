@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Zoom } from "ol/control";
-import MapContext from "../Map/MapContext";
+import {useSelector} from "react-redux";
 
 
 /**
@@ -8,7 +8,7 @@ import MapContext from "../Map/MapContext";
  * @returns {null}
  */
 const ZoomControl = ({target}) => {
-    const { map } = useContext(MapContext);
+    const map  = useSelector((state) => state.maps.value.map);
 
     /**
      * Once the component is mounted onto the DOM, extend the zoom control and append it onto the map

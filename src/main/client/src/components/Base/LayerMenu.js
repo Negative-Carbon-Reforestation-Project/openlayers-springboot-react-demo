@@ -1,15 +1,16 @@
 import React, {useContext, useEffect, useRef} from "react";
-import {Drawer} from "@mui/material";
 import SideMenuContext from "./SideMenuContext";
-import MapContext from "../Map/MapContext";
-import LayerManager from "../Utils/LayerManager";
+import {useSelector} from "react-redux";
 
 /**
  * Container for layer menu
+ *
+ * TO-DO: Implement after new prototype has been finalized.
  */
 const LayerMenu = () => {
     const {sideMenuRef, layerMenuRef} = useContext(SideMenuContext);
-    const {map} = useContext(MapContext);
+    const map = useSelector((state) => state.maps.value.map);
+
     const osmLayerToggleRef = useRef();
     const baseGroupRef = useRef();
     const landGroupRef = useRef();
@@ -25,8 +26,8 @@ const LayerMenu = () => {
      * Hides the side menu
      */
     const hideSideMenu = () => {
-        layerMenuRef.current.style.display = "none";
-        sideMenuRef.current.style.display = "none";
+        sideMenuRef.current.classList.toggle("active");
+        layerMenuRef.current.classList.toggle("active");
     };
 
     /**
@@ -34,9 +35,7 @@ const LayerMenu = () => {
      * @param groupRef The reference to the group's container
      */
     const toggleGroup = (groupRef) => {
-        let isActive = groupRef.current.style.display === "block";
-
-        groupRef.current.style.display = isActive ? "none" : "block";
+        groupRef.current.classList.toggle("active");
     }
 
     /**
@@ -69,58 +68,69 @@ const LayerMenu = () => {
     }
 
     return (
-        <div ref={layerMenuRef} className="layer-menu">
+        <div ref={layerMenuRef} className="layer-menu" tabIndex={0} aria-label="Layer menu" role="menu">
             <section className="layer-menu-header">
-                <h1 className="layer-menu-heading">Layers</h1>
-                <button className="layer-menu-exit" onClick={() => hideSideMenu()}>X</button>
+                <h2 className="layer-menu-heading">Layers</h2>
+                <button className="layer-menu-exit" onClick={() => hideSideMenu()} aria-label="Exit Layer Menu">X</button>
             </section>
 
             {/*<LayerManager className="layer-menu-content"/>*/}
             <section className="layer-menu-content">
                 <section className="layer-group">
-                    <h2 className="layer-group-heading" onClick={() => toggleGroup(baseGroupRef)}>Base</h2>
+                    <button className="layer-group-heading" onClick={() => toggleGroup(baseGroupRef)} aria-label="Show Base Layer Options">Base</button>
                     <section ref={baseGroupRef} className="layer-group-content">
-                        <article className="layer-item">
-                            <input ref={osmLayerToggleRef} className="layer-item-toggle" type="radio" name="base" value={0} onClick={(event) => toggleBaseLayer(event)}/>
-                            <h2 className="layer-item-heading">OpenStreetMaps</h2>
-                        </article>
-                        <article className="layer-item">
-                            <input className="layer-item-toggle" type="radio" name="base" value={1} onClick={(event) => toggleBaseLayer(event)}/>
-                            <h2 className="layer-item-heading">Terrain</h2>
-                        </article>
-                        <article className="layer-item">
-                            <input className="layer-item-toggle" type="radio" name="base" value={2} onClick={(event) => toggleBaseLayer(event)}/>
-                            <h2 className="layer-item-heading">Toner</h2>
-                        </article>
-                        <article className="layer-item">
-                            <input className="layer-item-toggle" type="radio" name="base" value={3} onClick={(event) => toggleBaseLayer(event)}/>
-                            <h2 className="layer-item-heading">Bing Maps</h2>
-                        </article>
-                        <article className="layer-item">
-                            <input className="layer-item-toggle" type="radio" name="base" value={4} onClick={(event) => toggleBaseLayer(event)}/>
-                            <h2 className="layer-item-heading">OpenTopo</h2>
+                        <article className="layer-item" role="radiogroup" tabIndex={0} aria-label="Pick a base layer">
+                            <label htmlFor="OpenStreetMaps" className="layer-item-heading">
+                                <input id="OpenStreetMaps" ref={osmLayerToggleRef} className="layer-item-toggle" type="radio" name="base" value={0} onClick={(event) => toggleBaseLayer(event)}/>
+                                Street
+                            </label>
+
+                            <label htmlFor="Terrain" className="layer-item-heading">
+                                <input id="Terrain" className="layer-item-toggle" type="radio" name="base" value={1} onClick={(event) => toggleBaseLayer(event)}/>
+                                Terrain
+                            </label>
+
+                            <label htmlFor="Toner" className="layer-item-heading">
+                                <input id="Toner" className="layer-item-toggle" type="radio" name="base" value={2} onClick={(event) => toggleBaseLayer(event)}/>
+                                Black And White
+                            </label>
+
+                            <label htmlFor="Bing Maps" className="layer-item-heading">
+                                <input id="Bing Maps" className="layer-item-toggle" type="radio" name="base" value={3} onClick={(event) => toggleBaseLayer(event)}/>
+                                Aerial
+                            </label>
+
+                            <label htmlFor="OpenTopo" className="layer-item-heading">
+                                <input id="OpenTopo" className="layer-item-toggle" type="radio" name="base" value={4} onClick={(event) => toggleBaseLayer(event)}/>
+                                Topographical
+                            </label>
                         </article>
                     </section>
                 </section>
 
                 <section className="layer-group">
-                    <h2 className="layer-group-heading" onClick={() => toggleGroup(landGroupRef)}>Land Cover</h2>
+                    <button className="layer-group-heading" onClick={() => toggleGroup(landGroupRef)} aria-label="Show Land Cover Layer Options">Land Cover</button>
                     <section ref={landGroupRef} className="layer-group-content">
-                        <article className="layer-item">
-                            <input className="layer-item-toggle" type="checkbox" name="slope" value={5} onClick={(event) => toggleLayer(event)}/>
-                            <h2 className="layer-item-heading">Slopes</h2>
-                        </article>
-                        <article className="layer-item">
-                            <input className="layer-item-toggle" type="checkbox" name="fire-history" value={6} onClick={(event) => toggleLayer(event)}/>
-                            <h2 className="layer-item-heading">Fire History</h2>
-                        </article>
-                        <article className="layer-item">
-                            <input className="layer-item-toggle" type="checkbox" name="soil-data" value={7} onClick={(event) => toggleLayer(event)}/>
-                            <h2 className="layer-item-heading">Soil Data</h2>
-                        </article>
-                        <article className="layer-item">
-                            <input className="layer-item-toggle" type="checkbox" name="soil-data" value={8} onClick={(event) => toggleLayer(event)}/>
-                            <h2 className="layer-item-heading">Total Opportunity</h2>
+                        <article className="layer-item" tabIndex={0} aria-label="Select landcover layers">
+                            <label htmlFor="slopes" className="layer-item-heading">
+                                <input id="slopes" className="layer-item-toggle" type="checkbox" name="landcover" value={5} onClick={(event) => toggleLayer(event)}/>
+                                Slopes
+                            </label>
+
+                            <label htmlFor="fire-history" className="layer-item-heading">
+                                <input id="fire-history" className="layer-item-toggle" type="checkbox" name="landcover" value={6} onClick={(event) => toggleLayer(event)}/>
+                                Fire History
+                            </label>
+
+                            <label htmlFor="soil-data" className="layer-item-heading">
+                                <input id="soil-data" className="layer-item-toggle" type="checkbox" name="landcover" value={7} onClick={(event) => toggleLayer(event)}/>
+                                Soil Data
+                            </label>
+
+                            <label htmlFor="reforestation-opportunity" className="layer-item-heading">
+                                <input id="reforestation-opportunity" className="layer-item-toggle" type="checkbox" name="landcover" value={8} onClick={(event) => toggleLayer(event)}/>
+                                Reforestation Opportunity
+                            </label>
                         </article>
                     </section>
                 </section>

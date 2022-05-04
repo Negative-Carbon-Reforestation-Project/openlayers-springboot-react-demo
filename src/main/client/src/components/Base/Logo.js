@@ -1,10 +1,10 @@
 import React from "react";
 
-import logo192 from "../../resources/images/ncrp-logo-192x96.webp"
-import logo205 from "../../resources/images/ncrp-logo-205x103.webp"
-import logo208 from "../../resources/images/ncrp-logo-208x104.webp"
-import logo320 from "../../resources/images/ncrp-logo-320x160.webp"
-import logo600 from "../../resources/images/ncrp-logo-600x300.webp"
+import logo192 from "../../resources/images/logo/ncrp-logo-192x96.webp"
+import logo205 from "../../resources/images/logo/ncrp-logo-205x103.webp"
+import logo208 from "../../resources/images/logo/ncrp-logo-208x104.webp"
+import logo320 from "../../resources/images/logo/ncrp-logo-320x160.webp"
+import logo600 from "../../resources/images/logo/ncrp-logo-600x300.webp"
 
 
 /**
@@ -13,7 +13,7 @@ import logo600 from "../../resources/images/ncrp-logo-600x300.webp"
  * and the img tag is used as a fallback.
  * @returns {JSX.Element}
  */
-const Logo = () => {
+const Logo = ({className, alt="Site logo", tabIndex=-1, href="/"}) => {
 
     return <picture>
                 <source
@@ -30,7 +30,14 @@ const Logo = () => {
                     sizes="(max-width: 600px) 205px, (min-width: 600px) 208px, (min-width: 992px) 320px"
                 />
 
-                <img src={logo600} className="app-logo" alt="app-logo"/>
+                <img
+                    src={logo600}
+                    className={className}
+                    alt={alt}
+                    tabIndex={tabIndex}
+                    draggable={false}
+                    onClick={() => document.location.href = href}
+                />
            </picture>
 }
 

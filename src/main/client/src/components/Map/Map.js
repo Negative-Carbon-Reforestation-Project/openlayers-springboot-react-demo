@@ -1,6 +1,6 @@
 import React, {useEffect} from "react"
-import MapContext from "./MapContext";
 import useMap from "./useMap"
+import {useSelector} from "react-redux";
 
 /**
  * Container for the OpenLayer Map
@@ -10,7 +10,8 @@ import useMap from "./useMap"
  * @returns {JSX.Element}
  */
 const Map = ({ children, zoom, center }) => {
-    const { mapRef, map, cesiumMap, isQueryable, setQueryable } = useMap(zoom, center);
+    const { mapRef } = useMap(zoom, center);
+    const isQueryable = useSelector((state) => state.maps.value.isQueryable);
 
     /**
      * Once the component is mounted onto the DOM, check whether the map is queryable.
@@ -25,11 +26,9 @@ const Map = ({ children, zoom, center }) => {
 
 
     return (
-        <MapContext.Provider value={{ map, mapRef, cesiumMap, isQueryable, setQueryable }}>
-            <div ref={mapRef} className="ol-map">
+            <div ref={mapRef} className="ol-map" tabIndex={0} aria-label="Map. Use arrow keys to pan the map." role="application">
                 {children}
             </div>
-        </MapContext.Provider>
     )
 }
 

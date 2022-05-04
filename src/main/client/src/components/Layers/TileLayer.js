@@ -1,6 +1,6 @@
-import { useContext, useEffect } from "react";
-import MapContext from "../Map/MapContext";
+import { useEffect } from "react";
 import OLTileLayer from "ol/layer/Tile";
+import {useSelector} from "react-redux";
 
 /**
  * Container for custom OpenLayer TileLayers
@@ -11,7 +11,7 @@ import OLTileLayer from "ol/layer/Tile";
  * @returns {null}
  */
 const TileLayer = ({ source, zIndex = 0, preload = 0, opacity=1, visible=false}) => {
-    const { map } = useContext(MapContext);
+    const map = useSelector((state) => state.maps.value.map);
 
     /**
      * Once the component is mounted onto the dom, construct a new tilelayer and append it

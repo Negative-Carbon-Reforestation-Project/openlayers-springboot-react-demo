@@ -7,9 +7,35 @@
     --color-transparent-black: rgb(0,0,0,0.8);
     --color-white: white;
     --color-light-grey: #f3f3f3;
+    --color-dark-green: #127f2c;
     --color-dark-grey: #404040;
     --color-dark-grey-2: #2c2c2c;
     --color-dark-pink: rgb(233, 74, 147);
 
     --font-roboto: Roboto, sans-serif;
+    --font-small: 1.25rem;
+    --font-medium: 1.5625rem;
+    --font-large: 1.875rem;
+
+    --margin-small: 0.625rem;
+    --margin-large: 1.25rem;
+
+    --padding-small: 0.625rem;
+    --padding-large: 1.25rem;
+}
+
+.active
+{
+    display: block !important;
+}
+
+.active-flex
+{
+    display: flex !important;
+}
+
+.active-flex-column
+{
+    display: flex !important;
+    flex-direction: column !important;
 }

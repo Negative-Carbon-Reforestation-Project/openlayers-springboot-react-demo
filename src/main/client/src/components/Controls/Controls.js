@@ -12,10 +12,10 @@ const Controls = () => {
     const controlBarRef = useRef();
 
     return (
-        <div ref={controlBarRef} className="controls-bar">
-            <LayerControl/>
-            <QueryLocationControl/>
-            <DimensionControl/>
+        <div ref={controlBarRef} className="controls-bar" aria-label="Contains controls for the map" tabIndex={0}>
+            <LayerControl />
+            <QueryLocationControl />
+            <DimensionControl />
             <ZoomControl target={controlBarRef}/>
         </div>
     )
