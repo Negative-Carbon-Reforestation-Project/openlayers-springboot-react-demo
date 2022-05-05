@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from 'react';
-// import "../../styles/main.css";
 
 import Map from "../map/Map";
 import Layers from "../layers/Layers";
 import TileLayer from "../layers/TileLayer";
 import Controls from "../controls/Controls";
-import Logo from "../base/Logo";
 
 import { OSM, BingMaps, Stamen, XYZ, TileWMS } from "ol/source";
 import { fromLonLat } from "ol/proj";
@@ -13,6 +11,7 @@ import Overlays from "../overlays/Overlays";
 import Popup from "../overlays/Popup";
 import SideMenu from "../base/SideMenu";
 import SearchBar from "../base/SearchBar";
+import QueryMenu from "../overlays/QueryMenu";
 
 /**
  * Component for the React applicaation
@@ -77,7 +76,8 @@ const App = () => {
                     <TileLayer source={totalOpportunity} zIndex={4}/>
                 </Layers>
                 <Overlays>
-                    <Popup />
+                    {/*<Popup />*/}
+                    <QueryMenu />
                 </Overlays>
                 <SideMenu>
                     <Controls/>
