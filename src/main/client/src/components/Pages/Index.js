@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from "react";
 import heroVideo from "../../resources/videos/hero-1280x720.mp4";
-import Navigation from "../Base/Navigation";
-import Footer from "../Base/Footer";
+import Navigation from "../base/Navigation";
+import Footer from "../base/Footer";
 import "../../styles/main.css";
 
 /***

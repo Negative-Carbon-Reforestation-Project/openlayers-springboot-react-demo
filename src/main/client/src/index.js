@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Index from "./components/Pages/Index";
+import Index from "./components/pages/Index";
 import store  from "./redux/store";
 import { Provider } from "react-redux";
-import Fallback from "./components/Pages/Fallback";
+import Fallback from "./components/pages/Fallback";
 
-const Mission = React.lazy(() => import("./components/Pages/Mission"));
-const App = React.lazy(() => import("./components/Pages/App"));
-const Terms = React.lazy(() => import("./components/Pages/Terms"));
-const Privacy = React.lazy(() => import("./components/Pages/Privacy"));
-const Accessibility = React.lazy(() => import("./components/Pages/Accessibility"));
+const Mission = React.lazy(() => import("./components/pages/Mission"));
+const App = React.lazy(() => import("./components/pages/App"));
+const Terms = React.lazy(() => import("./components/pages/Terms"));
+const Privacy = React.lazy(() => import("./components/pages/Privacy"));
+const Accessibility = React.lazy(() => import("./components/pages/Accessibility"));
 
 ReactDOM.render(
     <React.StrictMode>

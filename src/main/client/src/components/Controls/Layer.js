@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import layerIcon20 from "../../resources/images/icons/layer-control-20x20.webp";
 import layerIcon20Fallback from "../../resources/images/icons/layer-control-20x20.png";
-import SideMenuContext from "../Base/SideMenuContext";
+import SideMenuContext from "../base/SideMenuContext";
 
 /**
  * Container for the Layer control

@@ -1,5 +1,5 @@
-import Navigation from "../Base/Navigation";
-import Footer from "../Base/Footer";
+import Navigation from "../base/Navigation";
+import Footer from "../base/Footer";
 import {useEffect} from "react";
 
 const Accessibility = () => {

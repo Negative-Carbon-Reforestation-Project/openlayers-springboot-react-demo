@@ -1,22 +1,17 @@
-#accessibility-hero
+#privacy-hero
 {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background-image: url("../../resources/images/backdrops/terms-section-backdrop.jpg");
+    background-image: url("../../../resources/images/backdrops/terms-section-backdrop.jpg");
     background-size: cover;
     background-attachment: fixed;
     background-blend-mode: overlay;
     background-color: #423E3E;
 }
 
-#accessibility-content
+#privacy-content
 {
-    padding: 30px;
-}
-
-.terms-article
-{
-    margin-bottom: 20px;
+    padding: var(--padding-large);
 }

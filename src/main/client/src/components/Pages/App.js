@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from 'react';
 // import "../../styles/main.css";
 
-import Map from "../Map/Map";
-import Layers from "../Layers/Layers";
-import TileLayer from "../Layers/TileLayer";
-import Controls from "../Controls/Controls";
-import Logo from "../Base/Logo";
+import Map from "../map/Map";
+import Layers from "../layers/Layers";
+import TileLayer from "../layers/TileLayer";
+import Controls from "../controls/Controls";
+import Logo from "../base/Logo";
 
 import { OSM, BingMaps, Stamen, XYZ, TileWMS } from "ol/source";
 import { fromLonLat } from "ol/proj";
-import Overlays from "../Overlays/Overlays";
-import Popup from "../Overlays/Popup";
-import SideMenu from "../Base/SideMenu";
+import Overlays from "../overlays/Overlays";
+import Popup from "../overlays/Popup";
+import SideMenu from "../base/SideMenu";
 
 /**
  * Component for the React applicaation
@@ -61,7 +61,7 @@ const App = () => {
 
     return (
         <div className="map-container">
-            <Logo className="app-logo" />
+
             <Map center={fromLonLat(center)} zoom={zoom}>
                 <Layers>
                     <TileLayer source={new OSM()} zIndex={0} visible={true} />

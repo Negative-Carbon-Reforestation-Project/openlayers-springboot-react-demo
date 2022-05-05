@@ -1,5 +1,5 @@
 import React from "react";
-import Index from "../../main/client/src/components/Pages/Index";
+import Index from "../../main/client/src/components/pages/Index";
 import { render } from "@testing-library/react"
 
 /**
