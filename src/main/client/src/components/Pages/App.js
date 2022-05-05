@@ -12,6 +12,7 @@ import { fromLonLat } from "ol/proj";
 import Overlays from "../overlays/Overlays";
 import Popup from "../overlays/Popup";
 import SideMenu from "../base/SideMenu";
+import SearchBar from "../base/SearchBar";
 
 /**
  * Component for the React applicaation
@@ -61,7 +62,7 @@ const App = () => {
 
     return (
         <div className="map-container">
-
+            <SearchBar />
             <Map center={fromLonLat(center)} zoom={zoom}>
                 <Layers>
                     <TileLayer source={new OSM()} zIndex={0} visible={true} />

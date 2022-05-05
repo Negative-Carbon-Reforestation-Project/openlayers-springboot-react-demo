@@ -1,0 +1,17 @@
+.search-nav
+{
+    z-index: 1;
+
+    display: flex;
+
+    position: fixed;
+    top: 18px;
+    left: 13px;
+}
+
+.search-bar
+{
+    width: 600px;
+    height: 50px;
+    padding: var(--padding-small);
+}

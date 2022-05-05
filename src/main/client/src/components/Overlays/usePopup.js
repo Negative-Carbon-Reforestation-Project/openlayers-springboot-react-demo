@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import {Overlay} from "ol";
 import {toLonLat} from "ol/proj";
-import Loader from "../Utils/Loader";
-import QueryResult from "../Utils/QueryResult";
-import QueryError from "../Utils/QueryError";
+import Loader from "../utils/Loader";
+import QueryResult from "../utils/QueryResult";
+import QueryError from "../utils/QueryError";
 import {useSelector} from "react-redux";
 
 /**

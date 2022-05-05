@@ -14,3 +14,5 @@ const QueryMenu = () => {
         </section>
     )
 }
+
+export default QueryMenu;
