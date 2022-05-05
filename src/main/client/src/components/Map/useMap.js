@@ -13,8 +13,6 @@ import {transformExtent} from "ol/proj";
  * @returns {{mapRef: React.MutableRefObject<undefined>}}
  */
 const useMap = (zoom, center) => {
-    const washingtonStateBoundingBox = [-124.763068, 45.543541, -116.915989, 49.002494];
-
     const mapRef = useRef();
     const map = useSelector((state) => state.maps.value.map);
 
@@ -29,8 +27,7 @@ const useMap = (zoom, center) => {
         let options = {
             view: new ol.View({
                 zoom,
-                center,
-                // extent: transformExtent(washingtonStateBoundingBox, 'EPSG:4326', 'EPSG:3857')
+                center
             }),
             layers: [],
             controls: [],

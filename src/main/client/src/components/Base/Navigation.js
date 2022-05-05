@@ -77,7 +77,7 @@ const Navigation = ({skipLink = "#main"}) => {
 
             </nav>
 
-            <nav ref={hamburgerMenuRef} className="mobile-nav">
+            <nav ref={hamburgerMenuRef} className="mobile-nav topo-skin">
                 <li className="mobile-nav-item hamburger-exit-button" onClick={() => toggleHamburgerMenu()} aria-label="Exit menu">
                     <picture>
                         <source

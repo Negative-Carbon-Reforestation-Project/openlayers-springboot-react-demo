@@ -1,12 +1,10 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import cursorIcon from "../../resources/images/icons/cursor-info-20x20.webp";
 import cursorIconFallback from "../../resources/images/icons/cursor-info-20x20.png";
 import cursorIconActive from "../../resources/images/icons/cursor-info-active-20x20.webp";
 import cursorIconActiveFallback from "../../resources/images/icons/cursor-info-active-20x20.png";
 import {useDispatch} from "react-redux";
 import {setQueryable} from "../../redux/reducers/mapReducer";
-import twoDimensional from "../../resources/images/icons/dimension-control-2D-20x20.webp";
-import threeDimensional from "../../resources/images/icons/dimension-control-3D-20x20.webp";
 
 /**
  * Container for QueryLocation control

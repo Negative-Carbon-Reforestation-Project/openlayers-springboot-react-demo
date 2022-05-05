@@ -43,13 +43,6 @@ const App = () => {
         transition: 0,
     });
 
-    const soilClasses = new TileWMS({
-        url: 'https://geo.ncrp.app/geoserver/wms',
-        params: {'LAYERS': 'ncrp:soil_classes', 'TILED': true},
-        serverType: 'geoserver',
-        transition: 0,
-    })
-
     const totalOpportunity = new TileWMS({
         url: 'https://geo.ncrp.app/geoserver/wms',
         params: {'LAYERS': 'ncrp:wa-total-opportunity', 'TILED': true},

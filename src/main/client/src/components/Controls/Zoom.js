@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Zoom } from "ol/control";
 import {useSelector} from "react-redux";
 

@@ -8,7 +8,7 @@ import Logo from "./Logo";
  */
 const Footer = () => {
     return (
-        <footer className="footer" tabIndex={0} aria-label="Site footer">
+        <footer className="footer topo-skin" tabIndex={0} aria-label="Site footer">
             <section className="footer-top">
                 <Logo className="footer-logo" tabIndex={0}/>
 

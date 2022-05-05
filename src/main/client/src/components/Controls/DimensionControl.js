@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, {useRef} from "react";
 import threeDimensional from "../../resources/images/icons/dimension-control-3D-20x20.webp";
 import threeDimensionalFallback from "../../resources/images/icons/dimension-control-3D-20x20.png";
 import twoDimensional from "../../resources/images/icons/dimension-control-2D-20x20.webp";
