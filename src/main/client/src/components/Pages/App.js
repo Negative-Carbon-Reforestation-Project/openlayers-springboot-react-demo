@@ -12,6 +12,7 @@ import Popup from "../overlays/Popup";
 import SideMenu from "../base/SideMenu";
 import SearchBar from "../base/SearchBar";
 import QueryMenu from "../overlays/QueryMenu";
+import LayerControl from "../controls/LayerControl";
 
 /**
  * Component for the React applicaation
@@ -61,7 +62,7 @@ const App = () => {
 
     return (
         <div className="map-container">
-            <SearchBar />
+            {/*<SearchBar />*/}
             <Map center={fromLonLat(center)} zoom={zoom}>
                 <Layers>
                     <TileLayer source={new OSM()} zIndex={0} visible={true} />
@@ -77,10 +78,11 @@ const App = () => {
                 </Layers>
                 <Overlays>
                     {/*<Popup />*/}
-                    <QueryMenu />
+                    {/*<QueryMenu />*/}
                 </Overlays>
                 <SideMenu>
-                    <Controls/>
+                    {/*<Controls/>*/}
+                    {/*<LayerControl/>*/}
                 </SideMenu>
             </Map>
         </div>
