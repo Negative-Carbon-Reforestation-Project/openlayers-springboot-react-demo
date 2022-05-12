@@ -82,7 +82,7 @@ const App = () => {
                 </Overlays>
                 <SideMenu>
                     {/*<Controls/>*/}
-                    {/*<LayerControl/>*/}
+                    <LayerControl/>
                 </SideMenu>
             </Map>
         </div>

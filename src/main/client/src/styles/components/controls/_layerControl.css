@@ -19,7 +19,7 @@
     width: 100px;
     height: 100px;
     border-radius: 10px;
-    border: solid 3px var(--color-black);
+    border: solid 3px var(--color-dark-grey-2);
 
     background-image: url("../../../resources/images/backdrops/osm-preview-contrast-195x197.png");
     background-blend-mode: overlay;
@@ -29,9 +29,10 @@
     font-size: var(--font-small);
 }
 
+.layer-control:focus,
 .layer-control:hover
 {
-    border: solid 4px var(--color-black);
+    border: solid 4px var(--color-dark-grey-2);
 }
 
 .layer-menu-collapsed
@@ -68,14 +69,18 @@
 
     color: var(--color-white);
     font-size: var(--font-small);
+    outline: 0;
 
 }
 
+.layer-group:focus > p,
 .layer-group:hover > p
 {
     color: var(--color-dark-green);
+    outline: 0;
 }
 
+.layer-group:focus > .layer-preview,
 .layer-group:hover > .layer-preview
 {
     border: solid 2px var(--color-dark-green);
@@ -88,28 +93,6 @@
     width: 50px;
     height: 50px;
 }
-
-.expand-layers
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: var(--color-dark-grey-2);
-    border-radius: 10px;
-
-    width: 50px;
-    height: 50px;
-}
-
-.expand-layers-icon
-{
-    text-align: center;
-
-    width: 20px;
-    height: 20px;
-}
-
 
 .layer-menu-expanded
 {
@@ -127,20 +110,51 @@
 
     padding: 10px;
 
+    color: var(--color-white);
+
 }
 
-.exit-layer-menu
+.landcover-layer-previews,
+.base-layer-previews
 {
-    background: transparent;
-    border: none;
-    align-self: flex-end;
+    display: flex;
+    justify-content: center;
+}
 
+.landcover-layers
+{
+    border-bottom: solid 2px var(--color-white);
+}
+
+.base-layers
+{
+    margin-top: var(--margin-small);
+}
+
+.cesium-option
+{
+    margin: var(--margin-small);
+}
+
+.cesium-option > label
+{
+    margin-left: var(--margin-small);
     font-size: var(--font-small);
-    font-weight: bold;
-    color: white;
 }
 
-.exit-layer-menu:hover
+.cesium-option-toggle
 {
-    color: var(--color-dark-green);
+    width: 20px;
+    height: 20px;
+}
+
+.cesium-option-toggle:checked
+{
+    accent-color: var(--color-dark-green);
+}
+
+.cesium-option > label:hover,
+.cesium-option-toggle:hover
+{
+    cursor: pointer;
 }
