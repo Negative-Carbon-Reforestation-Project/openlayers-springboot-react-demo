@@ -21,6 +21,7 @@ import {useSelector} from "react-redux";
 const LayerControl = () => {
 
     const map = useSelector((state) => state.maps.value.map);
+    const cesiumMap = useSelector((state) => state.maps.value.cesiumMap);
 
     const layerMenuCollapsedRef = useRef();
     const layerMenuExpandedRef = useRef();
@@ -103,6 +104,10 @@ const LayerControl = () => {
         }
 
         layers.item(layerIndex).setVisible(true);
+    }
+
+    const toggleCesiumView = (event) => {
+        cesiumMap.setEnabled(event.target.checked);
     }
 
     return (
@@ -290,7 +295,7 @@ const LayerControl = () => {
                 </section>
 
                 <section className="cesium-option">
-                    <input className="cesium-option-toggle" type="checkbox" id="Toggle 3D View"/>
+                    <input className="cesium-option-toggle" type="checkbox" id="Toggle 3D View" onClick={(event) => toggleCesiumView(event)}/>
                     <label htmlFor="Toggle 3D View">Toggle 3D View</label>
                 </section>
             </div>
