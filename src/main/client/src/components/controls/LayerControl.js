@@ -11,6 +11,7 @@ import slopesPreview from "../../resources/images/icons/slopes-preview.png";
 import firePreview from "../../resources/images/icons/fire-preview.png";
 import soilPreview from "../../resources/images/icons/soil-preview.png";
 import treeDensityPreview from "../../resources/images/icons/tree-density-preview.png";
+import {useSelector} from "react-redux";
 
 /**
  * Container for the Layer switch control
@@ -18,6 +19,8 @@ import treeDensityPreview from "../../resources/images/icons/tree-density-previe
  * @constructor
  */
 const LayerControl = () => {
+
+    const map = useSelector((state) => state.maps.value.map);
 
     const layerMenuCollapsedRef = useRef();
     const layerMenuExpandedRef = useRef();
@@ -28,11 +31,19 @@ const LayerControl = () => {
     /**
      * Shows the collapsed layer menu
      *
-     * @remark Sets focus to it when shown
+     * @remark Sets focus to it when shown and if on a smaller viewport, shows the expanded menu instead.
      */
     const showCollapsedLayerMenu = () => {
-        layerMenuCollapsedRef.current.classList.add("active-flex");
-        layerMenuCollapsedRef.current.focus();
+        // debugger;
+        if(window.matchMedia("(max-width: 600px)").matches)
+        {
+            showExpandedLayerMenu();
+        }
+        else
+        {
+            layerMenuCollapsedRef.current.classList.add("active-flex");
+            layerMenuCollapsedRef.current.focus();
+        }
     }
 
     /**
@@ -64,6 +75,35 @@ const LayerControl = () => {
         setHideExpandedMenuTimer(setTimeout(() => layerMenuExpandedRef.current.classList.remove("active-flex"), timeout));
     }
 
+    /**
+     * Toggles a layer's visibility
+     * @param event The click event
+     */
+    const toggleLayer = (layerNumber, event) => {
+        let layerIndex = Number(layerNumber);
+        let layers = map.getLayers();
+
+        let isVisible = layers.item(layerIndex).getVisible();
+        layers.item(layerIndex).setVisible(!isVisible);
+
+    }
+
+    /**
+     * Toggles the base layer visibility
+     * @remark Only one base layer can be active, so disabling other base layers is required.
+     * @param event The click event
+     */
+    const toggleBaseLayer = (layerNumber, event) => {
+        let layerIndex = Number(layerNumber);
+        let layers = map.getLayers();
+
+        for (let i = 0; i <= 4; i++)
+        {
+            layers.item(i).setVisible(false);
+        }
+
+        layers.item(layerIndex).setVisible(true);
+    }
 
     return (
         <>
@@ -93,27 +133,56 @@ const LayerControl = () => {
                  onBlur={() => hideCollapsedLayerMenu(800)}
                  tabIndex={0}
             >
-                <button className="layer-group" aria-label="Toggle default base layer">
+                <button className="layer-group"
+                        aria-label="Toggle default base layer"
+                        title="Toggle the default base layer"
+                        onClick={(event) => toggleBaseLayer(0, event)}
+                >
                     <img className="layer-preview" src={osmPreview} alt="Layer icon"/>
                     <p>Default</p>
                 </button>
-                <button className="layer-group" aria-label="Toggle aerial base layer">
+
+                <button className="layer-group"
+                        aria-label="Toggle aerial base layer"
+                        title="Toggle the aerial view base layer"
+                        onClick={(event) => toggleBaseLayer(1, event)}
+                >
                     <img className="layer-preview" src={aerialPreview} alt="Layer icon"/>
                     <p>Aerial</p>
                 </button>
-                <button className="layer-group" aria-label="Toggle black and white base layer">
+
+                <button className="layer-group"
+                        aria-label="Toggle black and white base layer"
+                        title="Toggle the black and white base layer"
+                        onClick={(event) => toggleBaseLayer(2, event)}
+                >
                     <img className="layer-preview" src={blackWhitePreview} alt="Layer icon"/>
                     <p>Toner</p>
                 </button>
-                <button className="layer-group" aria-label="Toggle topographical base layer">
+
+                <button className="layer-group"
+                        aria-label="Toggle topographical base layer"
+                        title="Toggle the topographical base layer"
+                        onClick={(event) => toggleBaseLayer(3, event)}
+                >
                     <img className="layer-preview" src={topoPreview} alt="Layer icon"/>
                     <p>Topo</p>
                 </button>
-                <button className="layer-group" aria-label="Toggle terrain base layer">
+
+                <button className="layer-group"
+                        aria-label="Toggle terrain base layer"
+                        title="Toggle the terrain base layer"
+                        onClick={(event) => toggleBaseLayer(4, event)}
+                >
                     <img className="layer-preview" src={terrainPreview} alt="Layer icon"/>
                     <p>Terrain</p>
                 </button>
-                <button className="layer-group" onClick={() => showExpandedLayerMenu()} aria-label="View more layer options">
+
+                <button className="layer-group"
+                        onClick={() => showExpandedLayerMenu()}
+                        title="View more layer options"
+                        aria-label="View more layer options"
+                >
                     <img className="layer-preview"  src={moreLayers} alt="Layer icon"/>
                     <p>More</p>
                 </button>
@@ -130,19 +199,39 @@ const LayerControl = () => {
                     <p>Landcover</p>
 
                     <section className="landcover-layer-previews" aria-label="Landcover layer options" tabIndex={0}>
-                        <button className="layer-group" aria-label="Toggle slope landcover layer">
+                        <button className="layer-group"
+                                aria-label="Toggle slope landcover layer"
+                                title="Toggle the slope landcover layer"
+                                onClick={(event) => toggleLayer(5, event)}
+                        >
                             <img className="layer-preview" src={slopesPreview} alt="Layer icon"/>
                             <p>Slope</p>
                         </button>
-                        <button className="layer-group" aria-label="Toggle wildfires landcover layer">
+
+                        <button className="layer-group"
+                                aria-label="Toggle wildfires landcover layer"
+                                title="Toggle the wildfires landcover layer"
+                                onClick={(event) => toggleLayer(6, event)}
+                        >
                             <img className="layer-preview" src={firePreview} alt="Layer icon"/>
                             <p>Wildfires</p>
                         </button>
-                        <button className="layer-group" aria-label="Toggle soil landcover layer">
+
+                        <button
+                            className="layer-group"
+                            aria-label="Toggle soil landcover layer"
+                            title="Toggle the soil landcover layer"
+                            onClick={(event) => toggleLayer(7, event)}
+                        >
                             <img className="layer-preview" src={soilPreview} alt="Layer icon"/>
                             <p>Soil</p>
                         </button>
-                        <button className="layer-group" aria-label="Toggle tree density landcover layer">
+
+                        <button className="layer-group"
+                                aria-label="Toggle tree density landcover layer"
+                                title="Toggle the tree density landcover layer"
+                                onClick={(event) => toggleLayer(8, event)}
+                        >
                             <img className="layer-preview" src={treeDensityPreview} alt="Layer icon"/>
                             <p>Density</p>
                         </button>
@@ -153,23 +242,47 @@ const LayerControl = () => {
                     <p>Base</p>
 
                     <section className="base-layer-previews" aria-label="Base layer options" tabIndex={0}>
-                        <button className="layer-group" aria-label="Toggle default base layer">
+                        <button className="layer-group"
+                                aria-label="Toggle default base layer"
+                                title="Toggle the default base layer"
+                                onClick={(event) => toggleBaseLayer(0, event)}
+                        >
                             <img className="layer-preview" src={osmPreview} alt="Layer icon"/>
                             <p>Default</p>
                         </button>
-                        <button className="layer-group" aria-label="Toggle aerial base layer">
+
+                        <button className="layer-group"
+                                aria-label="Toggle aerial base layer"
+                                title="Toggle the aerial view base layer"
+                                onClick={(event) => toggleBaseLayer(1, event)}
+                        >
                             <img className="layer-preview" src={aerialPreview} alt="Layer icon"/>
                             <p>Aerial</p>
                         </button>
-                        <button className="layer-group" aria-label="Toggle black and white base layer">
+
+                        <button className="layer-group"
+                                aria-label="Toggle black and white base layer"
+                                title="Toggle the black and white base layer"
+                                onClick={(event) => toggleBaseLayer(2, event)}
+                        >
                             <img className="layer-preview" src={blackWhitePreview} alt="Layer icon"/>
                             <p>Toner</p>
                         </button>
-                        <button className="layer-group" aria-label="Toggle topographical base layer">
+
+                        <button className="layer-group"
+                                aria-label="Toggle topographical base layer"
+                                title="Toggle the topographical base layer"
+                                onClick={(event) => toggleBaseLayer(3, event)}
+                        >
                             <img className="layer-preview" src={topoPreview} alt="Layer icon"/>
                             <p>Topo</p>
                         </button>
-                        <button className="layer-group" aria-label="Toggle terrain base layer">
+
+                        <button className="layer-group"
+                                aria-label="Toggle terrain base layer"
+                                title="Toggle the terrain base layer"
+                                onClick={(event) => toggleBaseLayer(4, event)}
+                        >
                             <img className="layer-preview" src={terrainPreview} alt="Layer icon"/>
                             <p>Terrain</p>
                         </button>

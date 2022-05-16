@@ -56,6 +56,11 @@
     background-color: var(--color-black);
 }
 
+.layer-menu-collapsed:focus-visible
+{
+    outline: 0;
+}
+
 .layer-group
 {
     display: flex;
@@ -70,9 +75,9 @@
     color: var(--color-white);
     font-size: var(--font-small);
     outline: 0;
-
 }
 
+.layer-active > p,
 .layer-group:focus > p,
 .layer-group:hover > p
 {
@@ -80,6 +85,7 @@
     outline: 0;
 }
 
+.layer-active > .layer-preview,
 .layer-group:focus > .layer-preview,
 .layer-group:hover > .layer-preview
 {
