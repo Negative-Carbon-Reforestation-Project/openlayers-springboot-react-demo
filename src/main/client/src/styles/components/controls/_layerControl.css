@@ -1,3 +1,4 @@
+/*|| Layer Control*/
 .layer-icon
 {
     width: 20px;
@@ -35,6 +36,7 @@
     border: solid 4px var(--color-dark-grey-2);
 }
 
+/*|| Layer Menu Collapsed */
 .layer-menu-collapsed
 {
     z-index: 1;
@@ -100,6 +102,13 @@
     height: 50px;
 }
 
+.layer-control p,
+.layer-menu-collapsed p,
+.layer-menu-expanded p
+{
+    margin-bottom: 0px;
+}
+
 .layer-menu-expanded
 {
     z-index: 2;
@@ -112,7 +121,6 @@
     bottom: 22px;
     border-radius: 10px;
     width: 500px;
-    height: 400px;
 
     padding: 10px;
 
@@ -124,6 +132,7 @@
 .base-layer-previews
 {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -163,4 +172,19 @@
 .cesium-option-toggle:hover
 {
     cursor: pointer;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px)
+{
+    .layer-menu-expanded
+    {
+        max-width: 320px;
+        height: auto;
+    }
+
+    .landcover-layer-previews
+    {
+        flex-wrap: wrap;
+    }
 }
