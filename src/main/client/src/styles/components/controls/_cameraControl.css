@@ -47,3 +47,11 @@
 {
     font-size: var(--font-large);
 }
+
+
+
+/*| Camera Controls */
+.camera-controls
+{
+    display: none;
+}
