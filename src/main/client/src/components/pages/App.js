@@ -13,6 +13,7 @@ import SideMenu from "../base/SideMenu";
 import SearchBar from "../base/SearchBar";
 import QueryMenu from "../overlays/QueryMenu";
 import LayerControl from "../controls/LayerControl";
+import CameraControl from "../controls/CameraControl";
 
 /**
  * Component for the React applicaation
@@ -83,6 +84,7 @@ const App = () => {
                 <SideMenu>
                     {/*<Controls/>*/}
                     <LayerControl/>
+                    <CameraControl/>
                 </SideMenu>
             </Map>
         </div>

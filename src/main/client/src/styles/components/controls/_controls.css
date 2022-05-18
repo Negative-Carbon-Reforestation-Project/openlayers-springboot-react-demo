@@ -1,105 +1,105 @@
-.controls-bar
-{
-    background-color: black;
+/*.controls-bar*/
+/*{*/
+/*    background-color: black;*/
 
-    display: flex;
-    flex-direction: column;
-    
-    position: fixed;
-    top: 9rem;
-    left: 2.5rem;
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    */
+/*    position: fixed;*/
+/*    top: 9rem;*/
+/*    left: 2.5rem;*/
 
-    min-width: 2.1875rem;
+/*    min-width: 2.1875rem;*/
 
-    z-index: 1000;
+/*    z-index: 1000;*/
 
-    user-select: none;
-}
+/*    user-select: none;*/
+/*}*/
 
-.control
-{
-    font-size: 1.5rem;
-    font-weight: bold;
+/*.control*/
+/*{*/
+/*    font-size: 1.5rem;*/
+/*    font-weight: bold;*/
 
-    background-color: var(--color-black);
-    color: var(--color-white);
-    border: none;
+/*    background-color: var(--color-black);*/
+/*    color: var(--color-white);*/
+/*    border: none;*/
 
-    width: 2.18rem;
-    height: 2.18rem;
+/*    width: 2.18rem;*/
+/*    height: 2.18rem;*/
 
-    text-align: center;
-}
+/*    text-align: center;*/
+/*}*/
 
-.control:hover
-{
-    background-color: var(--color-dark-grey);
-    cursor: pointer;
-}
+/*.control:hover*/
+/*{*/
+/*    background-color: var(--color-dark-grey);*/
+/*    cursor: pointer;*/
+/*}*/
 
-.control-icon
-{
-    width: 20px;
-    height: 20px;
-}
+/*.control-icon*/
+/*{*/
+/*    width: 20px;*/
+/*    height: 20px;*/
+/*}*/
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px)
-{
-    .controls-bar
-    {
-        top: 7.5rem;
-        left: 1rem;
-    }
-}
+/*!* Extra small devices (phones, 600px and down) *!*/
+/*@media only screen and (max-width: 600px)*/
+/*{*/
+/*    .controls-bar*/
+/*    {*/
+/*        top: 7.5rem;*/
+/*        left: 1rem;*/
+/*    }*/
+/*}*/
 
-/* iphones 6/7/8 and Plus in landscape */
-@media only screen and (max-width: 800px) and (orientation: landscape)
-{
-    .controls-bar
-    {
-        top: 7rem;
-        left: 1rem;
-    }
-}
-
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px)
-{
-    .controls-bar
-    {
-        top: 10rem;
-    }
-}
-
-/*!* iphones X in landscape *!*/
-@media only screen and (max-width: 900px) and (orientation: landscape)
-{
-    .controls-bar
-    {
-        top: 7rem;
-        left: 1rem;
-    }
-}
+/*!* iphones 6/7/8 and Plus in landscape *!*/
+/*@media only screen and (max-width: 800px) and (orientation: landscape)*/
+/*{*/
+/*    .controls-bar*/
+/*    {*/
+/*        top: 7rem;*/
+/*        left: 1rem;*/
+/*    }*/
+/*}*/
 
 
-/*!* Large devices (laptops/desktops, 992px and up) *!*/
-@media only screen and (min-width: 992px)
-{
-    .controls-bar
-    {
-        top: 12rem;
-    }
-}
+/*!* Medium devices (landscape tablets, 768px and up) *!*/
+/*@media only screen and (min-width: 768px)*/
+/*{*/
+/*    .controls-bar*/
+/*    {*/
+/*        top: 10rem;*/
+/*    }*/
+/*}*/
+
+/*!*!* iphones X in landscape *!*!*/
+/*@media only screen and (max-width: 900px) and (orientation: landscape)*/
+/*{*/
+/*    .controls-bar*/
+/*    {*/
+/*        top: 7rem;*/
+/*        left: 1rem;*/
+/*    }*/
+/*}*/
 
 
-/*!* Extra large devices (large laptops and desktops, 1200px and up) *!*/
-@media only screen and (min-width: 1200px)
-{
-    .controls-bar
-    {
-        top: 9rem;
-        left: 2.5rem;
-    }
-}
+/*!*!* Large devices (laptops/desktops, 992px and up) *!*!*/
+/*@media only screen and (min-width: 992px)*/
+/*{*/
+/*    .controls-bar*/
+/*    {*/
+/*        top: 12rem;*/
+/*    }*/
+/*}*/
+
+
+/*!*!* Extra large devices (large laptops and desktops, 1200px and up) *!*!*/
+/*@media only screen and (min-width: 1200px)*/
+/*{*/
+/*    .controls-bar*/
+/*    {*/
+/*        top: 9rem;*/
+/*        left: 2.5rem;*/
+/*    }*/
+/*}*/
