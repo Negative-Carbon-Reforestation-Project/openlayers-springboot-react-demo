@@ -56,14 +56,81 @@
 /*| Camera Controls */
 .camera-controls
 {
-    display: none;
+    z-index: 1;
+
+    position: fixed;
+    bottom: 18px;
+    right: 40px;
+}
+
+.expand-camera-controls
+{
+    width: 70px;
+    height: 70px;
+}
+
+.expand-camera-controls > img
+{
+    width: 35px;
+    height: 35px;
+}
+
+.expand-camera-controls:hover > img
+{
+    filter: var(--filter-dark-green);
+}
+
+.zoom-in-camera
+{
+    width: 40px;
+    height: 40px;
+
+    position: fixed;
+    right: 120px;
+    bottom: 18px;
+
+    font-size: var(--font-small);
+    font-weight: bold;
+}
+
+.zoom-out-camera
+{
+    width: 40px;
+    height: 40px;
+
+    position: fixed;
+    right: 110px;
+    bottom: 60px;
+
+    font-size: var(--font-medium);
+    font-weight: bold;
+}
+
+.tilt-down-control
+{
+    width: 40px;
+    height: 40px;
+
+    position: fixed;
+    right: 70px;
+    bottom: 90px;
+}
+
+.tilt-up-control
+{
+    width: 40px;
+    height: 40px;
+
+    position: fixed;
+    right: 20px;
+    bottom: 90px;
 }
 
 .tilt-up-control > img,
 .tilt-down-control > img
 {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
 }
 
 .tilt-up-control:hover > img,

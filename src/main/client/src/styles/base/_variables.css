@@ -15,7 +15,7 @@
     --color-red: #cc5e5d;
     --color-blue: #5d97cc;
     --color-light-blue: #93b4d2;
-    --filter-dark-green: invert(38%) sepia(31%) saturate(1179%) hue-rotate(82deg) brightness(92%) contrast(95%);
+    --filter-dark-green: brightness(0) saturate(100%) invert(38%) sepia(31%) saturate(1179%) hue-rotate(82deg) brightness(92%) contrast(95%);
 
     --font-roboto: Roboto, sans-serif;
     --font-small: 1.25rem;

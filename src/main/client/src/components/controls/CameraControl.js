@@ -3,6 +3,7 @@ import {useState} from "react";
 import olcs from "olcs/core";
 import tiltDown from "../../resources/images/icons/tilt-up-arrow-512x512.svg";
 import tiltUp from "../../resources/images/icons/tilt-down-arrow-512x512.svg";
+import cameraIcon from "../../resources/images/icons/camera-control-512x512.svg";
 
 /**
  * Container for the Camera controls
@@ -62,52 +63,82 @@ const CameraControl = () => {
 
     return (
         <>
-            <div className="zoom-controls" tabIndex={0} aria-label="Zoom in and out controls">
-                <button className="zoom-in-control control"
-                        aria-label="Zoom in"
-                        title="Zoom in"
-                        onClick={() => zoom()}
-                        onMouseDown={() => setZoomInterval()}
-                        onMouseUp={() => clearInterval(zoomTimer)}
-                >
-                    +
-                </button>
+            {/*<div className="zoom-controls" tabIndex={0} aria-label="Zoom in and out controls">*/}
+            {/*    <button className="zoom-in-control control"*/}
+            {/*            aria-label="Zoom in"*/}
+            {/*            title="Zoom in"*/}
+            {/*            onClick={() => zoom()}*/}
+            {/*            onMouseDown={() => setZoomInterval()}*/}
+            {/*            onMouseUp={() => clearInterval(zoomTimer)}*/}
+            {/*    >*/}
+            {/*        +*/}
+            {/*    </button>*/}
 
-                {/*<button className="tilt-down-control control"*/}
-                {/*        aria-label="Tilt down"*/}
-                {/*        title="Tilt down"*/}
-                {/*        onClick={() => tilt()}*/}
-                {/*        onMouseDown={() => setTiltInterval()}*/}
-                {/*        onMouseUp={() => clearInterval(tiltTimer)}*/}
-                {/*>*/}
-                {/*    <img src={tiltDown} alt="Tilt down arrow"/>*/}
-                {/*</button>*/}
 
-                {/*<button className="tilt-up-control control"*/}
-                {/*        aria-label="Tilt up"*/}
-                {/*        title="Tilt up"*/}
-                {/*        onClick={() => tilt(-0.05)}*/}
-                {/*        onMouseDown={() => setTiltInterval(-0.05)}*/}
-                {/*        onMouseUp={() => clearInterval(tiltTimer)}*/}
-                {/*>*/}
-                {/*    <img src={tiltUp} alt="Tilt up arrow"/>*/}
-                {/*</button>*/}
 
-                <button className="zoom-out-control control"
-                        aria-label="Zoom out"
-                        title="Zoom out"
-                        onClick={() => zoom(-0.5)}
-                        onMouseDown={() => setZoomInterval(-0.5)}
-                        onMouseUp={() => clearInterval(zoomTimer)}
-                >
-                    -
-                </button>
-            </div>
+            {/*    <button className="zoom-out-control control"*/}
+            {/*            aria-label="Zoom out"*/}
+            {/*            title="Zoom out"*/}
+            {/*            onClick={() => zoom(-0.5)}*/}
+            {/*            onMouseDown={() => setZoomInterval(-0.5)}*/}
+            {/*            onMouseUp={() => clearInterval(zoomTimer)}*/}
+            {/*    >*/}
+            {/*        -*/}
+            {/*    </button>*/}
+            {/*</div>*/}
             
             <div className="camera-controls">
-                <button className="expand-camera-controls control" aria-label="More camera controls">
-                    <img src="" alt=""/>
+                <button className="expand-camera-controls control" aria-label="Toggle more camera controls">
+                    <img src={cameraIcon} alt="Camera icon"/>
                 </button>
+
+                <section className="expanded-camera-controls">
+                        <button className="zoom-in-camera control"
+                                aria-label="Zoom in"
+                                title="Zoom in"
+                                onClick={() => zoom()}
+                                onMouseDown={() => setZoomInterval()}
+                                onMouseUp={() => clearInterval(zoomTimer)}
+                        >
+                            +
+                        </button>
+
+                        <button className="zoom-out-camera control"
+                                aria-label="Zoom out"
+                                title="Zoom out"
+                                onClick={() => zoom(-0.5)}
+                                onMouseDown={() => setZoomInterval(-0.5)}
+                                onMouseUp={() => clearInterval(zoomTimer)}
+                        >
+                            -
+                        </button>
+
+                        <button className="tilt-down-control control"
+                                aria-label="Tilt down"
+                                title="Tilt down"
+                                onClick={() => tilt()}
+                                onMouseDown={() => setTiltInterval()}
+                                onMouseUp={() => clearInterval(tiltTimer)}
+                        >
+                            <img src={tiltDown} alt="Tilt down arrow"/>
+                        </button>
+
+                        <button className="tilt-up-control control"
+                                aria-label="Tilt up"
+                                title="Tilt up"
+                                onClick={() => tilt(-0.05)}
+                                onMouseDown={() => setTiltInterval(-0.05)}
+                                onMouseUp={() => clearInterval(tiltTimer)}
+                        >
+                            <img src={tiltUp} alt="Tilt up arrow"/>
+                        </button>
+                </section>
+
+
+
+
+
+
             </div>
         </>
     )
