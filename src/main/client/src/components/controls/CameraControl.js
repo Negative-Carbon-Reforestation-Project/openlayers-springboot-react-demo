@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import {useState} from "react";
+import {useRef, useState} from "react";
 import olcs from "olcs/core";
 import tiltDown from "../../resources/images/icons/tilt-up-arrow-512x512.svg";
 import tiltUp from "../../resources/images/icons/tilt-down-arrow-512x512.svg";
@@ -15,6 +15,9 @@ const CameraControl = () => {
 
     const [zoomTimer, setZoomTimer] = useState();
     const [tiltTimer, setTiltTimer] = useState();
+
+    const cameraControl = useRef();
+    const expandedCameraControls = useRef();
 
     /**
      * Zooms the map using the given modifier
@@ -61,6 +64,10 @@ const CameraControl = () => {
         }, timeout));
     }
 
+    const toggleCameraControls = () => {
+        expandedCameraControls.current.classList.toggle("active");
+    }
+
     return (
         <>
             {/*<div className="zoom-controls" tabIndex={0} aria-label="Zoom in and out controls">*/}
@@ -87,12 +94,15 @@ const CameraControl = () => {
             {/*    </button>*/}
             {/*</div>*/}
             
-            <div className="camera-controls">
-                <button className="expand-camera-controls control" aria-label="Toggle more camera controls">
+            <div ref={cameraControl} className="camera-controls">
+                <button className="expand-camera-controls control"
+                        aria-label="Toggle more camera controls"
+                        onClick={() => toggleCameraControls()}
+                >
                     <img src={cameraIcon} alt="Camera icon"/>
                 </button>
 
-                <section className="expanded-camera-controls">
+                <section ref={expandedCameraControls} className="expanded-camera-controls" aria-label="More camera controls for the map">
                         <button className="zoom-in-camera control"
                                 aria-label="Zoom in"
                                 title="Zoom in"
@@ -114,7 +124,7 @@ const CameraControl = () => {
                         </button>
 
                         <button className="tilt-down-control control"
-                                aria-label="Tilt down"
+                                aria-label="Tilt down on the map"
                                 title="Tilt down"
                                 onClick={() => tilt()}
                                 onMouseDown={() => setTiltInterval()}
@@ -124,7 +134,7 @@ const CameraControl = () => {
                         </button>
 
                         <button className="tilt-up-control control"
-                                aria-label="Tilt up"
+                                aria-label="Tilt up on the map"
                                 title="Tilt up"
                                 onClick={() => tilt(-0.05)}
                                 onMouseDown={() => setTiltInterval(-0.05)}

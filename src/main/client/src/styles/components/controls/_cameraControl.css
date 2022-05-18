@@ -63,6 +63,11 @@
     right: 40px;
 }
 
+.expanded-camera-controls
+{
+    display: none;
+}
+
 .expand-camera-controls
 {
     width: 70px;
@@ -84,13 +89,14 @@
 {
     width: 40px;
     height: 40px;
-
     position: fixed;
     right: 120px;
     bottom: 18px;
 
     font-size: var(--font-small);
     font-weight: bold;
+
+    animation: slideFromRight .3s .2s backwards;
 }
 
 .zoom-out-camera
@@ -104,6 +110,8 @@
 
     font-size: var(--font-medium);
     font-weight: bold;
+
+    animation: slideFromRight .3s .2s backwards;
 }
 
 .tilt-down-control
@@ -114,6 +122,8 @@
     position: fixed;
     right: 70px;
     bottom: 90px;
+
+    animation: slideFromBottom .3s .2s backwards;
 }
 
 .tilt-up-control
@@ -124,6 +134,8 @@
     position: fixed;
     right: 20px;
     bottom: 90px;
+
+    animation: slideFromBottom .3s .2s backwards;
 }
 
 .tilt-up-control > img,
