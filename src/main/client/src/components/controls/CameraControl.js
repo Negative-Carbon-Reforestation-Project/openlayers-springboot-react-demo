@@ -1,5 +1,8 @@
 import {useSelector} from "react-redux";
 import {useState} from "react";
+import olcs from "olcs/core";
+import tiltDown from "../../resources/images/icons/tilt-up-arrow-512x512.svg";
+import tiltUp from "../../resources/images/icons/tilt-down-arrow-512x512.svg";
 
 /**
  * Container for the Camera controls
@@ -7,7 +10,10 @@ import {useState} from "react";
  */
 const CameraControl = () => {
     const map = useSelector((state) => state.maps.value.map);
+    const cesiumMap = useSelector((state) => state.maps.value.cesiumMap);
+
     const [zoomTimer, setZoomTimer] = useState();
+    const [tiltTimer, setTiltTimer] = useState();
 
     /**
      * Zooms the map using the given modifier
@@ -32,10 +38,32 @@ const CameraControl = () => {
         }, timeout));
     }
 
+    const tilt = (angle=0.05) => {
+        let scene = cesiumMap.getCesiumScene();
+        let camera = scene.camera;
+        let pivot = olcs.pickBottomPoint(scene);
+
+        if (!pivot)
+        {
+            console.log("No pivot");
+            return;
+        }
+
+        const transform = window.Cesium.Matrix4.fromTranslation(pivot);
+        const axis = camera.right;
+        olcs.rotateAroundAxis(camera, -angle, axis, transform, {})
+    }
+
+    const setTiltInterval = (angle=0.05, timeout=300) => {
+        setTiltTimer(setInterval(() => {
+            tilt(angle);
+        }, timeout));
+    }
+
     return (
         <>
             <div className="zoom-controls" tabIndex={0} aria-label="Zoom in and out controls">
-                <button className="zoom-in-control"
+                <button className="zoom-in-control control"
                         aria-label="Zoom in"
                         title="Zoom in"
                         onClick={() => zoom()}
@@ -45,7 +73,27 @@ const CameraControl = () => {
                     +
                 </button>
 
-                <button className="zoom-out-control"
+                {/*<button className="tilt-down-control control"*/}
+                {/*        aria-label="Tilt down"*/}
+                {/*        title="Tilt down"*/}
+                {/*        onClick={() => tilt()}*/}
+                {/*        onMouseDown={() => setTiltInterval()}*/}
+                {/*        onMouseUp={() => clearInterval(tiltTimer)}*/}
+                {/*>*/}
+                {/*    <img src={tiltDown} alt="Tilt down arrow"/>*/}
+                {/*</button>*/}
+
+                {/*<button className="tilt-up-control control"*/}
+                {/*        aria-label="Tilt up"*/}
+                {/*        title="Tilt up"*/}
+                {/*        onClick={() => tilt(-0.05)}*/}
+                {/*        onMouseDown={() => setTiltInterval(-0.05)}*/}
+                {/*        onMouseUp={() => clearInterval(tiltTimer)}*/}
+                {/*>*/}
+                {/*    <img src={tiltUp} alt="Tilt up arrow"/>*/}
+                {/*</button>*/}
+
+                <button className="zoom-out-control control"
                         aria-label="Zoom out"
                         title="Zoom out"
                         onClick={() => zoom(-0.5)}
@@ -57,7 +105,7 @@ const CameraControl = () => {
             </div>
             
             <div className="camera-controls">
-                <button className="expand-camera-controls" aria-label="More camera controls">
+                <button className="expand-camera-controls control" aria-label="More camera controls">
                     <img src="" alt=""/>
                 </button>
             </div>

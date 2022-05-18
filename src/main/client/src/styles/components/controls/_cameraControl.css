@@ -10,8 +10,8 @@
     right: 30px;
 }
 
-.zoom-in-control,
-.zoom-out-control
+
+.control
 {
     background-color: var(--color-black);
     color: var(--color-white);
@@ -24,15 +24,18 @@
 }
 
 
-.zoom-in-control:focus-visible,
-.zoom-out-control:focus-visible
+.control:focus-visible
 {
     outline: solid 3px var(--color-dark-green);
     color: var(--color-dark-green);
 }
 
-.zoom-in-control:hover,
-.zoom-out-control:hover
+.control:focus-visible > img
+{
+    filter: invert(38%) sepia(31%) saturate(1179%) hue-rotate(82deg) brightness(92%) contrast(95%);
+}
+
+.control:hover
 {
     color: var(--color-dark-green);
 }
@@ -54,4 +57,17 @@
 .camera-controls
 {
     display: none;
+}
+
+.tilt-up-control > img,
+.tilt-down-control > img
+{
+    width: 25px;
+    height: 25px;
+}
+
+.tilt-up-control:hover > img,
+.tilt-down-control:hover > img
+{
+    filter: var(--filter-dark-green);
 }
