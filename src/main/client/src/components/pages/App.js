@@ -77,12 +77,12 @@ const App = () => {
                     <TileLayer source={totalOpportunity} zIndex={4}/>
                 </Layers>
                 <Overlays>
-                    {/*<Popup />*/}
-                    {/*<QueryMenu />*/}
+                    {/* <Popup /> */}
+                    <QueryMenu />
                 </Overlays>
                 <SideMenu>
                     {/*<Controls/>*/}
-                    {/*<LayerControl/>*/}
+                    {/* <LayerControl/> */}
                 </SideMenu>
             </Map>
         </div>

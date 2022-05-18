@@ -1,6 +1,6 @@
-import {useSelector} from "react-redux";
-import {toLonLat} from "ol/proj";
-import {useEffect, useState} from "react";
+import { useSelector } from "react-redux";
+import { toLonLat } from "ol/proj";
+import { useEffect, useState } from "react";
 
 /**
  * Container for query logic
@@ -10,7 +10,17 @@ const useQuery = () => {
     const map = useSelector((state) => state.maps.value.map);
 
     const [toggleQueryMenu, setToggleQueryMenu] = useState(false);
-    const [queryData, setQueryData] = useState({});
+    const [queryData, setQueryData] = useState({"species":
+    [
+      {
+        "wa_red_alder_stand_density": 0.03916090117942264,
+        "wa_douglas_fir_stand_density": 0.06239649651393181,
+        "wa_western_hemlock_stand_density": 0.08214589467583308
+      }
+    ],
+    "wa_total_reforestation_opportunity": 75
+  }
+  );
     const [queryState, setQueryState] = useState("fail");
 
     /**
@@ -25,29 +35,43 @@ const useQuery = () => {
         /**
          * Populates the OpenSearch query information when a single click is detected on the map.
          */
+        // debugger;
         map.on("singleclick", (event) => {
-
             const coordinate = event.coordinate;
             const longLatCoordsInfo = toLonLat(coordinate);
+            // debugger;
 
             setToggleQueryMenu(true);
 
             // fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`)
-            fetch(`https://${window.location.hostname}/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`)
+            fetch(
+                `https://${window.location.hostname}/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`
+            )
                 .then((response) => response.json())
                 .then((data) => {
+                    //debugger;
                     setQueryData(data);
                     setQueryState("success");
-                    }
-                )
+                })
                 .catch((error) => {
-                    setQueryData({});
-                    setQueryState("fail")
+                    //debugger;
+                    setQueryData({"species":
+                    [
+                      {
+                        "wa_red_alder_stand_density": 0.03916090117942264,
+                        "wa_douglas_fir_stand_density": 0.06239649651393181,
+                        "wa_western_hemlock_stand_density": 0.08214589467583308
+                      }
+                    ],
+                    "wa_total_reforestation_opportunity": 75
+                  }
+                  );
+                    setQueryState("fail");
                 });
         });
     }, [map]);
 
-    return { toggleQueryMenu, queryData, queryState};
-}
+    return { toggleQueryMenu, queryData, queryState };
+};
 
 export default useQuery;
