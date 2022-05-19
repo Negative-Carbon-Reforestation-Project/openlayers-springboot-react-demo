@@ -2,29 +2,16 @@ import React, {useEffect, useState} from 'react';
 
 import Map from "../map/Map";
 import Layers from "../layers/Layers";
-import TileLayer from "../layers/TileLayer";
 import Controls from "../controls/Controls";
 import { fromLonLat } from "ol/proj";
 import Overlays from "../overlays/Overlays";
-import Popup from "../overlays/Popup";
 import SearchBar from "../base/SearchBar";
 import QueryMenu from "../overlays/QueryMenu";
 import LayerControl from "../controls/LayerControl";
 import CameraControl from "../controls/CameraControl";
-
-import {
-    aerial,
-    osm,
-    slope,
-    soil,
-    terrain,
-    toner,
-    topographical,
-    totalOpportunity,
-    wildfires
-} from "../map/LayerSources";
 import Base from "../layers/Base";
 import LandCover from "../layers/LandCover";
+import Markers from "../layers/Markers";
 
 /**
  * Component for the React applicaation
@@ -51,9 +38,9 @@ const App = () => {
                 <Layers>
                     <Base/>
                     <LandCover/>
+                    <Markers/>
                 </Layers>
                 <Overlays>
-                    {/*<Popup />*/}
                     {/*<QueryMenu />*/}
                 </Overlays>
 
