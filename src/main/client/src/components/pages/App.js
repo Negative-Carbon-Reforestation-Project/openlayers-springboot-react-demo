@@ -33,7 +33,7 @@ const App = () => {
 
     return (
         <div className="map-container">
-            {/*<SearchBar />*/}
+            <SearchBar />
             <Map center={fromLonLat(center)} zoom={zoom}>
                 <Layers>
                     <Base/>

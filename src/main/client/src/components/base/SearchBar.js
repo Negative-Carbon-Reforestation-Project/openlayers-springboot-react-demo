@@ -9,7 +9,10 @@ const SearchBar = () => {
     return (
         <>
             <nav class="search-nav">
-                <img src={hamburgerIcon} alt="Open navigation menu icon"/>
+                <button className="menu-button" aria-label="Toggle navigation menu">
+                    <img className="menu-icon" src={hamburgerIcon} alt="Navigation menu icon"/>
+                </button>
+
                 <input class="search-bar"
                        autoFocus={true}
                        type="search"

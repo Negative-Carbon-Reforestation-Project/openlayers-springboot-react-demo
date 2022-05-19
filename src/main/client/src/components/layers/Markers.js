@@ -2,7 +2,6 @@ import {Feature} from "ol";
 import {Point} from "ol/geom";
 import {fromLonLat} from "ol/proj";
 import {Icon, Style} from "ol/style";
-import mapMarkerIcon from "../../resources/images/icons/map-marker-icon-128x128.png";
 import VectorSource from "ol/source/Vector";
 import VectorLayer from "./VectorLayer";
 
@@ -22,7 +21,7 @@ const Markers = () => {
             anchorXUnits: 'fraction',
             anchorYUnits: 'pixels',
             anchorOrigin: "bottom-left",
-            src: "https://i.imgur.com/A79PmHv.png"
+            src: "https://i.imgur.com/n1EJQDY.png",
         }),
     });
 
