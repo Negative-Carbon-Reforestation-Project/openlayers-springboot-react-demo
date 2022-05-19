@@ -4,7 +4,7 @@ import { ArcElement } from "chart.js";
 import Chart from "chart.js/auto";
 
 const Piechart = ({data}) => {
-    const getTreeType = (result) => {
+	const getTreeType = (result) => {
         switch (result) {
             case "wa_red_alder_stand_density":
                 return "Red Alder";
@@ -27,36 +27,46 @@ const Piechart = ({data}) => {
         }
     };
 
+	// TODO
+	// Add error handling and a display message for non-reforestable area when the list is emtpy
+
+	// getData returns an object with two arrays, names and densities
+	// which are parsed from the response json
     const getData = (list) => {
         let names = [];
         let densities = [];
-		console.log(list);
-		// debugger;
+		// console.log(list);
 		for (const [key, value] of Object.entries(list[0])) {
 			names.push(getTreeType(key));
 			densities.push(value);
 		}
-        // list[0].forEach((element) => {
-        //     names.push(getTreeType(element));
-        //     densities.push(list[element]);
-        // });
         return { names, densities };
     };
 
+	// getColors stores the color information for each tree type
+	// and returns an array of colors matching the response json
     const getColors = (list) => {
-        // ["blue", "green", "red", "orange", "darkblue", "fuschia", "lightblue", "yellow"]
-        // 8 colors for the 8 possible treetypes, probably will never encounter a query like that though
-        let colors = [
-            "#3b37bd",
-            "#298758",
-            "red",
-            "orange",
-            "#37187e",
-            "#c31c76",
-            "#8b8dc7",
-            "#eddd35",
-        ];
-        return colors.slice(0, Object.entries(list[0]).length + 1);
+        // Each tree type gets its own color!
+        let colors = new Map([
+            ["Red Alder", "#cc5e5d"], // --color-red
+            ["Douglas Fir", "#127f2c"], // --color-dark-green
+            ["Western Hemlock", "#db653d"], // --color-burnt-orange
+            ["Pacific Yew", "#b83130"], // --color-dark-red
+            ["Bigleaf Maple", "#5d97cc"], // --color-blue
+            ["Ponderosa Pine", "#93b4d2"], // --color-light-blue
+            ["Sitka Spruce", "#5fba77"], // --color-light-green
+            ["Western Red Cedar", "#ecb65a"], // -- color--yelow
+        ]);
+		
+		let colorArray = []
+		
+		// Iterate through the list of trees and return a list of each
+		// tree type's color
+		list.forEach(element => {
+			colorArray.push(colors.get(element));
+		});
+
+		return colorArray;
     };
 
     const treeData = getData(data);
@@ -64,50 +74,39 @@ const Piechart = ({data}) => {
     const labels = treeData.names,
         densities = treeData.densities;
 
-    const colors = getColors(data);
+    const colors = getColors(labels);
 
     const pieData = {
-        // labels: ["Sitka Spruce", "Pine", "Fir", "Maple", "Cedar"],
         labels: labels,
         datasets: [
             {
                 label: "Tree Species Data",
-                // data: [20, 25, 30, 40, 50],
                 data: densities,
                 backgroundColor: colors,
-                // [
-                //     "red",
-                //     "orange",
-                //     "#ffffff",
-                //     "#127f2c",
-                //     "blue",
-                // ],
             },
         ],
     };
 
-    const config = {
-        type: "pie",
-        data: pieData,
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: "top",
-                },
-                title: {
-                    display: true,
-                    text: "Tree Species",
-                    color: "white",
-                    align: "center",
-                },
-            },
-        },
-    };
+	const options = {
+		responsive: true,
+		plugins: {
+			legend: {
+				position: "top",
+				textcolor: "white",
+			},
+			title: {
+				display: false,
+				text: "Tree Species",
+				fontsize: 24,
+				color: "white",
+				align: "center",
+			},
+		}
+	};
 
     return (
         <>
-            <Pie data={pieData} config={config} />
+            <Pie data={pieData} options={options} redraw={true} />
         </>
     );
 };

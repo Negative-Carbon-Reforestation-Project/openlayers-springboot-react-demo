@@ -10,17 +10,18 @@ const useQuery = () => {
     const map = useSelector((state) => state.maps.value.map);
 
     const [toggleQueryMenu, setToggleQueryMenu] = useState(false);
-    const [queryData, setQueryData] = useState({"species":
-    [
-      {
-        "wa_red_alder_stand_density": 0.03916090117942264,
-        "wa_douglas_fir_stand_density": 0.06239649651393181,
-        "wa_western_hemlock_stand_density": 0.08214589467583308
-      }
-    ],
-    "wa_total_reforestation_opportunity": 75
-  }
-  );
+    // TODO
+    // FIX THIS TO MAKE IT WORK WITH LIVE DATA
+    const [queryData, setQueryData] = useState({
+        species: [
+            {
+                wa_red_alder_stand_density: 0.03916090117942264,
+                wa_douglas_fir_stand_density: 0.06239649651393181,
+                wa_western_hemlock_stand_density: 0.08214589467583308,
+            },
+        ],
+        wa_total_reforestation_opportunity: 75,
+    });
     const [queryState, setQueryState] = useState("fail");
 
     /**
@@ -50,22 +51,13 @@ const useQuery = () => {
                 .then((response) => response.json())
                 .then((data) => {
                     //debugger;
+                    // data["coordinates"]=longLatCoordsInfo;
                     setQueryData(data);
                     setQueryState("success");
                 })
                 .catch((error) => {
                     //debugger;
-                    setQueryData({"species":
-                    [
-                      {
-                        "wa_red_alder_stand_density": 0.03916090117942264,
-                        "wa_douglas_fir_stand_density": 0.06239649651393181,
-                        "wa_western_hemlock_stand_density": 0.08214589467583308
-                      }
-                    ],
-                    "wa_total_reforestation_opportunity": 75
-                  }
-                  );
+
                     setQueryState("fail");
                 });
         });

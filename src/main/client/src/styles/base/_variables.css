@@ -7,12 +7,15 @@
     --color-transparent-black: rgb(0,0,0,0.8);
     --color-white: white;
     --color-light-grey: #f3f3f3;
+    --color-light-green: #5fba77;
     --color-dark-green: #127f2c;
     --color-dark-grey: #404040;
     --color-dark-grey-2: #2c2c2c;
     --color-dark-pink: rgb(233, 74, 147);
     --color-yellow: #ecb65a;
     --color-red: #cc5e5d;
+    --color-dark-red: #b83130;
+    --color-burnt-orange: #db653d;
     --color-blue: #5d97cc;
     --color-light-blue: #93b4d2;
 
