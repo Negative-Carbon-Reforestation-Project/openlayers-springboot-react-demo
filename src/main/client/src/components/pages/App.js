@@ -9,7 +9,6 @@ import { OSM, BingMaps, Stamen, XYZ, TileWMS } from "ol/source";
 import { fromLonLat } from "ol/proj";
 import Overlays from "../overlays/Overlays";
 import Popup from "../overlays/Popup";
-import SideMenu from "../base/SideMenu";
 import SearchBar from "../base/SearchBar";
 import QueryMenu from "../overlays/QueryMenu";
 import LayerControl from "../controls/LayerControl";
@@ -81,11 +80,11 @@ const App = () => {
                     {/*<Popup />*/}
                     {/*<QueryMenu />*/}
                 </Overlays>
-                <SideMenu>
-                    {/*<Controls/>*/}
+
+                <Controls>
                     <LayerControl/>
                     <CameraControl/>
-                </SideMenu>
+                </Controls>
             </Map>
         </div>
     )
