@@ -16,6 +16,7 @@ const CameraControl = () => {
 
     const [zoomTimer, setZoomTimer] = useState();
     const [tiltTimer, setTiltTimer] = useState();
+    const [hideCameraControlsTimer, setHideCameraControlsTimer] = useState();
 
     const zoomControls = useRef();
     const cameraControl = useRef();
@@ -94,8 +95,20 @@ const CameraControl = () => {
         }
     }
 
-    const toggleExpandedCameraControls = () => {
-        expandedCameraControls.current.classList.toggle("active");
+    /**
+     * Shows the expanded camera controls
+     */
+    const showExpandedCameraControls = () => {
+        expandedCameraControls.current.classList.add("active");
+        expandedCameraControls.current.focus();
+    }
+
+    /**
+     * Hides the expanded camera controls after the given amount of time
+     * @param timeout The time it takes to hide the expanded camera controls. Default is 0 ms.
+     */
+    const hideExpandedCameraControls = (timeout) => {
+        setHideCameraControlsTimer(setTimeout(() => expandedCameraControls.current.classList.remove("active"), timeout));
     }
 
     /**
@@ -137,12 +150,28 @@ const CameraControl = () => {
             <div ref={cameraControl} className="camera-controls">
                 <button className="expand-camera-controls control"
                         aria-label="Toggle more camera controls"
-                        onClick={() => toggleExpandedCameraControls()}
+                        onClick={() => {
+                            clearTimeout(hideCameraControlsTimer);
+                            showExpandedCameraControls();
+                        }}
+                        onMouseOver={() => {
+                            clearTimeout(hideCameraControlsTimer);
+                            showExpandedCameraControls();
+                        }}
+                        onMouseEnter={() => clearTimeout(hideCameraControlsTimer)}
+                        onMouseOut={() => hideExpandedCameraControls(800)}
                 >
                     <img src={cameraIcon} alt="Camera icon"/>
                 </button>
 
-                <section ref={expandedCameraControls} className="expanded-camera-controls" aria-label="More camera controls for the map">
+                <section ref={expandedCameraControls}
+                         className="expanded-camera-controls"
+                         aria-label="More camera controls for the map"
+                         onMouseOver={() => clearTimeout(hideCameraControlsTimer)}
+                         onMouseOut={() => hideExpandedCameraControls(800)}
+                         onFocus={() => clearTimeout(hideCameraControlsTimer)}
+                         onBlur={() => hideExpandedCameraControls(800)}
+                >
                         <button className="zoom-in-camera camera-control"
                                 aria-label="Zoom in"
                                 title="Zoom in"
