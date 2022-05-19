@@ -44,3 +44,10 @@
     display: flex !important;
     flex-direction: column !important;
 }
+
+.cesium-credit-logoContainer,
+.cesium-credit-textContainer,
+.cesium-credit-expand-link
+{
+    display: none !important;
+}

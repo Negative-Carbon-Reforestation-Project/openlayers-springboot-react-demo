@@ -9,35 +9,44 @@
     right: 30px;
 }
 
-
+.camera-control,
 .control
 {
     background-color: var(--color-black);
     color: var(--color-white);
 
     font-weight: bold;
-
-    width: 50px;
-    height: 50px;
     border-radius: 50%;
 }
 
+.control
+{
+    width: 50px;
+    height: 50px;
+}
 
-.control:focus-visible
+.control:hover,
+.camera-control:hover
+{
+    color: var(--color-dark-green);
+}
+
+.control:focus-visible,
+.camera-control:focus-visible
 {
     outline: solid 3px var(--color-dark-green);
     color: var(--color-dark-green);
 }
 
-.control:focus-visible > img
+.control:hover > img,
+.camera-control:hover > img,
+.control:focus-visible > img,
+.camera-control:focus-visible > img
 {
-    filter: invert(38%) sepia(31%) saturate(1179%) hue-rotate(82deg) brightness(92%) contrast(95%);
+    filter: var(--filter-dark-green);
 }
 
-.control:hover
-{
-    color: var(--color-dark-green);
-}
+
 
 .zoom-in-control
 {
@@ -64,6 +73,12 @@
     right: 40px;
 }
 
+.camera-control
+{
+    width: 40px;
+    height: 40px;
+}
+
 .expanded-camera-controls
 {
     display: none;
@@ -81,15 +96,8 @@
     height: 35px;
 }
 
-.expand-camera-controls:hover > img
-{
-    filter: var(--filter-dark-green);
-}
-
 .zoom-in-camera
 {
-    width: 40px;
-    height: 40px;
     position: fixed;
     right: 120px;
     bottom: 18px;
@@ -102,9 +110,6 @@
 
 .zoom-out-camera
 {
-    width: 40px;
-    height: 40px;
-
     position: fixed;
     right: 110px;
     bottom: 60px;
@@ -117,9 +122,6 @@
 
 .tilt-down-control
 {
-    width: 40px;
-    height: 40px;
-
     position: fixed;
     right: 70px;
     bottom: 90px;
@@ -129,9 +131,6 @@
 
 .tilt-up-control
 {
-    width: 40px;
-    height: 40px;
-
     position: fixed;
     right: 20px;
     bottom: 90px;
@@ -144,10 +143,4 @@
 {
     width: 20px;
     height: 20px;
-}
-
-.tilt-up-control:hover > img,
-.tilt-down-control:hover > img
-{
-    filter: var(--filter-dark-green);
 }

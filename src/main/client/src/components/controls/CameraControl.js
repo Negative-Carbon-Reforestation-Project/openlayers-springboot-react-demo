@@ -44,6 +44,10 @@ const CameraControl = () => {
         }, timeout));
     }
 
+    /**
+     * Tilts the map using the given angle
+     * @param angle The angle to be tilted at. Negative angles tilt forward. The default is 0.05.
+     */
     const tilt = (angle=0.05) => {
         let scene = cesiumMap.getCesiumScene();
         let camera = scene.camera;
@@ -60,16 +64,22 @@ const CameraControl = () => {
         olcs.rotateAroundAxis(camera, -angle, axis, transform, {})
     }
 
+    /**
+     * Tilts the map using the given angle in intervals.
+     * @param angle The angle to be tilted at. Negative angles tilt forward. The default is 0.05.
+     * @param timeout The time between intervals.
+     * @remark Intervals are used to allow the user to hold down the tilt controls to tilt the map forward and backwards.
+     * The intervals are cleared when the mouse is released.
+     */
     const setTiltInterval = (angle=0.05, timeout=300) => {
         setTiltTimer(setInterval(() => {
             tilt(angle);
         }, timeout));
     }
 
-    const toggleZoomControls = () => {
-        zoomControls.current.classList.toggle("active-flex-column");
-    }
-
+    /**
+     * Toggles the visibility of the camera controls based on whether cesium is enabled.
+     */
     const toggleCameraControls = () => {
 
         if (cesiumEnabled)
@@ -88,10 +98,12 @@ const CameraControl = () => {
         expandedCameraControls.current.classList.toggle("active");
     }
 
+    /**
+     * Once the component is mounted onto the DOM, toggle the correct amount of camera controls
+     * based on whether cesium is enabled.
+     */
     useEffect(() => {
-
         toggleCameraControls();
-
     }, [cesiumEnabled])
 
     return (
@@ -110,8 +122,6 @@ const CameraControl = () => {
                 >
                     +
                 </button>
-
-
 
                 <button className="zoom-out-control control"
                         aria-label="Zoom out"
@@ -133,7 +143,7 @@ const CameraControl = () => {
                 </button>
 
                 <section ref={expandedCameraControls} className="expanded-camera-controls" aria-label="More camera controls for the map">
-                        <button className="zoom-in-camera control"
+                        <button className="zoom-in-camera camera-control"
                                 aria-label="Zoom in"
                                 title="Zoom in"
                                 onClick={() => zoom()}
@@ -143,7 +153,7 @@ const CameraControl = () => {
                             +
                         </button>
 
-                        <button className="zoom-out-camera control"
+                        <button className="zoom-out-camera camera-control"
                                 aria-label="Zoom out"
                                 title="Zoom out"
                                 onClick={() => zoom(-0.5)}
@@ -153,9 +163,9 @@ const CameraControl = () => {
                             -
                         </button>
 
-                        <button className="tilt-down-control control"
-                                aria-label="Tilt down on the map"
-                                title="Tilt down"
+                        <button className="tilt-down-control camera-control"
+                                aria-label="Tilt the map backwards"
+                                title="Tilt backwards"
                                 onClick={() => tilt()}
                                 onMouseDown={() => setTiltInterval()}
                                 onMouseUp={() => clearInterval(tiltTimer)}
@@ -163,9 +173,9 @@ const CameraControl = () => {
                             <img src={tiltDown} alt="Tilt down arrow"/>
                         </button>
 
-                        <button className="tilt-up-control control"
-                                aria-label="Tilt up on the map"
-                                title="Tilt up"
+                        <button className="tilt-up-control camera-control"
+                                aria-label="Tilt the map forward"
+                                title="Tilt forward"
                                 onClick={() => tilt(-0.05)}
                                 onMouseDown={() => setTiltInterval(-0.05)}
                                 onMouseUp={() => clearInterval(tiltTimer)}
