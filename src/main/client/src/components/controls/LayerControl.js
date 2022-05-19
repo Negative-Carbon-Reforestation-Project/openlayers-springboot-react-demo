@@ -11,7 +11,8 @@ import slopesPreview from "../../resources/images/icons/slopes-preview.png";
 import firePreview from "../../resources/images/icons/fire-preview.png";
 import soilPreview from "../../resources/images/icons/soil-preview.png";
 import treeDensityPreview from "../../resources/images/icons/tree-density-preview.png";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {toggleCesiumEnabled} from "../../redux/reducers/mapReducer";
 
 /**
  * Container for the Layer switch control
@@ -22,6 +23,7 @@ const LayerControl = () => {
 
     const map = useSelector((state) => state.maps.value.map);
     const cesiumMap = useSelector((state) => state.maps.value.cesiumMap);
+    const dispatch = useDispatch();
 
     const layerMenuCollapsedRef = useRef();
     const layerMenuExpandedRef = useRef();
@@ -107,7 +109,8 @@ const LayerControl = () => {
     }
 
     const toggleCesiumView = (event) => {
-        cesiumMap.setEnabled(event.target.checked);
+        // cesiumMap.setEnabled(event.target.checked);
+        dispatch(toggleCesiumEnabled());
     }
 
     return (

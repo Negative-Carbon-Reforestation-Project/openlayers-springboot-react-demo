@@ -53,12 +53,16 @@ const addCesiumMapAction = (state, action) => {
 }
 
 /**
- * Toggles the ability to query the map
+ * Toggles cesium on/off
  * @param state The current state of the reducer
  * @param action The object containing information about the new state
  */
-const setQueryableAction = (state, action) => {
-    state.value.isQueryable = action.payload.isQueryable;
+const toggleCesiumEnabledAction = (state) => {
+    let cesiumMap = state.value.cesiumMap;
+    let cesiumEnabled = cesiumMap.getEnabled();
+
+    state.value.cesiumMap.setEnabled(!cesiumEnabled);
+    state.value.cesiumEnabled = !cesiumEnabled;
 }
 
 /**
@@ -67,7 +71,7 @@ const setQueryableAction = (state, action) => {
 const mapsSlice = createSlice({
     name: "maps",
     initialState: {
-        value: {map: undefined, isQueryable: false, cesiumMap: undefined}
+        value: {map: undefined, cesiumEnabled: false, cesiumMap: undefined}
     },
     reducers: {
         addMap: (state, action) => addMapAction(state, action),
@@ -75,7 +79,7 @@ const mapsSlice = createSlice({
         toggleLayerVisibility: (state, action) => toggleLayerVisibilityAction(state, action),
         removeMapLayer: (state, action) => removeMapLayerAction(state, action),
         addCesiumMap: (state, action) => addCesiumMapAction(state, action),
-        setQueryable: (state, action) => setQueryableAction(state, action)
+        toggleCesiumEnabled: (state) => toggleCesiumEnabledAction(state),
     }
 });
 
@@ -85,7 +89,7 @@ export const {
     toggleLayerVisibility,
     removeMapLayer,
     addCesiumMap,
-    setQueryable
+    toggleCesiumEnabled
 } = mapsSlice.actions;
 
 export default mapsSlice.reducer;

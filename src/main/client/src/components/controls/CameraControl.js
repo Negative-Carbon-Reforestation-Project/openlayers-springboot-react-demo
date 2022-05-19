@@ -1,8 +1,8 @@
 import {useSelector} from "react-redux";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import olcs from "olcs/core";
-import tiltDown from "../../resources/images/icons/tilt-up-arrow-512x512.svg";
-import tiltUp from "../../resources/images/icons/tilt-down-arrow-512x512.svg";
+import tiltDown from "../../resources/images/icons/distorted-tilt-down-arrow-512x512.svg";
+import tiltUp from "../../resources/images/icons/distorted-tilt-up-arrow-512x512.svg";
 import cameraIcon from "../../resources/images/icons/camera-control-512x512.svg";
 
 /**
@@ -12,10 +12,12 @@ import cameraIcon from "../../resources/images/icons/camera-control-512x512.svg"
 const CameraControl = () => {
     const map = useSelector((state) => state.maps.value.map);
     const cesiumMap = useSelector((state) => state.maps.value.cesiumMap);
+    const cesiumEnabled = useSelector((state) => state.maps.value.cesiumEnabled);
 
     const [zoomTimer, setZoomTimer] = useState();
     const [tiltTimer, setTiltTimer] = useState();
 
+    const zoomControls = useRef();
     const cameraControl = useRef();
     const expandedCameraControls = useRef();
 
@@ -64,40 +66,68 @@ const CameraControl = () => {
         }, timeout));
     }
 
+    const toggleZoomControls = () => {
+        zoomControls.current.classList.toggle("active-flex-column");
+    }
+
     const toggleCameraControls = () => {
+
+        if (cesiumEnabled)
+        {
+            zoomControls.current.classList.remove("active-flex-column");
+            cameraControl.current.classList.add("active");
+        }
+        else
+        {
+            zoomControls.current.classList.add("active-flex-column");
+            cameraControl.current.classList.remove("active");
+        }
+    }
+
+    const toggleExpandedCameraControls = () => {
         expandedCameraControls.current.classList.toggle("active");
     }
 
+    useEffect(() => {
+
+        toggleCameraControls();
+
+    }, [cesiumEnabled])
+
     return (
         <>
-            {/*<div className="zoom-controls" tabIndex={0} aria-label="Zoom in and out controls">*/}
-            {/*    <button className="zoom-in-control control"*/}
-            {/*            aria-label="Zoom in"*/}
-            {/*            title="Zoom in"*/}
-            {/*            onClick={() => zoom()}*/}
-            {/*            onMouseDown={() => setZoomInterval()}*/}
-            {/*            onMouseUp={() => clearInterval(zoomTimer)}*/}
-            {/*    >*/}
-            {/*        +*/}
-            {/*    </button>*/}
+            <div ref={zoomControls}
+                 className="zoom-controls active-flex-column"
+                 tabIndex={0}
+                 aria-label="Zoom in and out controls"
+            >
+                <button className="zoom-in-control control"
+                        aria-label="Zoom in"
+                        title="Zoom in"
+                        onClick={() => zoom()}
+                        onMouseDown={() => setZoomInterval()}
+                        onMouseUp={() => clearInterval(zoomTimer)}
+                >
+                    +
+                </button>
 
 
 
-            {/*    <button className="zoom-out-control control"*/}
-            {/*            aria-label="Zoom out"*/}
-            {/*            title="Zoom out"*/}
-            {/*            onClick={() => zoom(-0.5)}*/}
-            {/*            onMouseDown={() => setZoomInterval(-0.5)}*/}
-            {/*            onMouseUp={() => clearInterval(zoomTimer)}*/}
-            {/*    >*/}
-            {/*        -*/}
-            {/*    </button>*/}
-            {/*</div>*/}
+                <button className="zoom-out-control control"
+                        aria-label="Zoom out"
+                        title="Zoom out"
+                        onClick={() => zoom(-0.5)}
+                        onMouseDown={() => setZoomInterval(-0.5)}
+                        onMouseUp={() => clearInterval(zoomTimer)}
+                >
+                    -
+                </button>
+            </div>
             
             <div ref={cameraControl} className="camera-controls">
                 <button className="expand-camera-controls control"
                         aria-label="Toggle more camera controls"
-                        onClick={() => toggleCameraControls()}
+                        onClick={() => toggleExpandedCameraControls()}
                 >
                     <img src={cameraIcon} alt="Camera icon"/>
                 </button>
