@@ -99,8 +99,8 @@
 .zoom-in-camera
 {
     position: fixed;
-    right: 120px;
-    bottom: 18px;
+    right: 110px;
+    bottom: 60px;
 
     font-size: var(--font-small);
     font-weight: bold;
@@ -111,8 +111,8 @@
 .zoom-out-camera
 {
     position: fixed;
-    right: 110px;
-    bottom: 60px;
+    right: 120px;
+    bottom: 18px;
 
     font-size: var(--font-medium);
     font-weight: bold;
