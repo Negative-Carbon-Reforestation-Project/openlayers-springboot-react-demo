@@ -2,7 +2,7 @@ import {BingMaps, OSM, Stamen, TileWMS, XYZ} from "ol/source";
 
 const osm = new OSM();
 
-const aerial = new BingMaps({key: "AjfTsiozBjJlt3OV1PIbHuGRaaUEtnvKXwc1qEpyAFLi_LLImirWTbks68MZ87Ve", imagerySet: "AerialWithLabelsOnDemand"});
+const aerial = new BingMaps({key: process.env.REACT_APP_BINGTOKEN, imagerySet: "AerialWithLabelsOnDemand"});
 
 const toner = new Stamen({layer: "toner"});
 
