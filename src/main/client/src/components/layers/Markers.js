@@ -12,6 +12,24 @@ import VectorLayer from "./VectorLayer";
  * appending it to the vector layer.
  *
  * When defining an image for the icon style, our map marker on our directory didn't work so it had to be uploaded to a cdn.
+ *
+ * The features are reforestation areas that have opportunities >= 75%.
+ * The OpenSearch query Matt used to find the feature coordinates was:
+ *
+ * GET /wa_total_reforestation_opportunity/_search
+ * {
+ *   "query": {
+ *   "bool": {
+ *      "must": [
+ *          {
+ *              "range": {
+ *                  "wa_total_reforestation_opportunity": {"gte": 0.75 }
+ *              }
+ *          }
+ *       ]
+ *     }
+ *   }
+ * }
  */
 const Markers = () => {
 
@@ -27,15 +45,43 @@ const Markers = () => {
 
     const features = [
         new Feature({
-            geometry: new Point(fromLonLat([-122.29567670312974, 47.41311574557329]))
+            geometry: new Point(fromLonLat([-117.6518, 46.4222]))
         }),
 
         new Feature({
-            geometry: new Point(fromLonLat([-125, 49]))
+            geometry: new Point(fromLonLat([-122.2705, 45.5902]))
         }),
 
         new Feature({
-            geometry: new Point(fromLonLat([-119, 45]))
+            geometry: new Point(fromLonLat([-122.1151, 45.621]))
+        }),
+
+        new Feature({
+            geometry: new Point(fromLonLat([-122.0996, 45.6241]))
+        }),
+
+        new Feature({
+            geometry: new Point(fromLonLat([-121.9807, 45.6475]))
+        }),
+
+        new Feature({
+            geometry: new Point(fromLonLat([-121.565, 45.7286]))
+        }),
+
+        new Feature({
+            geometry: new Point(fromLonLat([-121.5283, 45.7357]))
+        }),
+
+        new Feature({
+            geometry: new Point(fromLonLat([-121.5279, 45.7358]))
+        }),
+
+        new Feature({
+            geometry: new Point(fromLonLat([-121.5205, 45.7372]))
+        }),
+
+        new Feature({
+            geometry: new Point(fromLonLat([-121.5193, 45.7375]))
         })
     ]
 
