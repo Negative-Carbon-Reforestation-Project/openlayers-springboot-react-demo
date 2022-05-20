@@ -1,4 +1,5 @@
-const {createSlice} = require("@reduxjs/toolkit");
+import {View} from "ol";
+import {createSlice} from "@reduxjs/toolkit";
 
 /**
  * Initializes the openlayers map
@@ -19,19 +20,47 @@ const addMapLayerAction = (state, action) => {
 }
 
 /**
+ * Sets the map view
+ * @param state The current state of the reducer
+ * @param action The object containing information about the new state
+ */
+const setMapViewAction = (state, action) => {
+    state.value.map.setView(new View({
+        center: action.payload.center,
+        zoom: action.payload.zoom ?? 6
+    }));
+}
+
+/**
  * Toggles a layer's visibility on the map
  * @param state The current state of the reducer
  * @param action The object containing information about the new state
- * @remark If a visibility is carried in the payload, use it otherwise toggle it.
  */
 const toggleLayerVisibilityAction = (state, action) => {
     let layerIndex = Number(action.payload.layerIndex);
     let layers = state.value.map.getLayers();
 
-    let isVisible = action.payload.visibility ??
-                    layers.item(layerIndex).getVisible();
+    let isVisible = layers.item(layerIndex).getVisible();
 
     layers.item(layerIndex).setVisible(!isVisible);
+}
+
+/**
+ * Toggles a base layer's visibility on the map
+ * @param state The current state of the reducer
+ * @param action The object containing information about the new state
+ * @remark If other base layers are visibile, they will be toggled off.
+ */
+const toggleBaseLayerVisibilityAction = (state, action) => {
+    let layerIndex = Number(action.payload.layerIndex);
+    let layers = state.value.map.getLayers();
+
+    for (let i = 0; i <= 4; i++)
+    {
+        layers.item(i).setVisible(false);
+    }
+
+    layers.item(layerIndex).setVisible(true);
 }
 
 /**
@@ -76,7 +105,9 @@ const mapsSlice = createSlice({
     reducers: {
         addMap: (state, action) => addMapAction(state, action),
         addMapLayer: (state, action) => addMapLayerAction(state, action),
+        setMapView: (state, action) => setMapViewAction(state, action),
         toggleLayerVisibility: (state, action) => toggleLayerVisibilityAction(state, action),
+        toggleBaseLayerVisibility: (state, action) => toggleBaseLayerVisibilityAction(state, action),
         removeMapLayer: (state, action) => removeMapLayerAction(state, action),
         addCesiumMap: (state, action) => addCesiumMapAction(state, action),
         toggleCesiumEnabled: (state) => toggleCesiumEnabledAction(state),
@@ -86,7 +117,9 @@ const mapsSlice = createSlice({
 export const {
     addMap,
     addMapLayer,
+    setMapView,
     toggleLayerVisibility,
+    toggleBaseLayerVisibility,
     removeMapLayer,
     addCesiumMap,
     toggleCesiumEnabled

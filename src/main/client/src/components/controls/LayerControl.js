@@ -11,8 +11,8 @@ import slopesPreview from "../../resources/images/icons/slopes-preview.png";
 import firePreview from "../../resources/images/icons/fire-preview.png";
 import soilPreview from "../../resources/images/icons/soil-preview.png";
 import treeDensityPreview from "../../resources/images/icons/tree-density-preview.png";
-import {useDispatch, useSelector} from "react-redux";
-import {toggleCesiumEnabled} from "../../redux/reducers/mapReducer";
+import {useDispatch} from "react-redux";
+import {toggleBaseLayerVisibility, toggleCesiumEnabled, toggleLayerVisibility} from "../../redux/reducers/mapReducer";
 
 /**
  * Container for the Layer switch control
@@ -20,9 +20,6 @@ import {toggleCesiumEnabled} from "../../redux/reducers/mapReducer";
  * @constructor
  */
 const LayerControl = () => {
-
-    const map = useSelector((state) => state.maps.value.map);
-    const cesiumMap = useSelector((state) => state.maps.value.cesiumMap);
     const dispatch = useDispatch();
 
     const layerMenuCollapsedRef = useRef();
@@ -37,7 +34,7 @@ const LayerControl = () => {
      * @remark Sets focus to it when shown and if on a smaller viewport, shows the expanded menu instead.
      */
     const showCollapsedLayerMenu = () => {
-        // debugger;
+
         if(window.matchMedia("(max-width: 600px)").matches)
         {
             showExpandedLayerMenu();
@@ -83,12 +80,7 @@ const LayerControl = () => {
      * @param event The click event
      */
     const toggleLayer = (layerNumber, event) => {
-        let layerIndex = Number(layerNumber);
-        let layers = map.getLayers();
-
-        let isVisible = layers.item(layerIndex).getVisible();
-        layers.item(layerIndex).setVisible(!isVisible);
-
+       dispatch(toggleLayerVisibility({layerIndex: layerNumber}));
     }
 
     /**
@@ -97,19 +89,13 @@ const LayerControl = () => {
      * @param event The click event
      */
     const toggleBaseLayer = (layerNumber, event) => {
-        let layerIndex = Number(layerNumber);
-        let layers = map.getLayers();
-
-        for (let i = 0; i <= 4; i++)
-        {
-            layers.item(i).setVisible(false);
-        }
-
-        layers.item(layerIndex).setVisible(true);
+        dispatch(toggleBaseLayerVisibility({layerIndex: layerNumber}));
     }
 
-    const toggleCesiumView = (event) => {
-        // cesiumMap.setEnabled(event.target.checked);
+    /**
+     * Toggles 3D mode
+     */
+    const toggleCesiumView = () => {
         dispatch(toggleCesiumEnabled());
     }
 
@@ -298,7 +284,7 @@ const LayerControl = () => {
                 </section>
 
                 <section className="cesium-option">
-                    <input className="cesium-option-toggle" type="checkbox" id="Toggle 3D View" onClick={(event) => toggleCesiumView(event)}/>
+                    <input className="cesium-option-toggle" type="checkbox" id="Toggle 3D View" onClick={() => toggleCesiumView()}/>
                     <label htmlFor="Toggle 3D View">Toggle 3D View</label>
                 </section>
             </div>

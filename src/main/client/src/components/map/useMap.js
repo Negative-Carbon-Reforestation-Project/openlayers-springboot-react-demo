@@ -1,10 +1,9 @@
 import { useRef, useEffect } from "react";
-import * as ol from "ol";
+import {View, Map} from "ol";
 import OLCesium from "olcs/OLCesium";
 import {createWorldTerrain} from "cesium";
 import {useDispatch, useSelector} from "react-redux";
 import {addCesiumMap, addMap} from "../../redux/reducers/mapReducer";
-import {transformExtent} from "ol/proj";
 
 /**
  * Encapsulated logic for the OL Map
@@ -25,7 +24,7 @@ const useMap = (zoom, center) => {
      */
     useEffect(() => {
         let options = {
-            view: new ol.View({
+            view: new View({
                 zoom,
                 center
             }),
@@ -34,7 +33,7 @@ const useMap = (zoom, center) => {
             overlays: []
         };
 
-        let mapObject = new ol.Map(options);
+        let mapObject = new Map(options);
 
         mapObject.setTarget(mapRef.current);
         dispatch(addMap({map: mapObject}));

@@ -1,8 +1,8 @@
 import hamburgerIcon from "../../resources/images/icons/hamburger-menu-50x50.webp";
 import {useRef, useState} from "react";
-import {useSelector} from "react-redux";
-import * as ol from "ol";
+import {useDispatch} from "react-redux";
 import {fromLonLat} from "ol/proj";
+import {setMapView} from "../../redux/reducers/mapReducer";
 
 /**
  * Container for the Search Bar
@@ -14,8 +14,8 @@ const SearchBar = () => {
     const [searchResults, setSearchResults] = useState([]);
     const searchInputRef = useRef();
     const searchResultsRef = useRef();
+    const dispatch = useDispatch();
 
-    const map = useSelector((state) => state.maps.value.map);
 
     /**
      * Geocodes an address
@@ -31,11 +31,7 @@ const SearchBar = () => {
                 let location = data.candidates[0].location;
                 let coordinates = fromLonLat([location.x, location.y]);
 
-                map.setView(new ol.View({
-                    center: coordinates,
-                    zoom: 12
-                }));
-
+                dispatch(setMapView({center: coordinates, zoom: 12}));
             })
             .catch(error => console.log(error));
     }
