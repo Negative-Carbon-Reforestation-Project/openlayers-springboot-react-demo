@@ -1,5 +1,8 @@
 import hamburgerIcon from "../../resources/images/icons/hamburger-menu-50x50.webp";
 import {useRef, useState} from "react";
+import {useSelector} from "react-redux";
+import * as ol from "ol";
+import {fromLonLat} from "ol/proj";
 
 /**
  * Container for the Search Bar
@@ -12,6 +15,8 @@ const SearchBar = () => {
     const searchInputRef = useRef();
     const searchResultsRef = useRef();
 
+    const map = useSelector((state) => state.maps.value.map);
+
     /**
      * Geocodes an address
      * @param address The address to be geocoded
@@ -20,10 +25,19 @@ const SearchBar = () => {
     const geocodeAddress = (address) => {
         console.log(address);
         //
-        // fetch(`https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?address=${address}&maxLocations=1&f=json&token=${process.env.REACT_APP_ARCTOKEN}`)
-        //     .then(response => response.json())
-        //     .then(data => console.log(data))
-        //     .catch(error => console.log(error));
+        fetch(`https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?address=${address}&maxLocations=1&f=json&token=${process.env.REACT_APP_ARCTOKEN}`)
+            .then(response => response.json())
+            .then(data => {
+                let location = data.candidates[0].location;
+                let coordinates = fromLonLat([location.x, location.y]);
+
+                map.setView(new ol.View({
+                    center: coordinates,
+                    zoom: 12
+                }));
+
+            })
+            .catch(error => console.log(error));
     }
 
     /**
