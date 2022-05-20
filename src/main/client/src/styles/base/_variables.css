@@ -6,6 +6,7 @@
     --color-black: black;
     --color-transparent-black: rgb(0,0,0,0.8);
     --color-white: white;
+    --color-transparent-white: rgba(255, 255, 255, 0.5);
     --color-light-grey: #f3f3f3;
     --color-dark-green: #127f2c;
     --color-dark-grey: #404040;
