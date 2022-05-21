@@ -40,14 +40,15 @@ const App = () => {
                     <LandCover/>
                     <Markers/>
                 </Layers>
-                <Overlays>
-                    {/*<QueryMenu />*/}
-                </Overlays>
 
                 <Controls>
                     <LayerControl/>
                     <CameraControl/>
                 </Controls>
+
+                <Overlays>
+                    <QueryMenu />
+                </Overlays>
             </Map>
         </div>
     )
