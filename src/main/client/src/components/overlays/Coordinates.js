@@ -3,12 +3,13 @@ import {toStringHDMS} from "ol/coordinate";
 import {toLonLat} from "ol/proj";
 import pinIcon from "../../resources/images/icons/icons8-location-48.png"
 
-const Coordinates = (Coordinates) => {
-	const longLatInfo = toStringHDMS(Coordinates);
+const Coordinates = ({coordinates}) => {
+	const longLatInfo = toStringHDMS(coordinates);
     const longLatDisplay = `${String.fromCodePoint("0x1F4CD")} ${longLatInfo}`;
 
-	console.log(Coordinates);
-	console.log(longLatInfo);
+	// console.log(coordinates);
+	// console.log(longLatDisplay);
+	// console.log(longLatInfo);
 
 	return (
 		<section>

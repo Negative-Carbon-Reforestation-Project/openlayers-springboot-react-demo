@@ -50,7 +50,7 @@ const Piechart = ({data}) => {
         let colors = new Map([
             ["Red Alder", "#cc5e5d"], // --color-red
             ["Douglas Fir", "#127f2c"], // --color-dark-green
-            ["Western Hemlock", "#db653d"], // --color-burnt-orange
+            ["Western Hemlock", "#4567a3"], // --color-dark-blue
             ["Pacific Yew", "#b83130"], // --color-dark-red
             ["Bigleaf Maple", "#5d97cc"], // --color-blue
             ["Ponderosa Pine", "#93b4d2"], // --color-light-blue
@@ -90,16 +90,9 @@ const Piechart = ({data}) => {
 	const options = {
 		responsive: true,
 		plugins: {
-			legend: {
+			legends: {
 				position: "top",
-				textcolor: "white",
-			},
-			title: {
-				display: false,
-				text: "Tree Species",
-				fontsize: 24,
-				color: "white",
-				align: "center",
+				color: "#ffffff",
 			},
 		}
 	};

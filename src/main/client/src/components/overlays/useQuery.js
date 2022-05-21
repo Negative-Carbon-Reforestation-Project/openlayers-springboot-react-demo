@@ -12,7 +12,9 @@ const useQuery = () => {
     const [toggleQueryMenu, setToggleQueryMenu] = useState(false);
     // TODO
     // FIX THIS TO MAKE IT WORK WITH LIVE DATA
-    const [queryData, setQueryData] = useState({
+    const [queryData, setQueryData] = useState(
+        {
+        coordinates: [-121.09816693750474, 46.97265094694316],
         species: [
             {
                 wa_red_alder_stand_density: 0.03916090117942264,
@@ -21,7 +23,9 @@ const useQuery = () => {
             },
         ],
         wa_total_reforestation_opportunity: 75,
-    });
+    }
+    );
+
     const [queryState, setQueryState] = useState("fail");
 
     /**
@@ -45,19 +49,24 @@ const useQuery = () => {
             setToggleQueryMenu(true);
 
             // fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`)
+            // TODO 
+            // HARDCODED ncrp.app FOR TESTING 
             fetch(
-                `https://${window.location.hostname}/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`
+                // `https://${window.location.hostname}/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`
+                `https://ncrp.app/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`
             )
                 .then((response) => response.json())
                 .then((data) => {
-                    //debugger;
-                    // data["coordinates"]=longLatCoordsInfo;
+                    console.log(data);
+                    data["coordinates"]=longLatCoordsInfo;
                     setQueryData(data);
                     setQueryState("success");
                 })
                 .catch((error) => {
                     //debugger;
-
+                    console.log(longLatCoordsInfo);
+                    queryData["coordinates"]=longLatCoordsInfo;
+                    console.log(queryData);
                     setQueryState("fail");
                 });
         });

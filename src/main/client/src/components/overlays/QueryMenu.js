@@ -35,22 +35,27 @@ const QueryMenu = () => {
     // TODO
     // Add logic to print a paragraph under reforestation gauge
     // to explain the percentage based on queryData.wa_total_reforestation_opportunity
-    
+
     // const percent = queryData.wa_total_reforestation_opportunity;
 
     const reforestationExpl = (percent) => {
         var explanation = "";
-        if(percent > 67) {
-            explanation = "This area is highly reforestable! Go plant some trees! The common species within this area are show in the chart to the right."
-        } else if (33 < percent < 67) {
-            explanation = "This area has medium reforestation opportunity.\nThis area may have substantial tree cover and/or other structures."
+        if (percent > 67) {
+            explanation =
+                "This area is highly reforestable! Go plant some trees! The common species within this area are show in the chart to the right.";
+        } else if (33 < percent && percent < 67) {
+            explanation =
+                "This area has medium reforestation opportunity.\nThis area may have substantial tree cover and/or other structures.";
         } else {
-            explanation = "This area has low reforestation opportunity.\nIt is recommended that you focus on areas with high reforestation opportunity."
+            explanation =
+                "This area has low reforestation opportunity.\nIt is recommended that you focus on areas with high reforestation opportunity.";
         }
-        return explanation
-    }
+        return explanation;
+    };
 
-    console.log(queryData.coordinates);
+    // debugger;
+
+    console.log(queryData.wa_total_reforestation_opportunity);
 
     return (
         <>
@@ -73,22 +78,26 @@ const QueryMenu = () => {
                 </section>
                 {/* <p>{console.log(queryData)}</p> */}
                 <section className="chart-container">
-                    <div></div>
+                    {/* <div></div> */}
                     <section className="gauge-container">
-                        <p className="chart-title">OPPORTUNITY FOR REFORESTATION</p>
+                        <p className="chart-title">
+                            OPPORTUNITY FOR REFORESTATION
+                        </p>
                         <Gauge
                             data={queryData.wa_total_reforestation_opportunity}
                         />
                         <p className="chart-reforest-expl">
-                        {reforestationExpl(queryData.wa_total_reforestation_opportunity)}
+                            {reforestationExpl(
+                                queryData.wa_total_reforestation_opportunity
+                            )}
                         </p>
                     </section>
-                    <div></div>
+                    {/* <div></div> */}
                     <section className="pie-container">
                         <p className="chart-title">TREE SPECIES</p>
                         <Piechart data={queryData.species} />
                     </section>
-                    <div></div>
+                    {/* <div></div> */}
                 </section>
             </section>
         </>

@@ -6,11 +6,11 @@ const Gauge = ({ data }) => {
     const colors = ["#cc5e5d", "#ecb65a", "#127f2c"];
 
     // queryData.wa_total_reforestation_opportunity is passed into gauge from QueryMenu
-    const percent = data/100;
+    const percent = data / 100;
 
     const chartStyle = {
         height: 40,
-    }
+    };
 
     return (
         <>
@@ -19,12 +19,12 @@ const Gauge = ({ data }) => {
                 colors={colors}
                 percent={percent}
                 redraw={true}
-                needleColor='#5d97cc' 
+                needleColor="#5d97cc"
                 needleBaseColor="#5d97cc"
                 style={chartStyle}
             />
         </>
     );
 };
-
+ 
 export default Gauge;

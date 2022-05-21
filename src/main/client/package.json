@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^12.8.3",
     "cesium": "^1.91.0",
     "chart.js": "^3.7.1",
+    "chartjs-gauge": "^0.3.0",
     "geotiff": "^1.0.8",
     "ol": "^6.9.0",
     "olcs": "^2.13.0",
