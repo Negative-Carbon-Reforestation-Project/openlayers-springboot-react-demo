@@ -1,7 +1,6 @@
 import useQuery from "./useQuery";
 import exitIcon from "../../resources/images/icons/exit-icon-50x50.png";
 import { useEffect, useRef } from "react";
-import { Pie } from "react-chartjs-2";
 import Piechart from "./Piechart";
 import Coordinates from "./Coordinates";
 import Gauge from "./Gauge";
@@ -70,16 +69,15 @@ const QueryMenu = () => {
                 className="query-menu topo-skin"
                 aria-label="Query information"
             >
-                <section className="query-coordinate-exit-container">
+                <section className="query-menu-header">
+                    <Coordinates className="query-menu-coordinates" coordinates={queryData.coordinates} />
+
                     <img
                         className="query-menu-exit"
                         src={exitIcon}
                         alt="Exit query menu"
                         onClick={() => hideMenu()}
                     />
-                    <section className="query-menu-coordinates">
-                        <Coordinates coordinates={queryData.coordinates} />
-                    </section>
                 </section>
 
                 <section className="chart-container">

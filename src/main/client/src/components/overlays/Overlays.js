@@ -6,7 +6,7 @@ import React from "react";
  * @returns {JSX.Element}
  */
 const Overlays = ({ children }) => {
-    return <div>{children}</div>;
+    return <>{children}</>;
 };
 
 export default Overlays;

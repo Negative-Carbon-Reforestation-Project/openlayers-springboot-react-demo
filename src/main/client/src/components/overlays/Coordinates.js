@@ -6,11 +6,11 @@ import {toStringHDMS} from "ol/coordinate";
  * @param coordinates The coordinate data to be converted to HDMS
  * @returns {JSX.Element}
  */
-const Coordinates = ({coordinates}) => {
+const Coordinates = ({className, coordinates}) => {
 	const longLatInfo = toStringHDMS(coordinates);
     const longLatDisplay = `${String.fromCodePoint("0x1F4CD")} ${longLatInfo}`;
 
-	return <p className="query-menu-coordinates">{longLatDisplay}</p>;
+	return <p className={className}>{longLatDisplay}</p>;
 };
 
 export default Coordinates;
