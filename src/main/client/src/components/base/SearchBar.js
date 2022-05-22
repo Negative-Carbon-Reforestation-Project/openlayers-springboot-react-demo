@@ -3,6 +3,7 @@ import {useRef, useState} from "react";
 import {useDispatch} from "react-redux";
 import {fromLonLat} from "ol/proj";
 import {setMapView} from "../../redux/reducers/mapReducer";
+import SideMenu from "../overlays/SideMenu";
 
 /**
  * Container for the Search Bar
@@ -14,6 +15,7 @@ const SearchBar = () => {
     const [searchResults, setSearchResults] = useState([]);
     const searchInputRef = useRef();
     const searchResultsRef = useRef();
+    const sideMenuRef = useRef();
     const dispatch = useDispatch();
 
 
@@ -23,8 +25,7 @@ const SearchBar = () => {
      * @remark Documentation for ArcGIS Geocoding is available at https://developers.arcgis.com/documentation/mapping-apis-and-services/search/services/geocoding-service/
      */
     const geocodeAddress = (address) => {
-        console.log(address);
-        //
+
         fetch(`https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?address=${address}&maxLocations=1&f=json&token=${process.env.REACT_APP_ARCTOKEN}`)
             .then(response => response.json())
             .then(data => {
@@ -86,6 +87,12 @@ const SearchBar = () => {
         setTimeout(() => searchResultsRef.current.classList.remove("active"), timeout);
     }
 
+    /**
+     * Shows the side menu
+     */
+    const showSideMenu = () => {
+        sideMenuRef.current.classList.toggle("active-flex");
+    }
 
     /**
      * Renders the search results
@@ -111,7 +118,14 @@ const SearchBar = () => {
                       geocodeAddress(event.target[1].value);
                   }}
               >
-                <button className="menu-button" aria-label="Toggle navigation menu">
+
+                <button className="menu-button"
+                        aria-label="Toggle navigation menu"
+                        onClick={(event) => {
+                            event.preventDefault();
+                            showSideMenu()
+                        }}
+                >
                     <img className="menu-icon" src={hamburgerIcon} alt="Navigation menu icon"/>
                 </button>
 
@@ -139,6 +153,8 @@ const SearchBar = () => {
                     {renderSearchResults()}
                 </ul>
             </form>
+
+            <SideMenu ref={sideMenuRef}/>
         </>
     )
 }

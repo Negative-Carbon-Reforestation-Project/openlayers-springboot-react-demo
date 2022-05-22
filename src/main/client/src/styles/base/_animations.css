@@ -52,6 +52,21 @@
     }
 }
 
+@keyframes slideFromLeft
+{
+    0%
+    {
+        opacity: 0;
+        transform: translateX(-50vw);
+    }
+
+    100%
+    {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @keyframes slideFromRight
 {
     0%
