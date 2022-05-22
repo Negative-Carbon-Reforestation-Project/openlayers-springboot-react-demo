@@ -17,7 +17,7 @@ const QueryMenu = () => {
      * Shows the query menu
      */
     const showMenu = () => {
-        if (toggleQueryMenu)
+        if (toggleQueryMenu) 
         {
             queryMenuRef.current.classList.add("active-flex");
         }
@@ -27,7 +27,7 @@ const QueryMenu = () => {
      * Hides the query menu
      */
     const hideMenu = () => {
-            queryMenuRef.current.classList.remove("active-flex");
+        queryMenuRef.current.classList.remove("active-flex");
     }
 
     /**
@@ -38,15 +38,15 @@ const QueryMenu = () => {
     const reforestationPercentToString = (percent) => {
         var explanation = "";
 
-        if (percent > 67)
+        if (percent > 67) 
         {
             explanation =
-                "This area is highly reforestable! Go plant some trees! The common species within this area are show in the chart to the right.";
-        } else if (33 < percent && percent < 67)
+                "This area is highly reforestable! The common species within this area are show in the piechart. Go plant some trees!";
+        } else if (33 < percent && percent < 67) 
         {
             explanation =
                 "This area has medium reforestation opportunity.\nThis area may have substantial tree cover and/or other structures.";
-        } else
+        } else 
         {
             explanation =
                 "This area has low reforestation opportunity.\nIt is recommended that you focus on areas with high reforestation opportunity.";
@@ -70,7 +70,10 @@ const QueryMenu = () => {
                 aria-label="Query information"
             >
                 <section className="query-menu-header">
-                    <Coordinates className="query-menu-coordinates" coordinates={queryData.coordinates} />
+                    <Coordinates
+                        className="query-menu-coordinates"
+                        coordinates={queryData.coordinates}
+                    />
 
                     <img
                         className="query-menu-exit"
@@ -82,10 +85,16 @@ const QueryMenu = () => {
 
                 <section className="chart-container">
                     <section className="gauge-container">
-                        <p className="chart-title">OPPORTUNITY FOR REFORESTATION</p>
-                        <Gauge data={queryData.wa_total_reforestation_opportunity}/>
+                        <p className="chart-title">
+                            OPPORTUNITY FOR REFORESTATION
+                        </p>
+                        <Gauge
+                            data={queryData.wa_total_reforestation_opportunity}
+                        />
                         <p className="chart-reforest-expl">
-                            {reforestationPercentToString(queryData.wa_total_reforestation_opportunity)}
+                            {reforestationPercentToString(
+                                queryData.wa_total_reforestation_opportunity
+                            )}
                         </p>
                     </section>
 

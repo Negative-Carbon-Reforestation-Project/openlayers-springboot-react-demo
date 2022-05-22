@@ -2,9 +2,11 @@ import React from "react";
 import { Pie } from "react-chartjs-2";
 import { ArcElement } from "chart.js";
 import Chart from "chart.js/auto";
+import { getWidth } from "ol/extent";
+// ^^ Will this help me change the chart based on screen width?
 
-const Piechart = ({data}) => {
-	const getTreeType = (result) => {
+const Piechart = ({ data }) => {
+    const getTreeType = (result) => {
         switch (result) {
             case "wa_red_alder_stand_density":
                 return "Red Alder";
@@ -27,24 +29,24 @@ const Piechart = ({data}) => {
         }
     };
 
-	// TODO
-	// Add error handling and a display message for non-reforestable area when the list is emtpy
+    // TODO
+    // Add error handling and a display message for non-reforestable area when the list is emtpy
 
-	// getData returns an object with two arrays, names and densities
-	// which are parsed from the response json
+    // getData returns an object with two arrays, names and densities
+    // which are parsed from the response json
     const getData = (list) => {
         let names = [];
         let densities = [];
-		// console.log(list);
-		for (const [key, value] of Object.entries(list[0])) {
-			names.push(getTreeType(key));
-			densities.push(value);
-		}
+        // console.log(list);
+        for (const [key, value] of Object.entries(list[0])) {
+            names.push(getTreeType(key));
+            densities.push(value);
+        }
         return { names, densities };
     };
 
-	// getColors stores the color information for each tree type
-	// and returns an array of colors matching the response json
+    // getColors stores the color information for each tree type
+    // and returns an array of colors matching the response json
     const getColors = (list) => {
         // Each tree type gets its own color!
         let colors = new Map([
@@ -57,16 +59,16 @@ const Piechart = ({data}) => {
             ["Sitka Spruce", "#5fba77"], // --color-light-green
             ["Western Red Cedar", "#ecb65a"], // -- color--yelow
         ]);
-		
-		let colorArray = []
-		
-		// Iterate through the list of trees and return a list of each
-		// tree type's color
-		list.forEach(element => {
-			colorArray.push(colors.get(element));
-		});
 
-		return colorArray;
+        let colorArray = [];
+
+        // Iterate through the list of trees and return a list of each
+        // tree type's color
+        list.forEach((element) => {
+            colorArray.push(colors.get(element));
+        });
+
+        return colorArray;
     };
 
     const treeData = getData(data);
@@ -87,15 +89,17 @@ const Piechart = ({data}) => {
         ],
     };
 
-	const options = {
-		responsive: true,
-		plugins: {
-			legends: {
-				position: "top",
-				color: "#ffffff",
-			},
-		}
-	};
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                labels: {
+                    color: "#ffffff",
+                },
+				position: "right",
+            },
+        },
+    };
 
     return (
         <>
