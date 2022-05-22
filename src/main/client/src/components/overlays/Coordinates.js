@@ -1,21 +1,16 @@
 import React from "react";
 import {toStringHDMS} from "ol/coordinate";
-import {toLonLat} from "ol/proj";
-import pinIcon from "../../resources/images/icons/icons8-location-48.png"
 
+/**
+ * Container for coordinates in HDMS format
+ * @param coordinates The coordinate data to be converted to HDMS
+ * @returns {JSX.Element}
+ */
 const Coordinates = ({coordinates}) => {
 	const longLatInfo = toStringHDMS(coordinates);
     const longLatDisplay = `${String.fromCodePoint("0x1F4CD")} ${longLatInfo}`;
 
-	// console.log(coordinates);
-	// console.log(longLatDisplay);
-	// console.log(longLatInfo);
-
-	return (
-		<section>
-			<p className="query-menu-coordinates">{longLatDisplay}</p>
-		</section>
-	);
+	return <p className="query-menu-coordinates">{longLatDisplay}</p>;
 };
 
 export default Coordinates;

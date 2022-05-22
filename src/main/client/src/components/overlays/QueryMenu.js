@@ -11,51 +11,57 @@ import Gauge from "./Gauge";
  * @returns {JSX.Element}
  */
 const QueryMenu = () => {
-    // useQuery contains the content of the query, usePopup was for the old popup (use as a reference if needed)
-    // queryData is a json object which is populated by useQuery on click
-    const { toggleQueryMenu, queryData, queryState } = useQuery();
+    const { queryData, toggleQueryMenu } = useQuery();
     const queryMenuRef = useRef();
 
-    // use -> hook
-    // Simulating a component
-    useEffect(() => {
-        // debugger;
-        // console.log(queryData)
-        queryMenuRef.current.classList.toggle("active-flex");
-    });
+    /**
+     * Shows the query menu
+     */
+    const showMenu = () => {
+        if (toggleQueryMenu)
+        {
+            queryMenuRef.current.classList.add("active-flex");
+        }
+    }
 
     /**
-     * Toggles the menu display on and off
+     * Hides the query menu
      */
-    const toggleMenu = () => {
-        // debugger;
-        queryMenuRef.current.classList.toggle("active-flex");
-    };
+    const hideMenu = () => {
+            queryMenuRef.current.classList.remove("active-flex");
+    }
 
-    // TODO
-    // Add logic to print a paragraph under reforestation gauge
-    // to explain the percentage based on queryData.wa_total_reforestation_opportunity
-
-    // const percent = queryData.wa_total_reforestation_opportunity;
-
-    const reforestationExpl = (percent) => {
+    /**
+     * Generates a descriptive statement for the reforestation opportunity percentage
+     * @param percent The reforestation opportunity percent
+     * @returns {string} A descriptive statement for the percent
+     */
+    const reforestationPercentToString = (percent) => {
         var explanation = "";
-        if (percent > 67) {
+
+        if (percent > 67)
+        {
             explanation =
                 "This area is highly reforestable! Go plant some trees! The common species within this area are show in the chart to the right.";
-        } else if (33 < percent && percent < 67) {
+        } else if (33 < percent && percent < 67)
+        {
             explanation =
                 "This area has medium reforestation opportunity.\nThis area may have substantial tree cover and/or other structures.";
-        } else {
+        } else
+        {
             explanation =
                 "This area has low reforestation opportunity.\nIt is recommended that you focus on areas with high reforestation opportunity.";
         }
+
         return explanation;
     };
 
-    // debugger;
-
-    console.log(queryData.wa_total_reforestation_opportunity);
+    /**
+     * Once the component is mounted onto the DOM, display the query menu
+     */
+    useEffect(() => {
+        showMenu();
+    });
 
     return (
         <>
@@ -69,35 +75,26 @@ const QueryMenu = () => {
                         className="query-menu-exit"
                         src={exitIcon}
                         alt="Exit query menu"
-                        onClick={() => toggleMenu()}
+                        onClick={() => hideMenu()}
                     />
                     <section className="query-menu-coordinates">
                         <Coordinates coordinates={queryData.coordinates} />
                     </section>
-                    <div></div>
                 </section>
-                {/* <p>{console.log(queryData)}</p> */}
+
                 <section className="chart-container">
-                    {/* <div></div> */}
                     <section className="gauge-container">
-                        <p className="chart-title">
-                            OPPORTUNITY FOR REFORESTATION
-                        </p>
-                        <Gauge
-                            data={queryData.wa_total_reforestation_opportunity}
-                        />
+                        <p className="chart-title">OPPORTUNITY FOR REFORESTATION</p>
+                        <Gauge data={queryData.wa_total_reforestation_opportunity}/>
                         <p className="chart-reforest-expl">
-                            {reforestationExpl(
-                                queryData.wa_total_reforestation_opportunity
-                            )}
+                            {reforestationPercentToString(queryData.wa_total_reforestation_opportunity)}
                         </p>
                     </section>
-                    {/* <div></div> */}
+
                     <section className="pie-container">
                         <p className="chart-title">TREE SPECIES</p>
                         <Piechart data={queryData.species} />
                     </section>
-                    {/* <div></div> */}
                 </section>
             </section>
         </>
