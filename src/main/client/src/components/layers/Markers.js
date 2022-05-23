@@ -44,12 +44,12 @@ const Markers = () => {
     });
 
     const features = [
-        new Feature({
-            geometry: new Point(fromLonLat([-117.6518, 46.4222])),
-            coordinates: [-117.6518, 46.4222],
-            species: "Not available",
-            wa_total_reforestation_opportunity:0.6714531865979475
-        }),
+        // new Feature({
+        //     geometry: new Point(fromLonLat([-117.6518, 46.4222])),
+        //     coordinates: [-117.6518, 46.4222],
+        //     species: "Not available",
+        //     wa_total_reforestation_opportunity:0.6714531865979475
+        // }),
 
         new Feature({
             geometry: new Point(fromLonLat([-122.2705, 45.5902])),
@@ -98,12 +98,12 @@ const Markers = () => {
             wa_total_reforestation_opportunity: 0.7932337575342185
         }),
 
-        new Feature({
-            geometry: new Point(fromLonLat([-121.5279, 45.7358])),
-            coordinates: [-121.5279, 45.7358],
-            species: "Not available",
-            wa_total_reforestation_opportunity: 0.8451186976310459
-        }),
+        // new Feature({
+        //     geometry: new Point(fromLonLat([-121.5279, 45.7358])),
+        //     coordinates: [-121.5279, 45.7358],
+        //     species: "Not available",
+        //     wa_total_reforestation_opportunity: 0.8451186976310459
+        // }),
 
         new Feature({
             geometry: new Point(fromLonLat([-121.5205, 45.7372])),
