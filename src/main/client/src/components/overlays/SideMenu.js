@@ -1,5 +1,9 @@
 import React from "react";
 import exitIcon from "../../resources/images/icons/exit-icon-50x50.png";
+import helpIcon from "../../resources/images/icons/help-icon-512x512.png";
+import shareIcon from "../../resources/images/icons/share-icon-512x512.png";
+import printIcon from "../../resources/images/icons/print-icon-512x512.png";
+import settingsIcon from "../../resources/images/icons/settings-512x512.png";
 
 /**
  * Container for the SideMenu
@@ -29,25 +33,37 @@ const SideMenu = React.forwardRef((props, ref) => {
 
                 <section className="side-menu-section">
                     <ul className="side-menu-options">
-                        <li>Get Help</li>
-                        <li>Share Map</li>
-                        <li>Print Map</li>
-                        <li>Search Settings</li>
+                        <li className="side-menu-option">
+                            <img src={helpIcon} alt="Help icon"/>
+                            Get Help
+                        </li>
+                        <li className="side-menu-option">
+                            <img src={shareIcon} alt="Share map icon"/>
+                            Share Map
+                        </li>
+                        <li className="side-menu-option">
+                            <img src={printIcon} alt="Print icon"/>
+                            Print Map
+                        </li>
+                        <li className="side-menu-option">
+                            <img src={settingsIcon} alt="Search settings icon"/>
+                            Search Settings
+                        </li>
                     </ul>
                 </section>
 
                 <section className="side-menu-section">
                     <ul className="side-menu-options">
-                        <li>Accessibility</li>
-                        <li>Terms of Service</li>
-                        <li>Privacy Policy</li>
-                        <li>Report An Issue</li>
+                        <li className="side-menu-option">Accessibility</li>
+                        <li className="side-menu-option">Terms of Service</li>
+                        <li className="side-menu-option">Privacy Policy</li>
+                        <li className="side-menu-option">Report An Issue</li>
                     </ul>
                 </section>
 
-                <footer className="side-menu-footer">
-                    <p><abbr>NCRP</abbr> <time>2022</time> &copy; - Negative Carbon Reforestation Project - All Rights Reserved</p>
-                </footer>
+                {/*<footer className="side-menu-footer">*/}
+                {/*    <p className="side-menu-copyright"><abbr>NCRP</abbr> <time>2022</time> &copy; - Negative Carbon Reforestation Project - All Rights Reserved</p>*/}
+                {/*</footer>*/}
             </aside>
         </>
     );
