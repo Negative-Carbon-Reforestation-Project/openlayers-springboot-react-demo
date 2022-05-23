@@ -12,6 +12,7 @@ import CameraControl from "../controls/CameraControl";
 import Base from "../layers/Base";
 import LandCover from "../layers/LandCover";
 import Markers from "../layers/Markers";
+import Tutorial from "../overlays/Tutorial";
 
 /**
  * Component for the React applicaation
@@ -50,6 +51,7 @@ const App = () => {
                     <QueryMenu />
                 </Overlays>
             </Map>
+            {/*<Tutorial/>*/}
         </div>
     )
 };

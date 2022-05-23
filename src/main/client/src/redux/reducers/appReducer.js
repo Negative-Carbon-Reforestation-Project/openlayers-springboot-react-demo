@@ -6,7 +6,7 @@ import {createSlice} from "@reduxjs/toolkit";
  * @param action The object containing information about the new state
  */
 const toggleTutorialAction = (state, action) => {
-    state.value.app.tutorialEnabled = action.payload.tutorialEnabled;
+    state.value.tutorialEnabled = action.payload.tutorialEnabled;
 }
 
 /**
@@ -15,7 +15,7 @@ const toggleTutorialAction = (state, action) => {
 const appSlice = createSlice({
     name: "app",
     initialState: {
-        value: {tutorialEnabled: false}
+        value: {tutorialEnabled: true}
     },
     reducers: {
         toggleTutorial: (state, action) => toggleTutorialAction(state, action),

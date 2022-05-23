@@ -13,6 +13,8 @@
     "chart.js": "^3.7.1",
     "chartjs-gauge": "^0.3.0",
     "geotiff": "^1.0.8",
+    "intro.js": "^5.1.0",
+    "intro.js-react": "^0.6.0",
     "ol": "^6.9.0",
     "olcs": "^2.13.0",
     "react": "^17.0.2",
