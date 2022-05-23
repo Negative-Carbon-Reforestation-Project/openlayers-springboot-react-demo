@@ -124,12 +124,7 @@ const Markers = () => {
         features: [...features]
     });
 
-
-    return (
-        <>
-            <VectorLayer source={source} style={style} zIndex={5}/>
-        </>
-    )
+    return <VectorLayer source={source} style={style} zIndex={5}/>;
 }
 
 export default Markers;

@@ -1,5 +1,8 @@
-import {View} from "ol";
+import {Feature, View} from "ol";
 import {createSlice} from "@reduxjs/toolkit";
+import {Point} from "ol/geom";
+import {fromLonLat} from "ol/proj";
+import {Icon, Style} from "ol/style";
 
 /**
  * Initializes the openlayers map
@@ -95,6 +98,33 @@ const toggleCesiumEnabledAction = (state) => {
 }
 
 /**
+ * Creates a marker at the given coordinates
+ * @param state The current state of the reducer
+ * @param action The object containing information about the new state
+ */
+const addMarkerAction = (state, action) => {
+    let markerLayer = state.value.map.getLayers().item(9);
+
+    let newFeature = new Feature({
+        geometry: new Point(action.payload.coordinates),
+        coordinates: action.payload.coordinates,
+    });
+
+    markerLayer.getSource().addFeature(newFeature);
+
+}
+
+/**
+ * Removes a given marker
+ * @param state The current state of the reducer
+ * @param action The object containing information about the new state
+ */
+const removeMarkerAction = (state, action) => {
+    let markerLayer = state.value.map.getLayers().item(9);
+    markerLayer.getSource().removeFeature(action.payload.feature);
+}
+
+/**
  * Reducer configuration for the openlayers map and cesium map actions and events.
  */
 const mapsSlice = createSlice({
@@ -104,11 +134,13 @@ const mapsSlice = createSlice({
     },
     reducers: {
         addMap: (state, action) => addMapAction(state, action),
-        addMapLayer: (state, action) => addMapLayerAction(state, action),
         setMapView: (state, action) => setMapViewAction(state, action),
+        addMapLayer: (state, action) => addMapLayerAction(state, action),
+        removeMapLayer: (state, action) => removeMapLayerAction(state, action),
+        addMarker: (state, action) => addMarkerAction(state, action),
+        removeMarker: (state, action) => removeMarkerAction(state, action),
         toggleLayerVisibility: (state, action) => toggleLayerVisibilityAction(state, action),
         toggleBaseLayerVisibility: (state, action) => toggleBaseLayerVisibilityAction(state, action),
-        removeMapLayer: (state, action) => removeMapLayerAction(state, action),
         addCesiumMap: (state, action) => addCesiumMapAction(state, action),
         toggleCesiumEnabled: (state) => toggleCesiumEnabledAction(state),
     }
@@ -116,11 +148,13 @@ const mapsSlice = createSlice({
 
 export const {
     addMap,
-    addMapLayer,
     setMapView,
+    addMapLayer,
+    removeMapLayer,
+    addMarker,
+    removeMarker,
     toggleLayerVisibility,
     toggleBaseLayerVisibility,
-    removeMapLayer,
     addCesiumMap,
     toggleCesiumEnabled
 } = mapsSlice.actions;

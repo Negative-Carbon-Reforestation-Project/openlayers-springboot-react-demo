@@ -10,13 +10,14 @@ import Gauge from "./Gauge";
  * @returns {JSX.Element}
  */
 const QueryMenu = () => {
-    const { queryData, toggleQueryMenu } = useQuery();
+    const { queryData, toggleQueryMenu, setToggleQueryMenu } = useQuery();
     const queryMenuRef = useRef();
 
     /**
      * Shows the query menu
      */
     const showMenu = () => {
+        console.log("Inside show menu -QueryMenu");
         if (toggleQueryMenu)
         {
             queryMenuRef.current.classList.add("active-flex");
@@ -28,6 +29,7 @@ const QueryMenu = () => {
      */
     const hideMenu = () => {
             queryMenuRef.current.classList.remove("active-flex");
+            setToggleQueryMenu(false);
     }
 
     /**
