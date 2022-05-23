@@ -23,29 +23,29 @@ const SideMenu = React.forwardRef((props, ref) => {
 
     return (
         <>
-            <aside ref={ref} className="side-menu topo-skin">
+            <aside ref={ref} className="side-menu topo-skin" tabIndex={0} aria-label="Menu">
                 <section className="side-menu-header">
                     <Logo className="side-menu-logo"/>
                     <button className="side-menu-exit" onClick={() => hideSideMenu()}>
-                        <img src={exitIcon} alt="Exit side menu"/>
+                        <img src={exitIcon} alt="Exit menu"/>
                     </button>
                 </section>
 
                 <section className="side-menu-section">
                     <ul className="side-menu-options">
-                        <li className="side-menu-option">
+                        <li className="side-menu-option" aria-label="Get help" role="button" tabIndex={0}>
                             <img src={helpIcon} alt="Help icon"/>
                             Get Help
                         </li>
-                        <li className="side-menu-option">
+                        <li className="side-menu-option" aria-label="Share the map" role="button" tabIndex={0}>
                             <img src={shareIcon} alt="Share map icon"/>
                             Share Map
                         </li>
-                        <li className="side-menu-option">
+                        <li className="side-menu-option" aria-label="Print the map" role="button" tabIndex={0}>
                             <img src={printIcon} alt="Print icon"/>
                             Print Map
                         </li>
-                        <li className="side-menu-option">
+                        <li className="side-menu-option" aria-label="Change the search settings" role="button" tabIndex={0}>
                             <img src={settingsIcon} alt="Search settings icon"/>
                             Search Settings
                         </li>
@@ -54,16 +54,20 @@ const SideMenu = React.forwardRef((props, ref) => {
 
                 <section className="side-menu-section">
                     <ul className="side-menu-options">
-                        <li className="side-menu-option">Accessibility</li>
-                        <li className="side-menu-option">Terms of Service</li>
-                        <li className="side-menu-option">Privacy Policy</li>
-                        <li className="side-menu-option">Report An Issue</li>
+                        <li className="side-menu-option">
+                            <a href="/accessibility">Accessibility</a>
+                        </li>
+                        <li className="side-menu-option">
+                            <a href="/terms">Terms Of Service</a>
+                        </li>
+                        <li className="side-menu-option">
+                            <a href="/privacy">Privacy Policy</a>
+                        </li>
+                        <li className="side-menu-option">
+                            <a href="https://github.com/Negative-Carbon-Reforestation-Project/openlayers-springboot-react-demo/issues/new?assignees=&labels=bug&template=bug_report.md&title=Bug%3A+%5BError%5D" target="_blank">Report An Issue</a>
+                        </li>
                     </ul>
                 </section>
-
-                {/*<footer className="side-menu-footer">*/}
-                {/*    <p className="side-menu-copyright"><abbr>NCRP</abbr> <time>2022</time> &copy; - Negative Carbon Reforestation Project - All Rights Reserved</p>*/}
-                {/*</footer>*/}
             </aside>
         </>
     );

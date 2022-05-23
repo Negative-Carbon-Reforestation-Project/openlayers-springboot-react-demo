@@ -92,6 +92,7 @@ const SearchBar = () => {
      */
     const showSideMenu = () => {
         sideMenuRef.current.classList.toggle("active-flex");
+        sideMenuRef.current.focus();
     }
 
     /**
