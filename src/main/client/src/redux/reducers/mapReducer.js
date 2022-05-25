@@ -1,4 +1,4 @@
-import {Feature, View} from "ol";
+import {Feature, Overlay, View} from "ol";
 import {createSlice} from "@reduxjs/toolkit";
 import {Point} from "ol/geom";
 import {fromLonLat} from "ol/proj";
@@ -103,16 +103,19 @@ const toggleCesiumEnabledAction = (state) => {
  * @param action The object containing information about the new state
  */
 const addMarkerAction = (state, action) => {
-    let markerLayer = state.value.map.getLayers().item(9);
+    let map = state.value.map;
 
-    let newFeature = new Feature({
-        geometry: new Point(action.payload.coordinates),
-        coordinates: action.payload.coordinates,
+    let marker = new Overlay({
+        id: "map-marker",
+        element: document.getElementById("map-marker"),
+        autoPan: true,
+        autoPanAnimation: { duration: 250 }
     });
 
-    markerLayer.getSource().addFeature(newFeature);
-
+    map.addOverlay(marker);
+    marker.setPosition(action.payload.position);
 }
+
 
 /**
  * Removes a given marker
@@ -120,9 +123,11 @@ const addMarkerAction = (state, action) => {
  * @param action The object containing information about the new state
  */
 const removeMarkerAction = (state, action) => {
-    let markerLayer = state.value.map.getLayers().item(9);
-    markerLayer.getSource().removeFeature(action.payload.feature);
+    let marker = state.value.map.getOverlayById("map-marker");
+    state.value.map.removeOverlay(marker);
 }
+
+
 
 /**
  * Reducer configuration for the openlayers map and cesium map actions and events.

@@ -3,7 +3,7 @@ import {View, Map} from "ol";
 import OLCesium from "olcs/OLCesium";
 import {createWorldTerrain} from "cesium";
 import {useDispatch, useSelector} from "react-redux";
-import {addCesiumMap, addMap} from "../../redux/reducers/mapReducer";
+import {addCesiumMap, addMap, addMarker, removeMarker} from "../../redux/reducers/mapReducer";
 
 /**
  * Encapsulated logic for the OL Map
@@ -67,7 +67,7 @@ const useMap = (zoom, center) => {
 
         map.getView().setCenter(center);
 
-    }, [center])
+    }, [center]);
 
     /**
      * Once the component is mounted onto the DOM, generate the 3D cesium map.
@@ -85,7 +85,29 @@ const useMap = (zoom, center) => {
 
 
         dispatch(addCesiumMap({cesiumMap: cesiumMapObject}))
-    }, [map])
+    }, [map]);
+
+
+    /**
+     * Once the component is mounted onto the DOM, create a marker overlay on click.
+     */
+    useEffect(() => {
+        if (!map) {
+            return;
+        }
+
+        map.on("singleclick", (event) => {
+            dispatch(addMarker({position: event.coordinate}));
+
+            return () => {
+                if (map)
+                {
+                    dispatch(removeMarker());
+                }
+            };
+        });
+
+    }, [map]);
 
     return { mapRef }
 }

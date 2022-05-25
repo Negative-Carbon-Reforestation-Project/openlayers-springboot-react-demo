@@ -13,6 +13,7 @@ import Base from "../layers/Base";
 import LandCover from "../layers/LandCover";
 import Markers from "../layers/Markers";
 import Tutorial from "../overlays/Tutorial";
+import Marker from "../overlays/Marker";
 
 /**
  * Component for the React applicaation
@@ -39,7 +40,7 @@ const App = () => {
                 <Layers>
                     <Base/>
                     <LandCover/>
-                    <Markers/>
+                    {/*<Markers/>*/}
                 </Layers>
 
                 <Controls>
@@ -48,7 +49,8 @@ const App = () => {
                 </Controls>
 
                 <Overlays>
-                    <QueryMenu />
+                    {/*<QueryMenu />*/}
+                    <Marker/>
                 </Overlays>
             </Map>
             {/*<Tutorial/>*/}
