@@ -1,9 +1,4 @@
-import {useDispatch, useSelector} from "react-redux";
-import { toLonLat } from "ol/proj";
-import {useEffect, useRef, useState} from "react";
-import {addMarker, moveMarker, removeMarker} from "../../redux/reducers/mapReducer";
-import {Overlay} from "ol";
-import {coordinates} from "ol/geom/flat/reverse";
+import {useEffect, useState} from "react";
 import Loader from "../utils/Loader";
 import QueryResult from "../overlays/QueryResult";
 

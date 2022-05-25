@@ -7,6 +7,7 @@ import useQuery from "./useQuery";
  */
 const QueryMenu = React.forwardRef(({coordinates}, queryMenuRef) => {
 
+
     const { queryContent } = useQuery(coordinates, queryMenuRef);
 
     return (

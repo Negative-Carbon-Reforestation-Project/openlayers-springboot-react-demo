@@ -2,6 +2,7 @@ import React from "react";
 import { Pie } from "react-chartjs-2";
 import { ArcElement } from "chart.js";
 import Chart from "chart.js/auto";
+// import { getWidth } from "ol/extent";
 
 /**
  * COntainer for the Pie Chart
@@ -49,28 +50,27 @@ const PieChart = ({data}) => {
      */
 	const getLabel = (key) => {
         return labelMap.get(key) ?? "Unknown";
-    };
+    }
 
-	// TODO
-	// Add error handling and a display message for non-reforestable area when the list is emtpy
+    // TODO
+    // Add error handling and a display message for non-reforestable area when the list is emtpy
 
     /**
      * Parses the reforestation data as chart labels and data
      * @param data The reforestation data
      * @returns {{labels: *[], densities: *[]}} Labels representing the tree types and densities representing the density for that specific type
      */
-    const getData = (data) => {
+    const getData = (data) =>  {
         let labels = [];
         let densities = [];
 
-		for (const [key, value] of Object.entries(data[0])) {
-			labels.push(getLabel(key));
-			densities.push(value);
-		}
+        for (const [key, value] of Object.entries(data[0])) {
+            labels.push(getLabel(key));
+            densities.push(value);
+        }
 
-        return { labels, densities };
-    };
-
+        return {labels, densities};
+    }
 
     /**
      * Gets the colors associated with the given labels
@@ -103,9 +103,11 @@ const PieChart = ({data}) => {
 	const options = {
 		responsive: true,
 		plugins: {
-			legends: {
+			legend: {
 				position: "top",
-				color: "#ffffff",
+                labels: {
+                    color: "#ffffff",
+                },
 			},
 		}
 	};
