@@ -16,3 +16,19 @@
     filter: brightness(0.9);
     cursor: pointer;
 }
+
+/* Large desktop devices (2500px and up) */
+@media only screen and (min-width: 2500px)
+{
+    .map-marker
+    {
+        left: -39px;
+        bottom: -15px;
+    }
+
+    .map-marker > img
+    {
+        width: 80px;
+        height: 80px;
+    }
+}
