@@ -69,3 +69,13 @@
         flex-direction: column;
     }
 }
+
+/* Large desktop devices (2500px and up) */
+@media only screen and (min-width: 2500px)
+{
+    .footer-logo
+    {
+        width: 320px;
+        height: 160px;
+    }
+}

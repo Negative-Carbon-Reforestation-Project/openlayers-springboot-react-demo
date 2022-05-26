@@ -81,3 +81,24 @@ button:hover
 {
     cursor: pointer;
 }
+
+
+/* Large desktop devices (2500px and up) */
+@media only screen and (min-width: 2500px)
+{
+    h1
+    {
+        font-size: var(--font-xxlarge);
+    }
+
+    h2
+    {
+        font-size: var(--font-xlarge);
+    }
+
+    p,
+    li
+    {
+        font-size: var(--font-large);
+    }
+}

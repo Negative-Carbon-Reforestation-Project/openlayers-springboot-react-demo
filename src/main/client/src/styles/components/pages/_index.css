@@ -11,10 +11,7 @@
     justify-content: center;
     height: 100vh;
 }
-.hero
-{
-    grid-area: hero;
-}
+
 
 .hero-caption
 {
@@ -119,14 +116,7 @@
     {
         font-size: 40px;
     }
-    
-    #index-container
-    {
-        grid-template:
-            [hero-left] "hero" 900px [hero-right]
-            [content-left] "content" [content-right];
-    }
-      
+
 }
 
 @media only screen and (min-width: 600px)
@@ -135,13 +125,6 @@
     {
         /*top: 400px;*/
         /*left: 180px;*/
-    }
-
-    #index-container
-    {
-        grid-template:
-            [hero-left] "hero" 1024px [hero-right]
-            [content-left] "content" [content-right];
     }
 }
 
@@ -159,13 +142,6 @@
     {
         font-size: 40px;
     }
-
-    #index-container
-    {
-        grid-template:
-            [hero-left] "hero" 400px [hero-right]
-            [content-left] "content" [content-right];
-    }
 }
 
 @media only screen and (min-width: 992px)
@@ -176,5 +152,29 @@
         /*left: 300px;*/
     }
 
-    
+}
+
+/* Large desktop devices (2500px and up) */
+@media only screen and (min-width: 2500px)
+{
+    .hero-caption-text
+    {
+        font-size: 100px;
+    }
+
+    #hero-button
+    {
+        font-size: var(--font-xlarge);
+        padding: 30px;
+    }
+
+    .mission-excerpt-container
+    {
+        max-width: 30vw;
+    }
+
+    #learn-more-button
+    {
+        font-size: var(--font-medium);
+    }
 }

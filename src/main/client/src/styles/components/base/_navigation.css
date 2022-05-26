@@ -169,3 +169,18 @@
         display: none;
     }
 }
+
+/* Large desktop devices (2500px and up) */
+@media only screen and (min-width: 2500px)
+{
+    .nav-logo
+    {
+        width: 320px;
+        height: 160px;
+    }
+
+    .nav-link
+    {
+        font-size: var(--font-xlarge);
+    }
+}

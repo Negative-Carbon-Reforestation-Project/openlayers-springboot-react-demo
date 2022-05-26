@@ -22,9 +22,11 @@
     --filter-dark-green: brightness(0) saturate(100%) invert(38%) sepia(31%) saturate(1179%) hue-rotate(82deg) brightness(92%) contrast(95%);
 
     --font-roboto: Roboto, sans-serif;
-    --font-small: 1.25rem;
-    --font-medium: 1.5625rem;
-    --font-large: 1.875rem;
+    --font-small: 1.25rem;      /* 20 px */
+    --font-medium: 1.5625rem;   /* 25 px */
+    --font-large: 1.875rem;     /* 30 px */
+    --font-xlarge: 2.1875rem;   /* 35 px */
+    --font-xxlarge: 2.5rem;     /* 40 px */
 
     --margin-small: 0.625rem;
     --margin-large: 1.25rem;
