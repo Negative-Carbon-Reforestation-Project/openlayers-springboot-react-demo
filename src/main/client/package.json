@@ -10,7 +10,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "cesium": "^1.91.0",
-    "chart.js": "^3.7.1",
+    "chart.js": "^3.8.0",
     "chartjs-gauge": "^0.3.0",
     "geotiff": "^1.0.8",
     "intro.js": "^5.1.0",

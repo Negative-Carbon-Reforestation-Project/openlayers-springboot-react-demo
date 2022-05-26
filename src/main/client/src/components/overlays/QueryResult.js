@@ -12,12 +12,13 @@ const QueryResult = ({queryMenuRef, data}) => {
      * @returns {string} A descriptive statement for the percent
      */
     const reforestationPercentToString = (percent) => {
-        var explanation = "";
+        let explanation = "";
 
         if (percent > 67)
         {
             explanation =
                 "This area is highly reforestable! Go plant some trees! The common species within this area are show in the chart to the right.";
+
         } else if (33 < percent && percent < 67)
         {
             explanation =
@@ -53,14 +54,16 @@ const QueryResult = ({queryMenuRef, data}) => {
             <section className="chart-container">
                 <section className="gauge-container">
                     <p className="chart-title">OPPORTUNITY FOR REFORESTATION</p>
-                    <Gauge data={data.wa_total_reforestation_opportunity}/>
-                    <p className="chart-reforest-expl">
+                    <hr className="chart-title-divider"/>
+                    {/*<Gauge chartID={"gauge-chart"} data={data.wa_total_reforestation_opportunity}/>*/}
+                    <p className="gauge-data-explanation">
                         {reforestationPercentToString(data.wa_total_reforestation_opportunity)}
                     </p>
                 </section>
 
                 <section className="pie-container">
                     <p className="chart-title">TREE SPECIES</p>
+                    <hr className="chart-title-divider"/>
                     <PieChart data={data.species} />
                 </section>
             </section>

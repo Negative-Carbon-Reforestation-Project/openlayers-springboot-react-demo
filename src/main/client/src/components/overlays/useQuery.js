@@ -13,16 +13,34 @@ const useQuery = (coordinates, queryMenuRef) => {
      * Add a click listener for the popup closer as well.
      */
     useEffect(() => {
-        
+        // To test query menu easily,
+        // 1) comment out display: none in the _queryMenu stylesheet (line 4)
+        // 2) uncomment lines 20 - 29 -- this is the test data
+        // 3) comment lines 32 - 36 and lines 41 - 56.
+        let coordinates = [-123.52614545312973, 47.4289734461818];
+
+        let testData = {
+            "species":[{
+                "wa_douglas_fir_stand_density":0.1306693506012141,
+                "wa_western_hemlock_stand_density":0.11079886500382131
+            }],
+            "coordinates": coordinates,
+            "wa_total_reforestation_opportunity":0
+        };
+
+
         if (!coordinates) {
             return;
         }
 
-        setQueryContent(<Loader/>);
+        setQueryContent(<Loader loaderClass="spinner-loader"/>);
+
+        let [longitude, latitude] = [...coordinates];
+        setQueryContent(<QueryResult data={testData} queryMenuRef={queryMenuRef}/>);
 
         fetch(
-            // `https://${window.location.hostname}/api/search/geo?latitude=${longLatCoordsInfo[1]}&longitude=${longLatCoordsInfo[0]}`
-            `https://ncrp.app/api/search/geo?latitude=${coordinates[1]}&longitude=${coordinates[0]}`
+            // `https://${window.location.hostname}/api/search/geo?latitude=${latitude}&longitude=${longitude}`
+            `https://ncrp.app/api/search/geo?latitude=${latitude}&longitude=${longitude}`
         )
             .then((response) => response.json())
             .then((data) => {

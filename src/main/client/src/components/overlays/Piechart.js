@@ -1,8 +1,6 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
-import { ArcElement } from "chart.js";
-import Chart from "chart.js/auto";
-// import { getWidth } from "ol/extent";
+import {Chart as ChartJS, ArcElement, Legend, Tooltip} from "chart.js";
 
 /**
  * COntainer for the Pie Chart
@@ -10,6 +8,8 @@ import Chart from "chart.js/auto";
  * @returns {JSX.Element}
  */
 const PieChart = ({data}) => {
+
+    ChartJS.register(ArcElement, Tooltip, Legend);
 
     /**
      * Map containing hex colors for specific tree types
@@ -49,7 +49,7 @@ const PieChart = ({data}) => {
      * @returns {string|string} The label if found, otherwise returns Uknown.
      */
 	const getLabel = (key) => {
-        return labelMap.get(key) ?? "Unknown";
+        return labelMap.get(key) ?? "Not available";
     }
 
     // TODO
@@ -104,7 +104,7 @@ const PieChart = ({data}) => {
 		responsive: true,
 		plugins: {
 			legend: {
-				position: "top",
+				position: "bottom",
                 labels: {
                     color: "#ffffff",
                 },

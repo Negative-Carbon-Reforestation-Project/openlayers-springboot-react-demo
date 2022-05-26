@@ -2,31 +2,32 @@ import React from "react";
 import GaugeChart from "react-gauge-chart";
 
 /**
- * Container for the Guage Chart
+ * Container for the Gauge Chart
  * @param reforestationOpportunity The reforestation opportunity for the given coordinate
  * @returns {JSX.Element}
  */
-const Gauge = ({ data:reforestationOpportunity }) => {
-    // Colors are red, yellow, and green hex values borrowed from _variables.css
-    const colors = [
-        "#cc5e5d", // Red
-        "#ecb65a", // Yellow
-        "#127f2c" // Green
+const Gauge = ({ chartID, data:reforestationOpportunity }) => {
+
+    const arcColors = [
+        "#cc5e5d", // --color-red
+        "#ecb65a", // --color-yellow
+        "#127f2c" // --color-dark-green
     ];
 
     const percent = reforestationOpportunity / 100;
 
     const chartStyle = {
-        height: 40,
+        height: 200,
+        // height: 40,
     };
 
     return <GaugeChart
-                id="gauge-chart-reforestation"
-                colors={colors}
+                id={chartID}
+                colors={arcColors}
                 percent={percent}
                 redraw={true}
-                needleColor="#5d97cc"
-                needleBaseColor="#5d97cc"
+                needleColor="#5d97cc" // --color-blue
+                needleBaseColor="#5d97cc" // --color-blue
                 style={chartStyle}
             />;
 };
