@@ -111,3 +111,29 @@
         max-width: 350px;
     }
 }
+
+/* Large desktop devices (2500px and up) */
+@media only screen and (min-width: 2500px)
+{
+    .menu-icon
+    {
+        width: 50px;
+        height: 50px;
+    }
+
+    .search-input
+    {
+        font-size: var(--font-medium);
+        width: 800px;
+    }
+
+    .search-results
+    {
+        top: 50px;
+    }
+
+    .search-results > li
+    {
+        font-size: calc(var(--font-medium) - 5px);
+    }
+}
