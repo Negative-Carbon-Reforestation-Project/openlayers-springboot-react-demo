@@ -188,3 +188,37 @@
         flex-wrap: wrap;
     }
 }
+
+/* Large desktop devices (2500px and up) */
+@media only screen and (min-width: 2500px)
+{
+    .layer-control
+    {
+        width: 150px;
+        height: 150px;
+    }
+
+    .layer-menu-collapsed
+    {
+        left: 210px;
+
+        width: 800px;
+        height: 150px;
+    }
+
+    .layer-preview
+    {
+        width: 80px;
+        height: 80px;
+    }
+
+    .layer-menu-expanded
+    {
+        width: 800px;
+    }
+
+    .cesium-option > label
+    {
+        font-size: var(--font-large);
+    }
+}
