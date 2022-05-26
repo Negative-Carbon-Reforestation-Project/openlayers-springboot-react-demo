@@ -46,14 +46,12 @@
     filter: var(--filter-dark-green);
 }
 
-
-
 .zoom-in-control
 {
-    font-size: var(--font-large);
     margin-bottom: var(--margin-small);
 }
 
+.zoom-in-control,
 .zoom-out-control
 {
     font-size: var(--font-large);
@@ -143,4 +141,69 @@
 {
     width: 20px;
     height: 20px;
+}
+
+/* Large desktop devices (2500px and up) */
+@media only screen and (min-width: 2500px)
+{
+    .control
+    {
+        width: 80px;
+        height: 80px;
+    }
+
+    .zoom-in-control,
+    .zoom-out-control
+    {
+        font-size: var(--font-xlarge);
+    }
+
+    .expand-camera-controls
+    {
+        width: 100px;
+        height: 100px;
+    }
+
+    .expand-camera-controls > img
+    {
+        width: 50px;
+        height: 50px;
+    }
+
+    .camera-control
+    {
+        width: 60px;
+        height: 60px;
+    }
+
+    .zoom-in-camera
+    {
+        right: 135px;
+        bottom: 80px;
+    }
+
+    .zoom-out-camera
+    {
+        right: 150px;
+        bottom: 18px;
+    }
+
+    .tilt-down-control
+    {
+        right: 80px;
+        bottom: 120px;
+    }
+
+    .tilt-up-control
+    {
+        right: 10px;
+        bottom: 120px;
+    }
+
+    .tilt-up-control > img,
+    .tilt-down-control > img
+    {
+        width: 40px;
+        height: 40px;
+    }
 }
