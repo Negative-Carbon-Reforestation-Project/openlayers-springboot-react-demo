@@ -15,18 +15,18 @@ const useQuery = (coordinates, queryMenuRef) => {
     useEffect(() => {
         // To test query menu easily,
         // 1) comment out display: none in the _queryMenu stylesheet (line 4)
-        // 2) uncomment lines 20 - 29 -- this is the test data
+        // 2) uncomment lines 20 - 29 and line 39 -- this is the test data
         // 3) comment lines 32 - 36 and lines 41 - 56.
-        let coordinates = [-123.52614545312973, 47.4289734461818];
-
-        let testData = {
-            "species":[{
-                "wa_douglas_fir_stand_density":0.1306693506012141,
-                "wa_western_hemlock_stand_density":0.11079886500382131
-            }],
-            "coordinates": coordinates,
-            "wa_total_reforestation_opportunity":0
-        };
+        // let coordinates = [-123.52614545312973, 47.4289734461818];
+        //
+        // let testData = {
+        //     "species":[{
+        //         "wa_douglas_fir_stand_density":0.1306693506012141,
+        //         "wa_western_hemlock_stand_density":0.11079886500382131
+        //     }],
+        //     "coordinates": coordinates,
+        //     "wa_total_reforestation_opportunity":0
+        // };
 
 
         if (!coordinates) {
@@ -36,7 +36,7 @@ const useQuery = (coordinates, queryMenuRef) => {
         setQueryContent(<Loader loaderClass="spinner-loader"/>);
 
         let [longitude, latitude] = [...coordinates];
-        setQueryContent(<QueryResult data={testData} queryMenuRef={queryMenuRef}/>);
+        // setQueryContent(<QueryResult data={testData} queryMenuRef={queryMenuRef}/>);
 
         fetch(
             // `https://${window.location.hostname}/api/search/geo?latitude=${latitude}&longitude=${longitude}`
