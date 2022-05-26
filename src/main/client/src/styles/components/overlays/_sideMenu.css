@@ -143,3 +143,18 @@
 
     }
 }
+
+/* Large desktop devices (2500px and up) */
+@media only screen and (min-width: 2500px)
+{
+    .side-menu
+    {
+        width: 35vw;
+    }
+
+    .side-menu-option > img
+    {
+        width: 40px;
+        height: 40px;
+    }
+}
