@@ -1,4 +1,20 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {getCookie} from "../../components/utils/CookieManager";
+
+/**
+ * Decide whether to show the tutorial
+ * @returns {boolean} True if the tutorial hasn't been shown before; False otherwise
+ */
+const showTutorial = () => {
+    let tutorialCookie = getCookie("onboarded");
+
+    if (!tutorialCookie)
+    {
+        return true;
+    }
+
+    return tutorialCookie === false;
+}
 
 /**
  * Toggles the guided tutorial
@@ -15,7 +31,7 @@ const toggleTutorialAction = (state, action) => {
 const appSlice = createSlice({
     name: "app",
     initialState: {
-        value: {tutorialEnabled: true}
+        value: {tutorialEnabled: showTutorial()}
     },
     reducers: {
         toggleTutorial: (state, action) => toggleTutorialAction(state, action),

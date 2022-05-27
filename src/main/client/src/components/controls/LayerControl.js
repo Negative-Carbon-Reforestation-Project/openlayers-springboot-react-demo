@@ -172,7 +172,8 @@ const LayerControl = () => {
                     <p>Terrain</p>
                 </button>
 
-                <button className="layer-group"
+                <button id="more-layers"
+                        className="layer-group"
                         onClick={() => showExpandedLayerMenu()}
                         title="View more layer options"
                         aria-label="View more layer options"

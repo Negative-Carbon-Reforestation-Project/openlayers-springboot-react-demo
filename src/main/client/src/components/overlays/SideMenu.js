@@ -11,8 +11,21 @@ import settingsIcon from "../../resources/images/icons/settings-512x512.png";
  * @returns {JSX.Element}
  */
 import Logo from "../base/Logo";
+import {toggleTutorial} from "../../redux/reducers/appReducer";
+import {useDispatch} from "react-redux";
 
 const SideMenu = React.forwardRef((props, ref) => {
+
+    const dispatch = useDispatch();
+
+    /**
+     * Shows the tutorial again
+     * @remark Hides the side menu to prevent overlap
+     */
+    const showTutorial = () => {
+        dispatch(toggleTutorial({tutorialEnabled: true}));
+        ref.current.classList.remove("active-flex");
+    }
 
     /**
      * Hides the side menu
@@ -33,7 +46,7 @@ const SideMenu = React.forwardRef((props, ref) => {
 
                 <section className="side-menu-section">
                     <ul className="side-menu-options">
-                        <li className="side-menu-option" aria-label="Get help" role="button" tabIndex={0}>
+                        <li className="side-menu-option" aria-label="Get help" role="button" tabIndex={0} onClick={() => showTutorial()}>
                             <img src={helpIcon} alt="Help icon"/>
                             Get Help
                         </li>

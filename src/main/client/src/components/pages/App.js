@@ -40,7 +40,6 @@ const App = () => {
                 <Layers>
                     <Base/>
                     <LandCover/>
-                    {/*<Markers/>*/}
                 </Layers>
 
                 <Controls>
@@ -49,11 +48,10 @@ const App = () => {
                 </Controls>
 
                 <Overlays>
-                    {/*<QueryMenu />*/}
                     <Marker/>
                 </Overlays>
             </Map>
-            {/*<Tutorial/>*/}
+            <Tutorial/>
         </div>
     )
 };
