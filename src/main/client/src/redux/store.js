@@ -1,10 +1,12 @@
 import {combineReducers} from "@reduxjs/toolkit";
 import mapReducer from "./reducers/mapReducer";
+import appReducer from "./reducers/appReducer";
 
 const {configureStore} = require("@reduxjs/toolkit");
 
 const reducers = combineReducers({
-    maps: mapReducer
+    maps: mapReducer,
+    app: appReducer
 });
 
 /**

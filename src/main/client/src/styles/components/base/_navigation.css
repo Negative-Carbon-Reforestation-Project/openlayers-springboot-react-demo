@@ -39,8 +39,8 @@
 
 .nav-logo
 {
-    width: 150px;
-    height: 100px;
+    width: 339px;
+    height: 115px;
     padding: 10px;
 }
 
@@ -153,6 +153,12 @@
     {
         display: none;
     }
+
+    .nav-logo
+    {
+        width: 250px;
+        height: 85px;
+    }
 }
 
 /* iphones 6/7/8 and Plus in landscape */
@@ -167,5 +173,26 @@
     .nav-item
     {
         display: none;
+    }
+
+    .nav-logo
+    {
+        width: 250px;
+        height: 85px;
+    }
+}
+
+/* Large desktop devices (2500px and up) */
+@media only screen and (min-width: 2500px)
+{
+    .nav-logo
+    {
+        width: 590px;
+        height: 200px;
+    }
+
+    .nav-link
+    {
+        font-size: var(--font-xlarge);
     }
 }
