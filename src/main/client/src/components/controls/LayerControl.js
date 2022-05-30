@@ -25,8 +25,8 @@ const LayerControl = () => {
     const layerMenuCollapsedRef = useRef();
     const layerMenuExpandedRef = useRef();
 
-    const [hideMenuTimer, setHideMenuTimer] = useState();
-    const [hideExpandedMenuTimer, setHideExpandedMenuTimer] = useState();
+    const hideMenuTimerRef = useRef(0);
+    const hideExpandedMenuTimerRef = useRef(0);
 
     /**
      * Shows the collapsed layer menu
@@ -52,7 +52,7 @@ const LayerControl = () => {
      * @remark The timeout ID is tracked in hideMenuTimer to allow the timeout to be cleared if a child receives focus
      */
     const hideCollapsedLayerMenu = (timeout=0) => {
-        setHideMenuTimer(setTimeout(() => layerMenuCollapsedRef.current.classList.remove("active-flex"), timeout));
+        hideMenuTimerRef.current = setTimeout(() => layerMenuCollapsedRef.current.classList.remove("active-flex"), timeout);
     }
 
     /**
@@ -72,7 +72,7 @@ const LayerControl = () => {
      * @remark The timeout ID is tracked in hideMenuTimer to allow the timeout to be cleared if a child receives focus
      */
     const hideExpandedLayerMenu = (timeout=0) => {
-        setHideExpandedMenuTimer(setTimeout(() => layerMenuExpandedRef.current.classList.remove("active-flex"), timeout));
+        hideExpandedMenuTimerRef.current = setTimeout(() => layerMenuExpandedRef.current.classList.remove("active-flex"), timeout);
     }
 
     /**
@@ -104,14 +104,14 @@ const LayerControl = () => {
             <button className="layer-control"
                     aria-label="View layer options"
                     onMouseOver={() => {
-                        clearTimeout(hideMenuTimer);
+                        clearTimeout(hideMenuTimerRef.current);
                         showCollapsedLayerMenu();
                     }}
                     onClick={() => {
-                        clearTimeout(hideMenuTimer);
+                        clearTimeout(hideMenuTimerRef.current);
                         showCollapsedLayerMenu();
                     }}
-                    onMouseEnter={() => clearTimeout(hideMenuTimer)}
+                    onMouseEnter={() => clearTimeout(hideMenuTimerRef.current)}
                     onMouseOut={() => hideCollapsedLayerMenu(800)}
             >
                 <img className="layer-control-icon" src={layerIcon} alt="Layer icon"/>
@@ -121,9 +121,9 @@ const LayerControl = () => {
             <div ref={layerMenuCollapsedRef}
                  className="layer-menu-collapsed topo-skin"
                  aria-label="Layer options"
-                 onMouseOver={() => clearTimeout(hideMenuTimer)}
+                 onMouseOver={() => clearTimeout(hideMenuTimerRef.current)}
                  onMouseOut={() => hideCollapsedLayerMenu(800)}
-                 onFocus={() => clearTimeout(hideMenuTimer)}
+                 onFocus={() => clearTimeout(hideMenuTimerRef.current)}
                  onBlur={() => hideCollapsedLayerMenu(800)}
                  tabIndex={0}
             >
@@ -187,7 +187,7 @@ const LayerControl = () => {
                  className="layer-menu-expanded topo-skin"
                  aria-label="More layer options"
                  onBlur={() => hideExpandedLayerMenu()}
-                 onFocus={() => clearTimeout(hideExpandedMenuTimer)}
+                 onFocus={() => clearTimeout(hideExpandedMenuTimerRef.current)}
                  tabIndex={0}
             >
                 <section className="landcover-layers">

@@ -31,7 +31,8 @@ const toggleTutorialAction = (state, action) => {
 const appSlice = createSlice({
     name: "app",
     initialState: {
-        value: {tutorialEnabled: showTutorial()}
+        // value: {tutorialEnabled: showTutorial()}
+        value: {tutorialEnabled: false}
     },
     reducers: {
         toggleTutorial: (state, action) => toggleTutorialAction(state, action),
