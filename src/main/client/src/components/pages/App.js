@@ -6,12 +6,10 @@ import Controls from "../controls/Controls";
 import { fromLonLat } from "ol/proj";
 import Overlays from "../overlays/Overlays";
 import SearchBar from "../base/SearchBar";
-import QueryMenu from "../overlays/QueryMenu";
 import LayerControl from "../controls/LayerControl";
 import CameraControl from "../controls/CameraControl";
 import Base from "../layers/Base";
 import LandCover from "../layers/LandCover";
-import Markers from "../layers/Markers";
 import Tutorial from "../overlays/Tutorial";
 import Marker from "../overlays/Marker";
 
