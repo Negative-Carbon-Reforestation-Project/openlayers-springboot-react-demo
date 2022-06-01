@@ -41,12 +41,12 @@ const Tutorial = () => {
             tooltipClass: "tutorial-container"
         },
         {
-            title: "Searching Locations",
+            title: "Searching",
             intro: "Clicking on the map will place a marker that when clicked on will query the marker's location.",
             tooltipClass: "tutorial-container"
         },
         {
-            title: "Searching Locations",
+            title: "Searching",
             element: ".search-bar",
             intro: "Alternatively, you can also query locations directly using the search bar.",
             tooltipClass: "tutorial-container"
