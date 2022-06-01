@@ -14,9 +14,9 @@ const CameraControl = () => {
     const cesiumMap = useSelector((state) => state.maps.value.cesiumMap);
     const cesiumEnabled = useSelector((state) => state.maps.value.cesiumEnabled);
 
-    const [zoomTimer, setZoomTimer] = useState();
-    const [tiltTimer, setTiltTimer] = useState();
-    const [hideCameraControlsTimer, setHideCameraControlsTimer] = useState();
+    const zoomTimerRef = useRef(0);
+    const tiltTimerRef = useRef(0);
+    const hideCameraControlsRef = useRef(0);
 
     const zoomControls = useRef();
     const cameraControl = useRef();
@@ -40,9 +40,9 @@ const CameraControl = () => {
      * The intervals are cleared when the mouse is released.
      */
     const setZoomInterval = (modifier=0.5, timeout=300) => {
-        setZoomTimer(setInterval(() => {
+        zoomTimerRef.current = setInterval(() => {
             zoom(modifier);
-        }, timeout));
+        }, timeout);
     }
 
     /**
@@ -56,7 +56,6 @@ const CameraControl = () => {
 
         if (!pivot)
         {
-            console.log("No pivot");
             return;
         }
 
@@ -73,9 +72,9 @@ const CameraControl = () => {
      * The intervals are cleared when the mouse is released.
      */
     const setTiltInterval = (angle=0.05, timeout=300) => {
-        setTiltTimer(setInterval(() => {
+        tiltTimerRef.current = setInterval(() => {
             tilt(angle);
-        }, timeout));
+        }, timeout);
     }
 
     /**
@@ -108,7 +107,7 @@ const CameraControl = () => {
      * @param timeout The time it takes to hide the expanded camera controls. Default is 0 ms.
      */
     const hideExpandedCameraControls = (timeout) => {
-        setHideCameraControlsTimer(setTimeout(() => expandedCameraControls.current.classList.remove("active"), timeout));
+        hideCameraControlsRef.current = setTimeout(() => expandedCameraControls.current.classList.remove("active"), timeout);
     }
 
     /**
@@ -131,7 +130,7 @@ const CameraControl = () => {
                         title="Zoom in"
                         onClick={() => zoom()}
                         onMouseDown={() => setZoomInterval()}
-                        onMouseUp={() => clearInterval(zoomTimer)}
+                        onMouseUp={() => clearInterval(zoomTimerRef.current)}
                 >
                     +
                 </button>
@@ -141,7 +140,7 @@ const CameraControl = () => {
                         title="Zoom out"
                         onClick={() => zoom(-0.5)}
                         onMouseDown={() => setZoomInterval(-0.5)}
-                        onMouseUp={() => clearInterval(zoomTimer)}
+                        onMouseUp={() => clearInterval(zoomTimerRef.current)}
                 >
                     -
                 </button>
@@ -151,14 +150,14 @@ const CameraControl = () => {
                 <button className="expand-camera-controls control"
                         aria-label="Toggle more camera controls"
                         onClick={() => {
-                            clearTimeout(hideCameraControlsTimer);
+                            clearTimeout(hideCameraControlsRef.current);
                             showExpandedCameraControls();
                         }}
                         onMouseOver={() => {
-                            clearTimeout(hideCameraControlsTimer);
+                            clearTimeout(hideCameraControlsRef.current);
                             showExpandedCameraControls();
                         }}
-                        onMouseEnter={() => clearTimeout(hideCameraControlsTimer)}
+                        onMouseEnter={() => clearTimeout(hideCameraControlsRef.current)}
                         onMouseOut={() => hideExpandedCameraControls(800)}
                 >
                     <img src={cameraIcon} alt="Camera icon"/>
@@ -167,9 +166,9 @@ const CameraControl = () => {
                 <section ref={expandedCameraControls}
                          className="expanded-camera-controls"
                          aria-label="More camera controls for the map"
-                         onMouseOver={() => clearTimeout(hideCameraControlsTimer)}
+                         onMouseOver={() => clearTimeout(hideCameraControlsRef.current)}
                          onMouseOut={() => hideExpandedCameraControls(800)}
-                         onFocus={() => clearTimeout(hideCameraControlsTimer)}
+                         onFocus={() => clearTimeout(hideCameraControlsRef.current)}
                          onBlur={() => hideExpandedCameraControls(800)}
                 >
                         <button className="zoom-in-camera camera-control"
@@ -177,7 +176,7 @@ const CameraControl = () => {
                                 title="Zoom in"
                                 onClick={() => zoom()}
                                 onMouseDown={() => setZoomInterval()}
-                                onMouseUp={() => clearInterval(zoomTimer)}
+                                onMouseUp={() => clearInterval(zoomTimerRef.current)}
                         >
                             +
                         </button>
@@ -187,7 +186,7 @@ const CameraControl = () => {
                                 title="Zoom out"
                                 onClick={() => zoom(-0.5)}
                                 onMouseDown={() => setZoomInterval(-0.5)}
-                                onMouseUp={() => clearInterval(zoomTimer)}
+                                onMouseUp={() => clearInterval(zoomTimerRef.current)}
                         >
                             -
                         </button>
@@ -197,7 +196,7 @@ const CameraControl = () => {
                                 title="Tilt backwards"
                                 onClick={() => tilt()}
                                 onMouseDown={() => setTiltInterval()}
-                                onMouseUp={() => clearInterval(tiltTimer)}
+                                onMouseUp={() => clearInterval(tiltTimerRef.current)}
                         >
                             <img src={tiltDown} alt="Tilt down arrow"/>
                         </button>
@@ -207,17 +206,11 @@ const CameraControl = () => {
                                 title="Tilt forward"
                                 onClick={() => tilt(-0.05)}
                                 onMouseDown={() => setTiltInterval(-0.05)}
-                                onMouseUp={() => clearInterval(tiltTimer)}
+                                onMouseUp={() => clearInterval(tiltTimerRef.current)}
                         >
                             <img src={tiltUp} alt="Tilt up arrow"/>
                         </button>
                 </section>
-
-
-
-
-
-
             </div>
         </>
     )
