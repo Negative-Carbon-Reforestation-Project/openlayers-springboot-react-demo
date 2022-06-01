@@ -131,6 +131,7 @@ const CameraControl = () => {
                         onClick={() => zoom()}
                         onMouseDown={() => setZoomInterval()}
                         onMouseUp={() => clearInterval(zoomTimerRef.current)}
+                        onMouseLeave={() => clearInterval(zoomTimerRef.current)}
                 >
                     +
                 </button>
@@ -141,6 +142,7 @@ const CameraControl = () => {
                         onClick={() => zoom(-0.5)}
                         onMouseDown={() => setZoomInterval(-0.5)}
                         onMouseUp={() => clearInterval(zoomTimerRef.current)}
+                        onMouseLeave={() => clearInterval(zoomTimerRef.current)}
                 >
                     -
                 </button>
@@ -177,6 +179,7 @@ const CameraControl = () => {
                                 onClick={() => zoom()}
                                 onMouseDown={() => setZoomInterval()}
                                 onMouseUp={() => clearInterval(zoomTimerRef.current)}
+                                onMouseLeave={() => clearInterval(zoomTimerRef.current)}
                         >
                             +
                         </button>
@@ -187,6 +190,7 @@ const CameraControl = () => {
                                 onClick={() => zoom(-0.5)}
                                 onMouseDown={() => setZoomInterval(-0.5)}
                                 onMouseUp={() => clearInterval(zoomTimerRef.current)}
+                                onMouseLeave={() => clearInterval(zoomTimerRef.current)}
                         >
                             -
                         </button>
@@ -197,6 +201,7 @@ const CameraControl = () => {
                                 onClick={() => tilt()}
                                 onMouseDown={() => setTiltInterval()}
                                 onMouseUp={() => clearInterval(tiltTimerRef.current)}
+                                onMouseLeave={() => clearInterval(tiltTimerRef.current)}
                         >
                             <img src={tiltDown} alt="Tilt down arrow"/>
                         </button>
@@ -207,6 +212,7 @@ const CameraControl = () => {
                                 onClick={() => tilt(-0.05)}
                                 onMouseDown={() => setTiltInterval(-0.05)}
                                 onMouseUp={() => clearInterval(tiltTimerRef.current)}
+                                onMouseLeave={() => clearInterval(tiltTimerRef.current)}
                         >
                             <img src={tiltUp} alt="Tilt up arrow"/>
                         </button>
