@@ -32,8 +32,7 @@ const SearchBar = () => {
                 let location = data.candidates[0].location;
                 let coordinates = fromLonLat([location.x, location.y]);
 
-                dispatch(setMapView({center: coordinates, zoom: 6}));
-                // dispatch(addMarker({coordinates: coordinates})); // Old implementation for vector markers
+                dispatch(setMapView({center: coordinates, zoom: 10}));
                 dispatch(addMarker({position: coordinates}));
             })
             .catch(error => console.log(error));
