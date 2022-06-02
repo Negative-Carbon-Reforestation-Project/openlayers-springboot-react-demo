@@ -134,7 +134,6 @@ const SearchBar = () => {
 
                 <input ref={searchInputRef}
                        className="search-input"
-                       autoFocus={true}
                        type="search"
                        aria-label="Search addresses for reforestation opportunities"
                        placeholder="Search Location"
