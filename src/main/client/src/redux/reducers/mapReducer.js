@@ -103,16 +103,7 @@ const toggleCesiumEnabledAction = (state) => {
  * @param action The object containing information about the new state
  */
 const addMarkerAction = (state, action) => {
-    let map = state.value.map;
-
-    let marker = new Overlay({
-        id: "map-marker",
-        element: document.getElementById("map-marker"),
-        autoPan: true,
-        autoPanAnimation: { duration: 250 }
-    });
-
-    map.addOverlay(marker);
+    let marker = state.value.map.getOverlayById("map-marker");
     marker.setPosition(action.payload.position);
 }
 
@@ -124,7 +115,7 @@ const addMarkerAction = (state, action) => {
  */
 const removeMarkerAction = (state, action) => {
     let marker = state.value.map.getOverlayById("map-marker");
-    state.value.map.removeOverlay(marker);
+    marker.setPosition(undefined);
 }
 
 

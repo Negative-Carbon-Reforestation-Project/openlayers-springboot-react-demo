@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import {View, Map} from "ol";
+import {View, Map, Overlay} from "ol";
 import OLCesium from "olcs/OLCesium";
 import {createWorldTerrain} from "cesium";
 import {useDispatch, useSelector} from "react-redux";
@@ -96,8 +96,28 @@ const useMap = (zoom, center) => {
             return;
         }
 
+        let marker = new Overlay({
+            id: "map-marker",
+            element: document.getElementById("map-marker"),
+            autoPan: true,
+            autoPanAnimation: { duration: 250 }
+        });
+
+        map.addOverlay(marker);
+        marker.setPosition(undefined);
+
         map.on("singleclick", (event) => {
-            dispatch(addMarker({position: event.coordinate}));
+
+            let marker = map.getOverlayById("map-marker");
+
+            if (marker.getPosition() === undefined)
+            {
+                dispatch(addMarker({position: event.coordinate}));
+            }
+            else
+            {
+                dispatch(removeMarker());
+            }
 
             return () => {
                 if (map)
