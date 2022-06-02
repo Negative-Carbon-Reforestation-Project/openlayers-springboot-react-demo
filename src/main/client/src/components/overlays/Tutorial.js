@@ -124,6 +124,7 @@ const Tutorial = () => {
                     }
                     options={{
                         hideNext: false,
+                        exitOnOverlayClick: false
                     }}
             />
         </>
