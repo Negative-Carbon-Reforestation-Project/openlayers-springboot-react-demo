@@ -2,7 +2,7 @@ import hamburgerIcon from "../../resources/images/icons/hamburger-menu-50x50.web
 import {useRef, useState} from "react";
 import {useDispatch} from "react-redux";
 import {fromLonLat} from "ol/proj";
-import {addMarker, removeMarker, setMapView} from "../../redux/reducers/mapReducer";
+import {addMarker, panMapView, removeMarker, setMapView} from "../../redux/reducers/mapReducer";
 import SideMenu from "../overlays/SideMenu";
 
 /**
@@ -32,7 +32,7 @@ const SearchBar = () => {
                 let location = data.candidates[0].location;
                 let coordinates = fromLonLat([location.x, location.y]);
 
-                dispatch(setMapView({center: coordinates, zoom: 10}));
+                dispatch(panMapView({center: coordinates, zoom: 10, duration: 2000}));
                 dispatch(removeMarker());
                 dispatch(addMarker({position: coordinates}));
             })

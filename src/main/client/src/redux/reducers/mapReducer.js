@@ -35,6 +35,22 @@ const setMapViewAction = (state, action) => {
 }
 
 /**
+ * Pans the map view slowly
+ * @param state The current state of the reducer
+ * @param action The object containing information about the new state
+ */
+const panMapViewAction = (state, action) => {
+
+    let view = state.value.map.getView();
+
+    view.animate({
+        center: action.payload.center,
+        zoom: action.payload.zoom,
+        duration: action.payload.duration
+    });
+}
+
+/**
  * Toggles a layer's visibility on the map
  * @param state The current state of the reducer
  * @param action The object containing information about the new state
@@ -131,6 +147,7 @@ const mapsSlice = createSlice({
     reducers: {
         addMap: (state, action) => addMapAction(state, action),
         setMapView: (state, action) => setMapViewAction(state, action),
+        panMapView: (state, action) => panMapViewAction(state, action),
         addMapLayer: (state, action) => addMapLayerAction(state, action),
         removeMapLayer: (state, action) => removeMapLayerAction(state, action),
         addMarker: (state, action) => addMarkerAction(state, action),
@@ -145,6 +162,7 @@ const mapsSlice = createSlice({
 export const {
     addMap,
     setMapView,
+    panMapView,
     addMapLayer,
     removeMapLayer,
     addMarker,

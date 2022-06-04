@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import {View, Map, Overlay} from "ol";
 import OLCesium from "olcs/OLCesium";
-import {createWorldTerrain} from "cesium";
+import {CesiumTerrainProvider, createWorldTerrain} from "cesium";
 import {useDispatch, useSelector} from "react-redux";
 import {addCesiumMap, addMap, addMarker, removeMarker} from "../../redux/reducers/mapReducer";
 
@@ -70,8 +70,10 @@ const useMap = (zoom, center) => {
     }, [center]);
 
     /**
-     * Once the component is mounted onto the DOM, generate the 3D cesium map.
+     * Once the component is mounted onto the DOM, generate the 3D cesium map and the world terrain.
      * If the state of the map changes, this function is called again.
+     *
+     * @remark window.Cesium is imported from Cesium.js script in index.html
      */
     useEffect(() => {
         if (!map)
@@ -79,10 +81,13 @@ const useMap = (zoom, center) => {
             return;
         }
 
+        window.Cesium.Ion.defaultAccessToken = process.env.REACT_APP_CESIUMTOKEN;
+
         let cesiumMapObject = new OLCesium({map: map});
         let scene = cesiumMapObject.getCesiumScene();
-        scene.terrainProvider = createWorldTerrain();
-
+        scene.terrainProvider = new CesiumTerrainProvider({
+            url: window.Cesium.IonResource.fromAssetId(1)
+        });
 
         dispatch(addCesiumMap({cesiumMap: cesiumMapObject}))
     }, [map]);
