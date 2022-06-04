@@ -1,4 +1,4 @@
-import {useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import layerIcon from "../../resources/images/icons/layer-control-20x20.png";
 import osmPreview from "../../resources/images/backdrops/osm-preview-195x197.png";
 import aerialPreview from "../../resources/images/backdrops/aerial-preview-195x197.png";
@@ -13,6 +13,7 @@ import soilPreview from "../../resources/images/icons/soil-preview.png";
 import treeDensityPreview from "../../resources/images/icons/tree-density-preview.png";
 import {useDispatch} from "react-redux";
 import {toggleBaseLayerVisibility, toggleCesiumEnabled, toggleLayerVisibility} from "../../redux/reducers/mapReducer";
+import exitIcon from "../../resources/images/icons/exit-icon-50x50.png";
 
 /**
  * Container for the Layer switch control
@@ -186,10 +187,15 @@ const LayerControl = () => {
             <div ref={layerMenuExpandedRef}
                  className="layer-menu-expanded topo-skin"
                  aria-label="More layer options"
-                 onBlur={() => hideExpandedLayerMenu()}
-                 onFocus={() => clearTimeout(hideExpandedMenuTimerRef.current)}
                  tabIndex={0}
             >
+                <button className="expanded-menu-exit" aria-label="Close layer menu">
+                    <img className="expanded-menu-exit-icon"
+                         src={exitIcon}
+                         alt="Exit layer menu icon"
+                         onClick={() => hideExpandedLayerMenu()}
+                    />
+                </button>
                 <section className="landcover-layers">
                     <p>Landcover</p>
 
