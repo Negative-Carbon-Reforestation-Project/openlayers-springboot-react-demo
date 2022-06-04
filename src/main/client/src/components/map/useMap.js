@@ -7,15 +7,31 @@ import {addCesiumMap, addMap, addMarker, removeMarker} from "../../redux/reducer
 
 /**
  * Encapsulated logic for the OL Map
- * @param zoom The initial zoom level for the map
- * @param center The initial center position for the map
  * @returns {{mapRef: React.MutableRefObject<undefined>}}
  */
-const useMap = (zoom, center) => {
+const useMap = () => {
     const mapRef = useRef();
     const map = useSelector((state) => state.maps.value.map);
-
     const dispatch = useDispatch();
+
+    let center = [-122.29567670312974, 47.41311574557329];
+    let zoom = 6;
+    let updateViewHash = true;
+
+    /**
+     * If the page url contains a view hash, we extract it and set the map view
+     */
+    if (window.location.hash != "")
+    {
+        let hash = window.location.hash.replace("#view=", '');
+        let hashTokens = hash.split("/");
+
+        if (hashTokens.length === 3)
+        {
+            zoom = parseFloat(hashTokens[0]);
+            center = [parseFloat(hashTokens[1]), parseFloat(hashTokens[2])];
+        }
+    }
 
     /**
      * Once the component is mounted onto the DOM, construct a new map with the given view.
@@ -90,6 +106,51 @@ const useMap = (zoom, center) => {
         });
 
         dispatch(addCesiumMap({cesiumMap: cesiumMapObject}))
+    }, [map]);
+
+    /**
+     * Once the component is mounted onto the DOM, determine whether to update the view hash when the map is moved..
+     * If the state of the map changes, this function is called again.
+     *
+     * @remark When the map is moved, the new history state is pushed and if the history state is popped (browser back)
+     * the previous state is loaded.
+     */
+    useEffect(() => {
+        if (!map)
+        {
+            return;
+        }
+
+        map.on("moveend", () => {
+            if (!updateViewHash)
+            {
+                updateViewHash = true;
+                return;
+            }
+
+            let center = map.getView().getCenter();
+            let zoom = map.getView().getZoom();
+
+            let hash = `#view=${zoom}/${center[0]}/${center[1]}`;
+            let viewState = {
+                zoom: zoom,
+                center: center,
+            };
+
+            window.history.pushState(viewState, 'mapViewState', hash);
+            console.log(`Pushed: ${viewState.center}`);
+        });
+
+        window.onpopstate = (event) => {
+            if (event.state !== null)
+            {
+                map.getView().setCenter(event.state.center);
+                map.getView().setZoom(event.state.zoom);
+            }
+
+            updateViewHash = false;
+        }
+
     }, [map]);
 
 

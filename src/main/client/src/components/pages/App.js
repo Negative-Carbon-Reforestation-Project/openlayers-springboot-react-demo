@@ -18,11 +18,6 @@ import Marker from "../overlays/Marker";
  * @returns {JSX.Element}
  */
 const App = () => {
-    const washingtonCoordinates = [-122.29567670312974, 47.41311574557329];
-    const [center, setCenter] = useState(washingtonCoordinates);
-    const [zoom, setZoom] = useState(6);
-
-
     /**
      * Once the component is mounted onto the DOM, dynamically update the page's title and the viewport tag.
      *
@@ -39,7 +34,7 @@ const App = () => {
     return (
         <div className="map-container">
             <SearchBar />
-            <Map center={fromLonLat(center)} zoom={zoom}>
+            <Map>
                 <Layers>
                     <Base/>
                     <LandCover/>

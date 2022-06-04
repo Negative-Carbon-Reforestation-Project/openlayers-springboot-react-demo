@@ -29,6 +29,7 @@ const SearchBar = () => {
         fetch(`https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?address=${address}&maxLocations=1&f=json&token=${process.env.REACT_APP_ARCTOKEN}`)
             .then(response => response.json())
             .then(data => {
+                debugger;
                 let location = data.candidates[0].location;
                 let coordinates = fromLonLat([location.x, location.y]);
 
