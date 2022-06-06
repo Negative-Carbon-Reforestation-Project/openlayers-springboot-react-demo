@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from 'react';
-
+import React, {useEffect} from 'react';
 import Map from "../map/Map";
 import Layers from "../layers/Layers";
 import Controls from "../controls/Controls";
-import { fromLonLat } from "ol/proj";
 import Overlays from "../overlays/Overlays";
 import SearchBar from "../base/SearchBar";
 import LayerControl from "../controls/LayerControl";

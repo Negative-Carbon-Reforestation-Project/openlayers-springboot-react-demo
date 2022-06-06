@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import {View, Map, Overlay} from "ol";
 import OLCesium from "olcs/OLCesium";
-import {CesiumTerrainProvider, createWorldTerrain} from "cesium";
+import {CesiumTerrainProvider} from "cesium";
 import {useDispatch, useSelector} from "react-redux";
 import {addCesiumMap, addMap, addMarker, removeMarker} from "../../redux/reducers/mapReducer";
 
@@ -14,14 +14,14 @@ const useMap = () => {
     const map = useSelector((state) => state.maps.value.map);
     const dispatch = useDispatch();
 
-    let center = [-122.29567670312974, 47.41311574557329];
+    let center = [-13613892.456811214, 6009767.707538246];
     let zoom = 6;
     let updateViewHash = true;
 
     /**
      * If the page url contains a view hash, we extract it and set the map view
      */
-    if (window.location.hash != "")
+    if (window.location.hash !== "")
     {
         let hash = window.location.hash.replace("#view=", '');
         let hashTokens = hash.split("/");
@@ -128,8 +128,8 @@ const useMap = () => {
                 return;
             }
 
-            let center = map.getView().getCenter();
-            let zoom = map.getView().getZoom();
+            center = map.getView().getCenter();
+            zoom = map.getView().getZoom();
 
             let hash = `#view=${zoom}/${center[0]}/${center[1]}`;
             let viewState = {
@@ -138,7 +138,6 @@ const useMap = () => {
             };
 
             window.history.pushState(viewState, 'mapViewState', hash);
-            console.log(`Pushed: ${viewState.center}`);
         });
 
         window.onpopstate = (event) => {
