@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useRef} from "react";
 import olcs from "olcs/core";
 import tiltDown from "../../resources/images/icons/distorted-tilt-down-arrow-512x512.svg";
 import tiltUp from "../../resources/images/icons/distorted-tilt-up-arrow-512x512.svg";

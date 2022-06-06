@@ -31,8 +31,6 @@ const Logo = ({className, alt="Site logo", tabIndex=-1, href="/"}) => {
                     onClick={() => document.location.href = href}
                 />
            </picture>
-
-    // return <img src={logo339}/>
 }
 
 export default Logo;

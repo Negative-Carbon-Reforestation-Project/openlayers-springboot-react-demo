@@ -2,7 +2,7 @@ import hamburgerIcon from "../../resources/images/icons/hamburger-menu-50x50.web
 import {useRef, useState} from "react";
 import {useDispatch} from "react-redux";
 import {fromLonLat} from "ol/proj";
-import {addMarker, panMapView, removeMarker, setMapView} from "../../redux/reducers/mapReducer";
+import {addMarker, panMapView, removeMarker} from "../../redux/reducers/mapReducer";
 import SideMenu from "../overlays/SideMenu";
 
 /**

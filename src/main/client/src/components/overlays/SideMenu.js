@@ -77,7 +77,7 @@ const SideMenu = React.forwardRef((props, ref) => {
                             <a href="/privacy">Privacy Policy</a>
                         </li>
                         <li className="side-menu-option">
-                            <a href="https://github.com/Negative-Carbon-Reforestation-Project/openlayers-springboot-react-demo/issues/new?assignees=&labels=bug&template=bug_report.md&title=Bug%3A+%5BError%5D" target="_blank">Report An Issue</a>
+                            <a href="https://github.com/Negative-Carbon-Reforestation-Project/openlayers-springboot-react-demo/issues/new?assignees=&labels=bug&template=bug_report.md&title=Bug%3A+%5BError%5D" target="_blank" rel="noreferrer">Report An Issue</a>
                         </li>
                     </ul>
                 </section>

@@ -1,8 +1,5 @@
-import {Feature, Overlay, View} from "ol";
+import {View} from "ol";
 import {createSlice} from "@reduxjs/toolkit";
-import {Point} from "ol/geom";
-import {fromLonLat} from "ol/proj";
-import {Icon, Style} from "ol/style";
 
 /**
  * Initializes the openlayers map
