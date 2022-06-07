@@ -115,7 +115,7 @@ const LayerControl = () => {
                     onMouseEnter={() => clearTimeout(hideMenuTimerRef.current)}
                     onMouseOut={() => hideCollapsedLayerMenu(800)}
             >
-                <img className="layer-control-icon" src={layerIcon} alt="Layer icon"/>
+                <img className="layer-control-icon" src={layerIcon} alt="Layer icon" draggable={false}/>
                 <p>Layers</p>
             </button>
 
@@ -133,7 +133,7 @@ const LayerControl = () => {
                         title="Toggle the default base layer"
                         onClick={(event) => toggleBaseLayer(0, event)}
                 >
-                    <img className="layer-preview" src={osmPreview} alt="Layer icon"/>
+                    <img className="layer-preview" src={osmPreview} alt="Layer icon" draggable={false}/>
                     <p>Default</p>
                 </button>
 
@@ -142,7 +142,7 @@ const LayerControl = () => {
                         title="Toggle the aerial view base layer"
                         onClick={(event) => toggleBaseLayer(1, event)}
                 >
-                    <img className="layer-preview" src={aerialPreview} alt="Layer icon"/>
+                    <img className="layer-preview" src={aerialPreview} alt="Layer icon" draggable={false}/>
                     <p>Aerial</p>
                 </button>
 
@@ -151,7 +151,7 @@ const LayerControl = () => {
                         title="Toggle the black and white base layer"
                         onClick={(event) => toggleBaseLayer(2, event)}
                 >
-                    <img className="layer-preview" src={blackWhitePreview} alt="Layer icon"/>
+                    <img className="layer-preview" src={blackWhitePreview} alt="Layer icon" draggable={false}/>
                     <p>Toner</p>
                 </button>
 
@@ -160,7 +160,7 @@ const LayerControl = () => {
                         title="Toggle the topographical base layer"
                         onClick={(event) => toggleBaseLayer(3, event)}
                 >
-                    <img className="layer-preview" src={topoPreview} alt="Layer icon"/>
+                    <img className="layer-preview" src={topoPreview} alt="Layer icon" draggable={false}/>
                     <p>Topo</p>
                 </button>
 
@@ -169,7 +169,7 @@ const LayerControl = () => {
                         title="Toggle the terrain base layer"
                         onClick={(event) => toggleBaseLayer(4, event)}
                 >
-                    <img className="layer-preview" src={terrainPreview} alt="Layer icon"/>
+                    <img className="layer-preview" src={terrainPreview} alt="Layer icon" draggable={false}/>
                     <p>Terrain</p>
                 </button>
 
@@ -179,7 +179,7 @@ const LayerControl = () => {
                         title="View more layer options"
                         aria-label="View more layer options"
                 >
-                    <img className="layer-preview"  src={moreLayers} alt="Layer icon"/>
+                    <img className="layer-preview"  src={moreLayers} alt="Layer icon" draggable={false}/>
                     <p>More</p>
                 </button>
             </div>
@@ -194,6 +194,7 @@ const LayerControl = () => {
                          src={exitIcon}
                          alt="Exit layer menu icon"
                          onClick={() => hideExpandedLayerMenu()}
+                         draggable={false}
                     />
                 </button>
                 <section className="landcover-layers">
@@ -205,7 +206,7 @@ const LayerControl = () => {
                                 title="Toggle the slope landcover layer"
                                 onClick={(event) => toggleLayer(5, event)}
                         >
-                            <img className="layer-preview" src={slopesPreview} alt="Layer icon"/>
+                            <img className="layer-preview" src={slopesPreview} alt="Layer icon" draggable={false}/>
                             <p>Slope</p>
                         </button>
 
@@ -214,7 +215,7 @@ const LayerControl = () => {
                                 title="Toggle the wildfires landcover layer"
                                 onClick={(event) => toggleLayer(6, event)}
                         >
-                            <img className="layer-preview" src={firePreview} alt="Layer icon"/>
+                            <img className="layer-preview" src={firePreview} alt="Layer icon" draggable={false}/>
                             <p>Wildfires</p>
                         </button>
 
@@ -224,7 +225,7 @@ const LayerControl = () => {
                             title="Toggle the soil landcover layer"
                             onClick={(event) => toggleLayer(7, event)}
                         >
-                            <img className="layer-preview" src={soilPreview} alt="Layer icon"/>
+                            <img className="layer-preview" src={soilPreview} alt="Layer icon" draggable={false}/>
                             <p>Soil</p>
                         </button>
 
@@ -233,7 +234,7 @@ const LayerControl = () => {
                                 title="Toggle the tree density landcover layer"
                                 onClick={(event) => toggleLayer(8, event)}
                         >
-                            <img className="layer-preview" src={treeDensityPreview} alt="Layer icon"/>
+                            <img className="layer-preview" src={treeDensityPreview} alt="Layer icon" draggable={false}/>
                             <p>Density</p>
                         </button>
                     </section>
@@ -248,7 +249,7 @@ const LayerControl = () => {
                                 title="Toggle the default base layer"
                                 onClick={(event) => toggleBaseLayer(0, event)}
                         >
-                            <img className="layer-preview" src={osmPreview} alt="Layer icon"/>
+                            <img className="layer-preview" src={osmPreview} alt="Layer icon" draggable={false}/>
                             <p>Default</p>
                         </button>
 
@@ -257,7 +258,7 @@ const LayerControl = () => {
                                 title="Toggle the aerial view base layer"
                                 onClick={(event) => toggleBaseLayer(1, event)}
                         >
-                            <img className="layer-preview" src={aerialPreview} alt="Layer icon"/>
+                            <img className="layer-preview" src={aerialPreview} alt="Layer icon" draggable={false}/>
                             <p>Aerial</p>
                         </button>
 
@@ -266,7 +267,7 @@ const LayerControl = () => {
                                 title="Toggle the black and white base layer"
                                 onClick={(event) => toggleBaseLayer(2, event)}
                         >
-                            <img className="layer-preview" src={blackWhitePreview} alt="Layer icon"/>
+                            <img className="layer-preview" src={blackWhitePreview} alt="Layer icon" draggable={false}/>
                             <p>Toner</p>
                         </button>
 
@@ -275,7 +276,7 @@ const LayerControl = () => {
                                 title="Toggle the topographical base layer"
                                 onClick={(event) => toggleBaseLayer(3, event)}
                         >
-                            <img className="layer-preview" src={topoPreview} alt="Layer icon"/>
+                            <img className="layer-preview" src={topoPreview} alt="Layer icon" draggable={false}/>
                             <p>Topo</p>
                         </button>
 
@@ -284,7 +285,7 @@ const LayerControl = () => {
                                 title="Toggle the terrain base layer"
                                 onClick={(event) => toggleBaseLayer(4, event)}
                         >
-                            <img className="layer-preview" src={terrainPreview} alt="Layer icon"/>
+                            <img className="layer-preview" src={terrainPreview} alt="Layer icon" draggable={false}/>
                             <p>Terrain</p>
                         </button>
                     </section>

@@ -132,6 +132,8 @@ const CameraControl = () => {
                         onMouseDown={() => setZoomInterval()}
                         onMouseUp={() => clearInterval(zoomTimerRef.current)}
                         onMouseLeave={() => clearInterval(zoomTimerRef.current)}
+                        onTouchStart={() => setZoomInterval()}
+                        onTouchEnd={() => clearInterval(zoomTimerRef.current)}
                 >
                     +
                 </button>
@@ -143,6 +145,8 @@ const CameraControl = () => {
                         onMouseDown={() => setZoomInterval(-0.5)}
                         onMouseUp={() => clearInterval(zoomTimerRef.current)}
                         onMouseLeave={() => clearInterval(zoomTimerRef.current)}
+                        onTouchStart={() => setZoomInterval(-0.5)}
+                        onTouchEnd={() => clearInterval(zoomTimerRef.current)}
                 >
                     -
                 </button>
@@ -162,7 +166,7 @@ const CameraControl = () => {
                         onMouseEnter={() => clearTimeout(hideCameraControlsRef.current)}
                         onMouseOut={() => hideExpandedCameraControls(800)}
                 >
-                    <img src={cameraIcon} alt="Camera icon"/>
+                    <img src={cameraIcon} alt="Camera icon" draggable={false}/>
                 </button>
 
                 <section ref={expandedCameraControls}
@@ -180,6 +184,8 @@ const CameraControl = () => {
                                 onMouseDown={() => setZoomInterval()}
                                 onMouseUp={() => clearInterval(zoomTimerRef.current)}
                                 onMouseLeave={() => clearInterval(zoomTimerRef.current)}
+                                onTouchStart={() => setZoomInterval()}
+                                onTouchEnd={() => clearInterval(zoomTimerRef.current)}
                         >
                             +
                         </button>
@@ -191,6 +197,8 @@ const CameraControl = () => {
                                 onMouseDown={() => setZoomInterval(-0.5)}
                                 onMouseUp={() => clearInterval(zoomTimerRef.current)}
                                 onMouseLeave={() => clearInterval(zoomTimerRef.current)}
+                                onTouchStart={() => setZoomInterval(-0.5)}
+                                onTouchEnd={() => clearInterval(zoomTimerRef.current)}
                         >
                             -
                         </button>
@@ -202,8 +210,10 @@ const CameraControl = () => {
                                 onMouseDown={() => setTiltInterval()}
                                 onMouseUp={() => clearInterval(tiltTimerRef.current)}
                                 onMouseLeave={() => clearInterval(tiltTimerRef.current)}
+                                onTouchStart={() => setTiltInterval()}
+                                onTouchEnd={() => clearInterval(tiltTimerRef.current)}
                         >
-                            <img src={tiltDown} alt="Tilt down arrow"/>
+                            <img src={tiltDown} alt="Tilt down arrow" draggable={false}/>
                         </button>
 
                         <button className="tilt-up-control camera-control"
@@ -213,8 +223,10 @@ const CameraControl = () => {
                                 onMouseDown={() => setTiltInterval(-0.05)}
                                 onMouseUp={() => clearInterval(tiltTimerRef.current)}
                                 onMouseLeave={() => clearInterval(tiltTimerRef.current)}
+                                onTouchStart={() => setTiltInterval(-0.05)}
+                                onTouchEnd={() => clearInterval(tiltTimerRef.current)}
                         >
-                            <img src={tiltUp} alt="Tilt up arrow"/>
+                            <img src={tiltUp} alt="Tilt up arrow" draggable={false}/>
                         </button>
                 </section>
             </div>
