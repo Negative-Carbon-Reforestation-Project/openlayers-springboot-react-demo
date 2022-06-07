@@ -35,8 +35,8 @@ const QueryResult = ({data}) => {
 
     return (
         <>
-            <section className="query-menu-header">
-                <Coordinates className="query-menu-coordinates" coordinates={data.coordinates} />
+            <section className="query-result-header">
+                <Coordinates className="query-result-coordinates" coordinates={data.coordinates} />
             </section>
 
             <section className="chart-container">
