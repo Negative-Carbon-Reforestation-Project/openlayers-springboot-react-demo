@@ -31,14 +31,22 @@
 {
     position: absolute;
     right: 10px;
-    width: 30px;
-    height: 30px;
+    top: 10px;
+
+    background: transparent;
+    border: none;
 }
 
 .query-menu-exit:hover
 {
     cursor: pointer;
     filter: var(--filter-dark-green);
+}
+
+.query-menu-exit-icon
+{
+    width: 30px;
+    height: 30px;
 }
 
 .query-menu-coordinates 
@@ -124,11 +132,6 @@
    {
       flex-direction: column;
       align-items: center;
-   }
-
-   .query-menu-exit
-   {
-      position: relative;
    }
 
    .gauge-container

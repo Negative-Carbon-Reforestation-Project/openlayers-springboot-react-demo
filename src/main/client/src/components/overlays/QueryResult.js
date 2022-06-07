@@ -4,7 +4,7 @@ import Gauge from "./Gauge";
 import PieChart from "./PieChart";
 import React from "react";
 
-const QueryResult = ({queryMenuRef, data}) => {
+const QueryResult = ({data}) => {
 
     /**
      * Generates a descriptive statement for the reforestation opportunity percentage
@@ -32,23 +32,11 @@ const QueryResult = ({queryMenuRef, data}) => {
         return explanation;
     };
 
-    /**
-     * Hides the query menu
-     */
-    const hideMenu = () => {
-        queryMenuRef.current.classList.remove("active-flex");
-    }
 
     return (
         <>
             <section className="query-menu-header">
                 <Coordinates className="query-menu-coordinates" coordinates={data.coordinates} />
-
-                <img className="query-menu-exit"
-                     src={exitIcon}
-                     alt="Exit query menu"
-                     onClick={() => hideMenu()}
-                />
             </section>
 
             <section className="chart-container">
