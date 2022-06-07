@@ -108,7 +108,29 @@
 {
     .search-bar
     {
-        max-width: 350px;
+        max-width: 20rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* iphones 6/7/8 and Plus in landscape */
+@media only screen and (max-width: 800px) and (orientation: landscape)
+{
+    .search-bar
+    {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* iphones X in landscape */
+@media only screen and (max-width: 900px) and (orientation: landscape)
+{
+    .search-bar
+    {
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
 
