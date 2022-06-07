@@ -2,7 +2,6 @@ import {Steps} from "intro.js-react";
 import {useDispatch, useSelector} from "react-redux";
 import {toggleTutorial} from "../../redux/reducers/appReducer";
 import {useRef} from "react";
-import {getCookie, setCookie} from "../utils/CookieManager";
 
 /**
  * Container for Tutorial
@@ -84,11 +83,7 @@ const Tutorial = () => {
      */
     const exitTutorial = () => {
         dispatch(toggleTutorial({tutorialEnabled: false}));
-
-        if (!getCookie("onboarded"))
-        {
-            setCookie("onboarded", true);
-        }
+        localStorage.setItem("onboarded", true);
     }
 
     /**
