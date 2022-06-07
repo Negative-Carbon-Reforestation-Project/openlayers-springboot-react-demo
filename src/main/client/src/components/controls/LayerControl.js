@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import layerIcon from "../../resources/images/icons/layer-control-20x20.png";
 import osmPreview from "../../resources/images/backdrops/osm-preview-195x197.png";
 import aerialPreview from "../../resources/images/backdrops/aerial-preview-195x197.png";
@@ -25,9 +25,9 @@ const LayerControl = () => {
 
     const layerMenuCollapsedRef = useRef();
     const layerMenuExpandedRef = useRef();
-
     const hideMenuTimerRef = useRef(0);
     const hideExpandedMenuTimerRef = useRef(0);
+    const lastBaseLayerRef = useRef(0);
 
     /**
      * Shows the collapsed layer menu
@@ -80,8 +80,9 @@ const LayerControl = () => {
      * Toggles a layer's visibility
      * @param event The click event
      */
-    const toggleLayer = (layerNumber, event) => {
-       dispatch(toggleLayerVisibility({layerIndex: layerNumber}));
+    const toggleLayer = (event) => {
+       let layerIndex = Number(event.currentTarget.getAttribute("data-layer-index"));
+       dispatch(toggleLayerVisibility({layerIndex: layerIndex}));
     }
 
     /**
@@ -89,8 +90,16 @@ const LayerControl = () => {
      * @remark Only one base layer can be active, so disabling other base layers is required.
      * @param event The click event
      */
-    const toggleBaseLayer = (layerNumber, event) => {
-        dispatch(toggleBaseLayerVisibility({layerIndex: layerNumber}));
+    const toggleBaseLayer = (event) => {
+        let layerIndex = Number(event.currentTarget.getAttribute("data-layer-index"));
+        dispatch(toggleBaseLayerVisibility({layerIndex: layerIndex}));
+
+        let lastBaseLayerGroups = document.querySelectorAll(`button[data-layer-index='${lastBaseLayerRef.current}']`);
+        lastBaseLayerGroups.forEach((group) => group.classList.remove("layer-active"));
+
+        lastBaseLayerRef.current = layerIndex;
+        let currentBaseLayerGroups = document.querySelectorAll(`button[data-layer-index='${lastBaseLayerRef.current}']`);
+        currentBaseLayerGroups.forEach((group) => group.classList.add("layer-active"));
     }
 
     /**
@@ -99,6 +108,11 @@ const LayerControl = () => {
     const toggleCesiumView = () => {
         dispatch(toggleCesiumEnabled());
     }
+
+    useEffect(() => {
+        let defaultBaseLayerGroups = document.querySelectorAll(`button[data-layer-index='${lastBaseLayerRef.current}']`);
+        defaultBaseLayerGroups.forEach((group) => group.classList.add("layer-active"));
+    }, [])
 
     return (
         <>
@@ -131,7 +145,8 @@ const LayerControl = () => {
                 <button className="layer-group"
                         aria-label="Toggle default base layer"
                         title="Toggle the default base layer"
-                        onClick={(event) => toggleBaseLayer(0, event)}
+                        onClick={(event) => toggleBaseLayer(event)}
+                        data-layer-index={0}
                 >
                     <img className="layer-preview" src={osmPreview} alt="Layer icon" draggable={false}/>
                     <p>Default</p>
@@ -140,7 +155,8 @@ const LayerControl = () => {
                 <button className="layer-group"
                         aria-label="Toggle aerial base layer"
                         title="Toggle the aerial view base layer"
-                        onClick={(event) => toggleBaseLayer(1, event)}
+                        onClick={(event) => toggleBaseLayer(event)}
+                        data-layer-index={1}
                 >
                     <img className="layer-preview" src={aerialPreview} alt="Layer icon" draggable={false}/>
                     <p>Aerial</p>
@@ -149,7 +165,8 @@ const LayerControl = () => {
                 <button className="layer-group"
                         aria-label="Toggle black and white base layer"
                         title="Toggle the black and white base layer"
-                        onClick={(event) => toggleBaseLayer(2, event)}
+                        onClick={(event) => toggleBaseLayer(event)}
+                        data-layer-index={2}
                 >
                     <img className="layer-preview" src={blackWhitePreview} alt="Layer icon" draggable={false}/>
                     <p>Toner</p>
@@ -158,7 +175,8 @@ const LayerControl = () => {
                 <button className="layer-group"
                         aria-label="Toggle topographical base layer"
                         title="Toggle the topographical base layer"
-                        onClick={(event) => toggleBaseLayer(3, event)}
+                        onClick={(event) => toggleBaseLayer(event)}
+                        data-layer-index={3}
                 >
                     <img className="layer-preview" src={topoPreview} alt="Layer icon" draggable={false}/>
                     <p>Topo</p>
@@ -167,7 +185,8 @@ const LayerControl = () => {
                 <button className="layer-group"
                         aria-label="Toggle terrain base layer"
                         title="Toggle the terrain base layer"
-                        onClick={(event) => toggleBaseLayer(4, event)}
+                        onClick={(event) => toggleBaseLayer(event)}
+                        data-layer-index={4}
                 >
                     <img className="layer-preview" src={terrainPreview} alt="Layer icon" draggable={false}/>
                     <p>Terrain</p>
@@ -204,7 +223,8 @@ const LayerControl = () => {
                         <button className="layer-group"
                                 aria-label="Toggle slope landcover layer"
                                 title="Toggle the slope landcover layer"
-                                onClick={(event) => toggleLayer(5, event)}
+                                onClick={(event) => toggleLayer(event)}
+                                data-layer-index={5}
                         >
                             <img className="layer-preview" src={slopesPreview} alt="Layer icon" draggable={false}/>
                             <p>Slope</p>
@@ -213,7 +233,8 @@ const LayerControl = () => {
                         <button className="layer-group"
                                 aria-label="Toggle wildfires landcover layer"
                                 title="Toggle the wildfires landcover layer"
-                                onClick={(event) => toggleLayer(6, event)}
+                                onClick={(event) => toggleLayer(event)}
+                                data-layer-index={6}
                         >
                             <img className="layer-preview" src={firePreview} alt="Layer icon" draggable={false}/>
                             <p>Wildfires</p>
@@ -223,7 +244,8 @@ const LayerControl = () => {
                             className="layer-group"
                             aria-label="Toggle soil landcover layer"
                             title="Toggle the soil landcover layer"
-                            onClick={(event) => toggleLayer(7, event)}
+                            onClick={(event) => toggleLayer(event)}
+                            data-layer-index={7}
                         >
                             <img className="layer-preview" src={soilPreview} alt="Layer icon" draggable={false}/>
                             <p>Soil</p>
@@ -232,7 +254,8 @@ const LayerControl = () => {
                         <button className="layer-group"
                                 aria-label="Toggle tree density landcover layer"
                                 title="Toggle the tree density landcover layer"
-                                onClick={(event) => toggleLayer(8, event)}
+                                onClick={(event) => toggleLayer(event)}
+                                data-layer-index={8}
                         >
                             <img className="layer-preview" src={treeDensityPreview} alt="Layer icon" draggable={false}/>
                             <p>Density</p>
@@ -247,7 +270,8 @@ const LayerControl = () => {
                         <button className="layer-group"
                                 aria-label="Toggle default base layer"
                                 title="Toggle the default base layer"
-                                onClick={(event) => toggleBaseLayer(0, event)}
+                                onClick={(event) => toggleBaseLayer(event)}
+                                data-layer-index={0}
                         >
                             <img className="layer-preview" src={osmPreview} alt="Layer icon" draggable={false}/>
                             <p>Default</p>
@@ -256,7 +280,8 @@ const LayerControl = () => {
                         <button className="layer-group"
                                 aria-label="Toggle aerial base layer"
                                 title="Toggle the aerial view base layer"
-                                onClick={(event) => toggleBaseLayer(1, event)}
+                                onClick={(event) => toggleBaseLayer(event)}
+                                data-layer-index={1}
                         >
                             <img className="layer-preview" src={aerialPreview} alt="Layer icon" draggable={false}/>
                             <p>Aerial</p>
@@ -265,7 +290,8 @@ const LayerControl = () => {
                         <button className="layer-group"
                                 aria-label="Toggle black and white base layer"
                                 title="Toggle the black and white base layer"
-                                onClick={(event) => toggleBaseLayer(2, event)}
+                                onClick={(event) => toggleBaseLayer(event)}
+                                data-layer-index={2}
                         >
                             <img className="layer-preview" src={blackWhitePreview} alt="Layer icon" draggable={false}/>
                             <p>Toner</p>
@@ -274,7 +300,8 @@ const LayerControl = () => {
                         <button className="layer-group"
                                 aria-label="Toggle topographical base layer"
                                 title="Toggle the topographical base layer"
-                                onClick={(event) => toggleBaseLayer(3, event)}
+                                onClick={(event) => toggleBaseLayer(event)}
+                                data-layer-index={3}
                         >
                             <img className="layer-preview" src={topoPreview} alt="Layer icon" draggable={false}/>
                             <p>Topo</p>
@@ -283,7 +310,8 @@ const LayerControl = () => {
                         <button className="layer-group"
                                 aria-label="Toggle terrain base layer"
                                 title="Toggle the terrain base layer"
-                                onClick={(event) => toggleBaseLayer(4, event)}
+                                onClick={(event) => toggleBaseLayer(event)}
+                                data-layer-index={4}
                         >
                             <img className="layer-preview" src={terrainPreview} alt="Layer icon" draggable={false}/>
                             <p>Terrain</p>
