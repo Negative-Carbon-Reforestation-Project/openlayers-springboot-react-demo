@@ -24,7 +24,7 @@ const useMap = () => {
     if (window.location.hash !== "")
     {
         let hash = window.location.hash.replace("#view=", '');
-        let hashTokens = hash.split("/");
+        let hashTokens = hash.split(",");
 
         if (hashTokens.length === 3)
         {
@@ -131,7 +131,7 @@ const useMap = () => {
             center = map.getView().getCenter();
             zoom = map.getView().getZoom();
 
-            let hash = `#view=${zoom}/${center[0]}/${center[1]}`;
+            let hash = `#view=${zoom},${center[0]},${center[1]}`;
             let viewState = {
                 zoom: zoom,
                 center: center,
