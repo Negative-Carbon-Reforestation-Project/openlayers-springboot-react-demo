@@ -1,6 +1,5 @@
 import React from "react";
 import useQuery from "./useQuery";
-import Coordinates from "./Coordinates";
 import exitIcon from "../../resources/images/icons/exit-icon-50x50.png";
 
 /**
@@ -10,7 +9,7 @@ import exitIcon from "../../resources/images/icons/exit-icon-50x50.png";
 const QueryMenu = React.forwardRef(({coordinates}, queryMenuRef) => {
 
 
-    const { queryContent } = useQuery(coordinates);
+    const { queryContent } = useQuery(coordinates, queryMenuRef);
 
     /**
      * Hides the query menu

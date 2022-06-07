@@ -25,21 +25,11 @@ const Marker = () => {
         setCoordinates(longLatCoordinates);
     }
 
-    /**
-     * Shows the query menu
-     */
-    const showQueryMenu = () => {
-        queryMenuRef.current.classList.add("active-flex");
-    }
-
     return (
         <>
             <div id="map-marker"
                  className="map-marker"
-                 onClick={() => {
-                    setQueryCoordinates();
-                    showQueryMenu();
-                }}
+                 onClick={() => setQueryCoordinates()}
             >
                 <img  src={markerIcon} alt="Marker icon"/>
             </div>
