@@ -3,7 +3,14 @@ import {View, Map, Overlay} from "ol";
 import OLCesium from "olcs/OLCesium";
 import {CesiumTerrainProvider} from "cesium";
 import {useDispatch, useSelector} from "react-redux";
-import {addCesiumMap, addMap, addMarker, removeMarker} from "../../redux/reducers/mapReducer";
+import {
+    addCesiumMap,
+    addMap,
+    addMarker, readHistoryState,
+    removeMarker, setHistoryState, setMapView,
+    toggleBaseLayerVisibility, toggleCesiumEnabled
+} from "../../redux/reducers/mapReducer";
+import {layerMap} from "./LayerSources";
 
 /**
  * Encapsulated logic for the OL Map
@@ -14,24 +21,8 @@ const useMap = () => {
     const map = useSelector((state) => state.maps.value.map);
     const dispatch = useDispatch();
 
-    let center = [-13613892.456811214, 6009767.707538246];
-    let zoom = 6;
+
     let updateViewHash = true;
-
-    /**
-     * If the page url contains a view hash, we extract it and set the map view
-     */
-    if (window.location.hash !== "")
-    {
-        let hash = window.location.hash.replace("#view=", '');
-        let hashTokens = hash.split(",");
-
-        if (hashTokens.length === 3)
-        {
-            zoom = parseFloat(hashTokens[0]);
-            center = [parseFloat(hashTokens[1]), parseFloat(hashTokens[2])];
-        }
-    }
 
     /**
      * Once the component is mounted onto the DOM, construct a new map with the given view.
@@ -39,6 +30,9 @@ const useMap = () => {
      * @remarks The view is bounded to Washington state with the extent property.
      */
     useEffect(() => {
+        let center = [-13613892.456811214, 6009767.707538246];
+        let zoom = 6;
+
         let options = {
             view: new View({
                 zoom,
@@ -58,8 +52,8 @@ const useMap = () => {
     }, []);
 
     /**
-     * Once the component is mounted onto the DOM, set the zoom level on the map.
-     * If the state of zoom changes, this function is called again.
+     * Once the component is mounted onto the DOM, read the url hash if one is present and initialize the map
+     * before layers are composed. If a url hash isn't present, we set a default hash.
      */
     useEffect(() => {
         if (!map)
@@ -67,23 +61,69 @@ const useMap = () => {
             return;
         }
 
-        map.getView().setZoom(zoom);
+        map.once("precompose", () => {
+            if (window.location.hash === "")
+            {
+                dispatch(setHistoryState({
+                    base: "default",
+                    mode: "2D",
+                    view: {
+                        zoom: 6,
+                        center: [-13613892.456811214, 6009767.707538246]
+                    },
+                    marker: [-13757940.547983468,6057128.033048746]
+                }));
 
-    }, [zoom]);
+                dispatch(addMarker({position: [-13757940.547983468,6057128.033048746]}));
+            }
+            else
+            {
+                dispatch(readHistoryState());
+            }
+        });
+    }, [map]);
 
-    /**
-     * Once the component is mounted onto the DOM, center the view on the map.
-     * If the state of center changes, this function is called again.
-     */
+     /**
+      * Once the component is mounted onto the DOM, determine whether to update the view hash when the map is moved..
+      * If the state of the map changes, this function is called again.
+      *
+      * @remark When the map is moved, the new history state is pushed and if the history state is popped (browser back)
+      * the previous state is loaded.
+      */
     useEffect(() => {
         if (!map)
         {
             return;
         }
 
-        map.getView().setCenter(center);
+        map.on("moveend", () => {
+            if (!updateViewHash)
+            {
+                updateViewHash = true;
+                return;
+            }
 
-    }, [center]);
+            let center = map.getView().getCenter();
+            let zoom = map.getView().getZoom();
+
+            dispatch(setHistoryState({
+                view: {
+                    zoom: zoom,
+                    center: center
+                }
+            }));
+        });
+
+        window.onpopstate = (event) => {
+            if (event.state !== null)
+            {
+                dispatch(readHistoryState());
+            }
+
+            updateViewHash = false;
+        };
+
+    }, [map]);
 
     /**
      * Once the component is mounted onto the DOM, generate the 3D cesium map and the world terrain.
@@ -108,53 +148,11 @@ const useMap = () => {
         dispatch(addCesiumMap({cesiumMap: cesiumMapObject}))
     }, [map]);
 
-    /**
-     * Once the component is mounted onto the DOM, determine whether to update the view hash when the map is moved..
-     * If the state of the map changes, this function is called again.
-     *
-     * @remark When the map is moved, the new history state is pushed and if the history state is popped (browser back)
-     * the previous state is loaded.
-     */
-    useEffect(() => {
-        if (!map)
-        {
-            return;
-        }
-
-        map.on("moveend", () => {
-            if (!updateViewHash)
-            {
-                updateViewHash = true;
-                return;
-            }
-
-            center = map.getView().getCenter();
-            zoom = map.getView().getZoom();
-
-            let hash = `#view=${zoom},${center[0]},${center[1]}`;
-            let viewState = {
-                zoom: zoom,
-                center: center,
-            };
-
-            window.history.pushState(viewState, 'mapViewState', hash);
-        });
-
-        window.onpopstate = (event) => {
-            if (event.state !== null)
-            {
-                map.getView().setCenter(event.state.center);
-                map.getView().setZoom(event.state.zoom);
-            }
-
-            updateViewHash = false;
-        }
-
-    }, [map]);
-
 
     /**
      * Once the component is mounted onto the DOM, create a marker overlay on click.
+     *
+     * @remark When markers are added and removed, the hash is updated accordingly.
      */
     useEffect(() => {
         if (!map) {
@@ -178,10 +176,18 @@ const useMap = () => {
             if (marker.getPosition() === undefined)
             {
                 dispatch(addMarker({position: event.coordinate}));
+
+                dispatch(setHistoryState({
+                    marker: event.coordinate
+                }));
             }
             else
             {
                 dispatch(removeMarker());
+
+                dispatch(setHistoryState({
+                    marker: ["!", "!"]
+                }));
             }
 
             return () => {

@@ -1,5 +1,6 @@
 import {View} from "ol";
 import {createSlice} from "@reduxjs/toolkit";
+import {layerMap} from "../../components/map/LayerSources";
 
 /**
  * Initializes the openlayers map
@@ -25,6 +26,7 @@ const addMapLayerAction = (state, action) => {
  * @param action The object containing information about the new state
  */
 const setMapViewAction = (state, action) => {
+
     state.value.map.setView(new View({
         center: action.payload.center,
         zoom: action.payload.zoom ?? 6
@@ -131,7 +133,80 @@ const removeMarkerAction = (state, action) => {
     marker.setPosition(undefined);
 }
 
+/**
+ * Sets the browser history's state
+ * @param state The current state of the reducer
+ * @param action The object containing information about the new state
+ * @remark
+ */
+const setHistoryStateAction = (state, action) => {
+    if (window.location.hash !== "")
+    {
+        let [base, mode, view, marker] = window.location.hash
+            .split("&")
+            .map((entry) => entry.split("=")[1]);
 
+        action.payload.base = action.payload.base ?? base;
+        action.payload.mode = action.payload.mode ?? mode;
+
+        let [zoom, ...center] = view.split(",");
+        action.payload.view = action.payload.view ?? {
+            zoom: zoom,
+            center: center
+        };
+
+        action.payload.marker = action.payload.marker ?? marker.split(",");
+    }
+
+
+    let base = `base=${action.payload.base}`;
+    let mode = `mode=${action.payload.mode}`;
+    let view = `view=${action.payload.view.zoom},${action.payload.view.center[0]},${action.payload.view.center[1]}`;
+    let marker = `marker=${action.payload.marker[0]},${action.payload.marker[1]}`;
+
+    let hash = `#${base}&${mode}&${view}&${marker}`;
+    window.history.pushState(action.payload, 'mapViewState', hash);
+}
+
+/**
+ * Reads the browser history's state
+ * @param state The current state of the reducer
+ * @param action The object containing information about the new state
+ * @remark The map is initialiazed based on the hash parameters:
+ *   base: The active base layer. Default is "default"
+ *   mode: 2D or 3D mode. Default is 2D
+ *   view: The view or center of the map. Defaults to Washington state.
+ *   marker: The coordinates of an active marker. Defaults to "!,!" if inactive.
+ */
+const readHistoryStateAction = (state) => {
+    let [base, mode, view, marker] = window.location.hash
+        .split("&")
+        .map((entry) => entry.split("=")[1]);
+
+    toggleBaseLayerVisibilityAction(state, {payload: {layerIndex: layerMap.get(base)}});
+
+    let viewTokens = view.split(",");
+
+    if (viewTokens.length === 3)
+    {
+        let [zoom, ...center] = viewTokens.map(token => parseFloat(token));
+        setMapViewAction(state, {payload: {center: center, zoom: zoom}});
+    }
+
+    let markerTokens = marker.split(",");
+
+    if (markerTokens.length === 2 && markerTokens[0] !== "!")
+    {
+        let position = markerTokens.map(token => parseFloat(token));
+        addMarkerAction(state, {payload: {position: position}});
+    }
+
+    if (mode === "3D")
+    {
+        toggleCesiumEnabledAction(state);
+    }
+
+}
 
 /**
  * Reducer configuration for the openlayers map and cesium map actions and events.
@@ -153,6 +228,8 @@ const mapsSlice = createSlice({
         toggleBaseLayerVisibility: (state, action) => toggleBaseLayerVisibilityAction(state, action),
         addCesiumMap: (state, action) => addCesiumMapAction(state, action),
         toggleCesiumEnabled: (state) => toggleCesiumEnabledAction(state),
+        setHistoryState: (state, action) => setHistoryStateAction(state, action),
+        readHistoryState: (state, action) => readHistoryStateAction(state, action),
     }
 });
 
@@ -167,7 +244,9 @@ export const {
     toggleLayerVisibility,
     toggleBaseLayerVisibility,
     addCesiumMap,
-    toggleCesiumEnabled
+    toggleCesiumEnabled,
+    setHistoryState,
+    readHistoryState
 } = mapsSlice.actions;
 
 export default mapsSlice.reducer;
