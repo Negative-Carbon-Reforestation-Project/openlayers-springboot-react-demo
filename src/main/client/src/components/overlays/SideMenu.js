@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import exitIcon from "../../resources/images/icons/exit-icon-50x50.png";
 import helpIcon from "../../resources/images/icons/help-icon-512x512.png";
 import shareIcon from "../../resources/images/icons/share-icon-512x512.png";
@@ -13,10 +13,12 @@ import settingsIcon from "../../resources/images/icons/settings-512x512.png";
 import Logo from "../base/Logo";
 import {toggleTutorial} from "../../redux/reducers/appReducer";
 import {useDispatch} from "react-redux";
+import ShareMenu from "./ShareMenu";
 
 const SideMenu = React.forwardRef((props, ref) => {
 
     const dispatch = useDispatch();
+    const shareMenuRef = useRef();
 
     /**
      * Shows the tutorial again
@@ -25,6 +27,14 @@ const SideMenu = React.forwardRef((props, ref) => {
     const showTutorial = () => {
         dispatch(toggleTutorial({tutorialEnabled: true}));
         ref.current.classList.remove("active-flex");
+    }
+
+    /**
+     * Shows the share menu
+     */
+    const showShareMenu = () => {
+        ref.current.classList.remove("active-flex");
+        shareMenuRef.current.classList.add("active-flex");
     }
 
     /**
@@ -44,13 +54,14 @@ const SideMenu = React.forwardRef((props, ref) => {
                     </button>
                 </section>
 
+                <hr/>
                 <section className="side-menu-section">
                     <ul className="side-menu-options">
                         <li className="side-menu-option" aria-label="Get help" role="button" tabIndex={0} onClick={() => showTutorial()}>
                             <img src={helpIcon} alt="Help icon"/>
                             Get Help
                         </li>
-                        <li className="side-menu-option" aria-label="Share the map" role="button" tabIndex={0}>
+                        <li className="side-menu-option" aria-label="Share the map" role="button" tabIndex={0} onClick={() => showShareMenu()}>
                             <img src={shareIcon} alt="Share map icon"/>
                             Share Map
                         </li>
@@ -64,6 +75,7 @@ const SideMenu = React.forwardRef((props, ref) => {
                         </li>
                     </ul>
                 </section>
+                <hr/>
 
                 <section className="side-menu-section">
                     <ul className="side-menu-options">
@@ -82,6 +94,8 @@ const SideMenu = React.forwardRef((props, ref) => {
                     </ul>
                 </section>
             </aside>
+
+            <ShareMenu ref={shareMenuRef}/>
         </>
     );
 })

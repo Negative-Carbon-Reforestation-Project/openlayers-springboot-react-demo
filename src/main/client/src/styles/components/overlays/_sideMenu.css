@@ -29,6 +29,7 @@
 {
     display: flex;
     align-items: center;
+    background: var(--color-black);
 }
 
 .side-menu-exit
@@ -50,11 +51,6 @@
 .side-menu-exit:hover > img
 {
     filter: var(--filter-dark-green);
-}
-
-.side-menu-section
-{
-    border-top: solid 2px var(--color-transparent-white);
 }
 
 .side-menu-options
