@@ -11,10 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
  * TO-DO: Unit tests are only written for public methods. Currently,
  * the service is coupled tight to some private methods that could use some testing.
  */
-public class ElasticSearchServiceTests
+public class OpenSearchServiceTests
 {
     @Autowired
-    private ElasticSearchService elasticSearchService;
+    private OpenSearchService openSearchService;
 
     @Test
     /**

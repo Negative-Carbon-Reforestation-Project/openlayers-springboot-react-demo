@@ -1,28 +1,27 @@
 package com.ncrp.spring.app.controllers;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.ncrp.spring.app.services.ElasticSearchService;
-import org.apache.coyote.Request;
+import com.ncrp.spring.app.services.OpenSearchService;
+import com.ncrp.spring.app.services.RayServeService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/search/geo")
 /**
- * The controller for Elastic Search queries
+ * The controller for map queries
  */
-public class ElasticSearchController
+public class SearchController
 {
-    private final ElasticSearchService elasticSearchService;
+    private final OpenSearchService openSearchService;
+
+    private final RayServeService rayServeService;
 
     @Autowired
-    public ElasticSearchController(ElasticSearchService elasticService)
+    public SearchController(OpenSearchService openSearchService, RayServeService rayServeService)
     {
-        this.elasticSearchService = elasticService;
+        this.openSearchService = openSearchService;
+        this.rayServeService = rayServeService;
     }
 
     @GetMapping
@@ -37,8 +36,11 @@ public class ElasticSearchController
      */
     public String getQuery(@RequestParam("longitude") double longitude, @RequestParam("latitude") double latitude)
     {
-        String jsonString = elasticSearchService.getSpeciesData(longitude,latitude);
-        return jsonString;
+        String opensearch_response = openSearchService.getSpeciesData(longitude, latitude);
+        JSONObject ray_response = new JSONObject(rayServeService.getReforestationPrediction(longitude, latitude));
+        JSONObject result = new JSONObject(opensearch_response);
+        result.put("prediction", ray_response.get("prediction"));
+        return result.toString();
     }
 
 
@@ -58,7 +60,7 @@ public class ElasticSearchController
 //    {
 //        try
 //        {
-//            return new ResponseEntity<>(elasticSearchService.getSpeciesData(longitude,latitude), HttpStatus.OK);
+//            return new ResponseEntity<>(searchService.getSpeciesData(longitude,latitude), HttpStatus.OK);
 //        }
 //        catch (Exception exception)
 //        {

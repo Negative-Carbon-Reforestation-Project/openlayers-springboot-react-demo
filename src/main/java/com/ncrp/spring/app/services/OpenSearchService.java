@@ -1,8 +1,6 @@
 package com.ncrp.spring.app.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ncrp.spring.app.models.HitResult;
-import com.ncrp.spring.app.models.ReturnData;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -26,7 +24,6 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -38,7 +35,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ElasticSearchService
+public class OpenSearchService
 {
     private final double EARTH_RADIUS = 6371;
 
@@ -46,12 +43,12 @@ public class ElasticSearchService
 
 
     /**
-     * Constructs an elastic search service given the open search host and port.
+     * Constructs a search service given the open search host and port.
      * @param openSearchHost The host for the open search cluster
      * @param openSearchPort The port for the open search cluster
      */
-    public ElasticSearchService(@Value("${opensearch_host}") String openSearchHost,
-                                @Value("${opensearch_port}") int openSearchPort)
+    public OpenSearchService(@Value("${opensearch_host}") String openSearchHost,
+                             @Value("${opensearch_port}") int openSearchPort)
     {
         this.client = getClient(openSearchHost, openSearchPort);
     }
@@ -90,7 +87,7 @@ public class ElasticSearchService
     }
 
     /**
-     * Initializes the elastic search client
+     * Initializes the search client
      * @param openSearchHost The host for the open search cluster
      * @param openSearchPort The port for the open search cluster
      * @return
@@ -172,7 +169,7 @@ public class ElasticSearchService
 
     /**
      * Process a SearchResponse object into HitResult objects, which is then transformed into an ArrayList of Maps
-     * @param response The elastic search response
+     * @param response The open search response
      * @param queryPoint The GeoPoint representing the coordinates
      * @return An arraylist of maps, containing the keys and values.
      */
