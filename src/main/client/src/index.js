@@ -12,6 +12,7 @@ const App = React.lazy(() => import("./components/pages/App"));
 const Terms = React.lazy(() => import("./components/pages/Terms"));
 const Privacy = React.lazy(() => import("./components/pages/Privacy"));
 const Accessibility = React.lazy(() => import("./components/pages/Accessibility"));
+const AppEmbed = React.lazy(() => import("./components/pages/AppEmbed"));
 
 ReactDOM.render(
     <React.StrictMode>
@@ -47,6 +48,12 @@ ReactDOM.render(
                     <Route path="/maps" element={
                         <React.Suspense fallback={<Fallback/>}>
                             <App/>
+                        </React.Suspense>
+                    }/>
+
+                    <Route path="/maps/embed" element={
+                        <React.Suspense fallback={<Fallback/>}>
+                            <AppEmbed/>
                         </React.Suspense>
                     }/>
 
