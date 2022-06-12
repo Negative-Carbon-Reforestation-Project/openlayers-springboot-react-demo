@@ -19,7 +19,8 @@ public class AppController
                 "/accessibility",
                 "/terms",
                 "/privacy",
-                "/maps"
+                "/maps",
+                "/maps/embed"
         }
     )
     /**
