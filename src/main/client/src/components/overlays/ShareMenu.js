@@ -13,7 +13,7 @@ const ShareMenu = React.forwardRef((props, shareMenuRef) => {
      */
     const generateEmbed = () => {
         let url = `${window.location.protocol}//${window.location.host}/maps/embed${window.location.hash}`;
-        let embedHtml = `<iframe src='${url}' title='Embed of map' allowfullscreen='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>`;
+        let embedHtml = `<iframe src='${url}' title='Embed of map' allowfullscreen='' loading='lazy' width='600' height='300' referrerpolicy='no-referrer-when-downgrade'></iframe>`;
 
         console.log(embedHtml);
         return embedHtml;
@@ -50,13 +50,13 @@ const ShareMenu = React.forwardRef((props, shareMenuRef) => {
 
     return (
         <>
-            <aside ref={shareMenuRef} className="share-menu topo-skin">
+            <aside ref={shareMenuRef} className="share-menu topo-skin" tabIndex={0} aria-label="Share menu containing link to the map and html code for the map embed">
                 <section className="share-menu-header">
                     <h2>Share</h2>
                     <button className="share-menu-exit" aria-label="Close share menu">
                         <img className="share-menu-exit-icon"
                              src={exitIcon}
-                             alt="Exit sharemenu icon"
+                             alt="Exit share menu icon"
                              onClick={() => hideMenu()}
                         />
                     </button>
@@ -65,24 +65,28 @@ const ShareMenu = React.forwardRef((props, shareMenuRef) => {
 
                 <section className="share-link-section">
                     <h3>Share Link</h3>
-                    <input id="share-link-input" className="share-input" type="text" value={linkRef.current} readOnly={true}/>
+                    <input id="share-link-input" className="share-input" type="text" value={linkRef.current} readOnly={true} aria-label="Shareable link to the map"/>
                     <button className="share-button" onClick={() => copyToClipboard("#share-link-input")}>Copy Link</button>
                 </section>
 
                 <section className="share-embed-section">
                     <h3>Embed Our Map</h3>
-                    <input id="share-embed-input" className="share-input" type="text" value={embedRef.current} readOnly={true}/>
+                    <input id="share-embed-input" className="share-input" type="text" value={embedRef.current} readOnly={true} aria-label="Shareable html code for the map embed"/>
                     <button className="share-button" onClick={() => copyToClipboard("#share-embed-input")}>Copy HTML</button>
-                    <iframe src="http://localhost:3000/maps/embed"
-                            className="share-menu-embed"
-                            frameBorder="0"
-                            title="Embed of map"
-                            allowFullScreen=""
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"
-                    >
-                    </iframe>
-                    <p className="share-embed-notice">By sharing our map, you agree to the Terms Of Service.</p>
+                    <div className="embed-container" tabIndex={-1}>
+                        <iframe src="http://localhost:3000/maps/embed"
+                                className="embed"
+                                frameBorder="0"
+                                title="Embed of map"
+                                allowFullScreen=""
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                        >
+                        </iframe>
+                    </div>
+                    <p className="share-embed-notice">
+                        By sharing our map, you agree to the <a href="/terms" target="_blank" rel="noreferrer">Terms Of Service</a>.
+                    </p>
                 </section>
             </aside>
         </>

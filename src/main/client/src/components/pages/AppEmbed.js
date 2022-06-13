@@ -6,8 +6,8 @@ import Controls from "../controls/Controls";
 import LayerControl from "../controls/LayerControl";
 import CameraControl from "../controls/CameraControl";
 import Overlays from "../overlays/Overlays";
-import Marker from "../overlays/Marker";
 import React from "react";
+import Marker from "../overlays/Marker";
 
 /**
  * Container for the App's embed

@@ -35,6 +35,7 @@ const SideMenu = React.forwardRef((props, ref) => {
     const showShareMenu = () => {
         ref.current.classList.remove("active-flex");
         shareMenuRef.current.classList.add("active-flex");
+        shareMenuRef.current.focus();
     }
 
     /**
