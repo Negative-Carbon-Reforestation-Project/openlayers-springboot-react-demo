@@ -107,3 +107,77 @@
     margin: var(--margin-small);
     font-size: calc(var(--font-small) - 2px);
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px)
+{
+    .share-menu
+    {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0px;
+    }
+
+    .share-input
+    {
+        width: 40%;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px)
+{
+    .share-menu
+    {
+        width: 80vw;
+    }
+}
+
+/* iphones 6/7/8 and Plus in landscape */
+@media only screen and (max-width: 800px) and (orientation: landscape)
+{
+    .share-menu
+    {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0px;
+    }
+}
+
+/* iphones X in landscape */
+@media only screen and (max-width: 900px) and (orientation: landscape)
+{
+    .share-menu
+    {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0px;
+        overflow-y: scroll;
+    }
+}
+
+/* Large desktop devices (2500px and up) */
+@media only screen and (min-width: 2500px)
+{
+    .share-menu
+    {
+        height: 55vh;
+        width: 50vw;
+    }
+
+    .share-embed-notice
+    {
+        font-size: var(--font-large);
+    }
+
+    .share-input
+    {
+        font-size: var(--font-medium);
+    }
+
+    .share-button
+    {
+        font-size: var(--font-medium);
+        width: 250px;
+    }
+}

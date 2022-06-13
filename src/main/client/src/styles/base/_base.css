@@ -112,6 +112,11 @@ hr
         font-size: var(--font-xlarge);
     }
 
+    h3
+    {
+        font-size: var(--font-large);
+    }
+
     p,
     li
     {
