@@ -24,6 +24,7 @@ const ShareMenu = React.forwardRef((props, shareMenuRef) => {
      */
     const hideMenu = () => {
         shareMenuRef.current.classList.remove("active-flex");
+        document.querySelector(".side-menu-shadow").classList.remove("active");
     }
 
     /**

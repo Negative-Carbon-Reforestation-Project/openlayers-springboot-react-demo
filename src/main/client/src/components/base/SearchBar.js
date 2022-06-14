@@ -96,6 +96,7 @@ const SearchBar = () => {
      */
     const showSideMenu = () => {
         sideMenuRef.current.classList.toggle("active-flex");
+        document.querySelector(".side-menu-shadow").classList.add("active");
         sideMenuRef.current.focus();
     }
 

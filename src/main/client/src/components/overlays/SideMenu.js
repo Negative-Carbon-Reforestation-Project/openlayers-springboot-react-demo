@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useEffect, useRef} from "react";
 import exitIcon from "../../resources/images/icons/exit-icon-50x50.png";
 import helpIcon from "../../resources/images/icons/help-icon-512x512.png";
 import shareIcon from "../../resources/images/icons/share-icon-512x512.png";
@@ -15,10 +15,11 @@ import {toggleTutorial} from "../../redux/reducers/appReducer";
 import {useDispatch} from "react-redux";
 import ShareMenu from "./ShareMenu";
 
-const SideMenu = React.forwardRef((props, ref) => {
+const SideMenu = React.forwardRef((props, sideMenuRef) => {
 
     const dispatch = useDispatch();
     const shareMenuRef = useRef();
+    const shadowRef = useRef();
 
     /**
      * Shows the tutorial again
@@ -26,14 +27,14 @@ const SideMenu = React.forwardRef((props, ref) => {
      */
     const showTutorial = () => {
         dispatch(toggleTutorial({tutorialEnabled: true}));
-        ref.current.classList.remove("active-flex");
+        sideMenuRef.current.classList.remove("active-flex");
     }
 
     /**
      * Shows the share menu
      */
     const showShareMenu = () => {
-        ref.current.classList.remove("active-flex");
+        sideMenuRef.current.classList.remove("active-flex");
         shareMenuRef.current.classList.add("active-flex");
         shareMenuRef.current.focus();
     }
@@ -42,12 +43,13 @@ const SideMenu = React.forwardRef((props, ref) => {
      * Hides the side menu
      */
     const hideSideMenu = () => {
-        ref.current.classList.toggle("active-flex");
+        sideMenuRef.current.classList.toggle("active-flex");
+        shadowRef.current.classList.remove("active");
     }
 
     return (
         <>
-            <aside ref={ref} className="side-menu topo-skin" tabIndex={0} aria-label="Menu">
+            <aside ref={sideMenuRef} className="side-menu topo-skin" tabIndex={0} aria-label="Menu">
                 <section className="side-menu-header">
                     <Logo className="side-menu-logo"/>
                     <button className="side-menu-exit" onClick={() => hideSideMenu()}>
@@ -92,11 +94,14 @@ const SideMenu = React.forwardRef((props, ref) => {
                         <li className="side-menu-option">
                             <a href="https://github.com/Negative-Carbon-Reforestation-Project/openlayers-springboot-react-demo/issues/new?assignees=&labels=bug&template=bug_report.md&title=Bug%3A+%5BError%5D" target="_blank" rel="noreferrer">Report An Issue</a>
                         </li>
+                        <li className="side-menu-option">
+                            <a href="https://github.com/Negative-Carbon-Reforestation-Project/openlayers-springboot-react-demo" target="_blank" rel="noopener">View On Github</a>
+                        </li>
                     </ul>
                 </section>
             </aside>
-
             <ShareMenu ref={shareMenuRef}/>
+            <div ref={shadowRef} className="side-menu-shadow"></div>
         </>
     );
 })

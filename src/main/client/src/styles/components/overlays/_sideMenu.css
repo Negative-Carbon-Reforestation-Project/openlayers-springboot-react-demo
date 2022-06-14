@@ -18,7 +18,7 @@
     z-index: 3;
 
     height: 100vh;
-    width: 50vw;
+    width: 35vw;
 
     color: white;
 
@@ -110,12 +110,41 @@
     text-align: center;
 }
 
+.side-menu-shadow
+{
+    z-index: 2;
+    position: fixed;
+    display: none;
+
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-transparent-black);
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px)
 {
     .side-menu
     {
         width: 100vw;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px)
+{
+    .side-menu
+    {
+        width: 50vw;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (orientation: landscape)
+{
+    .side-menu
+    {
+        width: 40vw;
     }
 }
 
@@ -145,7 +174,7 @@
 {
     .side-menu
     {
-        width: 35vw;
+        width: 20vw;
     }
 
     .side-menu-option > img
