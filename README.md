@@ -4,7 +4,7 @@
 ## Introduction
 We understand that technology cannot take the place of hands in the earth when it comes to reforestation efforts. However, we believe that it can serve to empower those involved.
 
-For our capstone project, we developed a platform that utilizes convolutional neural networks and data science to identify potential locations for reforestation -- assisting those involved by reducing time and cost. 
+For our capstone project, we developed a platform that utilizes convolutional neural networks and data science to identify potential locations for reforestation -- assisting those involved by reducing time and cost.
 
 ## Services
 
@@ -24,14 +24,14 @@ Returns the following json response:
 
 ```json
 {
-    "species": [
-        {
-            "wa_douglas_fir_stand_density": 0.08574207399322036,
-            "wa_western_hemlock_stand_density": 0.11730453391478986,
-            "wa_pacific_yew_basal_area": 0.036677908904923597
-        }
-    ],
-    "wa_total_reforestation_opportunity": 0
+  "species": [
+    {
+      "wa_douglas_fir_stand_density": 0.08574207399322036,
+      "wa_western_hemlock_stand_density": 0.11730453391478986,
+      "wa_pacific_yew_basal_area": 0.036677908904923597
+    }
+  ],
+  "wa_total_reforestation_opportunity": 0
 }
 ```
 
@@ -39,7 +39,7 @@ Returns the following json response:
 
 #### Accessibile at: https://www.ncrp.app
 
-Our web application allows users to visualize and explore reforestation opportunities on a 2D and 3D map. 
+Our web application allows users to visualize and explore reforestation opportunities on a 2D and 3D map.
 
 ##### Visualization
 
@@ -57,7 +57,7 @@ To explore reforestation opportunities, users are able to place a marker on the 
 
 [![Image from Gyazo](https://i.gyazo.com/8a2407812f64d169c343a4e5d29c82b9.gif)](https://gyazo.com/8a2407812f64d169c343a4e5d29c82b9)
 
-Alternatively, users are also able to search for locations directly using our search bar -- which supports auto-completion and geocoding. 
+Alternatively, users are also able to search for locations directly using our search bar -- which supports auto-completion and geocoding.
 
 [![Image from Gyazo](https://i.gyazo.com/7923e4f043e24df566ccef0edcdc4839.gif)](https://gyazo.com/7923e4f043e24df566ccef0edcdc4839)
 
@@ -80,7 +80,7 @@ Alternatively, users are also able to search for locations directly using our se
       </ul>
     </td>
   </tr>
-  
+
   <tr>
     <td align="center"><a href="https://github.com/quicktkachuk"><img src="https://avatars.githubusercontent.com/u/59972585?v=4" width="200px;" alt=""/><br /><sub><b>Matthew Tkachuk</b></sub></a><br />
     <td>
@@ -96,7 +96,7 @@ Alternatively, users are also able to search for locations directly using our se
       </ul>
     </td>
   </tr>
-  
+
   <tr>
     <td align="center"><a href="https://github.com/liamstar97"><img src="https://avatars.githubusercontent.com/u/6600480?v=4" width="200px;" alt=""/><br /><sub><b>Liam Thompson</b></sub></a><br />
     <td>
@@ -112,19 +112,20 @@ Alternatively, users are also able to search for locations directly using our se
       </ul>
     </td>
   </tr>
-  
+
   <tr>
     <td align="center"><a href="https://github.com/kylewhite0225"><img src="https://avatars.githubusercontent.com/u/66845776?v=4" width="200px;" alt=""/><br /><sub><b>Kyle White</b></sub></a><br />
     <td>
       <strong>React.js Developer, Data Scientist</strong></br>
-      <p>Insert Summary</p>
+      <p>4 years of aerospace manufacturing engineering experience, 
+      2 years of cumulative experience in full-stack software development</p>
       <ul>
-        <li>Developed component and sub-components for the query menu using Javascript framework React.js and data visualization library Chart.js</li>
-        <li>...</lI>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
+        <li>Developed query menu component and associated sub-components using JavaScript framework React.js, data visualization library Chart.js, and CSS</li>
+        <li>Developed Python script to access ArcGIS REST API for downloading WA native tree species dataset</lI>
+        <li>Developed Python based automation scripts for conversion of GeoTIFF data into point-lat/long coordinate CSV</li>
+        <li>Used the above script to create an ArcGIS Pro script tool with parameterized inputs</li>
+        <li>Commissioned logo for website and branding</li>
+        <li>Wrote about and mission statement excerpts</li>
       </ul>
     </td>
   </tr>
@@ -134,8 +135,8 @@ Alternatively, users are also able to search for locations directly using our se
 #### We'd like to credit the following people for helping us realize our project
 
 <ul>
-    <li>Seattle for designing our amazing logo</li>
+    <li>Seattle Sims for designing our amazing logo. You can view her portfolio here <a href="https://www.instagram.com/seattleasdesign/" target="_blank">https://www.instagram.com/seattleasdesign/</a></li>
     <li>Nancy Lane and Sara Farag for hosting our UX survey</li>
-    <li>Liam's step-dad for consulting with us on AWS and Machine Learning</li>
+    <li>Liam's step-dad, Jake Mannix, for consulting with us on AWS and Machine Learning matters</li>
     <li>Alfred Nehme for advising our capstone group</li>
 </ul>
