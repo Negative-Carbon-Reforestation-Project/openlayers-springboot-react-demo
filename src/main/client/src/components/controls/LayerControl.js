@@ -229,11 +229,10 @@ const LayerControl = () => {
                  aria-label="More layer options"
                  tabIndex={0}
             >
-                <button className="expanded-menu-exit" aria-label="Close layer menu">
+                <button className="expanded-menu-exit" aria-label="Close layer menu" onClick={() => hideExpandedLayerMenu()}>
                     <img className="expanded-menu-exit-icon"
                          src={exitIcon}
                          alt="Exit layer menu icon"
-                         onClick={() => hideExpandedLayerMenu()}
                          draggable={false}
                     />
                 </button>
