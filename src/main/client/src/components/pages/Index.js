@@ -45,7 +45,7 @@ const Index = () => {
                 <section id="mission-excerpt" className="content" tabIndex={0} aria-label="Excerpt on why reforestation is important">
                     <article className="mission-excerpt-container" tabIndex={0}>
                         <h2>Why is reforestation important?</h2>
-                        <p>Forest ecosystems are critical to the health of the planet and therefore our own. They play an important role in climate, water retention, temperature regulation, and ecosystem services such as clean water, air, and the protection of biodiversity. Unfortunately, forests throughout the world are being destroyed and damaged on a daily basis due to human developments such as urban sprawl, forest fragmentation, and forest product extraction.</p>
+                        <p>Forest ecosystems are critical to the health of the planet and therefore our own. They play an important role in climate, water retention, temperature regulation, and ecosystem services such as clean water, air, and the protection of biodiversity. Unfortunately, forests throughout the world are being destroyed and damaged on a daily basis</p>
                         <p>Reforestation is the process of regenerating or replanting forests that have been destroyed or damaged. Even though forests have the capability to self-regenerate via natural dispersion of seeds, forest lands that have been badly damaged cannot be regenerated easily on their own unless aided through manual reforestation.
                         </p>
                         <p><abbr title="Negative Carbon Reforestation Project">NCRP</abbr> is committed to aiding communities and organizations who are directly involved in the reforestation efforts of Washington.</p>

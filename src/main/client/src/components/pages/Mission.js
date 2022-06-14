@@ -30,7 +30,7 @@ const Mission = () => {
                         <a className="mission-study-link" href="https://pubmed.ncbi.nlm.nih.gov/16903097/" target="_blank" rel="noreferrer"> according to a study on the status of old-growth forests in the Pacific Northwest</a>,
                         72% of the original old-growth conifer forests have been lost through logging and other human developments. Forest preservation has a new urgency as a crucial defense against climate disruption that poses catastrophic risks for both the natural world and humanity.
                    </p>
-                   <p>We understand that technology cannot take the place of hands in the earth, but it can serve to empower those involved. We've developed a platform that utilizes convolutional neural networks and data science to help identify potential locations for successful reforestation – assisting those involved by reducing time and cost.</p>
+                   <p>We understand that technology cannot take the place of hands in the earth, but it can serve to empower those involved. That's why we developed a platform that utilizes convolutional neural networks and data science to help identify potential locations for successful reforestation – assisting those involved by reducing time and cost.</p>
                     <p>We hope that through the use of our software, we can help Washington remain green for decades to come. Now that you’re here, maybe you can help too!</p>
                 </section>
 
@@ -40,7 +40,7 @@ const Mission = () => {
                     <h2>REST API</h2>
                     <p>Our web application is built on top of a REST API that is available at the following endpoint:</p>
                     <pre aria-label="rest endpoint" className="language-bash">https://www.ncrp.app/maps/api/search/geo</pre>
-                    <p>The endpoint expects two parameters, longitude and latitude, and returns opportunities for reforestation and the common native tree species at the given coordinate.</p>
+                    <p>The endpoint expects two parameters, longitude and latitude, and returns opportunities for reforestation and the tree species at the given coordinate.</p>
                     <p>For example:</p>
                     <pre aria-label="rest api endpoint example" className="language-bash">https://ncrp.app/api/search/geo?latitude=47.70023082782143&longitude=-123.58968272261251</pre>
                     <p>Returns the following json response:</p>
