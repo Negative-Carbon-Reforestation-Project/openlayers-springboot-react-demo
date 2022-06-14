@@ -13,7 +13,7 @@ const useQuery = (coordinates, queryMenuRef) => {
      * Once the component is mounted onto the DOM, create the overlay and populate it via a click listener on the map.
      * Add a click listener for the popup closer as well.
      */
-    useEffect(() => {
+    useEffect(async () => {
         if (!coordinates) {
             return;
         }
@@ -23,15 +23,25 @@ const useQuery = (coordinates, queryMenuRef) => {
 
         let [longitude, latitude] = [...coordinates];
 
-        fetch(`https://ncrp.app/api/search/geo?latitude=${latitude}&longitude=${longitude}`)
-            .then((response) => response.json())
-            .then((data) => {
+        try
+        {
+            let response = await fetch(`https://ncrp.app/api/search/geo?latitude=${latitude}&longitude=${longitude}`);
+
+            if (response.status !== 200)
+            {
+                setQueryContent(<QueryError/>);
+            }
+            else
+            {
+                let data = await response.json();
                 data["coordinates"] = coordinates;
                 setQueryContent(<QueryResult data={data}/>);
-            })
-            .catch((error) => {
-                setQueryContent(<QueryError/>);
-            });
+            }
+        }
+        catch (error)
+        {
+            setQueryContent(<QueryError/>);
+        }
 
     }, [coordinates]);
 

@@ -4,7 +4,6 @@ import errorIcon from "../../resources/images/icons/error_icon-50x50.png";
 const QueryError = () => {
     return (
         <>
-
             <section className="query-error-content">
                 <img src={errorIcon} alt="Error icon"/>
                 <p>Something went wrong</p>
