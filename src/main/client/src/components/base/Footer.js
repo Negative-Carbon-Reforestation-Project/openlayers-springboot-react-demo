@@ -22,13 +22,16 @@ const Footer = () => {
                             <a href="/maps">Explore</a>
                         </li>
                         <li className="footer-link-item">
+                            <a href="/accessibility">Accessibility</a>
+                        </li>
+                        <li className="footer-link-item">
                             <a href="/terms">Terms of Service</a>
                         </li>
                         <li className="footer-link-item">
                             <a href="/privacy">Privacy Policy</a>
                         </li>
                         <li className="footer-link-item">
-                            <a href="/accessibility">Accessibility</a>
+                            <a href="https://github.com/Negative-Carbon-Reforestation-Project/openlayers-springboot-react-demo" target="_blank" rel="noopener">View On Github</a>
                         </li>
                     </ul>
                 </nav>
