@@ -1,6 +1,6 @@
 import Navigation from "../base/Navigation";
 import Footer from "../base/Footer";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 
 /**
  * Container for the Terms page
@@ -23,9 +23,9 @@ const Terms = () => {
                     <h1 className="hero-header">Terms Of Service</h1>
                 </section>
 
-                <section id="terms-content" className="content" tabIndex={0} role="document" aria-label="Terms Of Service">
+                <section className="terms-content" tabIndex={0} role="document" aria-label="Terms Of Service">
                     <article className="content-article">
-                        <p>Last updated: April 10, 2022</p>
+                        <p>Last updated: <time dateTime="2022-06-13">June 13, 2022</time></p>
                         <p>Please read these terms and conditions carefully before using Our Service.</p>
                     </article>
 
@@ -85,18 +85,18 @@ const Terms = () => {
                         <p>We strongly advise You to read the terms and conditions and privacy policies of any third-party web sites or services that You visit.</p>
                     </article>
 
-                    <article className="content-article">
-                        <h1>Termination</h1>
-                        <p>We may terminate or suspend Your access immediately, without prior notice or liability, for any reason whatsoever, including without limitation if You breach these Terms and Conditions.</p>
-                        <p>Upon termination, Your right to use the Service will cease immediately.</p>
-                    </article>
+                    {/*<article className="content-article">*/}
+                    {/*    <h1>Termination</h1>*/}
+                    {/*    <p>We may terminate or suspend Your access immediately, without prior notice or liability, for any reason whatsoever, including without limitation if You breach these Terms and Conditions.</p>*/}
+                    {/*    <p>Upon termination, Your right to use the Service will cease immediately.</p>*/}
+                    {/*</article>*/}
 
-                    <article className="content-article">
-                        <h1>Limitation of Liability</h1>
-                        <p>Notwithstanding any damages that You might incur, the entire liability of the Company and any of its suppliers under any provision of this Terms and Your exclusive remedy for all of the foregoing shall be limited to the amount actually paid by You through the Service or 100 USD if You haven't purchased anything through the Service.</p>
-                        <p>To the maximum extent permitted by applicable law, in no event shall the Company or its suppliers be liable for any special, incidental, indirect, or consequential damages whatsoever (including, but not limited to, damages for loss of profits, loss of data or other information, for business interruption, for personal injury, loss of privacy arising out of or in any way related to the use of or inability to use the Service, third-party software and/or third-party hardware used with the Service, or otherwise in connection with any provision of this Terms), even if the Company or any supplier has been advised of the possibility of such damages and even if the remedy fails of its essential purpose.</p>
-                        <p>Some states do not allow the exclusion of implied warranties or limitation of liability for incidental or consequential damages, which means that some of the above limitations may not apply. In these states, each party's liability will be limited to the greatest extent permitted by law.</p>
-                    </article>
+                    {/*<article className="content-article">*/}
+                    {/*    <h1>Limitation of Liability</h1>*/}
+                    {/*    <p>Notwithstanding any damages that You might incur, the entire liability of the Company and any of its suppliers under any provision of this Terms and Your exclusive remedy for all of the foregoing shall be limited to the amount actually paid by You through the Service or 100 USD if You haven't purchased anything through the Service.</p>*/}
+                    {/*    <p>To the maximum extent permitted by applicable law, in no event shall the Company or its suppliers be liable for any special, incidental, indirect, or consequential damages whatsoever (including, but not limited to, damages for loss of profits, loss of data or other information, for business interruption, for personal injury, loss of privacy arising out of or in any way related to the use of or inability to use the Service, third-party software and/or third-party hardware used with the Service, or otherwise in connection with any provision of this Terms), even if the Company or any supplier has been advised of the possibility of such damages and even if the remedy fails of its essential purpose.</p>*/}
+                    {/*    <p>Some states do not allow the exclusion of implied warranties or limitation of liability for incidental or consequential damages, which means that some of the above limitations may not apply. In these states, each party's liability will be limited to the greatest extent permitted by law.</p>*/}
+                    {/*</article>*/}
 
                     <article className="content-article">
                         <h1>&quot;AS IS&quot; and &quot;AS AVAILABLE&quot; Disclaimer</h1>

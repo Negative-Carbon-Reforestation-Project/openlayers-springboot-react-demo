@@ -20,13 +20,33 @@
     border-bottom: 2px solid var(--color-white);
 }
 
-#mission-content
+.mission-content
+{
+    padding: 0 var(--padding-large) 0 var(--padding-large);
+}
+
+.services-content
+{
+    background-color: var(--color-light-grey);
+}
+
+.mission-content,
+.services-content
 {
     display: flex;
     flex-direction: column;
+    padding: var(--padding-large);
+}
 
-    margin: var(--margin-large);
-    padding: 0 var(--padding-large) 0 var(--padding-large);
+
+.mission-content a
+{
+    color: var(--color-dark-green);
+}
+
+.mission-content a:hover
+{
+    color: var(--color-black);
 }
 
 #explore-button

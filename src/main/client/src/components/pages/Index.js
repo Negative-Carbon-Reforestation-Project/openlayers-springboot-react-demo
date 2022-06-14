@@ -45,9 +45,10 @@ const Index = () => {
                 <section id="mission-excerpt" className="content" tabIndex={0} aria-label="Excerpt on why reforestation is important">
                     <article className="mission-excerpt-container" tabIndex={0}>
                         <h2>Why is reforestation important?</h2>
-                        <p>Forests play an important role in balancing our ecosystem. They are responsible for reducing carbon levels in our atmosphere and providing an environment for a diverse group of plants and animals to thrive in. Unfortunately, they are being destroyed or damaged due to various reasons on a daily basis – disturbing not only the local biodiversity of the area but all of us.</p>
-                        <p>Reforestation is the process of regenerating or replanting forest areas that have been destroyed or damaged. Even though forests have the capability to self-regenerate via the dispersion of seeds, forest lands that have been badly damaged cannot be regenerated unless aided through native methods such as planting new trees.</p>
-                        <p>We at <abbr>NCRP</abbr> are committed to aiding the people who are directly involved in reforestation efforts in Washington.</p>
+                        <p>Forest ecosystems are critical to the health of the planet and therefore our own. They play an important role in climate, water retention, temperature regulation, and ecosystem services such as clean water, air, and the protection of biodiversity. Unfortunately, forests throughout the world are being destroyed and damaged on a daily basis</p>
+                        <p>Reforestation is the process of regenerating or replanting forests that have been destroyed or damaged. Even though forests have the capability to self-regenerate via natural dispersion of seeds, forest lands that have been badly damaged cannot be regenerated easily on their own unless aided through manual reforestation.
+                        </p>
+                        <p><abbr title="Negative Carbon Reforestation Project">NCRP</abbr> is committed to aiding communities and organizations who are directly involved in the reforestation efforts of Washington.</p>
                         <button id="learn-more-button" className="call-to-action-button" onClick={() => document.location.href = "/mission"}>Learn More</button>
                     </article>
                 </section>

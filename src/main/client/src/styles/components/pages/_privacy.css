@@ -11,7 +11,7 @@
     background-color: #423E3E;
 }
 
-#privacy-content
+.privacy-content
 {
     padding: var(--padding-large);
 }

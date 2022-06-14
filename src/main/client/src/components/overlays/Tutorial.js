@@ -75,7 +75,6 @@ const Tutorial = () => {
         },
     ]
 
-
     /**
      * Exit the tutorial
      * @remark When exiting the tutorial for the first time, a cookie indicating that the tutorial was shown is set.
