@@ -13,6 +13,10 @@
     border-radius: 25px;
 
     color: var(--color-white);
+
+    overflow-y: scroll;
+    max-height: 80vh;
+    max-width: 50vw;
 }
 
 .share-menu-header
@@ -99,7 +103,7 @@
 .embed
 {
     width: 100%;
-    height: 300px;
+    height: 450px;
 }
 
 .share-embed-notice
@@ -126,6 +130,8 @@
         width: 100vw;
         height: 100vh;
         border-radius: 0px;
+        max-width: none;
+        max-height: none;
     }
 
     .share-input
@@ -140,6 +146,18 @@
     .share-menu
     {
         width: 80vw;
+        max-width: none;
+        max-height: none;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (orientation: landscape)
+{
+    .share-menu
+    {
+        max-width: 80vw;
+        max-height: 80vh;
     }
 }
 
@@ -151,6 +169,8 @@
         width: 100vw;
         height: 100vh;
         border-radius: 0px;
+        max-width: none;
+        max-height: none;
     }
 }
 
@@ -162,7 +182,8 @@
         width: 100vw;
         height: 100vh;
         border-radius: 0px;
-        overflow-y: scroll;
+        max-width: none;
+        max-height: none;
     }
 }
 
