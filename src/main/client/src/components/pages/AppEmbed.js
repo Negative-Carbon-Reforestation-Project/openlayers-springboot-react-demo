@@ -17,6 +17,7 @@ import Marker from "../overlays/Marker";
 const AppEmbed = () => {
     return (
         <div className="map-container">
+            <a className="embed-banner" href={`https://www.ncrp.app/maps${window.location.hash}`} target="_blank" role="button">View Original</a>
             <Map>
                 <Layers>
                     <Base/>

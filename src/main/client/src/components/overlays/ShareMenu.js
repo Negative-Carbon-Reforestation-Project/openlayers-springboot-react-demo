@@ -13,7 +13,7 @@ const ShareMenu = React.forwardRef((props, shareMenuRef) => {
      */
     const generateEmbed = () => {
         let url = `${window.location.protocol}//${window.location.host}/maps/embed${window.location.hash}`;
-        let embedHtml = `<iframe src='${url}' title='Embed of map' allowfullscreen='' loading='lazy' width='600' height='300' referrerpolicy='no-referrer-when-downgrade'></iframe>`;
+        let embedHtml = `<iframe src='${url}' title='Embed of map' style='border: 0;' allowfullscreen='' loading='lazy' width='600' height='300' referrerpolicy='no-referrer-when-downgrade'></iframe>`;
 
         console.log(embedHtml);
         return embedHtml;
@@ -75,7 +75,7 @@ const ShareMenu = React.forwardRef((props, shareMenuRef) => {
                     <input id="share-embed-input" className="share-input" type="text" value={embedRef.current} readOnly={true} aria-label="Shareable html code for the map embed"/>
                     <button className="share-button" onClick={() => copyToClipboard("#share-embed-input")}>Copy HTML</button>
                     <div className="embed-container" tabIndex={-1}>
-                        <iframe src="http://localhost:3000/maps/embed"
+                        <iframe src={`${window.location.protocol}//${window.location.host}/maps/embed${window.location.hash}`}
                                 className="embed"
                                 frameBorder="0"
                                 title="Embed of map"

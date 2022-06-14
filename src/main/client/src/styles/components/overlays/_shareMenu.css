@@ -108,6 +108,16 @@
     font-size: calc(var(--font-small) - 2px);
 }
 
+.share-embed-notice > a
+{
+    color: var(--color-dark-green);
+}
+
+.share-embed-notice > a:hover
+{
+    color: var(--color-white);
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px)
 {
