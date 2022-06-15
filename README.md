@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/28933557/173164536-108700d4-1676-48b0-9f01-20217052de0c.png)
+w![image](https://user-images.githubusercontent.com/28933557/173164536-108700d4-1676-48b0-9f01-20217052de0c.png)
 
 #### Access our platform here: https://www.ncrp.app
 ## Introduction
@@ -88,11 +88,10 @@ Alternatively, users are also able to search for locations directly using our se
       <p>Insert Summary</p>
       <ul>
         <li>Extended REST API functionality by implementing and configuring OpenSearch queries</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
+        <li>Data Science focus/li>
+        <li>GIS data manipulation and preprocessing</li>
+        <li>CNN Model design and construction</li>
+        <li>CNN model training and hyperparameter manipulation</li>
       </ul>
     </td>
   </tr>
