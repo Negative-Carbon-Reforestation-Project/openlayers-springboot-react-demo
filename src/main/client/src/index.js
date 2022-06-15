@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/Pages/App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Index from "./components/Pages/Index";
-import Mission from "./components/Pages/Mission";
-import Terms from "./components/Pages/Terms";
-import Privacy from "./components/Pages/Privacy";
+import Index from "./components/pages/Index";
 import store  from "./redux/store";
 import { Provider } from "react-redux";
-import Accessibility from "./components/Pages/Accessibility";
+import Fallback from "./components/pages/Fallback";
+
+const Mission = React.lazy(() => import("./components/pages/Mission"));
+const App = React.lazy(() => import("./components/pages/App"));
+const Terms = React.lazy(() => import("./components/pages/Terms"));
+const Privacy = React.lazy(() => import("./components/pages/Privacy"));
+const Accessibility = React.lazy(() => import("./components/pages/Accessibility"));
 
 ReactDOM.render(
     <React.StrictMode>
@@ -17,11 +19,37 @@ ReactDOM.render(
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Index/>}/>
-                    <Route path="/mission" element={<Mission/>}/>
-                    <Route path="/terms" element={<Terms/>}/>
-                    <Route path="/privacy" element={<Privacy/>}/>
-                    <Route path="/accessibility" element={<Accessibility/>}/>
-                    <Route path="/maps" element={<App/>}/>
+
+                    <Route path="/mission" element={
+                        <React.Suspense fallback={<Fallback/>}>
+                            <Mission/>
+                        </React.Suspense>
+                    }/>
+
+                    <Route path="/terms" element={
+                        <React.Suspense fallback={<Fallback/>}>
+                            <Terms/>
+                        </React.Suspense>
+                    }/>
+
+                    <Route path="/privacy" element={
+                        <React.Suspense fallback={<Fallback/>}>
+                            <Privacy/>
+                        </React.Suspense>
+                    }/>
+
+                    <Route path="/accessibility" element={
+                        <React.Suspense fallback={<Fallback/>}>
+                            <Accessibility/>
+                        </React.Suspense>
+                    }/>
+
+                    <Route path="/maps" element={
+                        <React.Suspense fallback={<Fallback/>}>
+                            <App/>
+                        </React.Suspense>
+                    }/>
+
                 </Routes>
             </BrowserRouter>
         </Provider>

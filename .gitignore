@@ -39,3 +39,4 @@ build/
 
 ### React Build ###
 src/main/client/build/
+.env

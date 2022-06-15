@@ -1,0 +1,347 @@
+.query-menu
+{
+    z-index: 1;
+    display: none;
+    flex-direction: column;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    min-width: 720px;
+    min-height: 460px;
+    
+    background-color: var(--color-black);
+
+    border-radius: 25px;
+    padding: var(--padding-small);
+
+    justify-content: center;
+}
+
+.query-menu-header
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.query-menu-exit
+{
+    position: absolute;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+.query-menu-exit:hover
+{
+    cursor: pointer;
+    filter: var(--filter-dark-green);
+}
+
+.query-menu-coordinates 
+{
+    align-items: center;
+
+    border-bottom: 3px;
+    border-color: var(--color-white);
+    margin-right: 25px;
+
+    color: var(--color-white);
+}
+
+.chart-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chart-container > section
+{
+    margin: var(--margin-small);
+    width: 100%;
+}
+
+/* Override the pie chart's canvas */
+.pie-container > canvas
+{
+    width: 350px !important;
+    height: 350px !important;
+    margin: 0 auto !important;
+}
+
+.chart-title
+{
+    text-align: center;
+    color: var(--color-white);
+}
+
+.chart-title-divider
+{
+    border-bottom: solid 2.5px var(--color-white);
+    margin-bottom: var(--margin-small);
+}
+
+/* Removing guage style for now till chartjs-gauge is implemented*/
+.gauge-container
+{
+    /*height: 400px;*/
+    /*width: 400px;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+}
+
+/* Target the gauge chart svg, not possible to maintain */
+#gauge-chart > svg
+{
+    /*width: 20px !important;*/
+    /*height: 20px !important;*/
+}
+
+
+.gauge-data-explanation
+{
+    text-align: center;
+    color: var(--color-white);
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px)
+{
+   .query-menu
+   {
+      min-width: auto;
+      border-radius: 0px;
+      width: 100vw;
+      height: 100vh;
+      overflow-y: scroll;
+   }
+
+   .chart-container
+   {
+      flex-direction: column;
+      align-items: center;
+   }
+
+   .query-menu-exit
+   {
+      position: relative;
+   }
+
+   .gauge-container
+   {
+      width: 100vw;
+   }
+}
+
+/* iphones 6/7/8 and Plus in landscape */
+@media only screen and (max-width: 800px) and (orientation: landscape)
+{
+    .query-menu
+    {
+        min-width: auto;
+        min-height: auto;
+        border-radius: 0px;
+        width: 100vw;
+        height: 100vh;
+        overflow-y: scroll;
+    }
+}
+
+/* iphones X in landscape */
+@media only screen and (max-width: 900px) and (orientation: landscape)
+{
+    .query-menu
+    {
+        min-width: auto;
+        min-height: auto;
+        border-radius: 0px;
+        width: 100vw;
+        height: 100vh;
+        overflow-y: scroll;
+    }
+}
+
+/* These breakpoints will have to be revisited with the new gauge, commented out for now */
+
+/*!* Medium devices (landscape tablets, 768px and up) *!*/
+/*@media only screen and (min-width: 768px)*/
+/*{*/
+/*    .query-menu*/
+/*    {*/
+/*        width: 40rem;*/
+/*        max-height: 15rem;*/
+/*    }*/
+
+/*    .query-menu-coordinates*/
+/*    {*/
+/*        font-size: 1rem;*/
+/*    }*/
+/* */
+/*    .chart-container */
+/*    {*/
+/*        display: flex;*/
+/*        flex-direction: row;*/
+/*        justify-content: space-evenly;*/
+/*        align-items: flex-start;*/
+/*        overflow-y: hidden;*/
+/*     }*/
+/*     */
+/*     .chart-title*/
+/*     {*/
+/*         font-size: 0.8rem;*/
+/*     }*/
+/* */
+/*    .pie-container*/
+/*    {*/
+/*        height: 30rem;*/
+/*        width: 40%;*/
+/*        justify-content: center;*/
+/*        padding-bottom: 20px;*/
+/*    }*/
+/* */
+/*    !* TODO*/
+/*        FIX GAUGE SIZING*/
+/*    *!*/
+
+/*    .gauge-container*/
+/*    {*/
+/*        height: 30rem;*/
+/*        width: 40%;*/
+/*        font-size: 0.05rem;*/
+/*    }*/
+/* */
+/*    .chart-reforest-expl*/
+/*    {*/
+/*        font-size: 0.8rem;*/
+/*    }*/
+/* */
+
+/*    */
+/*    !* .ol-popup*/
+/*    {*/
+/*        min-width: 20rem;*/
+/*    }*/
+
+/*    .ol-popup__content*/
+/*    {*/
+/*        font-size: 1.5rem;*/
+/*    } *!*/
+/*}*/
+
+
+/*!* Large devices (laptops/desktops, 992px and up) *!*/
+/*@media only screen and (min-width: 992px)*/
+/*{*/
+/*    .query-menu*/
+/*   {*/
+/*       min-width: 20rem;*/
+/*       max-height: 5rem;*/
+/*   }*/
+
+/*   .query-menu-coordinates*/
+/*   {*/
+/*        font-size: 1.5rem;*/
+/*    }*/
+
+/*   .chart-container */
+/*   {*/
+/*       flex-direction: column;*/
+/*       align-items: center;*/
+/*       font-size: 1.5rem;*/
+/*       overflow-y: scroll;*/
+/*       justify-content: flex-start;*/
+/*    }*/
+/*    */
+/*   .chart-title*/
+/*   {*/
+/*       font-size: 1.5rem;*/
+/*    }*/
+
+/*   .pie-container*/
+/*   {*/
+/*       height: 25vh;*/
+/*       width: 90%;*/
+/*       justify-content: center;*/
+/*   }*/
+
+/*   .gauge-container*/
+/*   {*/
+/*       height: 25rem;*/
+/*       width: 90%;*/
+/*       font-size: 0.05rem;*/
+/*       align-items: center;*/
+/*       justify-content: center;*/
+/*   }*/
+
+/*   .gauge-chart-reforestation*/
+/*   {*/
+/*       align-items: center;*/
+/*       width: 20rem;*/
+/*   }*/
+
+/*   .chart-reforest-expl*/
+/*   {*/
+/*       font-size: 0.6rem;*/
+/*    }*/
+/*}*/
+
+/*!* Extra large devices (large laptops and desktops, 1200px and up) *!*/
+/*@media only screen and (min-width: 1200px)*/
+/*{*/
+/*    .query-menu*/
+/*    {*/
+/*        max-height: 30rem;*/
+/*        width: 70vw;*/
+/*        max-width: 60rem;*/
+/*    }*/
+
+/*    .query-menu-coordinates */
+/*    {*/
+/*        color: var(--color-white);*/
+/*        border-bottom: solid 2.5px var(--color-white);*/
+/*        align-items: center;*/
+/*    }*/
+/* */
+/*    .chart-container */
+/*    {*/
+/*        display: flex;*/
+/*        flex-direction: row;*/
+/*        justify-content: space-evenly;*/
+/*        align-items: flex-start;*/
+/*        overflow-y: hidden;*/
+/*    }*/
+/*     */
+/*    .chart-title*/
+/*    {*/
+/*        text-align: center;*/
+/*        color: var(--color-white);*/
+/*        font-size: 1.3rem;*/
+/*        border-bottom: solid 2.5px var(--color-white);*/
+/*    }*/
+/* */
+/*    .pie-container*/
+/*    {*/
+/*        height: 300px;*/
+/*        width: 375px;*/
+/*    }*/
+/* */
+/*    .gauge-container*/
+/*    {*/
+/*        height: 400px;*/
+/*        width: 400px;*/
+/*        align-items: center;*/
+/*        justify-content: center;*/
+/*    }*/
+/* */
+/*    .chart-reforest-expl*/
+/*    {*/
+/*        !* text-align: center;*/
+/*        color: var(--color-white); *!*/
+/*        font-size: 1rem;*/
+/*        padding-top: 160px;*/
+/*    }*/
+/*}*/
