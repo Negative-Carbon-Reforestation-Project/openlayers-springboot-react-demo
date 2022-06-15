@@ -103,12 +103,11 @@ Alternatively, users are also able to search for locations directly using our se
       <strong>Cloud Architect, Data Scientist</strong></br>
       <p>Insert Summary</p>
       <ul>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
+        <li>Designed backend architecture</li>
+        <li>Deployed and maintained services on Kubernetes</li>
+        <li>Deployed and configured services on Kubernetes</li>
+        <li>Collected and analyzed data for determining reforestability</li>
+        <li>Trained and deployed Convolutional Neural Network to Ray</li>
       </ul>
     </td>
   </tr>
