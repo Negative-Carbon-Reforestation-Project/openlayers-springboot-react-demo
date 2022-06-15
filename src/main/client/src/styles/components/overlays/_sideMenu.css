@@ -118,7 +118,10 @@
 
     width: 100vw;
     height: 100vh;
-    background-color: var(--color-transparent-black);
+    background-color: rgb(0,0,0,0.5);
+
+
+    transition: all 0.3s ease-out;
 }
 
 /* Extra small devices (phones, 600px and down) */
