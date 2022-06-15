@@ -119,7 +119,7 @@ Alternatively, users are also able to search for locations directly using our se
       2 years of cumulative experience in full-stack software development</p>
       <ul>
         <li>Developed query menu component and associated sub-components using JavaScript framework React.js, data visualization library Chart.js, and CSS</li>
-        <li>Developed Python script to access ArcGIS REST API for downloading WA native tree species dataset</lI>
+        <li>Developed Python script to access US Forest Service ArcGIS REST API for downloading WA native tree species dataset</lI>
         <li>Developed Python based automation scripts for conversion of GeoTIFF data into point-lat/long coordinate CSV</li>
         <li>Used the above script to create an ArcGIS Pro script tool with parameterized inputs</li>
         <li>Assisted in optimization of hyperparameters of convolutional neural network reforestation prediction toolset</li>
