@@ -28,6 +28,7 @@ const SideMenu = React.forwardRef((props, sideMenuRef) => {
     const showTutorial = () => {
         dispatch(toggleTutorial({tutorialEnabled: true}));
         sideMenuRef.current.classList.remove("active-flex");
+        shadowRef.current.classList.remove("active");
     }
 
     /**
