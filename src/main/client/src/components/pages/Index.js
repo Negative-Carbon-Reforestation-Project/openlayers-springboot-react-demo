@@ -28,7 +28,7 @@ const Index = () => {
 
     return (
         <>
-            <Navigation skipLink="#index-container"/>
+            <Navigation skipLink="#index-hero"/>
 
             <main id="index-container" className="container">
                 <section id="index-hero" className="hero" tabIndex={0} aria-label="Let's Re-forest Washington">
