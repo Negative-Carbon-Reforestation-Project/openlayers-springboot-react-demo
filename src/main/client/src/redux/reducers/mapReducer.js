@@ -166,6 +166,7 @@ const setHistoryStateAction = (state, action) => {
 
     let hash = `#${base}&${mode}&${view}&${marker}`;
     window.history.pushState(action.payload, 'mapViewState', hash);
+    state.value.mapHash = hash;
 }
 
 /**
@@ -214,7 +215,7 @@ const readHistoryStateAction = (state) => {
 const mapsSlice = createSlice({
     name: "maps",
     initialState: {
-        value: {map: undefined, cesiumEnabled: false, cesiumMap: undefined}
+        value: {map: undefined, cesiumEnabled: false, cesiumMap: undefined, mapHash: undefined}
     },
     reducers: {
         addMap: (state, action) => addMapAction(state, action),
