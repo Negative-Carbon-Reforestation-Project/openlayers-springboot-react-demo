@@ -88,7 +88,7 @@ Alternatively, users are also able to search for locations directly using our se
       <p>Insert Summary</p>
       <ul>
         <li>Extended REST API functionality by implementing and configuring OpenSearch queries</li>
-        <li>Data Science focus/li>
+        <li>Data Science focus</li>
         <li>GIS data manipulation and preprocessing</li>
         <li>CNN Model design and construction</li>
         <li>CNN model training and hyperparameter manipulation</li>
