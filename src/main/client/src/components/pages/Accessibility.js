@@ -1,6 +1,7 @@
 import Navigation from "../base/Navigation";
 import Footer from "../base/Footer";
 import {useEffect} from "react";
+import wcagCheckList from "../../resources/files/WCAG Checklist.pdf";
 
 const Accessibility = () => {
 
@@ -97,6 +98,10 @@ const Accessibility = () => {
 
                         <h3>Screen Readers</h3>
                         <p>This Website has been designed to work with screen readers.</p>
+
+                        <h3>WCAG 2.1 Checklist</h3>
+                        <p>We tested for WCAG 2.1 AA compliance using the following checklist. We chose to interpret DNA as a pass and wherever notes aren't present, the criterion for the requirement should be interpreted</p>
+                        <iframe src={`${wcagCheckList}#toolbar=0`} width="100%" height="500px"></iframe>
                     </article>
 
                     <article className="content-article">
