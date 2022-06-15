@@ -28,6 +28,7 @@
     color: var(--color-white);
 
     font-size: var(--font-small);
+    user-select: none;
 }
 
 .layer-control:focus,
@@ -128,6 +129,25 @@
 
 }
 
+.expanded-menu-exit
+{
+    background: transparent;
+    position: absolute;
+    right: 0;
+}
+
+.expanded-menu-exit:hover > img,
+.expanded-menu-exit:focus > img
+{
+    filter: var(--filter-dark-green);
+}
+
+.expanded-menu-exit-icon
+{
+    width: 30px;
+    height: 30px;
+}
+
 .landcover-layer-previews,
 .base-layer-previews
 {
@@ -215,6 +235,12 @@
     .layer-menu-expanded
     {
         width: 800px;
+    }
+
+    .expanded-menu-exit-icon
+    {
+        width: 40px;
+        height: 40px;
     }
 
     .cesium-option > label

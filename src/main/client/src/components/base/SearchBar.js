@@ -2,7 +2,7 @@ import hamburgerIcon from "../../resources/images/icons/hamburger-menu-50x50.web
 import {useRef, useState} from "react";
 import {useDispatch} from "react-redux";
 import {fromLonLat} from "ol/proj";
-import {addMarker, setMapView} from "../../redux/reducers/mapReducer";
+import {addMarker, panMapView, removeMarker, setHistoryState} from "../../redux/reducers/mapReducer";
 import SideMenu from "../overlays/SideMenu";
 
 /**
@@ -29,12 +29,14 @@ const SearchBar = () => {
         fetch(`https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?address=${address}&maxLocations=1&f=json&token=${process.env.REACT_APP_ARCTOKEN}`)
             .then(response => response.json())
             .then(data => {
+                debugger;
                 let location = data.candidates[0].location;
                 let coordinates = fromLonLat([location.x, location.y]);
 
-                dispatch(setMapView({center: coordinates, zoom: 6}));
-                // dispatch(addMarker({coordinates: coordinates})); // Old implementation for vector markers
+                dispatch(panMapView({center: coordinates, zoom: 10, duration: 2000}));
+                dispatch(removeMarker());
                 dispatch(addMarker({position: coordinates}));
+                dispatch(setHistoryState({marker: coordinates}));
             })
             .catch(error => console.log(error));
     }
@@ -94,6 +96,7 @@ const SearchBar = () => {
      */
     const showSideMenu = () => {
         sideMenuRef.current.classList.toggle("active-flex");
+        document.querySelector(".side-menu-shadow").classList.add("active");
         sideMenuRef.current.focus();
     }
 
@@ -134,7 +137,6 @@ const SearchBar = () => {
 
                 <input ref={searchInputRef}
                        className="search-input"
-                       autoFocus={true}
                        type="search"
                        aria-label="Search addresses for reforestation opportunities"
                        placeholder="Search Location"

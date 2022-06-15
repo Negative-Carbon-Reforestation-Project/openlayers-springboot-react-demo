@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import Loader from "../utils/Loader";
 import QueryResult from "../overlays/QueryResult";
+import QueryError from "./QueryError";
 
 /**
  * Container for query logic
@@ -12,24 +13,35 @@ const useQuery = (coordinates, queryMenuRef) => {
      * Once the component is mounted onto the DOM, create the overlay and populate it via a click listener on the map.
      * Add a click listener for the popup closer as well.
      */
-    useEffect(() => {
+    useEffect(async () => {
         if (!coordinates) {
             return;
         }
 
         setQueryContent(<Loader loaderClass="spinner-loader"/>);
+        queryMenuRef.current.classList.add("active-flex");
 
         let [longitude, latitude] = [...coordinates];
 
-        fetch(`https://ncrp.app/api/search/geo?latitude=${latitude}&longitude=${longitude}`)
-            .then((response) => response.json())
-            .then((data) => {
+        try
+        {
+            let response = await fetch(`https://ncrp.app/api/search/geo?latitude=${latitude}&longitude=${longitude}`);
+
+            if (response.status !== 200)
+            {
+                setQueryContent(<QueryError/>);
+            }
+            else
+            {
+                let data = await response.json();
                 data["coordinates"] = coordinates;
-                setQueryContent(<QueryResult data={data} queryMenuRef={queryMenuRef}/>);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+                setQueryContent(<QueryResult data={data}/>);
+            }
+        }
+        catch (error)
+        {
+            setQueryContent(<QueryError/>);
+        }
 
     }, [coordinates]);
 

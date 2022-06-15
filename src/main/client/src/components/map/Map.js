@@ -8,8 +8,8 @@ import useMap from "./useMap";
  * @param center Initial center for the view
  * @returns {JSX.Element}
  */
-const Map = ({ children, zoom, center }) => {
-    const { mapRef } = useMap(zoom, center);
+const Map = ({ children }) => {
+    const { mapRef } = useMap();
 
     return (
             <div ref={mapRef} className="ol-map" tabIndex={0} aria-label="Map. Use arrow keys to pan the map." role="application">

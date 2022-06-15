@@ -1,5 +1,21 @@
 import {BingMaps, OSM, Stamen, TileWMS, XYZ} from "ol/source";
 
+/**
+ * Map containing index numbers for specific layers
+ * @type {Map<string, number>}
+ */
+const layerMap = new Map([
+    ["default", 0],
+    ["aerial", 1],
+    ["toner", 2],
+    ["topo", 3],
+    ["terrain", 4],
+    ["slope", 5],
+    ["wildfires", 6],
+    ["soil", 7],
+    ["density", 8],
+]);
+
 const osm = new OSM();
 
 const aerial = new BingMaps({key: process.env.REACT_APP_BINGTOKEN, imagerySet: "AerialWithLabelsOnDemand"});
@@ -39,6 +55,7 @@ const totalOpportunity = new TileWMS({
 });
 
 export {
+    layerMap,
     osm,
     aerial,
     toner,

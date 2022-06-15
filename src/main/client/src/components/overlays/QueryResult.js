@@ -4,51 +4,31 @@ import Gauge from "./Gauge";
 import PieChart from "./PieChart";
 import React from "react";
 
-const QueryResult = ({queryMenuRef, data}) => {
+const QueryResult = ({data}) => {
 
     /**
-     * Generates a descriptive statement for the reforestation opportunity percentage
-     * @param percent The reforestation opportunity percent
-     * @returns {string} A descriptive statement for the percent
+     * Generates a descriptive statement for the reforestation opportunity percentages
+     * @param actual The actual reforestation opportunity
+     * @param predicted The predicted reforestation opportunity by our model
+     * @returns {string} A descriptive statement for the actual and predicted values
      */
-    const reforestationPercentToString = (percent) => {
+    const reforestationPercentToString = (actual, predicted) => {
         let explanation = "";
+        explanation += `The reforestation opportunity for this area is ${(actual * 100).toFixed(2)}%. `
 
-        if (percent > 67)
+        if (predicted)
         {
-            explanation =
-                "This area is highly reforestable! Go plant some trees! The common species within this area are show in the chart to the right.";
-
-        } else if (33 < percent && percent < 67)
-        {
-            explanation =
-                "This area has medium reforestation opportunity.\nThis area may have substantial tree cover and/or other structures.";
-        } else
-        {
-            explanation =
-                "This area has low reforestation opportunity.\nIt is recommended that you focus on areas with high reforestation opportunity.";
+            explanation += `Our machine learning model predicted an opportunity of ${predicted.toFixed(2)}%`;
         }
 
         return explanation;
     };
 
-    /**
-     * Hides the query menu
-     */
-    const hideMenu = () => {
-        queryMenuRef.current.classList.remove("active-flex");
-    }
 
     return (
         <>
-            <section className="query-menu-header">
-                <Coordinates className="query-menu-coordinates" coordinates={data.coordinates} />
-
-                <img className="query-menu-exit"
-                     src={exitIcon}
-                     alt="Exit query menu"
-                     onClick={() => hideMenu()}
-                />
+            <section className="query-result-header">
+                <Coordinates className="query-result-coordinates" coordinates={data.coordinates} />
             </section>
 
             <section className="chart-container">
@@ -57,7 +37,7 @@ const QueryResult = ({queryMenuRef, data}) => {
                     <hr className="chart-title-divider"/>
                     {/*<Gauge chartID={"gauge-chart"} data={data.wa_total_reforestation_opportunity}/>*/}
                     <p className="gauge-data-explanation">
-                        {reforestationPercentToString(data.wa_total_reforestation_opportunity)}
+                        {reforestationPercentToString(data.wa_total_reforestation_opportunity, data.prediction)}
                     </p>
                 </section>
 

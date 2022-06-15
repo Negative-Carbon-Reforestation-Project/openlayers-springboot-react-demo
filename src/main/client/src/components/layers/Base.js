@@ -9,7 +9,7 @@ import React from "react";
 const Base = () => {
     return (
         <>
-            <TileLayer source={osm} zIndex={0} visible={true} />
+            <TileLayer source={osm} zIndex={0} visible={true} preload={4}/>
             <TileLayer source={aerial} zIndex={0} preload={Infinity}/>
             <TileLayer source={toner} zIndex={0}/>
             <TileLayer source={topographical} zIndex={0} preload={Infinity}/>

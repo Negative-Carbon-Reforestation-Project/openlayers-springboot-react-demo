@@ -22,13 +22,16 @@ const Footer = () => {
                             <a href="/maps">Explore</a>
                         </li>
                         <li className="footer-link-item">
+                            <a href="/accessibility">Accessibility</a>
+                        </li>
+                        <li className="footer-link-item">
                             <a href="/terms">Terms of Service</a>
                         </li>
                         <li className="footer-link-item">
                             <a href="/privacy">Privacy Policy</a>
                         </li>
                         <li className="footer-link-item">
-                            <a href="/accessibility">Accessibility</a>
+                            <a href="https://github.com/Negative-Carbon-Reforestation-Project/openlayers-springboot-react-demo" target="_blank" rel="noopener">View On Github</a>
                         </li>
                     </ul>
                 </nav>
@@ -40,7 +43,7 @@ const Footer = () => {
                     <time>{new Date(Date.now()).getUTCFullYear()}</time> &copy; -&nbsp;
                     <strong>Negative Carbon Reforestation Project</strong> - All rights reserved
                 </p>
-                <p tabIndex={0}>Site last updated: <time dateTime="2022-05-30">May 30, 2022</time></p>
+                <p tabIndex={0}>Site last updated: <time dateTime="2022-06-14">June 15, 2022</time></p>
             </section>
         </footer>
     );

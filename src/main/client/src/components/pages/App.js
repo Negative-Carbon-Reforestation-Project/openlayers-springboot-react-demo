@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from 'react';
-
+import React, {useEffect} from 'react';
 import Map from "../map/Map";
 import Layers from "../layers/Layers";
 import Controls from "../controls/Controls";
-import { fromLonLat } from "ol/proj";
 import Overlays from "../overlays/Overlays";
 import SearchBar from "../base/SearchBar";
 import LayerControl from "../controls/LayerControl";
@@ -18,23 +16,22 @@ import Marker from "../overlays/Marker";
  * @returns {JSX.Element}
  */
 const App = () => {
-    const washingtonCoordinates = [-122.29567670312974, 47.41311574557329];
-    const [center, setCenter] = useState(washingtonCoordinates);
-    const [zoom, setZoom] = useState(6);
-
-
     /**
-     * Once the component is mounted onto the DOM, dynamically update the page's title.
+     * Once the component is mounted onto the DOM, dynamically update the page's title and the viewport tag.
+     *
+     * The user-scalable tag prevents zooming in on mobile webpages. i0S might not support this feature.
      */
     useEffect(() =>{
         document.title = "Negative Carbon Reforestation Project - Maps";
-    })
 
+        let viewportMetaTag = document.querySelector("meta[name=viewport]");
+        viewportMetaTag.setAttribute("content", "initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no");
+    })
 
     return (
         <div className="map-container">
             <SearchBar />
-            <Map center={fromLonLat(center)} zoom={zoom}>
+            <Map>
                 <Layers>
                     <Base/>
                     <LandCover/>

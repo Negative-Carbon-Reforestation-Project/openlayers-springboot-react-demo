@@ -12,13 +12,10 @@
     height: 100vh;
 }
 
-
 .hero-caption
 {
     z-index: 1;
     position: absolute;
-    /*top: 300px;*/
-    /*left: 380px;*/
 
     opacity: .9;
     text-transform: uppercase;
@@ -107,25 +104,11 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px)
 {
-    .hero-caption
-    {
-        /*left: 40px;*/
-    }
-
     .hero-caption-text
     {
         font-size: 40px;
     }
 
-}
-
-@media only screen and (min-width: 600px)
-{
-    .hero-caption
-    {
-        /*top: 400px;*/
-        /*left: 180px;*/
-    }
 }
 
 /* iphones 6/7/8 and Plus in landscape */
@@ -133,8 +116,6 @@
 {
     .hero-caption
     {
-        /*top: 140px;*/
-        /*left: 280px;*/
         font-size: var(--font-large);
     }
 
@@ -142,16 +123,6 @@
     {
         font-size: 40px;
     }
-}
-
-@media only screen and (min-width: 992px)
-{
-    .hero-caption
-    {
-        /*top: 300px;*/
-        /*left: 300px;*/
-    }
-
 }
 
 /* Large desktop devices (2500px and up) */

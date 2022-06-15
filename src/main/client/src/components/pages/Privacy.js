@@ -24,7 +24,7 @@ const Privacy = () => {
                     <h1 className="hero-header">Privacy Policy</h1>
                 </section>
 
-                <section id="privacy-content" className="content" tabIndex={0} aria-label="Privacy Policy" role="document">
+                <section className="privacy-content" tabIndex={0} aria-label="Privacy Policy" role="document">
                     <article className="content-article">
                         <p>Last updated: April 10, 2022</p>
                         <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>

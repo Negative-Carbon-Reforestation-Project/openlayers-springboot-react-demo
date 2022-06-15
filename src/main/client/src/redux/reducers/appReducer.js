@@ -1,19 +1,20 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getCookie} from "../../components/utils/CookieManager";
 
 /**
  * Decide whether to show the tutorial
  * @returns {boolean} True if the tutorial hasn't been shown before; False otherwise
+ *
+ * @remark Uses local storage to persist
  */
 const showTutorial = () => {
-    let tutorialCookie = getCookie("onboarded");
+    let showTutorial = localStorage.getItem("onboarded");
 
-    if (!tutorialCookie)
+    if (!showTutorial)
     {
         return true;
     }
 
-    return tutorialCookie === false;
+    return showTutorial === "false";
 }
 
 /**
@@ -31,8 +32,7 @@ const toggleTutorialAction = (state, action) => {
 const appSlice = createSlice({
     name: "app",
     initialState: {
-        // value: {tutorialEnabled: showTutorial()}
-        value: {tutorialEnabled: false}
+        value: {tutorialEnabled: showTutorial()}
     },
     reducers: {
         toggleTutorial: (state, action) => toggleTutorialAction(state, action),

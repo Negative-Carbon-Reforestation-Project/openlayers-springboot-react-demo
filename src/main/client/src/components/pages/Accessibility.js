@@ -19,7 +19,7 @@ const Accessibility = () => {
                     <h1 className="hero-header">Accessibility</h1>
                 </section>
 
-                <section id="accessibility-content" className="content" tabIndex={0} role="document" aria-label="Accessibility Policy">
+                <section className="accessibility-content" tabIndex={0} role="document" aria-label="Accessibility Policy">
                     <article className="content-article">
                         <p>Last updated: April 10, 2022</p>
                         <p>We are committed to the universal accessibility of information contained on our Website. Our accessibility policy lays out our goals with regard to accessibility on our Website.</p>

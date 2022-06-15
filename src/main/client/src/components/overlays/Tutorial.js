@@ -2,7 +2,6 @@ import {Steps} from "intro.js-react";
 import {useDispatch, useSelector} from "react-redux";
 import {toggleTutorial} from "../../redux/reducers/appReducer";
 import {useRef} from "react";
-import {getCookie, setCookie} from "../utils/CookieManager";
 
 /**
  * Container for Tutorial
@@ -41,12 +40,12 @@ const Tutorial = () => {
             tooltipClass: "tutorial-container"
         },
         {
-            title: "Searching Locations",
+            title: "Searching",
             intro: "Clicking on the map will place a marker that when clicked on will query the marker's location.",
             tooltipClass: "tutorial-container"
         },
         {
-            title: "Searching Locations",
+            title: "Searching",
             element: ".search-bar",
             intro: "Alternatively, you can also query locations directly using the search bar.",
             tooltipClass: "tutorial-container"
@@ -76,7 +75,6 @@ const Tutorial = () => {
         },
     ]
 
-
     /**
      * Exit the tutorial
      * @remark When exiting the tutorial for the first time, a cookie indicating that the tutorial was shown is set.
@@ -84,11 +82,7 @@ const Tutorial = () => {
      */
     const exitTutorial = () => {
         dispatch(toggleTutorial({tutorialEnabled: false}));
-
-        if (!getCookie("onboarded"))
-        {
-            setCookie("onboarded", true);
-        }
+        localStorage.setItem("onboarded", true);
     }
 
     /**
@@ -124,6 +118,7 @@ const Tutorial = () => {
                     }
                     options={{
                         hideNext: false,
+                        exitOnOverlayClick: false
                     }}
             />
         </>
