@@ -16,7 +16,7 @@ const QueryResult = ({data}) => {
         let explanation = "";
         explanation += `The reforestation opportunity for this area is ${(actual * 100).toFixed(2)}%. `
 
-        if (!predicted && predicted >= 0)
+        if (predicted && predicted >= 0)
         {
             explanation += `Our machine learning model predicted an opportunity of ${predicted.toFixed(2)}%`;
         }
