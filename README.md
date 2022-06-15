@@ -124,6 +124,7 @@ Alternatively, users are also able to search for locations directly using our se
         <li>Developed Python script to access ArcGIS REST API for downloading WA native tree species dataset</lI>
         <li>Developed Python based automation scripts for conversion of GeoTIFF data into point-lat/long coordinate CSV</li>
         <li>Used the above script to create an ArcGIS Pro script tool with parameterized inputs</li>
+        <li>Assisted in optimization of hyperparameters of convolutional neural network reforestation prediction toolset</li>
         <li>Commissioned logo for website and branding</li>
         <li>Wrote about and mission statement excerpts</li>
       </ul>
