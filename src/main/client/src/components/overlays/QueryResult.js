@@ -14,11 +14,11 @@ const QueryResult = ({data}) => {
      */
     const reforestationPercentToString = (actual, predicted) => {
         let explanation = "";
-        explanation += `The reforestation opportunity for this area is ${actual * 100}%. `
+        explanation += `The reforestation opportunity for this area is ${(actual * 100).toFixed(2)}%. `
 
         if (predicted)
         {
-            explanation += `Our machine learning model predicted an opportunity of ${predicted}%`;
+            explanation += `Our machine learning model predicted an opportunity of ${predicted.toFixed(2)}%`;
         }
 
         return explanation;
