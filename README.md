@@ -99,14 +99,14 @@ Alternatively, users are also able to search for locations directly using our se
   <tr>
     <td align="center"><a href="https://github.com/liamstar97"><img src="https://avatars.githubusercontent.com/u/6600480?v=4" width="200px;" alt=""/><br /><sub><b>Liam Thompson</b></sub></a><br />
     <td>
-      <strong>Cloud Architect, Data Scientist</strong></br>
-      <p>Insert Summary</p>
+      <strong>Cloud Engineer, Data Scientist, and ML Engineer</strong></br>
+      <p>4+ years of cloud experience</p>
       <ul>
         <li>Designed backend architecture</li>
         <li>Deployed and maintained services on Kubernetes</li>
         <li>Deployed and configured services on Kubernetes</li>
-        <li>Collected and analyzed data for determining reforestability</li>
-        <li>Trained and deployed Convolutional Neural Network to Ray</li>
+        <li>Collected and analyzed data too predict reforestation opportunity</li>
+        <li>Trained, deployed, and served Convolutional Neural Network to Ray cluster on k8s</li>
       </ul>
     </td>
   </tr>
